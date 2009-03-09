@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="Compiler" default="go">
+  <property name="project.name" value="dropkick" />
+
+  <property name="dirs.build" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\build_output" overwrite="false" />
+  <property name="msbuild.configuration" value="Release" overwrite="false" />
+  <property name="solution.path" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\${project.name}.sln" overwrite="false" />
+
+
+  <target name="go" depends="build_code" description="Compiling project." />
+
+  <!-- assuming the build directory was cleaned -->
+  <target name="build_code" depends="" description="Building Library">
+    <echo message="Compiling ${solution.path}."/>
+    <delete  dir="${dirs.build}" failonerror="false" />
+
+    <property name="nant.settings.currentframework" value="net-3.5" />
+    <!--<property name="nant.settings.currentframework" value="net-2.0" />-->
+
+    <msbuild project="${solution.path}" verbosity="quiet">
+      <property name="Configuration" value="${msbuild.configuration}" />
+      <property name="OutputPath" value="${dirs.build}" />
+      <property name="Platform" value="Any CPU" />
+      <!--<arg value="/logger:ThoughtWorks.CruiseControl.MSBuild.XmlLogger, ThoughtWorks.CruiseControl.MSBuild.dll" />-->
+    </msbuild>
+
+  </target>
+
+</project>
