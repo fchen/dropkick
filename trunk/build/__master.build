@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="MasterBuildFile" default="go">
+  <property name="project.name" value="dropkick" />
+  <property name="svn.repository.name" value="dropkick" />
+
+  <property name="svn.path" value="https://${svn.repository.name}.googlecode.com/svn/" />
+  <property name="solution.path" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\${project.name}.sln" />
+  <property name="version.rev" value="0" />
+  <property name="version.build" value="0" />
+  <property name="msbuild.configuration" value="Release" />
+  <property name="dirs.build" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\build_output" overwrite="false" />
+  <property name="dirs.drop" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\code_drop" />
+
+  <target name="go" depends="build" description="Building" />
+
+  <target name="build">
+    <call target="common.find-svninfo" />
+    
+    <property name="version.build" value="${environment::get-variable('CCNetNumericLabel')}" if="${environment::variable-exists('CCNetNumericLabel')}" />
+    <property name="dirs.drop" value="${environment::get-variable('CCNetArtifactDirectory')}\b${version.build}-r${version.rev}" if="${environment::variable-exists('CCNetArtifactDirectory')}" />
+
+    <call target="common.generate-asminfo" />
+
+    <echo message="Starting build of ${solution.path}."/>
+    <nant buildfile=".\_compile.build" inheritall="true" />
+    <nant buildfile=".\_analyze.build" inheritall="true" />
+    <nant buildfile=".\_package.build" inheritall="true" />
+  </target>
+
+  <target name="common.find-svninfo" description="Gets the current svn revision number">
+    <!-- try to update the revision -->
+    <exec
+      program="svn"
+      commandline="info ${svn.path} --xml"
+      output="_revision.xml"
+      failonerror="false"/>
+    <xmlpeek
+      file="_revision.xml"
+      xpath="/info/entry/@revision"
+      property="version.rev"
+      failonerror="false"/>
+    <delete file="_revision.xml" failonerror="false" />
+
+    <echo message="INFO: Using Subversion revision number: ${version.rev}"/>
+  </target>
+
+  <target name="common.generate-asminfo" depends="common.find-svninfo" description="Generate asm info">
+    <asminfo output="${directory::get-parent-directory(project::get-buildfile-path())}\..\SolutionVersion.cs" language="CSharp">
+      <imports>
+        <import namespace="System" />
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.InteropServices" />
+      </imports>
+      <attributes>
+        <attribute type="ComVisibleAttribute" value="false" />
+        <attribute type="CLSCompliantAttribute" value="true" />
+        <attribute type="AssemblyVersionAttribute" value="0.0.${version.build}.${version.rev}" />
+        <attribute type="AssemblyTitleAttribute" value="${project.name}" />
+        <attribute type="AssemblyProductAttribute" value="${project.name}" />
+        <attribute type="AssemblyDescriptionAttribute" value="For the exclusive use of Federal Home Loan Bank Topeka." />
+        <attribute type="AssemblyTrademarkAttribute" value="All rights reserved, Original author or authoers" />
+        <attribute type="AssemblyFileVersionAttribute" value="0.0.${version.build}.${version.rev}" />
+        <attribute type="AssemblyCopyrightAttribute" value="FerventCoder Software and ACuriousMind Software, original author or authors" />
+        <attribute type="AssemblyCompanyAttribute" value="FerventCoder Software and ACuriousMind Software" />
+      </attributes>
+    </asminfo>
+  </target>
+</project>

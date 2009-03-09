@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="Analyzer" default="go">
+
+  <target name="go" depends="run_analyzers" description="Analyzing project for quality indicators." />
+
+  <target name="run_analyzers">
+    <nant buildfile=".\_test.build" inheritall="true" />
+    <nant buildfile=".\_ncover.build" inheritall="true" />
+    <!--<nant buildfile=".\_ndepend.build" inheritall="true" />-->
+  </target>
+
+</project>

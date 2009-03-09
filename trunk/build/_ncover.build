@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="NCover" default="go">
+  <property name="project.name" value="Drop KicK" />
+  <property name="dlls.test" value="dropkick.tests" />
+
+  <property name="number.satisfactory_coverage" value="85" />
+
+  <property name="dirs.lib" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\lib" />
+  <property name="dirs.build" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\build_output" overwrite="false" />
+  <property name="dirs.build_artifacts" value="${dirs.build}\build_artifacts" overwrite="false" />
+  <property name="dirs.ncover_results" value="${path::get-full-path(dirs.build_artifacts)}\ncover" overwrite="false" />
+
+  <property name="app.mbunit" value="${path::get-full-path(dirs.lib)}\testing\MbUnit\MbUnit.Cons.exe" />
+  <property name="app.ncover" value="${path::get-full-path(dirs.lib)}\tools\NCover\NCover.Console.exe" />
+  <property name="app.ncover_explorer" value="${path::get-full-path(dirs.lib)}\tools\NCover\NCoverExplorer.Console.exe" />
+
+  <property name="file.ncover_results" value="${dirs.ncover_results}\${project.name}.ncover.xml" overwrite="false" />
+  <property name="file.ncover_log" value="${dirs.ncover_results}\${project.name}.ncover.log" overwrite="false" />
+  <property name="file.xml.code_coverage_results" value="${project.name}.CodeCoverageSummary-results.xml" overwrite="false" />
+  <property name="file.html.code_coverage_results" value="${project.name}.CodeCoverageSummary-results.html" overwrite="false" />
+
+  <property name="args.test_runner" value="${dlls.test} /rt:Text /rnf:mbUnit /rf:${dirs.ncover_results}" />
+
+  <target name="go" depends="cleanup,ncover,ncover_explorer" description="Using NCover to Analyze project for test quality indicators." />
+
+  <target name="cleanup">
+    <echo message="Removing and adding ${dirs.ncover_results}."/>
+    <delete dir="${dirs.ncover_results}" />
+    <mkdir dir="${dirs.ncover_results}" />
+  </target>
+
+  <target name="ncover" >
+    <echo message="Attempting to run NCover. Creating file at ${file.ncover_results} and logging at ${file.ncover_log}." />
+    <ncover program="${app.ncover}"
+        commandLineExe="${app.mbunit}"
+        commandLineArgs="${args.test_runner}"
+        workingDirectory="${dirs.build}"
+        coverageFile="${file.ncover_results}"
+        logLevel="Normal"
+        logFile="${file.ncover_log}"
+        excludeAttributes="CoverageExcludeAttribute"
+        failonerror="false"
+        verbose="true">
+      <assemblies basedir="${dirs.build}">
+        <exclude name="${dirs.build}\*PostDeploy*dll" />
+        <exclude name="${dirs.build}\*PhysicalIntegration*dll" />
+        <exclude name="${dirs.build}\*Test*dll" />
+        <exclude name="${dirs.build}\FHLBank.Shared.*dll" />
+        <include name="${dirs.build}\FHLBank*.dll" />
+      </assemblies>
+    </ncover>
+  </target>
+
+  <target name="ncover_explorer" depends="ncover">
+    <echo message="Attempting to run NCoverExplorer. Creating HTML results file at ${file.html.code_coverage_results} and XML results file at ${file.xml.code_coverage_results}." />
+    <ncoverexplorer
+      program="${app.ncover_explorer}"
+      projectName="${project.name}"
+      reportType="4"
+      outputDir="${dirs.ncover_results}"
+      xmlReportName="${file.xml.code_coverage_results}"
+      htmlReportName="${file.html.code_coverage_results}"
+      showExcluded="True"
+      satisfactoryCoverage="${number.satisfactory_coverage}"
+      failMinimum="false"
+      failonerror="false"
+      >
+      <fileset>
+        <include name="${file.ncover_results}" />
+      </fileset>
+      <exclusions>
+        <exclusion enabled="true" isRegex="false" pattern="*Test*" type="Assembly" />
+	<exclusion enabled="true" isRegex="false" pattern="*Test*" type="Namespace" />
+        <exclusion enabled="true" isRegex="false" pattern="*.My*" type="Namespace" />
+        <exclusion enabled="true" isRegex="false" pattern="*.bdd*" type="Namespace" />
+        <exclusion enabled="true" isRegex="false" pattern="FHLBank.Shared*" type="Assembly" />
+        <exclusion enabled="true" isRegex="false" pattern="MassTransit.*" type="Assembly" />
+        <exclusion enabled="true" isRegex="false" pattern="when*" type="Class" />
+        <exclusion enabled="true" isRegex="false" pattern="concern*" type="Class" />
+      </exclusions>
+    </ncoverexplorer>
+  </target>
+
+  <target name="open_results">
+    <echo message="Opening results at ${path::get-full-path(dirs.ncover_results)}\${file.html.code_coverage_results}."/>
+    <exec
+      program="${environment::get-folder-path('ProgramFiles')}\Internet Explorer\iexplore.exe"
+      commandline="${path::get-full-path(dirs.ncover_results)}\${file.html.code_coverage_results}"
+      >
+    </exec>
+  </target>
+
+</project>

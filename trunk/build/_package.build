@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="Packager" default="go">
+  <property name="db.proj.name" value="YOUR.DATABASE.PROJECT.FOLDER.HERE" overwrite="false" />
+  <property name="report.proj.name" value="YOUR.REPORT.PROJECT.FOLDER.HERE" overwrite="false" />
+
+  <property name="dirs.build" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\build_output" overwrite="false" />
+  <property name="dirs.drop" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\code_drop" overwrite="false" />
+  <property name="dirs.db" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\product\${db.proj.name}" overwrite="false" />
+  <property name="dirs.report" value="${directory::get-parent-directory(project::get-buildfile-path())}\..\product\${report.proj.name}" overwrite="false" />
+
+
+  <target name="go" depends="cleanup, build_artifacts, app, db, reports, deployment_scripts, file_server" description="Packaging" />
+
+  <target name="cleanup">
+    <echo message="Removing and adding ${dirs.drop}."/>
+    <delete dir="${dirs.drop}" />
+    <mkdir dir="${dirs.drop}" />
+  </target>
+
+  <target name="build_artifacts">
+    <echo message="Packaging build artifacts (such as test results) to ${dirs.drop}\build_artifacts."/>
+    <copy todir="${dirs.drop}\build_artifacts">
+      <fileset basedir="${dirs.build}\build_artifacts">
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="app">
+    <echo message="Packaging application items to ${dirs.drop}\app."/>
+    <copy todir="${dirs.drop}\app">
+      <fileset basedir="${dirs.build}">
+        <exclude name="*${db.proj.name}\**" />
+        <exclude name="*${report.proj.name}\**" />
+        <exclude name="*Test*\**" />
+        <exclude name="*_Published*\**" />
+        <exclude name="*build_artifacts*\**" />
+        <exclude name="*QuickGraph*.dll" />
+        <exclude name="*MbUnit*.dll" />
+        <exclude name="*Rhino.Mocks.dll" />
+        <exclude name="*Refly.dll" />
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
+
+    <echo message="Packaging website to ${dirs.drop}\_PublishedWebSites."/>
+    <copy todir="${dirs.drop}\_PublishedWebSites">
+      <fileset basedir="${dirs.build}\_PublishedWebSites">
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="db">
+    <echo message="Packaging database files to ${dirs.drop}\${db.proj.name}."/>
+    <copy todir="${dirs.drop}\${db.proj.name}">
+      <fileset basedir="${dirs.db}">
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="reports">
+    <echo message="Packaging reports to ${dirs.drop}\${report.proj.name}."/>
+    <copy todir="${dirs.drop}\${report.proj.name}">
+      <fileset basedir="${dirs.report}">
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="deployment_scripts">
+    <echo message="Packaging deployment scripts to ${dirs.drop}\DeploymentScripts."/>
+    <copy todir="${dirs.drop}\DeploymentScripts">
+      <fileset basedir="${dirs.build}\..\DeploymentScripts">
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="file_server">
+    <echo message="Packaging file server items to ${dirs.drop}\FileServer."/>
+    <copy todir="${dirs.drop}\FileServer">
+      <fileset basedir="${dirs.build}\FileServer">
+        <include name="**/*.*" />
+      </fileset>
+    </copy>
+  </target>
+
+</project>

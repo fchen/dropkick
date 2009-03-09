@@ -1,0 +1,1 @@
+.\lib\tools\Nant\nant.exe /f:.\build\__master.build
