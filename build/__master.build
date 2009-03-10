@@ -15,7 +15,7 @@
 
   <target name="build">
     <call target="common.find-svninfo" />
-    
+
     <property name="version.build" value="${environment::get-variable('CCNetNumericLabel')}" if="${environment::variable-exists('CCNetNumericLabel')}" />
     <property name="dirs.drop" value="${environment::get-variable('CCNetArtifactDirectory')}\b${version.build}-r${version.rev}" if="${environment::variable-exists('CCNetArtifactDirectory')}" />
 
@@ -57,8 +57,8 @@
         <attribute type="AssemblyVersionAttribute" value="0.0.${version.build}.${version.rev}" />
         <attribute type="AssemblyTitleAttribute" value="${project.name}" />
         <attribute type="AssemblyProductAttribute" value="${project.name}" />
-        <attribute type="AssemblyDescriptionAttribute" value="For the exclusive use of Federal Home Loan Bank Topeka." />
-        <attribute type="AssemblyTrademarkAttribute" value="All rights reserved, Original author or authoers" />
+        <attribute type="AssemblyDescriptionAttribute" value="A development framework." />
+        <attribute type="AssemblyTrademarkAttribute" value="All rights reserved, Original author or authors" />
         <attribute type="AssemblyFileVersionAttribute" value="0.0.${version.build}.${version.rev}" />
         <attribute type="AssemblyCopyrightAttribute" value="FerventCoder Software and ACuriousMind Software, original author or authors" />
         <attribute type="AssemblyCompanyAttribute" value="FerventCoder Software and ACuriousMind Software" />

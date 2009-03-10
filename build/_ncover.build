@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="NCover" default="go">
   <property name="project.name" value="Drop KicK" />
-  <property name="dlls.test" value="dropkick.tests" />
+  <property name="dlls.test" value="dropkick.tests.dll" />
 
   <property name="number.satisfactory_coverage" value="85" />
 
@@ -42,11 +42,8 @@
         failonerror="false"
         verbose="true">
       <assemblies basedir="${dirs.build}">
-        <exclude name="${dirs.build}\*PostDeploy*dll" />
-        <exclude name="${dirs.build}\*PhysicalIntegration*dll" />
-        <exclude name="${dirs.build}\*Test*dll" />
-        <exclude name="${dirs.build}\FHLBank.Shared.*dll" />
-        <include name="${dirs.build}\FHLBank*.dll" />
+        <exclude name="${dirs.build}\*test*dll" />
+        <include name="${dirs.build}\dropkick*.dll" />
       </assemblies>
     </ncover>
   </target>
@@ -70,11 +67,11 @@
       </fileset>
       <exclusions>
         <exclusion enabled="true" isRegex="false" pattern="*Test*" type="Assembly" />
-	<exclusion enabled="true" isRegex="false" pattern="*Test*" type="Namespace" />
+        <exclusion enabled="true" isRegex="false" pattern="*Test*" type="Namespace" />
         <exclusion enabled="true" isRegex="false" pattern="*.My*" type="Namespace" />
         <exclusion enabled="true" isRegex="false" pattern="*.bdd*" type="Namespace" />
-        <exclusion enabled="true" isRegex="false" pattern="FHLBank.Shared*" type="Assembly" />
         <exclusion enabled="true" isRegex="false" pattern="MassTransit.*" type="Assembly" />
+        <exclusion enabled="true" isRegex="false" pattern="log4net.*" type="Assembly" />
         <exclusion enabled="true" isRegex="false" pattern="when*" type="Class" />
         <exclusion enabled="true" isRegex="false" pattern="concern*" type="Class" />
       </exclusions>
