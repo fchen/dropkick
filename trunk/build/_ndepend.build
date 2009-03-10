@@ -13,9 +13,9 @@
 
   <property name="version.rev" value="0" overwrite="false" />
 
-  <target name="go" 
-          depends="cleanup,create_build_info_file,ndepend,copy_images" 
-          description="Using NDepend to Analyze project for quality indicators." 
+  <target name="go"
+          depends="cleanup,create_build_info_file,ndepend,copy_images"
+          description="Using NDepend to Analyze project for quality indicators."
           
           />
   <!-- if="${environment::variable-exists('CCNetNumericLabel')}" -->
@@ -31,12 +31,12 @@
     <echo message="Generating XML file with some information to get merged in at ${files.build_info}."/>
     <echo file="${files.build_info}" append="false" failonerror="false">
       <![CDATA[<revision>${version.rev}</revision>]]>
-    </echo> 
+    </echo>
   </target>
 
   <target name="ndepend" depends="cleanup">
     <echo message="Attempting to run NDepend at ${app.ndepend} for file ${files.ndepend_config}." />
-    
+
     <exec program="${app.ndepend}">
       <arg line="${files.ndepend_config} /OutDir ${dirs.ndepend_results} /InDirs ${path::get-full-path(dirs.build)} C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727 C:\WINDOWS\Microsoft.NET\Framework\v3.0 C:\WINDOWS\Microsoft.NET\Framework\v3.5" />
       <!--  /EmitVisualNDependBinXml -->
