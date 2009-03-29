@@ -3,10 +3,11 @@
 ::Project UppercuT - http://uppercut.googlecode.com
 ::No edits to this file are required - http://uppercut.pbwiki.com
 
-call .\build.bat
+SET DIR=%~d0%~p0%
+call %DIR%build.bat
 
-.\lib\tools\Nant\nant.exe /f:.\BuildScripts\_zip.build -D:project.name=%PROJECT_NAME%
+%DIR%lib\tools\Nant\nant.exe /f:.\BuildScripts\_zip.build -D:project.name=%PROJECT_NAME%
 
 :: Use this option if you explicitly want to set the items in _zip.build
 
-::.\lib\tools\Nant\nant.exe /f:.\BuildScripts\_update_assemblies.build
+::%DIR%lib\tools\Nant\nant.exe /f:.\BuildScripts\_update_assemblies.build
