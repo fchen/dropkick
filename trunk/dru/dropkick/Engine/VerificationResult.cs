@@ -1,0 +1,38 @@
+namespace dropkick.Engine
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Text;
+
+    public class VerificationResult
+    {
+        StringBuilder sb = new StringBuilder();
+        List<VerificationItem> _items = new List<VerificationItem>();
+
+        public void AddGood(string message)
+        {
+            _items.Add(new VerificationItem(VerificationStatus.Good, message));
+        }
+
+        public void AddAlert(string message)
+        {
+            _items.Add(new VerificationItem(VerificationStatus.Alert, message));
+        }
+
+        public void AddError(string message)
+        {
+            _items.Add(new VerificationItem(VerificationStatus.Error, message));
+        }
+
+        public IList<VerificationItem> Results
+        {
+            get
+            {
+                return new ReadOnlyCollection<VerificationItem>(_items);
+            }
+        }
+
+        
+    }
+}
