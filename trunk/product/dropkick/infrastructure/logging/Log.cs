@@ -14,7 +14,7 @@ namespace dropkick.infrastructure.logging
             Logger logger;
             try
             {
-                logger = Container.get_an_instance_of<LoggerFactory>().create_logger_bound_to(object_that_needs_logging);
+                logger = Container.get_an_instance_of<LogFactory>().create_logger_bound_to(object_that_needs_logging);
             }
             catch(Exception)
             {
