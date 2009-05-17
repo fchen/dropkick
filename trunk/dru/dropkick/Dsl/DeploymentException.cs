@@ -6,7 +6,6 @@ namespace dropkick.Dsl
     {
         public DeploymentException(string message)
         {
-            
         }
     }
 }

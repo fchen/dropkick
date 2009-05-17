@@ -35,7 +35,7 @@ namespace dropkick.Dsl.Files
             //check is valid to path
             _to = Path.GetFullPath(_to);
 
-            foreach (var file in Directory.GetFiles(_from))
+            foreach(var file in Directory.GetFiles(_from))
             {
                 File.Copy(file, Path.Combine(_to, file));
                 //log file was copied / event?
@@ -45,7 +45,7 @@ namespace dropkick.Dsl.Files
         public VerificationResult VerifyCanRun()
         {
             var result = new VerificationResult();
-            
+
             //check is valid from path
             _from = Path.GetFullPath(_from);
 
@@ -53,7 +53,7 @@ namespace dropkick.Dsl.Files
             _to = Path.GetFullPath(_to);
 
             //check can write from _to
-            if (!Directory.Exists(_to))
+            if(!Directory.Exists(_to))
                 result.AddAlert(string.Format("'{0}' does not exist and will be created", _to));
 
             if(Directory.Exists(_from))
@@ -61,7 +61,7 @@ namespace dropkick.Dsl.Files
                 result.AddGood(string.Format("'{0}' exists", _from));
                 //check can read from _from
                 var readFiles = Directory.GetFiles(_from);
-                foreach (string file in readFiles)
+                foreach(string file in readFiles)
                 {
                     Stream fs = new MemoryStream();
                     try
@@ -69,7 +69,7 @@ namespace dropkick.Dsl.Files
                         fs = File.Open(file, FileMode.Open, FileAccess.Read);
                         result.AddGood(string.Format("Going to copy '{0}' to '{1}'", file, _to));
                     }
-                    catch (Exception)
+                    catch(Exception)
                     {
                         result.AddError("CopyTask: Can't read file '{0}'");
                     }
@@ -83,7 +83,7 @@ namespace dropkick.Dsl.Files
             {
                 result.AddAlert(string.Format("'{0}' doesn't exist", _from));
             }
-            
+
 
             return result;
         }
@@ -92,6 +92,5 @@ namespace dropkick.Dsl.Files
         {
             inspector.Inspect(this);
         }
-
     }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{867543EF-6659-4ECA-B27A-4C2A98B7BF4C}</ProjectGuid>
     <OutputType>Exe</OutputType>
@@ -44,7 +44,19 @@
   <ItemGroup>
     <Compile Include="Dsl\DeploymentInspector.cs" />
     <Compile Include="Dsl\DeploymentInspectorSite.cs" />
+    <Compile Include="Dsl\Files\CopyOptions.cs" />
     <Compile Include="Dsl\Files\CopyTask.cs" />
+    <Compile Include="Dsl\Files\CopyTaskBuilder.cs" />
+    <Compile Include="Dsl\Files\FileAction.cs" />
+    <Compile Include="Dsl\Files\FileActions.cs" />
+    <Compile Include="Dsl\Iis\IisSiteOptions.cs" />
+    <Compile Include="Dsl\Iis\IisVirtualDirectoryOptions.cs" />
+    <Compile Include="Dsl\Iis\VerifyOptions.cs" />
+    <Compile Include="Dsl\Msmq\MsmqOptions.cs" />
+    <Compile Include="Dsl\Msmq\MsmqTask.cs" />
+    <Compile Include="Dsl\Msmq\MsmqTaskCfg.cs" />
+    <Compile Include="Dsl\MsSql\DatabaseOptions.cs" />
+    <Compile Include="Dsl\MsSql\SqlOptions.cs" />
     <Compile Include="Dsl\ServerOptions.cs" />
     <Compile Include="Dsl\Deployment.cs" />
     <Compile Include="Dsl\DeploymentException.cs" />
@@ -60,6 +72,7 @@
     <Compile Include="Dsl\Visitor\PartCounter.cs" />
     <Compile Include="Dsl\Visitor\TraceVisitor.cs" />
     <Compile Include="Dsl\WinService\Extension.cs" />
+    <Compile Include="Dsl\WinService\WinServiceOptions.cs" />
     <Compile Include="Engine\DeploymentFinder.cs" />
     <Compile Include="Engine\Runner.cs" />
     <Compile Include="Engine\Task.cs" />

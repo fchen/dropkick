@@ -13,20 +13,18 @@ namespace dropkick.Dsl.Visitor
         {
         }
 
-
         public void Inspect(object obj)
         {
             base.Visit(obj);
         }
-
-
+        
         public void Inspect(object obj, Action additionalInspections)
         {
             base.Visit(obj, () =>
-            {
-                additionalInspections();
-                return true;
-            });
+                {
+                    additionalInspections();
+                    return true;
+                });
         }
 
         public bool Inspect(Deployment deployment)
@@ -34,24 +32,24 @@ namespace dropkick.Dsl.Visitor
             Console.WriteLine("Verifying '{0}'", deployment.GetType().Name);
             return true;
         }
+
         public bool Inspect(Part part)
         {
             Console.WriteLine("  Part: {0}", part.Name);
             return true;
         }
+
         public bool Inspect(Task task)
         {
-            
             //log this
             var r = task.VerifyCanRun();
             Console.WriteLine("    Task: {0}", task.Name);
-            foreach (var result in r.Results)
+            foreach(var result in r.Results)
             {
                 Console.WriteLine("      [{0}]{1}", result.Status, result.Message);
             }
-            
+
             return true;
         }
-
     }
 }

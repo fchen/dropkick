@@ -1,6 +1,5 @@
 namespace dropkick.Engine
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Text;
@@ -8,7 +7,7 @@ namespace dropkick.Engine
     public class VerificationResult
     {
         StringBuilder sb = new StringBuilder();
-        List<VerificationItem> _items = new List<VerificationItem>();
+        readonly List<VerificationItem> _items = new List<VerificationItem>();
 
         public void AddGood(string message)
         {
@@ -27,12 +26,7 @@ namespace dropkick.Engine
 
         public IList<VerificationItem> Results
         {
-            get
-            {
-                return new ReadOnlyCollection<VerificationItem>(_items);
-            }
+            get { return new ReadOnlyCollection<VerificationItem>(_items); }
         }
-
-        
     }
 }

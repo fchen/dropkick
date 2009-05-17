@@ -13,8 +13,6 @@ namespace dropkick.specs
         public void Establish_Context()
         {
             _deployment = new SinglePartDeploy();
-
-            
         }
 
         [Test]

@@ -29,6 +29,7 @@ namespace dropkick.Dsl.Visitor
             Console.WriteLine("    Part:{0}", part.Name);
             return true;
         }
+
         public bool Inspect(Task task)
         {
             Console.WriteLine("        Task:{0}", task.Name);
@@ -38,10 +39,10 @@ namespace dropkick.Dsl.Visitor
         public void Inspect(object obj, Action additionalInspections)
         {
             base.Visit(obj, () =>
-            {
-                additionalInspections();
-                return true;
-            });            
+                {
+                    additionalInspections();
+                    return true;
+                });
         }
     }
 }
