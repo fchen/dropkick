@@ -4,7 +4,11 @@ namespace dropkick.Dsl
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Reflection;
-    using System.Runtime.Serialization;
+
+    public interface Deployment
+    {
+        void Run();
+    }
 
     //must-inherit?
     public class Deployment<Inheritor> :
@@ -24,22 +28,22 @@ namespace dropkick.Dsl
             VerifyDeploymentConfiguration();
         }
 
-
-        private static void InitializeParts()
+        static void InitializeParts()
         {
             Type machineType = typeof(Inheritor);
-            foreach (PropertyInfo propertyInfo in machineType.GetProperties(BindingFlags.Static | BindingFlags.Public))
+            foreach(PropertyInfo propertyInfo in machineType.GetProperties(BindingFlags.Static | BindingFlags.Public))
             {
-                if (!IsPropertyAPart(propertyInfo)) continue;
+                if(!IsPropertyAPart(propertyInfo)) continue;
 
                 Part<Inheritor> part = SetPropertyValue(propertyInfo, x => new Part<Inheritor>(x.Name));
 
                 _parts.Add(part.Name, part);
             }
         }
-        private static void VerifyDeploymentConfiguration()
+
+        static void VerifyDeploymentConfiguration()
         {
-            if (_parts.Count == 0)
+            if(_parts.Count == 0)
                 throw new DeploymentException("A deployment must have at least one part to be valid.");
         }
 
@@ -48,8 +52,6 @@ namespace dropkick.Dsl
         {
             definition();
         }
-
-        
 
         protected static void During(Part inputPart, Action<Part> action)
         {
@@ -63,11 +65,10 @@ namespace dropkick.Dsl
             return _parts.TryGetValue(name, out state) ? state : null;
         }
 
-       
-        private static TValue SetPropertyValue<TValue>(PropertyInfo propertyInfo, Func<PropertyInfo, TValue> getValue)
+        static TValue SetPropertyValue<TValue>(PropertyInfo propertyInfo, Func<PropertyInfo, TValue> getValue)
         {
             var value = Expression.Parameter(typeof(TValue), "value");
-            var action = Expression.Lambda<Action<TValue>>(Expression.Call(propertyInfo.GetSetMethod(), value), new[] { value }).Compile();
+            var action = Expression.Lambda<Action<TValue>>(Expression.Call(propertyInfo.GetSetMethod(), value), new[] {value}).Compile();
 
             TValue propertyValue = getValue(propertyInfo);
             action(propertyValue);
@@ -75,14 +76,15 @@ namespace dropkick.Dsl
             return propertyValue;
         }
 
-        private static object SetPropertyValue(PropertyInfo propertyInfo, Func<PropertyInfo, object> getValue)
+        static object SetPropertyValue(PropertyInfo propertyInfo, Func<PropertyInfo, object> getValue)
         {
             var value = Expression.Parameter(typeof(object), "value");
             var valueCast = propertyInfo.PropertyType.IsValueType
                                 ? Expression.TypeAs(value, propertyInfo.PropertyType)
                                 : Expression.Convert(value, propertyInfo.PropertyType);
 
-            var action = Expression.Lambda<Action<object>>(Expression.Call(propertyInfo.GetSetMethod(), valueCast), new[] { value }).Compile();
+            var action =
+                Expression.Lambda<Action<object>>(Expression.Call(propertyInfo.GetSetMethod(), valueCast), new[] {value}).Compile();
 
             object propertyValue = getValue(propertyInfo);
             action(propertyValue);
@@ -90,34 +92,29 @@ namespace dropkick.Dsl
             return propertyValue;
         }
 
-        private static bool IsPropertyAPart(PropertyInfo propertyInfo)
+        static bool IsPropertyAPart(PropertyInfo propertyInfo)
         {
             return propertyInfo.PropertyType == typeof(Part<Inheritor>) || propertyInfo.PropertyType == typeof(Part);
         }
 
         public void Inspect(DeploymentInspector inspector)
         {
-            inspector.Inspect(this, ()=>
-            {
-                foreach (Part<Inheritor> part in _parts.Values)
+            inspector.Inspect(this, () =>
                 {
-                    part.Inspect(inspector);
-                } 
-            });
+                    foreach(Part<Inheritor> part in _parts.Values)
+                    {
+                        part.Inspect(inspector);
+                    }
+                });
         }
 
         public void Run()
         {
             //change to visitor
-            foreach (KeyValuePair<string, Part<Inheritor>> part in _parts)
+            foreach(KeyValuePair<string, Part<Inheritor>> part in _parts)
             {
                 part.Value.Execute();
             }
         }
-    }
-
-    public interface Deployment
-    {
-        void Run();
     }
 }

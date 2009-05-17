@@ -5,7 +5,7 @@ namespace dropkick.Dsl.Visitor
     public class PartCounter :
         DeploymentInspector
     {
-        int _count = 0;
+        int _count;
 
         public void Inspect(object obj)
         {

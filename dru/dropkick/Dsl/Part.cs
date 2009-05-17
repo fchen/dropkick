@@ -16,7 +16,7 @@ namespace dropkick.Dsl
         DeploymentInspectorSite
         where T : Deployment<T>
     {
-        List<Task> _tasks = new List<Task>();
+        readonly List<Task> _tasks = new List<Task>();
 
         public Part(string name)
         {
@@ -33,7 +33,7 @@ namespace dropkick.Dsl
         public static Part<T> GetPart(Part input)
         {
             Part<T> result = input as Part<T>;
-            if (result == null)
+            if(result == null)
                 throw new ArgumentException(string.Format("The part is not valid for this deployment"), "input");
 
             return result;
@@ -51,7 +51,7 @@ namespace dropkick.Dsl
 
         public void Execute()
         {
-            foreach (Task task in _tasks)
+            foreach(Task task in _tasks)
             {
                 task.Execute();
             }
@@ -59,13 +59,13 @@ namespace dropkick.Dsl
 
         public void Inspect(DeploymentInspector inspector)
         {
-            inspector.Inspect(this, ()=>
-            {
-                foreach (Task task in _tasks)
+            inspector.Inspect(this, () =>
                 {
-                    task.Inspect(inspector);
-                }
-            });
+                    foreach(Task task in _tasks)
+                    {
+                        task.Inspect(inspector);
+                    }
+                });
         }
     }
 }

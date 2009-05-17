@@ -13,20 +13,18 @@ namespace dropkick.Dsl.Visitor
         {
         }
 
-
         public void Inspect(object obj)
         {
             base.Visit(obj);
         }
 
-
         public void Inspect(object obj, Action additionalInspections)
         {
             base.Visit(obj, () =>
-            {
-                additionalInspections();
-                return true;
-            });
+                {
+                    additionalInspections();
+                    return true;
+                });
         }
 
         public bool Inspect(Task task)
@@ -40,6 +38,5 @@ namespace dropkick.Dsl.Visitor
 
             return true;
         }
-
     }
 }

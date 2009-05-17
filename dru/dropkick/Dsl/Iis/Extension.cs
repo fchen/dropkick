@@ -7,20 +7,4 @@ namespace dropkick.Dsl.Iis
             return null;
         }
     }
-
-    public interface IisSiteOptions
-    {
-        IisVirtualDirectoryOptions VirtualDirectory(string name);
-        VerifyOptions Verify();
-    }
-
-    public interface IisVirtualDirectoryOptions
-    {
-        VerifyOptions Verify();
-    }
-
-    public interface VerifyOptions
-    {
-        void CreateIfItDoesntExist();
-    }
 }

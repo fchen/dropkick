@@ -7,16 +7,4 @@ namespace dropkick.Dsl.MsSql
             return null;
         }
     }
-
-    public interface SqlOptions
-    {
-        DatabaseOptions Database(string databaseName);
-    }
-
-    public interface DatabaseOptions
-    {
-        DatabaseOptions Verify();
-        DatabaseOptions RunTarantinoOn(string locationOfScripts);
-        DatabaseOptions BackupWithLightspeedTo(string backupLocation);
-    }
 }
