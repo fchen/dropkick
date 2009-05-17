@@ -27,13 +27,22 @@ if '%TESTING_FRAMEWORK%' == '"mbunit"' goto mbunit
 if '%TESTING_FRAMEWORK%' == '"nunit"' goto nunit
 
 :mbunit
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\Analyzers\_MbUnit.build %1
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\Analyzers\_MbUnit.build open_results
+"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\Analyzers\_MbUnit.build %1 -D:build.config.settings=%build.config.settings%
+"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\Analyzers\_MbUnit.build open_results -D:build.config.settings=%build.config.settings%
+goto bdddoc
+
+:bdddoc
+
+SET APP_BDDDOC="..\lib\testing\bdddoc\bdddoc.console.exe"
+
+%DIR%lib\tools\Nant\nant.exe /f:.\BuildScripts.Custom\_bdddoc.build -D:app.bdddoc=%APP_BDDDOC% -D:build.config.settings=%build.config.settings%
+%DIR%lib\tools\Nant\nant.exe /f:.\BuildScripts.Custom\_bdddoc.build open_results -D:build.config.settings=%build.config.settings%
+
 goto finish
 
 :nunit
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\Analyzers\_nunit.build %1
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\Analyzers\_nunit.build open_results
+"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\Analyzers\_nunit.build %1 -D:build.config.settings=%build.config.settings%
+"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\Analyzers\_nunit.build open_results -D:build.config.settings=%build.config.settings%
 goto finish
 
 :usage

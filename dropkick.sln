@@ -7,17 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dropkick", "product\dropkic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dropkick.console", "product\dropkick.console\dropkick.console.csproj", "{4F9DA31A-86EE-4CB1-BEB3-A00155CCB351}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_build", "_build", "{FD0F1CBA-2A9A-4997-AF40-0200B9BACD27}"
-	ProjectSection(SolutionItems) = preProject
-		build\__master.build = build\__master.build
-		build\_analyze.build = build\_analyze.build
-		build\_compile.build = build\_compile.build
-		build\_ncover.build = build\_ncover.build
-		build\_ndepend.build = build\_ndepend.build
-		build\_package.build = build\_package.build
-		build\_test.build = build\_test.build
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
