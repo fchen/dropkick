@@ -2,7 +2,6 @@ namespace dropkick.Dsl
 {
     using System;
     using System.Collections.Generic;
-    using Engine;
 
     public interface Part
     {

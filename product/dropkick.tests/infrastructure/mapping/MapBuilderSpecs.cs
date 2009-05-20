@@ -5,10 +5,10 @@ namespace dropkick.tests.infrastructure.mapping
     using developwithpassion.bdd.mbunit;
     using developwithpassion.bdd.mbunit.standard;
     using developwithpassion.bdd.mbunit.standard.observations;
+    using dropkick.Dsl;
     using dropkick.Dsl.Files;
     using dropkick.infrastructure.containers;
     using dropkick.infrastructure.mapping;
-    using Engine;
     using Rhino.Mocks;
 
     public class MapBuilderSpecs

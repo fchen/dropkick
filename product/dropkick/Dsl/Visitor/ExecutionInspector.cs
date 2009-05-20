@@ -1,7 +1,6 @@
 namespace dropkick.Dsl.Visitor
 {
     using System;
-    using Engine;
     using Magnum.Reflection;
 
     public class ExecutionInspector :
