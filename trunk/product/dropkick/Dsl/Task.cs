@@ -1,6 +1,6 @@
-namespace dropkick.Engine
+namespace dropkick.Dsl
 {
-    using Dsl;
+    using Engine;
 
     public interface Task :
         DeploymentInspectorSite
