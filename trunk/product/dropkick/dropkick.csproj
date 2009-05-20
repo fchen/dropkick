@@ -77,7 +77,6 @@
     <Compile Include="Dsl\DeploymentException.cs" />
     <Compile Include="Dsl\DeploymentInspector.cs" />
     <Compile Include="Dsl\DeploymentInspectorSite.cs" />
-    <Compile Include="Dsl\DeploymentPart.cs" />
     <Compile Include="Dsl\Environment.cs" />
     <Compile Include="Dsl\Files\CopyOptions.cs" />
     <Compile Include="Dsl\Files\CopyTask.cs" />
@@ -99,7 +98,6 @@
     <Compile Include="Dsl\Part.cs" />
     <Compile Include="Dsl\ServerOptions.cs" />
     <Compile Include="Visitors\Execution\ExecutionInspector.cs" />
-    <Compile Include="Dsl\Visitor\PartCounter.cs" />
     <Compile Include="Visitors\Trace\TraceVisitor.cs" />
     <Compile Include="Visitors\Verification\VerificationInspector.cs" />
     <Compile Include="Dsl\WinService\Extension.cs" />
