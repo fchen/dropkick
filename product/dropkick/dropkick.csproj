@@ -98,9 +98,9 @@
     <Compile Include="Dsl\MsSql\SqlOptions.cs" />
     <Compile Include="Dsl\Part.cs" />
     <Compile Include="Dsl\ServerOptions.cs" />
-    <Compile Include="Dsl\Visitor\ExecutionInspector.cs" />
+    <Compile Include="Visitors\Execution\ExecutionInspector.cs" />
     <Compile Include="Dsl\Visitor\PartCounter.cs" />
-    <Compile Include="Dsl\Visitor\TraceVisitor.cs" />
+    <Compile Include="Visitors\Trace\TraceVisitor.cs" />
     <Compile Include="Visitors\Verification\VerificationInspector.cs" />
     <Compile Include="Dsl\WinService\Extension.cs" />
     <Compile Include="Dsl\WinService\WinServiceOptions.cs" />
@@ -123,10 +123,6 @@
     <Compile Include="infrastructure\mapping\Map.cs" />
     <Compile Include="infrastructure\mapping\MapBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Visitors\Execution\" />
-    <Folder Include="Visitors\Trace\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

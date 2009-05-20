@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Dsl\Adding_options.cs" />
     <Compile Include="Dsl\Adding_options_via_dsl.cs" />
+    <Compile Include="PartCounter.cs" />
     <Compile Include="TestObjects\SinglePartDeploy.cs" />
     <Compile Include="TestObjects\TwoPartDeploy.cs" />
     <Compile Include="EmptyTestContainer.cs" />
