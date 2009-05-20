@@ -101,15 +101,15 @@
     <Compile Include="Dsl\Visitor\ExecutionInspector.cs" />
     <Compile Include="Dsl\Visitor\PartCounter.cs" />
     <Compile Include="Dsl\Visitor\TraceVisitor.cs" />
-    <Compile Include="Dsl\Visitor\VerificationInspector.cs" />
+    <Compile Include="Visitors\Verification\VerificationInspector.cs" />
     <Compile Include="Dsl\WinService\Extension.cs" />
     <Compile Include="Dsl\WinService\WinServiceOptions.cs" />
     <Compile Include="Engine\DeploymentFinder.cs" />
     <Compile Include="Engine\Runner.cs" />
     <Compile Include="Dsl\Task.cs" />
-    <Compile Include="Dsl\Visitor\VerificationItem.cs" />
-    <Compile Include="Dsl\Visitor\VerificationResult.cs" />
-    <Compile Include="Dsl\Visitor\VerificationStatus.cs" />
+    <Compile Include="Visitors\Verification\VerificationItem.cs" />
+    <Compile Include="Visitors\Verification\VerificationResult.cs" />
+    <Compile Include="Visitors\Verification\VerificationStatus.cs" />
     <Compile Include="infrastructure\ApplicationParameters.cs" />
     <Compile Include="infrastructure\containers\Container.cs" />
     <Compile Include="infrastructure\containers\custom\WindsorContainer.cs" />
@@ -125,7 +125,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Visitors\Verification\" />
+    <Folder Include="Visitors\Execution\" />
+    <Folder Include="Visitors\Trace\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
