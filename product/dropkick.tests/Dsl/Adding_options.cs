@@ -1,6 +1,7 @@
 namespace dropkick.tests.Dsl
 {
     using dropkick.Dsl;
+    using dropkick.Dsl.Visitor;
     using MbUnit.Framework;
     using TestObjects;
 
@@ -12,19 +13,21 @@ namespace dropkick.tests.Dsl
         [SetUp]
         public void Establish_Context()
         {
-            _deployment = new SinglePartDeploy();
+            _deployment = new TwoPartDeploy();
         }
 
         [Test]
         public void Run_Full()
         {
-            _deployment.Run();
+            var visitor = new ExecutionInspector();
+            _deployment.Inspect(visitor);
         }
 
         [Test]
         public void Run_one_part()
         {
-            _deployment.Run();
+            var visitor = new ExecutionInspector();
+            _deployment.Inspect(visitor);
         }
     }
 }

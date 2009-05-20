@@ -5,15 +5,14 @@ namespace dropkick.Dsl
     using System.Linq.Expressions;
     using System.Reflection;
 
-    public interface Deployment
+    public interface Deployment :
+        DeploymentInspectorSite
     {
-        void Run();
     }
 
     //must-inherit?
     public class Deployment<Inheritor> :
-        Deployment,
-        DeploymentInspectorSite
+        Deployment
         where Inheritor : Deployment<Inheritor>
     {
         static readonly Dictionary<string, Part<Inheritor>> _parts = new Dictionary<string, Part<Inheritor>>();
@@ -31,9 +30,10 @@ namespace dropkick.Dsl
         static void InitializeParts()
         {
             Type machineType = typeof(Inheritor);
+
             foreach(PropertyInfo propertyInfo in machineType.GetProperties(BindingFlags.Static | BindingFlags.Public))
             {
-                if(!IsPropertyAPart(propertyInfo)) continue;
+                if(IsNotAPart(propertyInfo)) continue;
 
                 Part<Inheritor> part = SetPropertyValue(propertyInfo, x => new Part<Inheritor>(x.Name));
 
@@ -53,6 +53,7 @@ namespace dropkick.Dsl
             definition();
         }
 
+        //needs to be renamed
         protected static void During(Part inputPart, Action<Part> action)
         {
             Part<Inheritor> part = Part<Inheritor>.GetPart(inputPart);
@@ -92,9 +93,9 @@ namespace dropkick.Dsl
             return propertyValue;
         }
 
-        static bool IsPropertyAPart(PropertyInfo propertyInfo)
+        static bool IsNotAPart(PropertyInfo propertyInfo)
         {
-            return propertyInfo.PropertyType == typeof(Part<Inheritor>) || propertyInfo.PropertyType == typeof(Part);
+            return !(propertyInfo.PropertyType == typeof(Part<Inheritor>) || propertyInfo.PropertyType == typeof(Part));
         }
 
         public void Inspect(DeploymentInspector inspector)
@@ -106,15 +107,6 @@ namespace dropkick.Dsl
                         part.Inspect(inspector);
                     }
                 });
-        }
-
-        public void Run()
-        {
-            //change to visitor
-            foreach(KeyValuePair<string, Part<Inheritor>> part in _parts)
-            {
-                part.Value.Execute();
-            }
         }
     }
 }
