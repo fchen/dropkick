@@ -40,5 +40,29 @@ namespace dropkick.tests.Dsl
             var vi = new VerificationInspector();
             dep.Inspect(vi);
         }
+
+        [Test]
+        public void Verify_MsSql_Test()
+        {
+            var dep = new MsSqlTestDeploy();
+            var vi = new VerificationInspector();
+            dep.Inspect(vi);
+        }
+
+        [Ignore]
+        public void Execute_Test()
+        {
+            var dep = new SinglePartDeploy();
+            var vi = new ExecutionInspector();
+            dep.Inspect(vi);
+        }
+
+        [Test, Explicit]
+        public void Execute_MSMQ_Test()
+        {
+            var dep = new MsmqTestDeploy();
+            var vi = new ExecutionInspector();
+            dep.Inspect(vi);
+        }
     }
 }

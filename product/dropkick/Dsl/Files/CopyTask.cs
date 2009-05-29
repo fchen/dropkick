@@ -36,12 +36,18 @@ namespace dropkick.Dsl.Files
             _to = Path.GetFullPath(_to);
 
             //todo: verify that from exists
+            if(!Directory.Exists(_to))
+            {
+                Directory.CreateDirectory(_to);
+            }
 
             if (Directory.Exists(_from))
             {
                 foreach (var file in Directory.GetFiles(_from))
                 {
-                    File.Copy(file, Path.Combine(_to, file));
+                    //need to support recursion
+                    var fileName = Path.GetFileName(file);
+                    File.Copy(file, Path.Combine(_to, fileName));
                     //log file was copied / event?
                 }
 
@@ -62,7 +68,7 @@ namespace dropkick.Dsl.Files
 
             //check can write from _to
             if (!Directory.Exists(_to))
-                result.AddAlert(string.Format("'{0}' does not exist and will be created", _to));
+                result.AddAlert(string.Format("'{0}' doesn't exist and will be created", _to));
 
             if (Directory.Exists(_from))
             {
@@ -92,6 +98,10 @@ namespace dropkick.Dsl.Files
                 result.AddAlert(string.Format("'{0}' doesn't exist", _from));
             }
 
+            if(_followOnAction != null)
+            {
+                result.AddGood("There is a follow on action.");
+            }
 
             return result;
         }
