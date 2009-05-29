@@ -4,7 +4,7 @@ namespace dropkick.Dsl.MsSql
     {
         public static SqlOptions SqlInstance(this ServerOptions server, string instanceName)
         {
-            return null;
+            return new MsSqlTaskCfg(server);
         }
     }
 }

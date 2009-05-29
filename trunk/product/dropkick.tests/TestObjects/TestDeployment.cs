@@ -49,7 +49,6 @@ namespace dropkick.tests.TestObjects
                             p.OnServer("SrvTopeka02")
                                 .SqlInstance(".")
                                 .Database("Enterprise")
-                                .Verify()
                                 .BackupWithLightspeedTo(@"\\appdev\dev\sqlbacksups\")
                                 .RunTarantinoOn(@".\code_drop\flames_sql");
                         });

@@ -20,7 +20,6 @@ namespace dropkick.Dsl.Files
         public CopyOptions To(string targetPath)
         {
             _to = targetPath;
-            //add part?
             _task = new CopyTask(_from, _to);
             _part.AddTask(_task);
             return this;
@@ -28,7 +27,6 @@ namespace dropkick.Dsl.Files
 
         public void And(Action<FileActions> copyAction)
         {
-            //re-add part?
             _followOn = copyAction;
             _task.SetFollowOnAction(copyAction);
         }

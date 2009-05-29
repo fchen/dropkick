@@ -92,8 +92,11 @@
     <Compile Include="Dsl\Msmq\MsmqOptions.cs" />
     <Compile Include="Dsl\Msmq\MsmqTask.cs" />
     <Compile Include="Dsl\Msmq\MsmqTaskCfg.cs" />
+    <Compile Include="Dsl\Msmq\QueueAddress.cs" />
     <Compile Include="Dsl\MsSql\DatabaseOptions.cs" />
     <Compile Include="Dsl\MsSql\Extension.cs" />
+    <Compile Include="Dsl\MsSql\MsSqlTask.cs" />
+    <Compile Include="Dsl\MsSql\MsSqlTaskCfg.cs" />
     <Compile Include="Dsl\MsSql\SqlOptions.cs" />
     <Compile Include="Dsl\Part.cs" />
     <Compile Include="Dsl\ServerOptions.cs" />

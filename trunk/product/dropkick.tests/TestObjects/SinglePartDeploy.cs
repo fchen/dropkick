@@ -14,7 +14,7 @@ namespace dropkick.tests.TestObjects
             Define(() =>
                    During(Web, (p) =>
                        {
-                           p.CopyFrom(".\\bob").To(".\\bill");
+                           p.CopyFrom(@".\bob").To(@".\bill");
 
                            p.OnServer("srvtopeka")
                                .Msmq()
