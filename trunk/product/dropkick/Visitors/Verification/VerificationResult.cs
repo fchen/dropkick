@@ -23,7 +23,10 @@ namespace dropkick.Engine
         {
             _items.Add(new VerificationItem(VerificationStatus.Error, message));
         }
-
+        public void AddError(string messageFormat, params string[] value)
+        {
+            AddError(string.Format(messageFormat, value));
+        }
         public IList<VerificationItem> Results
         {
             get { return new ReadOnlyCollection<VerificationItem>(_items); }
