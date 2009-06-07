@@ -2,12 +2,13 @@ namespace dropkick.Dsl.MsSql
 {
     using System;
     using System.Data;
+    using System.Text;
     using Engine;
 
-    public class MsSqlTask :
+    public class OutputSqlTask :
         BaseSqlTask
     {
-        public MsSqlTask(string serverName, string databaseName) : base(serverName, databaseName)
+        public OutputSqlTask(string serverName, string databaseName) : base(serverName, databaseName)
         {
         }
 
@@ -62,13 +63,36 @@ namespace dropkick.Dsl.MsSql
 
         public override void Execute()
         {
-            using(var conn = GetConnection())
+            using (var conn = GetConnection())
             {
-              using(var cmd = conn.CreateCommand())
-              {
-                  //hmmm if its a script versus non-script
-              }
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = OutputSql;
+                    cmd.CommandType = CommandType.Text;
+
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        PrintDataReaderToConsole(dr);
+                    }
+                }
             }
-        }      
+        }
+
+        void PrintDataReaderToConsole(IDataReader dr)
+        {
+            var sb = new StringBuilder();
+            foreach (DataRow c in dr.GetSchemaTable().Rows)
+            {
+                sb.AppendFormat("{0} |", c[0]);
+            }
+            sb.Length = sb.Length - 2;
+            Console.WriteLine(sb.ToString());
+
+            while(dr.Read())
+            {
+                Console.WriteLine(dr[0].ToString());
+            }
+        }
     }
 }
