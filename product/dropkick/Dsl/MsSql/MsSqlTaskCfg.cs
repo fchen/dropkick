@@ -38,7 +38,7 @@ namespace dropkick.Dsl.MsSql
 
         public void OutputSql(string sql)
         {
-            _options.Part.AddTask(new MsSqlTask(_serverName, _databaseName)
+            _options.Part.AddTask(new OutputSqlTask(_serverName, _databaseName)
                                   {
                                       OutputSql = sql
                                   });

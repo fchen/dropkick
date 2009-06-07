@@ -64,5 +64,13 @@ namespace dropkick.tests.Dsl
             var vi = new ExecutionInspector();
             dep.Inspect(vi);
         }
+
+        [Test, Explicit]
+        public void Execute_SQL_Test()
+        {
+            var dep = new MsSqlTestDeploy();
+            var vi = new ExecutionInspector();
+            dep.Inspect(vi);
+        }
     }
 }

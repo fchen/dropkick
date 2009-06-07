@@ -96,7 +96,7 @@
     <Compile Include="Dsl\MsSql\BaseSqlTask.cs" />
     <Compile Include="Dsl\MsSql\DatabaseOptions.cs" />
     <Compile Include="Dsl\MsSql\Extension.cs" />
-    <Compile Include="Dsl\MsSql\MsSqlTask.cs" />
+    <Compile Include="Dsl\MsSql\OutputSqlTask.cs" />
     <Compile Include="Dsl\MsSql\MsSqlTaskCfg.cs" />
     <Compile Include="Dsl\MsSql\RunSqlScriptTask.cs" />
     <Compile Include="Dsl\MsSql\SqlOptions.cs" />

@@ -17,10 +17,10 @@ namespace dropkick.tests.TestObjects
                            .SqlInstance(".")
                            .Database("test")
                            .OutputSql("SELECT * FROM Version");
-                       p.OnServer(System.Environment.MachineName)
-                           .SqlInstance(".")
-                           .Database("test")
-                           .RunScript(@".\create_database.sql");
+//                       p.OnServer(System.Environment.MachineName)
+//                           .SqlInstance(".")
+//                           .Database("test")
+//                           .RunScript(@".\create_database.sql");
                    })
 
                 );
