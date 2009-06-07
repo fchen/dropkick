@@ -2,43 +2,38 @@ namespace dropkick.Dsl.MsSql
 {
     using System;
     using System.Data;
-    using System.Data.SqlClient;
     using Engine;
 
     public class MsSqlTask :
-        Task
+        BaseSqlTask
     {
-        public void Inspect(DeploymentInspector inspector)
+        public MsSqlTask(string serverName, string databaseName) : base(serverName, databaseName)
+        {
+        }
+
+        public override void Inspect(DeploymentInspector inspector)
         {
             inspector.Inspect(this);
         }
 
-        public string Name
+        public override string Name
         {
             get { return string.Format("SQL TASK on server '{0}' for database '{1}'", ServerName, DatabaseName); }
         }
 
-        public string ServerName { get; set; }
-        public string DatabaseName { get; set; }
-
         public string OutputSql { get; set; }
 
-        public VerificationResult VerifyCanRun()
+        public override VerificationResult VerifyCanRun()
         {
             var result = new VerificationResult();
 
             //can I connect to the server?
-            var cs = new SqlConnectionStringBuilder
-                     {
-                         DataSource = ServerName,
-                         InitialCatalog = DatabaseName,
-                         IntegratedSecurity = true
-                     };
+           
             IDbConnection conn = null;
             try
             {
 
-                conn = new SqlConnection(cs.ConnectionString);
+                conn = GetConnection();
                 conn.Open();
                 result.AddGood("I can talk to the database");
             }
@@ -58,14 +53,22 @@ namespace dropkick.Dsl.MsSql
             }
 
             //can I connect to the database?
+            if(OutputSql != null)
+                result.AddAlert(string.Format("I will run the sql '{0}'", OutputSql));
 
-            result.AddAlert(string.Format("I will run the sql '{0}'", OutputSql));
+               
             return result;
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            throw new NotImplementedException();
-        }
+            using(var conn = GetConnection())
+            {
+              using(var cmd = conn.CreateCommand())
+              {
+                  //hmmm if its a script versus non-script
+              }
+            }
+        }      
     }
 }

@@ -49,7 +49,7 @@ namespace dropkick.tests.Dsl
             dep.Inspect(vi);
         }
 
-        [Ignore]
+        [Test, Explicit]
         public void Execute_Test()
         {
             var dep = new SinglePartDeploy();

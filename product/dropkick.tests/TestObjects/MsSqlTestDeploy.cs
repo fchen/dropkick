@@ -11,10 +11,18 @@ namespace dropkick.tests.TestObjects
         static MsSqlTestDeploy()
         {
             Define(() =>
-                   During(Web, (p) => p.OnServer(System.Environment.MachineName)
-                                          .SqlInstance(".")
-                                          .Database("test")
-                                          .OutputSql("SELECT * FROM Version"))
+                   During(Web, (p) =>
+                   {
+                       p.OnServer(System.Environment.MachineName)
+                           .SqlInstance(".")
+                           .Database("test")
+                           .OutputSql("SELECT * FROM Version");
+                       p.OnServer(System.Environment.MachineName)
+                           .SqlInstance(".")
+                           .Database("test")
+                           .RunScript(@".\create_database.sql");
+                   })
+
                 );
         }
     }

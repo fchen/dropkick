@@ -5,5 +5,6 @@ namespace dropkick.Dsl.MsSql
         DatabaseOptions RunTarantinoOn(string locationOfScripts);
         DatabaseOptions BackupWithLightspeedTo(string backupLocation);
         void OutputSql(string sql);
+        void RunScript(string scriptFile);
     }
 }
