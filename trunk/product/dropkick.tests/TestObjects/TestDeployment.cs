@@ -1,6 +1,7 @@
 namespace dropkick.tests.TestObjects
 {
     using dropkick.Dsl;
+    using dropkick.Dsl.CommandLine;
     using dropkick.Dsl.Files;
     using dropkick.Dsl.Iis;
     using dropkick.Dsl.Msmq;
@@ -29,6 +30,11 @@ namespace dropkick.tests.TestObjects
                                 .VirtualDirectory("flames")
                                 .Verify()
                                 .CreateIfItDoesntExist();
+
+                            p.OnServer("SrvTopeka19")
+                                .CommandLine("ping")
+                                .Args("www.google.com")
+                                .WorkingPath("");
 
                             p.OnServer("SrvTopeka19")
                                 .Msmq()
