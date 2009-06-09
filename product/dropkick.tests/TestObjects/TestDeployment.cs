@@ -34,7 +34,7 @@ namespace dropkick.tests.TestObjects
                             p.OnServer("SrvTopeka19")
                                 .CommandLine("ping")
                                 .Args("www.google.com")
-                                .ExecuteIn("");
+                                .ExecutableIsLocatedAt("");
 
                             p.OnServer("SrvTopeka19")
                                 .Msmq()
