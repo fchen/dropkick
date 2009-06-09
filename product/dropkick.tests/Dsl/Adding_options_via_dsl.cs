@@ -72,5 +72,13 @@ namespace dropkick.tests.Dsl
             var vi = new ExecutionInspector();
             dep.Inspect(vi);
         }
+
+        [Test]
+        public void Verify_Command()
+        {
+            var dep = new CommandTestDeploy();
+            var vi = new VerificationInspector();
+            dep.Inspect(vi);
+        }
     }
 }
