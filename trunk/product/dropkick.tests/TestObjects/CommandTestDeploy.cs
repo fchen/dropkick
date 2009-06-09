@@ -17,7 +17,7 @@ namespace dropkick.tests.TestObjects
                            .CommandLine("ping").Args("www.google.com");
                        p.OnServer(System.Environment.MachineName)
                            .CommandLine("ping").Args("www.google.com")
-                           .ExecuteIn(@"C:\bill");
+                           .ExecutableIsLocatedAt(@"C:\bill");
                    })        
                 );
         }

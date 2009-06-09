@@ -21,9 +21,15 @@ namespace dropkick.Dsl.CommandLine
             return this;
         }
 
-        public CommandLineOptions ExecuteIn(string path)
+        public CommandLineOptions ExecutableIsLocatedAt(string path)
         {
-            _task.ExecuteIn = path;
+            _task.ExecutableIsLocatedAt = path;
+            return this;
+        }
+
+        public CommandLineOptions WorkingDirectory(string path)
+        {
+            _task.WorkingDirectory = path;
             return this;
         }
     }
