@@ -63,7 +63,6 @@ namespace dropkick.tests.TestObjects
                         {
                             p.OnServer("SrvTopeka19")
                                 .WinService("FlamesHost")
-                                .Verify()
                                 .Do(() =>   //auto-stop
                                     {
                                         p.CopyFrom(@".\code_drop\flameshost").To(@"\\srvtopeka00\whatever")

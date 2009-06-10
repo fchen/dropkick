@@ -4,7 +4,7 @@ namespace dropkick.Dsl.WinService
     {
         public static WinServiceOptions WinService(this ServerOptions server, string serviceName)
         {
-            return null;
+            return new WinServiceTaskBuilder(server, serviceName);
         }
     }
 }

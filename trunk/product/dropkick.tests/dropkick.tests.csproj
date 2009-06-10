@@ -115,6 +115,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestObjects\TestDeployment.cs" />
     <Compile Include="TestObjects\TestTask.cs" />
+    <Compile Include="TestObjects\WinServiceTestDeploy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dropkick\dropkick.csproj">
