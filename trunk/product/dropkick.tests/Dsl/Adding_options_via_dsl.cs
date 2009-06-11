@@ -96,5 +96,13 @@ namespace dropkick.tests.Dsl
             var vi = new VerificationInspector();
             dep.Inspect(vi);
         }
+
+        [Test, Explicit]
+        public void Execute_Service_Test()
+        {
+            var dep = new WinServiceTestDeploy();
+            var vi = new ExecutionInspector();
+            dep.Inspect(vi);
+        }
     }
 }

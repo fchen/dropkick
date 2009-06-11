@@ -22,7 +22,10 @@ namespace dropkick.Dsl.WinService
             _action = thingToDo;
             
             _part.AddTask(new WinServiceStopTask(_server, _serviceName));
+            
             //child task
+            _action();
+
             _part.AddTask(new WinServiceStartTask(_server, _serviceName));
 
             return this;
