@@ -2,6 +2,7 @@ namespace dropkick.tests.TestObjects
 {
     using dropkick.Dsl;
     using dropkick.Dsl.WinService;
+    using dropkick.Dsl.Msmq;
 
     public class WinServiceTestDeploy :
         Deployment<WinServiceTestDeploy>
@@ -10,14 +11,12 @@ namespace dropkick.tests.TestObjects
 
         static WinServiceTestDeploy()
         {
-            Define(()=>
-                       {
-                           During(Web, p=> p.OnServer(System.Environment.MachineName)
-                                               .WinService("MSMQ").Do(() =>
-                                                                          {
-                                                                              //stuff
-                                                                          }));
-                       });
+            //this is just a means to check the nested closure would work, not that one would actually do this
+            Define(()=> During(Web, p=> p.OnServer(System.Environment.MachineName)
+                                            .WinService("MSMQ").Do(() => p.OnServer(System.Environment.MachineName)
+                                                                             .Msmq()
+                                                                             .PrivateQueueNamed("dru")
+                                                                             .CreateIfItDoesntExist())));
         }
     }
 }

@@ -48,6 +48,11 @@ namespace dropkick.tests.TestObjects
                                             .ReplaceIdentityTokensWithPrompt()
                                             .EncryptIdentity();
                                     });
+                            p.OnServer("SrvTopeka02")
+                                .WinService("MSMQ").Do(() =>
+                                                           {
+                                                               // do stuff here like copy files
+                                                           });
                         });
 
                     During(Db, (p) =>
