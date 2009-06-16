@@ -104,5 +104,21 @@ namespace dropkick.tests.Dsl
             var vi = new ExecutionInspector();
             dep.Inspect(vi);
         }
+
+        [Test]
+        public void Verify_Iis6()
+        {
+            var dep = new IisTestDeploy();
+            var vi = new VerificationInspector();
+            dep.Inspect(vi);
+        }
+
+        [Test, Explicit]
+        public void Execute_Iis6_Test()
+        {
+            var dep = new IisTestDeploy();
+            var vi = new ExecutionInspector();
+            dep.Inspect(vi);
+        }
     }
 }

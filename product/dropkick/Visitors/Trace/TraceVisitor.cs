@@ -35,7 +35,7 @@ namespace dropkick.Dsl.Visitor
             return true;
         }
 
-        public void Inspect(object obj, Action additionalInspections)
+        public void Inspect(object obj, ExposeMoreInspectionSites additionalInspections)
         {
             base.Visit(obj, () =>
                 {

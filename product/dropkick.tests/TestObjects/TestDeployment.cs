@@ -26,9 +26,8 @@ namespace dropkick.tests.TestObjects
                     During(Web, (p) =>
                         {
                             p.OnServer("SrvTopeka19")
-                                .IisSite("Exchequer")
+                                .Iis6Site("Exchequer")
                                 .VirtualDirectory("flames")
-                                .Verify()
                                 .CreateIfItDoesntExist();
 
                             p.OnServer("SrvTopeka19")

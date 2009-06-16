@@ -18,6 +18,10 @@ namespace dropkick.Engine
         {
             _items.Add(new VerificationItem(VerificationStatus.Alert, message));
         }
+        public void AddAlert(string messageFormat, params string[] args)
+        {
+            _items.Add(new VerificationItem(VerificationStatus.Alert, string.Format(messageFormat, args)));
+        }
 
         public void AddError(string message)
         {
