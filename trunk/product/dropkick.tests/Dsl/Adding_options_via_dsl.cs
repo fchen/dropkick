@@ -123,5 +123,13 @@ namespace dropkick.tests.Dsl
             var vi = new ExecutionInspector();
             dep.Inspect(vi);
         }
+
+        [Test]
+        public void Trace_TestDeploy()
+        {
+            var dep = new TestDeployment();
+            var vi = new VerificationInspector();
+            dep.Inspect(vi);
+        }
     }
 }

@@ -11,11 +11,12 @@
             // get 'Deployment' class from assembly
             // assumes only one deployment class
             //                -- /d:FHLBank.Flames.Deployment
-            
+
             // -v to verify
             // -x to execute
             // default is trace
-            var a = ArgumentParsing.Parse(args);
+
+            ExecutionArguments a = ArgumentParsing.Parse(args);
 
             new Runner(a.DeploymentFinder).Deploy(a);
         }
