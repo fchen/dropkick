@@ -25,10 +25,16 @@ namespace dropkick.tests.TestObjects
 
                     During(Web, (p) =>
                         {
-                            p.OnServer("SrvTopeka19")
-                                .Iis6Site("Exchequer")
-                                .VirtualDirectory("flames")
-                                .CreateIfItDoesntExist();
+//                            p.OnServer("SrvTopeka19")
+//                                .Iis6Site("Exchequer")
+//                                .VirtualDirectory("flames")
+//                                .CreateIfItDoesntExist();
+
+                            /*
+                             * File Shares
+                             * p.OnServer("SrvTopeka19")
+                             *      .FileShare("bob").PointingTo("E:\Tools");
+                             */
 
                             p.OnServer("SrvTopeka19")
                                 .CommandLine("ping")
@@ -40,7 +46,7 @@ namespace dropkick.tests.TestObjects
                                 .PrivateQueueNamed("bob")
                                 .CreateIfItDoesntExist();
 
-                            p.CopyFrom(@".\code_drop\flamesweb\**\*.*").To(@"\\srvtopeka19\exchecquer\flames\")
+                            p.CopyFrom(@".\code_drop\flamesweb\").To(@"\\srvtopeka19\exchecquer\flames\")//.BackupTo(path, o=>o.TimestampIt())
                                 .And(f => f.WebConfig
                                               .ReplaceIdentityTokensWithPrompt()
                                               .EncryptIdentity());
