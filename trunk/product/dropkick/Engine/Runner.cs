@@ -9,11 +9,11 @@ namespace dropkick.Engine
             _finder = finder;
         }
 
-        public void Deploy()
+        public void Deploy(ExecutionArguments args)
         {
             var d = _finder.Find();
-            //var cfg = d.BuildCfg();
-            //cfg.Run();
+
+            d.Inspect(args.Inspector);
         }
     }
 }

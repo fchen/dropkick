@@ -3,6 +3,9 @@ namespace dropkick.tests.Dsl
     using dropkick.Dsl.Visitor;
     using MbUnit.Framework;
     using TestObjects;
+    using Visitors.Execution;
+    using Visitors.Trace;
+    using Visitors.Verification;
 
     [TestFixture]
     public class Adding_options_via_dsl

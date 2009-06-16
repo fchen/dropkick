@@ -2,7 +2,7 @@ namespace dropkick.Dsl.Files
 {
     using System;
     using System.IO;
-    using Engine;
+    using Visitors.Verification;
 
     public class CopyTask :
         Task

@@ -1,4 +1,4 @@
-namespace dropkick.Engine
+namespace dropkick.Visitors.Verification
 {
     public enum VerificationStatus
     {

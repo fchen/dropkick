@@ -13,7 +13,7 @@ namespace dropkick.Dsl
     //must-inherit?
     public class Deployment<Inheritor> :
         Deployment
-        where Inheritor : Deployment<Inheritor>
+        where Inheritor : Deployment<Inheritor>, new()
     {
         static readonly Dictionary<string, Part<Inheritor>> _parts = new Dictionary<string, Part<Inheritor>>();
 

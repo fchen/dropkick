@@ -3,7 +3,7 @@ namespace dropkick.Dsl.CommandLine
     using System;
     using System.Diagnostics;
     using System.IO;
-    using Engine;
+    using Visitors.Verification;
 
     public class CommandLineTask :
         Task

@@ -1,6 +1,7 @@
-namespace dropkick.Dsl.Visitor
+namespace dropkick.Visitors.Verification
 {
     using System;
+    using Dsl;
     using Magnum.Reflection;
 
     public class VerificationInspector :

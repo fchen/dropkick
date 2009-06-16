@@ -3,7 +3,7 @@ namespace dropkick.Dsl.MsSql
     using System;
     using System.Data;
     using System.Data.SqlClient;
-    using Engine;
+    using Visitors.Verification;
 
     public abstract class BaseSqlTask :
         Task

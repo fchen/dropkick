@@ -13,7 +13,7 @@ namespace dropkick.Dsl
     public class Part<T> :
         Part,
         DeploymentInspectorSite
-        where T : Deployment<T>
+        where T : Deployment<T>, new()
     {
         readonly List<Task> _tasks = new List<Task>();
 

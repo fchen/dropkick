@@ -3,8 +3,8 @@ namespace dropkick.Dsl.Msmq
     using System;
     using System.Messaging;
     using System.Threading;
-    using Engine;
     using MassTransit.Transports.Msmq;
+    using Visitors.Verification;
 
     public class MsmqTask :
         Task
