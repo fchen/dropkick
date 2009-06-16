@@ -9,7 +9,6 @@ namespace dropkick.Dsl.Files
     {
         string _from;
         string _to;
-        Action<FileActions> _followOnAction = (fa) => { };
 
         public CopyTask(string @from, string to)
         {
@@ -20,11 +19,6 @@ namespace dropkick.Dsl.Files
         public string Name
         {
             get { return string.Format("Copy '{0}' to '{1}'", _from, _to); }
-        }
-
-        public void SetFollowOnAction(Action<FileActions> actions)
-        {
-            _followOnAction = actions;
         }
 
         public void Execute()
@@ -61,6 +55,7 @@ namespace dropkick.Dsl.Files
             var result = new VerificationResult();
 
             //check is valid from path
+            //TODO: need to handle wild cards
             _from = Path.GetFullPath(_from);
 
             //check is valid to path
@@ -96,11 +91,6 @@ namespace dropkick.Dsl.Files
             else
             {
                 result.AddAlert(string.Format("'{0}' doesn't exist", _from));
-            }
-
-            if(_followOnAction != null)
-            {
-                result.AddGood("There is a follow on action.");
             }
 
             return result;

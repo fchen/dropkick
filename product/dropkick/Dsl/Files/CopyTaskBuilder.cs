@@ -28,7 +28,7 @@ namespace dropkick.Dsl.Files
         public void And(Action<FileActions> copyAction)
         {
             _followOn = copyAction;
-            _task.SetFollowOnAction(copyAction);
+            copyAction(new SomeFileActions(_part));
         }
     }
 }

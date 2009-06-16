@@ -41,12 +41,9 @@ namespace dropkick.tests.TestObjects
                                 .CreateIfItDoesntExist();
 
                             p.CopyFrom(@".\code_drop\flamesweb\**\*.*").To(@"\\srvtopeka19\exchecquer\flames\")
-                                .And((f) =>
-                                    {
-                                        f.WebConfig
-                                            .ReplaceIdentityTokensWithPrompt()
-                                            .EncryptIdentity();
-                                    });
+                                .And(f => f.WebConfig
+                                              .ReplaceIdentityTokensWithPrompt()
+                                              .EncryptIdentity());
                             p.OnServer("SrvTopeka02")
                                 .WinService("MSMQ").Do(() =>
                                                            {

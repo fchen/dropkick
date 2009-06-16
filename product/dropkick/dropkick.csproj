@@ -63,12 +63,15 @@
     <Compile Include="Dsl\DeploymentInspector.cs" />
     <Compile Include="Dsl\DeploymentInspectorSite.cs" />
     <Compile Include="Dsl\Environment.cs" />
+    <Compile Include="Dsl\Files\AppFileActions.cs" />
     <Compile Include="Dsl\Files\CopyOptions.cs" />
     <Compile Include="Dsl\Files\CopyTask.cs" />
     <Compile Include="Dsl\Files\CopyTaskBuilder.cs" />
     <Compile Include="Dsl\Files\Extension.cs" />
     <Compile Include="Dsl\Files\FileAction.cs" />
     <Compile Include="Dsl\Files\FileActions.cs" />
+    <Compile Include="Dsl\Files\SomeFileActions.cs" />
+    <Compile Include="Dsl\Files\WebFileActions.cs" />
     <Compile Include="Dsl\Iis\Extension.cs" />
     <Compile Include="Dsl\Iis\Iis7Task.cs" />
     <Compile Include="Dsl\Iis\Iis7TaskCfg.cs" />
