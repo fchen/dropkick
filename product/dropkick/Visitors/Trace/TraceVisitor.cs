@@ -1,6 +1,7 @@
-namespace dropkick.Dsl.Visitor
+namespace dropkick.Visitors.Trace
 {
     using System;
+    using Dsl;
     using Magnum.Reflection;
 
     public class TraceVisitor :
@@ -38,10 +39,10 @@ namespace dropkick.Dsl.Visitor
         public void Inspect(object obj, ExposeMoreInspectionSites additionalInspections)
         {
             base.Visit(obj, () =>
-                {
-                    additionalInspections();
-                    return true;
-                });
+                                {
+                                    additionalInspections();
+                                    return true;
+                                });
         }
     }
 }

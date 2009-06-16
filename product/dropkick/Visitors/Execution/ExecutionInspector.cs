@@ -1,6 +1,6 @@
-namespace dropkick.Dsl.Visitor
+namespace dropkick.Visitors.Execution
 {
-    using System;
+    using Dsl;
     using Magnum.Reflection;
 
     public class ExecutionInspector :
@@ -11,6 +11,8 @@ namespace dropkick.Dsl.Visitor
             base("Inspect")
         {
         }
+
+        #region DeploymentInspector Members
 
         public void Inspect(object obj)
         {
@@ -26,9 +28,11 @@ namespace dropkick.Dsl.Visitor
                 });
         }
 
+        #endregion
+
         public bool Inspect(Task task)
         {
-            if(task.VerifyCanRun() == null)
+            if (task.VerifyCanRun() == null)
                 return false; // is this the correct behavior? I want to stop.
             //report verify failure
 

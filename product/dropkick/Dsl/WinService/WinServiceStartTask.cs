@@ -2,7 +2,7 @@ namespace dropkick.Dsl.WinService
 {
     using System;
     using System.ServiceProcess;
-    using Engine;
+    using Visitors.Verification;
 
     public class WinServiceStartTask :
         BaseServiceTask

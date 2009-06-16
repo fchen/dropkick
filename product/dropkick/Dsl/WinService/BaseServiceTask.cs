@@ -1,6 +1,6 @@
 namespace dropkick.Dsl.WinService
 {
-    using Engine;
+    using Visitors.Verification;
 
     public abstract class BaseServiceTask : 
         Task

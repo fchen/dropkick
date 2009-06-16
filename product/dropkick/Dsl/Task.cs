@@ -1,6 +1,6 @@
 namespace dropkick.Dsl
 {
-    using Engine;
+    using Visitors.Verification;
 
     public interface Task :
         DeploymentInspectorSite
