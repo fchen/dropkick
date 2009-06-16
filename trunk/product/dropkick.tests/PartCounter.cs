@@ -13,7 +13,7 @@ namespace dropkick.Dsl.Visitor
                 _count++;
         }
 
-        public void Inspect(object obj, Action additionalInspections)
+        public void Inspect(object obj, ExposeMoreInspectionSites additionalInspections)
         {
             Inspect(obj);
 
