@@ -117,6 +117,7 @@
     <Compile Include="Dsl\WinService\WinServiceStartTask.cs" />
     <Compile Include="Dsl\WinService\WinServiceStopTask.cs" />
     <Compile Include="Dsl\WinService\WinServiceTaskBuilder.cs" />
+    <Compile Include="Engine\ArgumentParsing.cs" />
     <Compile Include="Engine\AssumesOnlyOneDeploymentFinder.cs" />
     <Compile Include="Engine\ExecutionArguments.cs" />
     <Compile Include="Extensions.cs" />
