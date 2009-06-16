@@ -11,7 +11,7 @@ namespace dropkick.Engine
 
         public void Deploy(ExecutionArguments args)
         {
-            var d = _finder.Find();
+            var d = _finder.Find(args.DeploymentAssembly);
 
             d.Inspect(args.Inspector);
         }

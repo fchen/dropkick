@@ -8,16 +8,9 @@ namespace dropkick.Engine
     public class AssumesOnlyOneDeploymentFinder :
         DeploymentFinder
     {
-        readonly string _assemblyName;
-
-        public AssumesOnlyOneDeploymentFinder(string assemblyName)
+        public Deployment Find(string assemblyName)
         {
-            _assemblyName = assemblyName;
-        }
-
-        public Deployment Find()
-        {
-            Assembly asm = Assembly.Load(_assemblyName);
+            Assembly asm = Assembly.Load(assemblyName);
             var tt = asm.GetTypes().Where(t =>  typeof (Deployment).IsAssignableFrom(t) );
 
             return (Deployment)Activator.CreateInstance(tt.First());

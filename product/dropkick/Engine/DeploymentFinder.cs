@@ -4,6 +4,6 @@ namespace dropkick.Engine
 
     public interface DeploymentFinder
     {
-        Deployment Find();
+        Deployment Find(string assemblyName);
     }
 }
