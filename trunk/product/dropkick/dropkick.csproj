@@ -117,6 +117,7 @@
     <Compile Include="Dsl\WinService\WinServiceStartTask.cs" />
     <Compile Include="Dsl\WinService\WinServiceStopTask.cs" />
     <Compile Include="Dsl\WinService\WinServiceTaskBuilder.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Visitors\Execution\ExecutionInspector.cs" />
     <Compile Include="Visitors\Trace\TraceVisitor.cs" />
     <Compile Include="Visitors\Verification\VerificationInspector.cs" />
