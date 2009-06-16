@@ -20,6 +20,8 @@ namespace dropkick.Dsl.WinService
         {
             var result = new VerificationResult();
 
+            VerifyInAdministratorRole(result);
+
             try
             {
                 using (ServiceController c = new ServiceController(ServiceName, MachineName))

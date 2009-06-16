@@ -125,7 +125,7 @@ namespace dropkick.tests.Dsl
         }
 
         [Test]
-        public void Trace_TestDeploy()
+        public void Verify_TestDeploy()
         {
             var dep = new TestDeployment();
             var vi = new VerificationInspector();
