@@ -6,13 +6,14 @@ namespace dropkick.Dsl.Iis
     using System.IO;
     using Engine;
 
+    // thank you NAnt team for your help!! -dru
     public class Iis6Task :
         Task
     {
         bool _createIfItDoesntExist;
         string _iisPath = "IIS://localhost/W3svc/1/Root";
 
-        public string ServerPath { get; set; }
+        public string WebsiteName { get; set; }
         public string VdirPath { get; set; }
         public DirectoryInfo PathOnServer { get; set; }
         public string ServerName { get; set; }
@@ -26,7 +27,7 @@ namespace dropkick.Dsl.Iis
 
         public string Name
         {
-            get { return "IIS: stuff"; }
+            get { return "IIS: Create vdir '{0}' in site '{1}' on server '{2}'".FormatWith(VdirPath, WebsiteName, ServerName); }
         }
 
         public VerificationResult VerifyCanRun()
@@ -41,7 +42,7 @@ namespace dropkick.Dsl.Iis
                                 ServerName);
             }
 
-            if (!DirectoryEntryExists(ServerPath , VdirPath))
+            if (!DirectoryEntryExists(WebsiteName , VdirPath))
             {
                 if(_createIfItDoesntExist)
                     result.AddAlert("VDir not found, and will be created");
@@ -59,7 +60,7 @@ namespace dropkick.Dsl.Iis
         public void Execute()
         {
             DirectoryEntry vdir =
-                GetOrMakeNode(ServerPath, VdirPath, "IIsWebVirtualDir");
+                GetOrMakeNode(WebsiteName, VdirPath, "IIsWebVirtualDir");
             vdir.RefreshCache();
 
             vdir.Properties["Path"].Value = PathOnServer.FullName;

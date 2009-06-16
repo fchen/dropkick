@@ -16,7 +16,7 @@ namespace dropkick.Dsl.Iis
             _task = new Iis6Task()
                     {
                         ServerName = server.Name,
-                        ServerPath = websiteName
+                        WebsiteName = websiteName
                     };
         }
 
