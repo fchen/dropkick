@@ -5,9 +5,9 @@ namespace dropkick.Dsl.Files
     public class SomeFileActions :
         FileActions
     {
-        readonly Part _part;
+        readonly PartCfg _part;
 
-        public SomeFileActions(Part part)
+        public SomeFileActions(PartCfg part)
         {
             _part = part;
         }

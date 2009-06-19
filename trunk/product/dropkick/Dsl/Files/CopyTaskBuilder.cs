@@ -7,11 +7,11 @@ namespace dropkick.Dsl.Files
     {
         readonly string _from;
         string _to;
-        readonly Part _part;
+        readonly PartCfg _part;
         Action<FileActions> _followOn;
         CopyTask _task;
 
-        public CopyTaskBuilder(string from, Part part)
+        public CopyTaskBuilder(string from, PartCfg part)
         {
             _from = from;
             _part = part;

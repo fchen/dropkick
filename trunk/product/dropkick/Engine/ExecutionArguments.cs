@@ -1,7 +1,5 @@
 namespace dropkick.Engine
 {
-    using System;
-    using System.Text.RegularExpressions;
     using Dsl;
     using Visitors.Trace;
 
@@ -11,6 +9,7 @@ namespace dropkick.Engine
         {
             Inspector = new TraceVisitor();
             DeploymentFinder = new AssumesOnlyOneDeploymentFinder();
+            Part = "ALL";
         }
         public string Environment { get; set; }
         public string Part { get; set; }

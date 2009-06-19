@@ -7,6 +7,7 @@ namespace dropkick.tests.TestObjects
     using dropkick.Dsl.Msmq;
     using dropkick.Dsl.MsSql;
     using dropkick.Dsl.WinService;
+    using dropkick.Dsl.NetworkShare;
 
     public class TestDeployment :
         Deployment<TestDeployment>
@@ -30,11 +31,12 @@ namespace dropkick.tests.TestObjects
 //                                .VirtualDirectory("flames")
 //                                .CreateIfItDoesntExist();
 
-                            /*
-                             * File Shares
-                             * p.OnServer("SrvTopeka19")
-                             *      .FileShare("bob").PointingTo("E:\Tools");
-                             */
+                            
+                              
+                              p.OnServer("SrvTopeka19")
+                                   .ShareFolder("bob").PointingTo(@"E:\Tools")
+                                   .CreateIfNotExist();
+                             
 
                             p.OnServer("SrvTopeka19")
                                 .CommandLine("ping")

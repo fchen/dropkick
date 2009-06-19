@@ -8,7 +8,7 @@ namespace dropkick.Dsl.WinService
         private string _serviceName;
         private string _server;
         private Action _action;
-        private Part _part;
+        private PartCfg _part;
 
         public WinServiceTaskBuilder(ServerOptions options, string name)
         {
