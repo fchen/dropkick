@@ -4,7 +4,8 @@ namespace dropkick.Dsl.Files
     {
         public static CopyOptions CopyFrom(this Part part, string sourcePath)
         {
-            return new CopyTaskBuilder(sourcePath, part);
+            //because I don't use the server name I had to do this upcast
+            return new CopyTaskBuilder(sourcePath, (PartCfg)part);
         }
     }
 }

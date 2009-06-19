@@ -7,11 +7,15 @@ namespace dropkick.Dsl
     {
         string Name { get; }
         ServerOptions OnServer(string serverName);
+    }
+
+    public interface PartCfg : Part
+    {
         void AddTask(Task task);
     }
 
     public class Part<T> :
-        Part,
+        PartCfg,
         DeploymentInspectorSite
         where T : Deployment<T>, new()
     {

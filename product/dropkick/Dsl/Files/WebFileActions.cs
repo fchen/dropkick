@@ -8,9 +8,9 @@ namespace dropkick.Dsl.Files
         FileAction
     {
         string fileName = "web.config";
-        Part _part;
+        PartCfg _part;
 
-        public WebFileActions(Part part)
+        public WebFileActions(PartCfg part)
         {
             _part = part;
         }

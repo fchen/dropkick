@@ -33,6 +33,14 @@ namespace dropkick.tests
         }
 
         [Test]
+        public void Default_parts_should_be_ALL()
+        {
+            var ea = ArgumentParsing.Parse(new string[] {});
+
+            ea.Part.should_be_equal_to("ALL");
+        }
+
+        [Test]
         public void Should_parse_out_assembly()
         {
             var ea = ArgumentParsing.Parse(_arguments);

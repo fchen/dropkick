@@ -5,10 +5,10 @@ namespace dropkick.Dsl.CommandLine
     public class CommandLineTaskBuilder : 
         CommandLineOptions
     {
-        private Part _part;
+        private PartCfg _part;
         private CommandLineTask _task;
 
-        public CommandLineTaskBuilder(Part part, string command)
+        public CommandLineTaskBuilder(PartCfg part, string command)
         {
             _part = part;
             _task = new CommandLineTask(command);
