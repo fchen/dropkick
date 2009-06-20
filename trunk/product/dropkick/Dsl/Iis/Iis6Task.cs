@@ -2,62 +2,35 @@ namespace dropkick.Dsl.Iis
 {
     using System;
     using System.DirectoryServices;
-    using System.EnterpriseServices.Internal;
-    using System.IO;
     using Verification;
 
     // thank you NAnt team for your help!! -dru
     public class Iis6Task :
-        Task
+        BaseIisTask
     {
         bool _createIfItDoesntExist;
-        string _iisPath = "IIS://localhost/W3svc/1/Root";
+        
+        //ctor
 
-        public string WebsiteName { get; set; }
-        public string VdirPath { get; set; }
-        public DirectoryInfo PathOnServer { get; set; }
-        public string ServerName { get; set; }
-
-        #region Task Members
-
-        public void Inspect(DeploymentInspector inspector)
+        public override int VersionNumber
         {
-            inspector.Inspect(this);
+            get { return 6; }
         }
 
-        public string Name
-        {
-            get { return "IIS6: Create vdir '{0}' in site '{1}' on server '{2}'".FormatWith(VdirPath, WebsiteName, ServerName); }
-        }
-
-        public VerificationResult VerifyCanRun()
+        public override VerificationResult VerifyCanRun()
         {
             var result = new VerificationResult();
             
             CheckVersionOfWindowsAndIis(result);
 
-            if (!Environment.MachineName.Equals(ServerName))
-            {
-                result.AddAlert("You are not on the right server [On: '{0}' - Target: '{1}'", Environment.MachineName,
-                                ServerName);
-            }
+            CheckServerName(result);
 
-            if (!DirectoryEntryExists(WebsiteName , VdirPath))
-            {
-                if(_createIfItDoesntExist)
-                    result.AddAlert("VDir not found, and will be created");
-                else
-                    result.AddAlert("VDir not found");
-            }
-            else
-            {
-                result.AddGood("Site Exists");
-            }
+            CheckForSiteAndVDirExistance(DoesSiteExist, DoesVirtualDirectoryExist, result);
 
             return result;
         }
 
-        public void Execute()
+        public override void Execute()
         {
             DirectoryEntry vdir =
                 GetOrMakeNode(WebsiteName, VdirPath, "IIsWebVirtualDir");
@@ -71,31 +44,18 @@ namespace dropkick.Dsl.Iis
             vdir.Close();
         }
 
-        #endregion
-
-        DirectoryEntry GetOrMakeNode(string basePath, string relPath, string schemaClassName)
+        
+        public bool DoesSiteExist()
         {
-//            var vr = new IISVirtualRoot();
-//            string error;
-//            vr.Create("IIS://localhost/W3svc/1/Root", @"C:\bob", "dk_test", out error);
-
-            if (DirectoryEntryExists(basePath, relPath))
-            {
-                return new DirectoryEntry(basePath + relPath);
-            }
-            var parent = new DirectoryEntry(basePath);
-            parent.RefreshCache();
-            DirectoryEntry child = parent.Children.Add(relPath.Trim('/'), schemaClassName);
-            child.CommitChanges();
-            parent.CommitChanges();
-            parent.Close();
-            return child;
+            return ConvertSiteNameToSiteNumber(WebsiteName) > 0;
         }
 
-        protected bool DirectoryEntryExists(string siteName, string vDirPath)
+
+
+        protected bool DoesVirtualDirectoryExist()
         {
-            int siteNumber = ConvertSiteNameToSiteNumber(siteName);
-            string path = BuildIisPath(siteNumber, vDirPath);
+            int siteNumber = ConvertSiteNameToSiteNumber(WebsiteName);
+            string path = BuildIisPath(siteNumber, VdirPath);
             var entry = new DirectoryEntry(path);
 
             try
@@ -114,6 +74,24 @@ namespace dropkick.Dsl.Iis
             }
         }
 
+        DirectoryEntry GetOrMakeNode(string basePath, string relPath, string schemaClassName)
+        {
+            //            var vr = new IISVirtualRoot();
+            //            string error;
+            //            vr.Create("IIS://localhost/W3svc/1/Root", @"C:\bob", "dk_test", out error);
+
+            if (DoesVirtualDirectoryExist())
+            {
+                return new DirectoryEntry(basePath + relPath);
+            }
+            var parent = new DirectoryEntry(basePath);
+            parent.RefreshCache();
+            DirectoryEntry child = parent.Children.Add(relPath.Trim('/'), schemaClassName);
+            child.CommitChanges();
+            parent.CommitChanges();
+            parent.Close();
+            return child;
+        }
         void SetIisProperties(DirectoryEntry vdir)
         {
         }
@@ -125,7 +103,7 @@ namespace dropkick.Dsl.Iis
 
         public void CreateIfItDoesntExist()
         {
-            _createIfItDoesntExist = true;
+            ShouldCreate = true;
         }
 
         void CheckVersionOfWindowsAndIis(VerificationResult result)

@@ -13,6 +13,10 @@ namespace dropkick.Verification
         {
             _items.Add(new VerificationItem(VerificationStatus.Good, message));
         }
+        public void AddGood(string messageFormat, params string[] args)
+        {
+            _items.Add(new VerificationItem(VerificationStatus.Good,string.Format(messageFormat, args)));
+        }
 
         public void AddAlert(string message)
         {
