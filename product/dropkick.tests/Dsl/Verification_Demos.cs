@@ -53,6 +53,7 @@ namespace dropkick.tests.Dsl
         [Test]
         public void Verify_Command()
         {
+            Setup();
             var dep = new CommandTestDeploy();
             dep.Inspect(_interpreter);
             var plan = _interpreter.GetPlan();
@@ -69,9 +70,8 @@ namespace dropkick.tests.Dsl
         }
 
         [Test]
-        public void Verify_Iis6()
+        public void Verify_Iis()
         {
-            Setup();
             var dep = new IisTestDeploy();
             dep.Inspect(_interpreter);
             var plan = _interpreter.GetPlan();

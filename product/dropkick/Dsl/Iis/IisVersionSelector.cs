@@ -6,6 +6,8 @@ namespace dropkick.Dsl.Iis
     {
         public static IisSiteOptions SelectTheCorrectConfig(ServerOptions server, string websiteName)
         {
+            server.Part.AddTask(new NoteTask("IIS Version Detection Used"));
+
             if (System.Environment.OSVersion.Version.Major == 1)
             {
                 server.Part.AddTask(new NoteTask("IIS Version was automatically set to IIS6"));

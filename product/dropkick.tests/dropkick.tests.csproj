@@ -74,6 +74,8 @@
     <Compile Include="Dsl\Deployments_should_have_parts.cs" />
     <Compile Include="ExecutionArguments_Specs.cs" />
     <Compile Include="PartCounter.cs" />
+    <Compile Include="Should_be_able_run_in_different_modes.cs" />
+    <Compile Include="Should_be_able_to_execute_only_one_part.cs" />
     <Compile Include="TestObjects\CommandTestDeploy.cs" />
     <Compile Include="TestObjects\IisTestDeploy.cs" />
     <Compile Include="TestObjects\MsSqlTestDeploy.cs" />

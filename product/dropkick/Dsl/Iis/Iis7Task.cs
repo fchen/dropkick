@@ -1,38 +1,40 @@
 namespace dropkick.Dsl.Iis
 {
-    using System;
-    using System.IO;
+    using Microsoft.Web.Administration;
     using Verification;
 
     public class Iis7Task :
-        Task
+        BaseIisTask
     {
-        public string WebsiteName { get; set; }
-        public string VdirPath { get; set; }
-        public DirectoryInfo PathOnServer { get; set; }
-        public string ServerName { get; set; }
+        bool _createIfItDoesntExist;
 
-        public void Inspect(DeploymentInspector inspector)
+        //ctor
+
+        public override int VersionNumber
         {
-            inspector.Inspect(this);
+            get { return 7; }
         }
 
-        public string Name
+        public override VerificationResult VerifyCanRun()
         {
-            get { return "IIS7: Create vdir '{0}' in site '{1}' on server '{2}'".FormatWith(VdirPath, WebsiteName, ServerName); }
+            var result = new VerificationResult();
+
+            CheckVersionOfWindowsAndIis(result);
+
+            CheckServerName(result);
+
+            CheckForSiteAndVDirExistance(DoesSiteExist, DoesVirtualDirectoryExist, result);
+
+            return result;
         }
 
-        public VerificationResult VerifyCanRun()
-        {
-            return new VerificationResult();
-        }
-
-        public void Execute()
+        public override void Execute()
         {
             //ignore
         }
 
-        bool _createIfItDoesntExist;
+        
+
 
         private void CheckVersionOfWindowsAndIis(VerificationResult result)
         {
@@ -41,9 +43,44 @@ namespace dropkick.Dsl.Iis
                 result.AddAlert("This machine does not have IIS7 on it");
         }
 
+        public bool DoesSiteExist()
+        {
+            var iisManager = new ServerManager();
+            foreach (var site in iisManager.Sites)
+            {
+                if (site.Name.Equals(base.WebsiteName))
+                {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        public bool DoesVirtualDirectoryExist()
+        {
+            var iisManager = new ServerManager();
+            foreach (var site in iisManager.Sites)
+            {
+                if (site.Name.Equals(base.WebsiteName))
+                {
+
+                    foreach (var app in site.Applications)
+                    {
+                        if (app.Path.Equals("/" + VdirPath))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+            }
+            return false;
+        }
+
         public void CreateIfItDoesntExist()
         {
-            _createIfItDoesntExist = true;
+            ShouldCreate = true;
         }
     }
 }
