@@ -4,7 +4,7 @@ namespace dropkick.Dsl.Msmq
     using System.Messaging;
     using System.Threading;
     using MassTransit.Transports.Msmq;
-    using Visitors.Verification;
+    using Verification;
 
     public class MsmqTask :
         Task

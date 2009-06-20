@@ -1,20 +1,26 @@
 namespace dropkick.Engine
 {
     using Dsl;
-    using Visitors.Trace;
 
     public class ExecutionArguments
     {
         public ExecutionArguments()
         {
-            Inspector = new TraceVisitor();
+            Option = ExecutionOptions.Trace;
             DeploymentFinder = new AssumesOnlyOneDeploymentFinder();
             Part = "ALL";
         }
         public string Environment { get; set; }
         public string Part { get; set; }
         public string DeploymentAssembly { get; set; }
-        public DeploymentInspector Inspector { get; set; }
+        public ExecutionOptions Option { get; set; }
         public DeploymentFinder DeploymentFinder { get; set; }
+    }
+
+    public enum ExecutionOptions
+    {
+        Trace,
+        Verify,
+        Execute
     }
 }

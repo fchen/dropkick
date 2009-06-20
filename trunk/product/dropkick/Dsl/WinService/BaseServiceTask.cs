@@ -1,7 +1,7 @@
 namespace dropkick.Dsl.WinService
 {
     using System.Threading;
-    using Visitors.Verification;
+    using Verification;
 
     public abstract class BaseServiceTask : 
         Task

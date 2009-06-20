@@ -1,4 +1,4 @@
-namespace dropkick.Visitors.Verification
+namespace dropkick.Verification
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;

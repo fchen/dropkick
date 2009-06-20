@@ -3,7 +3,7 @@ namespace dropkick.Dsl.MsSql
     using System;
     using System.Data;
     using System.IO;
-    using Visitors.Verification;
+    using Verification;
 
     public class RunSqlScriptTask :
         BaseSqlTask

@@ -2,9 +2,6 @@ namespace dropkick.Engine
 {
     using System;
     using System.Text.RegularExpressions;
-    using Visitors.Execution;
-    using Visitors.Trace;
-    using Visitors.Verification;
 
     //note: I have probably abused the currying of lambdas here, but hey. It was fun.
     //note: in retrospect, this kinda sucks because its hard to debug
@@ -43,12 +40,12 @@ namespace dropkick.Engine
             Action<string, ExecutionArguments> verify2 = (input, ea) => setupInspectorRegex(input, ea, (s, e) =>
                 {
                     if(s.Equals("v")) 
-                        e.Inspector = new VerificationInspector();
+                        e.Option = ExecutionOptions.Verify;
                 });
             Action<string, ExecutionArguments> execute2 = (input, ea) => setupInspectorRegex(input, ea, (s, e) =>
                 {
                     if(s.Equals("x")) 
-                        e.Inspector = new ExecutionInspector();
+                        e.Option = ExecutionOptions.Execute;
                 });
 
             Action<string, ExecutionArguments> parseInspector = (input, ea) =>

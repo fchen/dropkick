@@ -2,7 +2,7 @@ namespace dropkick.Dsl.NetworkShare
 {
     using System;
     using System.Management;
-    using Visitors.Verification;
+    using Verification;
 
     public class FolderShareTask :
         Task

@@ -106,18 +106,19 @@
     <Compile Include="Engine\ArgumentParsing.cs" />
     <Compile Include="Engine\AssumesOnlyOneDeploymentFinder.cs" />
     <Compile Include="Engine\ExecutionArguments.cs" />
+    <Compile Include="Engine\Interpreter.cs" />
+    <Compile Include="Execution\ExecutionDetail.cs" />
+    <Compile Include="Execution\ExecutionPart.cs" />
+    <Compile Include="Execution\ExecutionPlan.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Visitors\Execution\ExecutionInspector.cs" />
-    <Compile Include="Visitors\Trace\TraceVisitor.cs" />
-    <Compile Include="Visitors\Verification\VerificationInspector.cs" />
     <Compile Include="Dsl\WinService\Extension.cs" />
     <Compile Include="Dsl\WinService\WinServiceOptions.cs" />
     <Compile Include="Engine\DeploymentFinder.cs" />
     <Compile Include="Engine\Runner.cs" />
     <Compile Include="Dsl\Task.cs" />
-    <Compile Include="Visitors\Verification\VerificationItem.cs" />
-    <Compile Include="Visitors\Verification\VerificationResult.cs" />
-    <Compile Include="Visitors\Verification\VerificationStatus.cs" />
+    <Compile Include="Verification\VerificationItem.cs" />
+    <Compile Include="Verification\VerificationResult.cs" />
+    <Compile Include="Verification\VerificationStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

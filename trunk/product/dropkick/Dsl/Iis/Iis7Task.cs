@@ -1,6 +1,6 @@
 namespace dropkick.Dsl.Iis
 {
-    using Visitors.Verification;
+    using Verification;
 
     public class Iis7Task
     {
