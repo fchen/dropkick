@@ -11,9 +11,11 @@ namespace dropkick.Engine
 
         public void Deploy(ExecutionArguments args)
         {
-            var d = _finder.Find(args.DeploymentAssembly);
-
-            d.Inspect(args.Inspector);
+            var deployment = _finder.Find(args.DeploymentAssembly);
+            var interpreter = new Interpreter();
+            interpreter.Inspect(deployment);
+            var plan = interpreter.GetPlan();
+            plan.Execute(args);
         }
     }
 }

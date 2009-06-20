@@ -33,14 +33,6 @@ namespace dropkick.Dsl
             _tasks.Add(task);
         }
 
-        public static Part<T> GetPart(Part input)
-        {
-            Part<T> result = input as Part<T>;
-            if(result == null)
-                throw new ArgumentException(string.Format("The part is not valid for this deployment"), "input");
-
-            return result;
-        }
 
         public ServerOptions OnServer(string serverName)
         {
@@ -52,14 +44,6 @@ namespace dropkick.Dsl
             action(this);
         }
 
-        public void Execute()
-        {
-            foreach(Task task in _tasks)
-            {
-                task.Execute();
-            }
-        }
-
         public void Inspect(DeploymentInspector inspector)
         {
             inspector.Inspect(this, () =>
@@ -69,6 +53,15 @@ namespace dropkick.Dsl
                         task.Inspect(inspector);
                     }
                 });
+        }
+
+        public static Part<T> GetPart(Part input)
+        {
+            Part<T> result = input as Part<T>;
+            if(result == null)
+                throw new ArgumentException(string.Format("The part is not valid for this deployment"), "input");
+
+            return result;
         }
     }
 }

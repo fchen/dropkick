@@ -1,6 +1,6 @@
 namespace dropkick.Dsl.WinService
 {
-    using Visitors.Verification;
+    using Verification;
 
     public class NestedTask :
         Task

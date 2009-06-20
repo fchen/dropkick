@@ -4,7 +4,7 @@ namespace dropkick.Dsl.Iis
     using System.DirectoryServices;
     using System.EnterpriseServices.Internal;
     using System.IO;
-    using Visitors.Verification;
+    using Verification;
 
     // thank you NAnt team for your help!! -dru
     public class Iis6Task :

@@ -2,7 +2,7 @@ namespace dropkick.tests.TestObjects
 {
     using System;
     using dropkick.Dsl;
-    using Visitors.Verification;
+    using Verification;
 
     public class TestTask :
         Task

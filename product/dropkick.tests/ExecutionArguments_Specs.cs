@@ -3,9 +3,6 @@ namespace dropkick.tests
     using Engine;
     using MbUnit.Framework;
     using developwithpassion.bdd.mbunit;
-    using Visitors.Execution;
-    using Visitors.Trace;
-    using Visitors.Verification;
 
     [TestFixture]
     public class ExecutionArguments_Specs
@@ -20,7 +17,7 @@ namespace dropkick.tests
 
             ea.Environment.should_be_equal_to("staging");
             ea.DeploymentAssembly.should_be_equal_to("MyStuff");
-            ea.Inspector.should_be_an_instance_of<VerificationInspector>();
+            ea.Option.should_be_equal_to(ExecutionOptions.Verify);
             ea.Part.should_be_equal_to("WEB");
         }
 
@@ -60,7 +57,7 @@ namespace dropkick.tests
             var arguments = new string[] {"-v"};
             var ea = ArgumentParsing.Parse(arguments);
 
-            ea.Inspector.should_be_an_instance_of<VerificationInspector>();
+            ea.Option.should_be_equal_to(ExecutionOptions.Verify);
         }
 
         [Test]
@@ -69,7 +66,7 @@ namespace dropkick.tests
             var arguments = new string[] { "-x" };
             var ea = ArgumentParsing.Parse(arguments);
 
-            ea.Inspector.should_be_an_instance_of<ExecutionInspector>();
+            ea.Option.should_be_equal_to(ExecutionOptions.Execute);
         }
 
         [Test]
@@ -78,7 +75,7 @@ namespace dropkick.tests
             var arguments = new string[] {  };
             var ea = ArgumentParsing.Parse(arguments);
 
-            ea.Inspector.should_be_an_instance_of<TraceVisitor>();
+            ea.Option.should_be_equal_to(ExecutionOptions.Trace);
         }
     }
 }
