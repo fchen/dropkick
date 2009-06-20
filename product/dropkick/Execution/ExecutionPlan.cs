@@ -26,7 +26,10 @@ namespace dropkick.Execution
                 {
                     Console.WriteLine("    {0}", detail.Name);
                     var r = detail.Verify();
-                    
+                    foreach (var item in r.Results)
+                    {
+                        Console.WriteLine("      [{0}]-{1}", item.Status, item.Message);
+                    }
                 }
             }
         }

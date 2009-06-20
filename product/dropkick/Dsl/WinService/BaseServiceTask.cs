@@ -29,11 +29,11 @@ namespace dropkick.Dsl.WinService
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrator"))
             {
-                result.AddError("You are not in the Administrator role. you will not be able to start/stop services");
+                result.AddAlert("You are not in the 'Administrator' role. You will not be able to start/stop services");
             }
             else
             {
-                result.AddGood("You are in the Administrator role");
+                result.AddGood("You are in the 'Administrator' role");
             }
         }
     }

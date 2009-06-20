@@ -40,7 +40,7 @@ namespace dropkick.Dsl.MsSql
             }
             catch (Exception)
             {
-                result.AddError("I cannot open the connection");
+                result.AddAlert("I cannot open the connection");
                 throw;
             }
             finally

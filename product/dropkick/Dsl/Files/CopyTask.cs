@@ -80,7 +80,7 @@ namespace dropkick.Dsl.Files
                     }
                     catch (Exception)
                     {
-                        result.AddError("CopyTask: Can't read file '{0}'");
+                        result.AddAlert("CopyTask: Can't read file '{0}'");
                     }
                     finally
                     {

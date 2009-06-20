@@ -13,7 +13,7 @@ namespace dropkick.Dsl.WinService
 
         public override string Name
         {
-            get { return string.Format("Starting Service '{0}'", ServiceName); }
+            get { return string.Format("Starting service '{0}'", ServiceName); }
         }
 
         public override VerificationResult VerifyCanRun()
@@ -27,12 +27,12 @@ namespace dropkick.Dsl.WinService
                 using (ServiceController c = new ServiceController(ServiceName, MachineName))
                 {
                     var currentStatus = c.Status;
-                    result.AddGood(string.Format("Found the Service it is '{0}'", currentStatus));
+                    result.AddGood(string.Format("Found service '{0}' it is '{1}'", ServiceName, currentStatus));
                 }
             }
             catch (Exception)
             {
-                result.AddError(string.Format("Can't Find Service '{0}'", ServiceName));
+                result.AddAlert(string.Format("Can't find service '{0}'", ServiceName));
             }
 
             return result;

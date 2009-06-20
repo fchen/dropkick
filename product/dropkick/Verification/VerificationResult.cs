@@ -23,14 +23,6 @@ namespace dropkick.Verification
             _items.Add(new VerificationItem(VerificationStatus.Alert, string.Format(messageFormat, args)));
         }
 
-        public void AddError(string message)
-        {
-            _items.Add(new VerificationItem(VerificationStatus.Error, message));
-        }
-        public void AddError(string messageFormat, params string[] value)
-        {
-            AddError(string.Format(messageFormat, value));
-        }
         public IList<VerificationItem> Results
         {
             get { return new ReadOnlyCollection<VerificationItem>(_items); }

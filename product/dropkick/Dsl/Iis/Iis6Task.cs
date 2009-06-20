@@ -27,7 +27,7 @@ namespace dropkick.Dsl.Iis
 
         public string Name
         {
-            get { return "IIS: Create vdir '{0}' in site '{1}' on server '{2}'".FormatWith(VdirPath, WebsiteName, ServerName); }
+            get { return "IIS6: Create vdir '{0}' in site '{1}' on server '{2}'".FormatWith(VdirPath, WebsiteName, ServerName); }
         }
 
         public VerificationResult VerifyCanRun()
@@ -132,7 +132,7 @@ namespace dropkick.Dsl.Iis
         {
             int shouldBe5 = Environment.OSVersion.Version.Major;
             if (shouldBe5 != 5)
-                result.AddError("This machine does not have IIS6 on it");
+                result.AddAlert("This machine does not have IIS6 on it");
         }
 
         string BuildIisPath(int siteNumber, string vDirPath)
