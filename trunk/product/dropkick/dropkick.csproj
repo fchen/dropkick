@@ -79,6 +79,7 @@
     <Compile Include="Dsl\Iis\IisSiteOptions.cs" />
     <Compile Include="Dsl\Iis\Iis6Task.cs" />
     <Compile Include="Dsl\Iis\Iis6TaskCfg.cs" />
+    <Compile Include="Dsl\Iis\IisVersionSelector.cs" />
     <Compile Include="Dsl\Iis\IisVirtualDirectoryOptions.cs" />
     <Compile Include="Dsl\Msmq\Extension.cs" />
     <Compile Include="Dsl\Msmq\MsmqOptions.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Dsl\NetworkShare\FolderShareOptions.cs" />
     <Compile Include="Dsl\NetworkShare\FolderShareTask.cs" />
     <Compile Include="Dsl\NetworkShare\FolderShareTaskCfg.cs" />
+    <Compile Include="Dsl\NoteTask.cs" />
     <Compile Include="Dsl\Part.cs" />
     <Compile Include="Dsl\ServerOptions.cs" />
     <Compile Include="Dsl\WinService\BaseServiceTask.cs" />

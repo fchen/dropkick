@@ -1,5 +1,6 @@
 namespace dropkick.tests.Dsl
 {
+    using System;
     using Engine;
     using MbUnit.Framework;
     using TestObjects;
@@ -70,6 +71,7 @@ namespace dropkick.tests.Dsl
         [Test]
         public void Verify_Iis6()
         {
+            Setup();
             var dep = new IisTestDeploy();
             dep.Inspect(_interpreter);
             var plan = _interpreter.GetPlan();

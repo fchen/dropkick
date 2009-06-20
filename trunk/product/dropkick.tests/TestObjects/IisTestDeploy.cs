@@ -13,12 +13,12 @@ namespace dropkick.tests.TestObjects
             Define(() => During(Web, p =>
             {
                 p.OnServer(System.Environment.MachineName)
-                    .Iis6Site("Default Web Site")
+                    .IisSite("Default Web Site")
                     .VirtualDirectory("dk_test")
                     .CreateIfItDoesntExist();
 
                 p.OnServer(System.Environment.MachineName)
-                    .Iis6Site("Default Web Site")
+                    .IisSite("Default Web Site")
                     .VirtualDirectory("fp")
                     .CreateIfItDoesntExist();
             }));

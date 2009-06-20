@@ -57,7 +57,7 @@ namespace dropkick.Dsl.Msmq
             }
             else
             {
-                result.AddError(string.Format("Cannot check for queue '{0}' on server '{1}' while on server '{2}'",
+                result.AddAlert(string.Format("Cannot check for queue '{0}' on server '{1}' while on server '{2}'",
                                               _queueName, _serverName, Environment.MachineName));
             }
 
@@ -84,7 +84,7 @@ namespace dropkick.Dsl.Msmq
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrator"))
             {
-                result.AddError("You are not in the Administrator role");
+                result.AddAlert("You are not in the Administrator role");
             }
             else
             {

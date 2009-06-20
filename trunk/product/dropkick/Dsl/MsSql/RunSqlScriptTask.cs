@@ -42,7 +42,7 @@ namespace dropkick.Dsl.MsSql
                 }
                 else
                 {
-                    result.AddError("I can't find '{0}'", ScriptToRun);
+                    result.AddAlert("I can't find '{0}'", ScriptToRun);
                 }
             }
 
