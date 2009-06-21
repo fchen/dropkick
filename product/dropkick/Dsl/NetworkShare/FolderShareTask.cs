@@ -1,6 +1,7 @@
 namespace dropkick.Dsl.NetworkShare
 {
     using System;
+    using System.IO;
     using System.Management;
     using Verification;
 
@@ -14,7 +15,17 @@ namespace dropkick.Dsl.NetworkShare
 
         public VerificationResult VerifyCanRun()
         {
-            throw new NotImplementedException();
+            //verify admin
+            var result = new VerificationResult();
+
+            if(!Directory.Exists(PointingTo))
+                result.AddAlert("'{0}' doesn't exist", PointingTo);
+            else
+                result.AddGood("'{0}' exists", PointingTo);
+            
+
+
+            return result;
         }
 
         //http://www.codeproject.com/KB/system/Share-Folder-c_.aspx
@@ -48,17 +59,15 @@ namespace dropkick.Dsl.NetworkShare
 
         bool _createIfNotExist;
 
-        public string Server { get; set; }
-        public string Description { get; set; }
         public string Name
         {
-            get { return "NETWORK SHARE: bob"; }
+            get { return "Share Folder '{0}' as '{1}' on '{2}'".FormatWith(PointingTo, ShareName, Server); }
         }
 
+        public string Server { get; set; }
+        public string Description { get; set; }
         public string ShareName { get; set; }
-
         public string PointingTo { get; set; }
-
         public void CreateIfNotExist()
         {
             _createIfNotExist = true;
