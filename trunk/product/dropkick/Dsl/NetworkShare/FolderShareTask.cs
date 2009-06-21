@@ -28,32 +28,23 @@ namespace dropkick.Dsl.NetworkShare
             return result;
         }
 
-        //http://www.codeproject.com/KB/system/Share-Folder-c_.aspx
+
         public void Execute()
         {
             var managementClass = new ManagementClass("Win32_Share");
 
-            var inParams = managementClass.GetMethodParameters("Create");
-
-            // Set the input parameters
-
-
-            inParams["Description"] = Description;
-
-            inParams["Name"] = ShareName;
-
-            inParams["Path"] = PointingTo;
-
-            inParams["Type"] = 0x0; // Disk Drive
+            var args = managementClass.GetMethodParameters("Create");
+            args["Description"] = Description;
+            args["Name"] = ShareName;
+            args["Path"] = PointingTo;
+            args["Type"] = 0x0; // Disk Drive
             
-            var outParams = managementClass.InvokeMethod("Create", inParams, null);
+            var outParams = managementClass.InvokeMethod("Create", args, null);
 
             // Check to see if the method invocation was successful
-
-
             if (outParams != null && (uint)(outParams.Properties["ReturnValue"].Value) != 0)
             {
-                throw new Exception("Unable to share directory.");
+                throw new Exception("Unable to share directory '{0}' as '{2}' on '{1}'.".FormatWith(PointingTo, Server, ShareName));
             }
         }
 
