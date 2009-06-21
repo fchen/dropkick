@@ -34,6 +34,7 @@ namespace dropkick.Engine
             return true;
         }
 
+        //TODO: This smells pretty nasty
         ExecutionPart _currentPart = null;
         public bool Inspect(Part part)
         {

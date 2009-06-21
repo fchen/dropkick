@@ -2,12 +2,20 @@ namespace dropkick.Execution
 {
     using System;
     using System.Collections.Generic;
-    using Dsl;
     using Engine;
+    using Verification;
 
     public class ExecutionPlan
     {
+        readonly IDictionary<ExecutionOptions, Action<Func<ExecutionPart, bool>>> _actions = new Dictionary<ExecutionOptions, Action<Func<ExecutionPart, bool>>>();
         readonly IList<ExecutionPart> _parts = new List<ExecutionPart>();
+
+        public ExecutionPlan()
+        {
+            _actions.Add(ExecutionOptions.Execute, Ex);
+            _actions.Add(ExecutionOptions.Verify, Verify);
+            _actions.Add(ExecutionOptions.Trace, Trace);
+        }
 
         public string Name { get; set; }
 
@@ -18,69 +26,68 @@ namespace dropkick.Execution
 
         public void Execute(ExecutionArguments arguments)
         {
+            var criteria = BuildCriteria(arguments);
+
+            _actions[arguments.Option](criteria);
+        }
+
+        static Func<ExecutionPart, bool> BuildCriteria(ExecutionArguments args)
+        {
             Func<ExecutionPart, bool> criteria = p => true;
 
-            if (!arguments.Equals("ALL"))
-                criteria = p => p.Name.Equals(arguments.Part);
+            if (!args.Part.Equals("ALL"))
+                criteria = p => p.Name.Equals(args.Part);
 
-            if (arguments.Option == ExecutionOptions.Verify)
-                Verify(criteria);
-            else if (arguments.Option == ExecutionOptions.Execute)
-                Ex(criteria);
-            else //trace
-                Trace(criteria);
-            
-            
+            return criteria;
         }
 
-        private void Verify(Func<ExecutionPart,bool> partCriteria)
+        void Verify(Func<ExecutionPart, bool> partCriteria)
         {
-            Console.WriteLine(Name);
+            Walk(partCriteria,
+                 plan => Console.WriteLine(plan.Name),
+                 part => Console.WriteLine("  {0}", part.Name),
+                 detail =>
+                 {
+                     Console.WriteLine("    {0}", detail.Name);
+                     VerificationResult r = detail.Verify();
+                     foreach (VerificationItem item in r.Results)
+                     {
+                         Console.WriteLine("      [{0}] {1}", item.Status, item.Message);
+                     }
+                 });
+        }
+
+        void Ex(Func<ExecutionPart, bool> partCriteria)
+        {
+            Walk(partCriteria,
+                 plan => Console.WriteLine(plan.Name),
+                 part => Console.WriteLine("  {0}", part.Name),
+                 detail =>
+                 {
+                     Console.WriteLine("    {0}", detail.Name);
+                     detail.Verify();
+                     detail.Execute();
+                 });
+        }
+
+        void Trace(Func<ExecutionPart, bool> partCriteria)
+        {
+            Walk(partCriteria,
+                 plan => Console.WriteLine(plan.Name),
+                 part => Console.WriteLine("  {0}", part.Name),
+                 detail => Console.WriteLine("    {0}", detail.Name));
+        }
+
+        void Walk(Func<ExecutionPart, bool> partCriteria, Action<ExecutionPlan> planAction, Action<ExecutionPart> partAction, Action<ExecutionDetail> detailAction)
+        {
+            planAction(this);
             foreach (var part in _parts)
             {
                 if (!partCriteria(part)) continue;
-
-                Console.WriteLine("  {0}", part.Name);
+                partAction(part);
                 foreach (var detail in part.Details)
                 {
-                    Console.WriteLine("    {0}", detail.Name);
-                    var r = detail.Verify();
-                    foreach (var item in r.Results)
-                    {
-                        Console.WriteLine("      [{0}] {1}", item.Status, item.Message);
-                    }
-                }
-            }
-        }
-
-        private void Ex(Func<ExecutionPart, bool> partCriteria)
-        {
-            Console.WriteLine(Name);
-            foreach (var part in _parts)
-            {
-                if (!partCriteria(part)) continue;
-
-                Console.WriteLine("  {0}", part.Name);
-                foreach (var detail in part.Details)
-                {
-                    Console.WriteLine("    {0}", detail.Name);
-                    detail.Verify();
-                    detail.Execute();
-                }
-            }
-        }
-
-        private void Trace(Func<ExecutionPart, bool> partCriteria)
-        {
-            Console.WriteLine(Name);
-            foreach (var part in _parts)
-            {
-                if (!partCriteria(part)) continue;
-
-                Console.WriteLine("  {0}", part.Name);
-                foreach (var detail in part.Details)
-                {
-                    Console.WriteLine("    {0}", detail.Name);
+                    detailAction(detail);
                 }
             }
         }
