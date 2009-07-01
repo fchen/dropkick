@@ -67,6 +67,12 @@
     <Compile Include="Dsl\DeploymentException.cs" />
     <Compile Include="Dsl\DeploymentInspector.cs" />
     <Compile Include="Dsl\DeploymentInspectorSite.cs" />
+    <Compile Include="Dsl\Dsn\DsnAction.cs" />
+    <Compile Include="Dsl\Dsn\DsnDriver.cs" />
+    <Compile Include="Dsl\Dsn\DsnOptions.cs" />
+    <Compile Include="Dsl\Dsn\DsnTask.cs" />
+    <Compile Include="Dsl\Dsn\DsnTaskCfg.cs" />
+    <Compile Include="Dsl\Dsn\Extension.cs" />
     <Compile Include="Dsl\Environment.cs" />
     <Compile Include="Dsl\Files\AppFileActions.cs" />
     <Compile Include="Dsl\Files\CopyOptions.cs" />

@@ -2,6 +2,7 @@ namespace dropkick.tests.TestObjects
 {
     using dropkick.Dsl;
     using dropkick.Dsl.CommandLine;
+    using dropkick.Dsl.Dsn;
     using dropkick.Dsl.Files;
     using dropkick.Dsl.Iis;
     using dropkick.Dsl.Msmq;
@@ -36,7 +37,9 @@ namespace dropkick.tests.TestObjects
                               p.OnServer("SrvTopeka19")
                                    .ShareFolder("bob").PointingTo(@"E:\Tools")
                                    .CreateIfNotExist();
-                             
+
+                            p.OnServer("SrvTopeka19")
+                                .CreateDSN("NAME");
 
                             p.OnServer("SrvTopeka19")
                                 .CommandLine("ping")
