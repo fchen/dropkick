@@ -2,13 +2,13 @@ namespace dropkick.tests.Dsl
 {
     using System;
     using Engine;
-    using MbUnit.Framework;
+    using NUnit.Framework;
     using TestObjects;
 
     [TestFixture]
     public class Verification_Demos
     {
-        Interpreter _interpreter;
+        Inspector _interpreter;
         ExecutionArguments _verifyArguments;
 
         [SetUp]
@@ -23,7 +23,7 @@ namespace dropkick.tests.Dsl
                                    Part = "WEB"
                                };
 
-            _interpreter = new Interpreter();
+            _interpreter = new Inspector();
         }
 
         [TearDown]

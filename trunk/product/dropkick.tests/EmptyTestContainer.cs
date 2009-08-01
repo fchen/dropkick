@@ -1,6 +1,6 @@
 namespace dropkick.tests
 {
-    using MbUnit.Framework;
+    using NUnit.Framework;
 
     public class EmptyTestContainer
     {

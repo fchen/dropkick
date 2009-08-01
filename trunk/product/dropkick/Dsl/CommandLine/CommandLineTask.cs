@@ -3,6 +3,7 @@ namespace dropkick.Dsl.CommandLine
     using System;
     using System.Diagnostics;
     using System.IO;
+    using Magnum.DateTimeExtensions;
     using Verification;
 
     public class CommandLineTask :
@@ -88,9 +89,12 @@ namespace dropkick.Dsl.CommandLine
 
             if (!string.IsNullOrEmpty(WorkingDirectory)) psi.WorkingDirectory = WorkingDirectory;
 
+            string output;
             using (Process p = Process.Start(psi))
             {
                 //what to do here?
+                p.WaitForExit(30.Seconds().Milliseconds);
+                output = p.StandardOutput.ReadToEnd();
             }
         }
 

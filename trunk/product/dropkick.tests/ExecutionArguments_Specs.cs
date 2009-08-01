@@ -1,8 +1,7 @@
 namespace dropkick.tests
 {
     using Engine;
-    using MbUnit.Framework;
-    using developwithpassion.bdd.mbunit;
+    using NUnit.Framework;
 
     [TestFixture]
     public class ExecutionArguments_Specs
@@ -15,10 +14,10 @@ namespace dropkick.tests
             var arguments = new string[] { "/e:staging", "-d:MyStuff.dll", "/p:WEB", "-v" };
             var ea = ArgumentParsing.Parse(arguments);
 
-            ea.Environment.should_be_equal_to("staging");
-            ea.DeploymentAssembly.should_be_equal_to("MyStuff");
-            ea.Option.should_be_equal_to(ExecutionOptions.Verify);
-            ea.Part.should_be_equal_to("WEB");
+            Assert.AreEqual(ea.Environment, "staging");
+            Assert.AreEqual(ea.DeploymentAssembly, "MyStuff");
+            Assert.AreEqual(ea.Option, ExecutionOptions.Verify);
+            Assert.AreEqual(ea.Part, "WEB");
         }
 
         [Test]
@@ -26,7 +25,7 @@ namespace dropkick.tests
         {
             var ea = ArgumentParsing.Parse(_arguments);
 
-            ea.Part.should_be_equal_to("WEB");
+            Assert.AreEqual(ea.Part, "WEB");
         }
 
         [Test]
@@ -34,7 +33,7 @@ namespace dropkick.tests
         {
             var ea = ArgumentParsing.Parse(new string[] {});
 
-            ea.Part.should_be_equal_to("ALL");
+            Assert.AreEqual(ea.Part, "ALL");
         }
 
         [Test]
@@ -42,13 +41,13 @@ namespace dropkick.tests
         {
             var ea = ArgumentParsing.Parse(_arguments);
 
-            ea.DeploymentAssembly.should_be_equal_to("MyStuff");
+            Assert.AreEqual(ea.DeploymentAssembly, "MyStuff");
         }
         [Test]
         public void Should_parse_out_Environment()
         {
             var ea = ArgumentParsing.Parse(_arguments);
-            ea.Environment.should_be_equal_to("staging");
+            Assert.AreEqual(ea.Environment, "staging");
         }
 
         [Test]
@@ -57,7 +56,7 @@ namespace dropkick.tests
             var arguments = new string[] {"-v"};
             var ea = ArgumentParsing.Parse(arguments);
 
-            ea.Option.should_be_equal_to(ExecutionOptions.Verify);
+            Assert.AreEqual(ea.Option, ExecutionOptions.Verify);
         }
 
         [Test]
@@ -66,7 +65,7 @@ namespace dropkick.tests
             var arguments = new string[] { "-x" };
             var ea = ArgumentParsing.Parse(arguments);
 
-            ea.Option.should_be_equal_to(ExecutionOptions.Execute);
+            Assert.AreEqual(ea.Option, ExecutionOptions.Execute);
         }
 
         [Test]
@@ -75,7 +74,7 @@ namespace dropkick.tests
             var arguments = new string[] {  };
             var ea = ArgumentParsing.Parse(arguments);
 
-            ea.Option.should_be_equal_to(ExecutionOptions.Trace);
+            Assert.AreEqual(ea.Option, ExecutionOptions.Trace);
         }
     }
 }

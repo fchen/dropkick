@@ -31,18 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="bdddoc, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\testing\bdddoc\bdddoc.dll</HintPath>
-    </Reference>
-    <Reference Include="developwithpassion.bdd, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\testing\developwithpassion.bdd\developwithpassion.bdd.dll</HintPath>
-    </Reference>
-    <Reference Include="developwithpassion.commons.core.infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\testing\developwithpassion.bdd\developwithpassion.commons.core.infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\references\log4net\log4net.dll</HintPath>
@@ -51,9 +39,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\references\magnum\Magnum.dll</HintPath>
     </Reference>
-    <Reference Include="MbUnit.Framework, Version=2.4.2.355, Culture=neutral, PublicKeyToken=5e72ecd30bc408d5">
+    <Reference Include="nunit.framework, Version=2.4.6.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\testing\MbUnit\MbUnit.Framework.dll</HintPath>
+      <HintPath>..\..\lib\testing\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,6 +62,8 @@
     <Compile Include="Dsl\Deployments_should_have_parts.cs" />
     <Compile Include="ExecutionArguments_Specs.cs" />
     <Compile Include="PartCounter.cs" />
+    <Compile Include="Scenarios\CommandLineScenario.cs" />
+    <Compile Include="Scenarios\Scenario.cs" />
     <Compile Include="Should_be_able_run_in_different_modes.cs" />
     <Compile Include="Should_be_able_to_execute_only_one_part.cs" />
     <Compile Include="TestObjects\CommandTestDeploy.cs" />

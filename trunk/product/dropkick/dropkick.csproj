@@ -118,8 +118,10 @@
     <Compile Include="Dsl\WinService\WinServiceTaskBuilder.cs" />
     <Compile Include="Engine\ArgumentParsing.cs" />
     <Compile Include="Engine\AssumesOnlyOneDeploymentFinder.cs" />
+    <Compile Include="Engine\DeploymentSpecifiedFinder.cs" />
     <Compile Include="Engine\ExecutionArguments.cs" />
-    <Compile Include="Engine\Interpreter.cs" />
+    <Compile Include="Engine\GenericDeploymentFinder.cs" />
+    <Compile Include="Engine\Inspector.cs" />
     <Compile Include="Execution\ExecutionDetail.cs" />
     <Compile Include="Execution\ExecutionPart.cs" />
     <Compile Include="Execution\ExecutionPlan.cs" />
