@@ -1,8 +1,7 @@
 namespace dropkick.tests.Dsl
 {
     using dropkick.Dsl.Visitor;
-    using Engine;
-    using MbUnit.Framework;
+    using NUnit.Framework;
     using TestObjects;
 
     [TestFixture]

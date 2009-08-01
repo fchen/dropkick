@@ -1,9 +1,8 @@
 namespace dropkick.tests
 {
-    using developwithpassion.bdd.mbunit;
     using Engine;
     using Execution;
-    using MbUnit.Framework;
+    using NUnit.Framework;
     using Verification;
 
     [TestFixture]
@@ -46,9 +45,9 @@ namespace dropkick.tests
 
             plan.Execute(args);
 
-            traceRan.should_be_true();
-            verifyRan.should_be_false();
-            executeRan.should_be_false();
+            Assert.IsTrue(traceRan);
+            Assert.IsFalse(verifyRan);
+            Assert.IsFalse(executeRan);
         }
 
         [Test]
@@ -87,9 +86,9 @@ namespace dropkick.tests
 
             plan.Execute(args);
 
-            traceRan.should_be_true();
-            verifyRan.should_be_true();
-            executeRan.should_be_false();
+            Assert.IsTrue(traceRan);
+            Assert.IsTrue(verifyRan);
+            Assert.IsFalse(executeRan);
         }
 
         [Test]
@@ -128,9 +127,9 @@ namespace dropkick.tests
 
             plan.Execute(args);
 
-            traceRan.should_be_true();
-            verifyRan.should_be_true();
-            executeRan.should_be_true();
+            Assert.IsTrue(traceRan);
+            Assert.IsTrue(verifyRan);
+            Assert.IsTrue(executeRan);
         }
     }
 }

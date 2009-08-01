@@ -1,12 +1,9 @@
 namespace dropkick.tests
 {
-    using dropkick.Dsl;
     using Engine;
     using Execution;
-    using MbUnit.Framework;
-    using Rhino.Mocks;
+    using NUnit.Framework;
     using Verification;
-    using developwithpassion.bdd.mbunit;
 
     [TestFixture]
     public class Should_be_able_to_execute_only_one_part
@@ -47,8 +44,8 @@ namespace dropkick.tests
 
             p.Execute(args);
 
-            verifyRanWeb.should_be_true();
-            verifyRanDb.should_be_false();
+            Assert.IsTrue(verifyRanWeb);
+            Assert.IsFalse(verifyRanDb);
         }
 
         [Test]
@@ -87,8 +84,8 @@ namespace dropkick.tests
 
             p.Execute(args);
 
-            verifyRanWeb.should_be_false();
-            verifyRanDb.should_be_true();
+            Assert.IsFalse(verifyRanWeb);
+            Assert.IsTrue(verifyRanDb);
         }
     }
 }

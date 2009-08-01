@@ -14,7 +14,7 @@ namespace dropkick.tests.TestObjects
                    During(Web, (p) =>
                    {
                        p.OnServer(System.Environment.MachineName)
-                           .CommandLine("ping").Args("www.google.com");
+                           .CommandLine("ipconfig");
 //                       p.OnServer(System.Environment.MachineName)
 //                           .CommandLine("ping").Args("www.google.com")
 //                           .ExecutableIsLocatedAt(@"C:\bill");
