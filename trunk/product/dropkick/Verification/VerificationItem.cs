@@ -1,5 +1,8 @@
 namespace dropkick.Verification
 {
+    using System.Diagnostics;
+
+    [DebuggerDisplay("[{Status}:{Message}")]
     public class VerificationItem
     {
         public VerificationItem(VerificationStatus status, string message)
