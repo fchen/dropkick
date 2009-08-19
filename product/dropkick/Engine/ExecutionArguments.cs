@@ -17,10 +17,11 @@ namespace dropkick.Engine
         public DeploymentFinder DeploymentFinder { get; set; }
     }
 
-    public enum ExecutionOptions
+    public class Arguments
     {
-        Trace,
-        Verify,
-        Execute
+        public string Environment { get; set; }
+        public string Part { get; set; }
+        public string Deployment { get; set; }
+        public ExecutionOptions Option { get; set; }
     }
 }

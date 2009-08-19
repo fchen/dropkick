@@ -4,11 +4,11 @@ namespace dropkick.Engine
     using Execution;
     using Magnum.Reflection;
 
-    public class Inspector : 
-        ReflectiveVisitorBase<Inspector>,
-        DeploymentInspector
+    public class DeploymentInspector : 
+        ReflectiveVisitorBase<DeploymentInspector>,
+        Dsl.DeploymentInspector
     {
-        public Inspector() :
+        public DeploymentInspector() :
             base("Inspect")
         {
         }

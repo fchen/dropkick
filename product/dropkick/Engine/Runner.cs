@@ -13,7 +13,7 @@ namespace dropkick.Engine
         {
             var deployment = _finder.Find(args.DeploymentAssembly);
 
-            var inspector = new Inspector();
+            var inspector = new DeploymentInspector();
             inspector.Inspect(deployment);
 
             var plan = inspector.GetPlan();
