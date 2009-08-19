@@ -8,7 +8,7 @@ namespace dropkick.tests.Dsl
     [TestFixture]
     public class Verification_Demos
     {
-        Inspector _interpreter;
+        DeploymentInspector _interpreter;
         ExecutionArguments _verifyArguments;
 
         [SetUp]
@@ -23,7 +23,7 @@ namespace dropkick.tests.Dsl
                                    Part = "WEB"
                                };
 
-            _interpreter = new Inspector();
+            _interpreter = new DeploymentInspector();
         }
 
         [TearDown]
