@@ -2,6 +2,7 @@ namespace dropkick.Dsl.Dsn
 {
     using System;
     using System.Runtime.InteropServices;
+    using System.Threading;
     using Verification;
 
     public class DsnTask :
@@ -14,10 +15,12 @@ namespace dropkick.Dsl.Dsn
         private DsnAction _action;
         private DsnDriver _driver;
         private string _serverName;
+        string _databaseName;
 
-        public DsnTask(string serverName, string dsnName, DsnAction action, DsnDriver driver)
+        public DsnTask(string serverName, string dsnName, DsnAction action, DsnDriver driver, string databaseName)
         {
             _serverName = serverName;
+            _databaseName = databaseName;
             _dsnName = dsnName;
             _action = action;
             _driver = driver;
@@ -25,7 +28,7 @@ namespace dropkick.Dsl.Dsn
 
         public void Inspect(DeploymentInspector inspector)
         {
-            throw new NotImplementedException();
+            inspector.Inspect(this);
         }
 
         public string Name
@@ -35,12 +38,28 @@ namespace dropkick.Dsl.Dsn
 
         public VerificationResult VerifyCanRun()
         {
-            throw new NotImplementedException();
+            var result = new VerificationResult();
+
+            VerifyInAdministratorRole(result);
+
+            return result;
         }
 
         public void Execute()
         {
-            bool value =  SQLConfigDataSource((IntPtr) 0, (int)_action, "DRIVER", "ATTRIBUTES");
+            bool value =  SQLConfigDataSource((IntPtr) 0, (int)_action, _driver.Value, "SERVER={0}\0DSN={1}\0DESCRIPTION=NewDSN\0DATABASE={2}\0TRUSTED_CONNECTION=YES".FormatWith(_serverName,_dsnName,_databaseName));
+        }
+
+        void VerifyInAdministratorRole(VerificationResult result)
+        {
+            if (Thread.CurrentPrincipal.IsInRole("Administrator"))
+            {
+                result.AddAlert("You are not in the Administrator role");
+            }
+            else
+            {
+                result.AddGood("You are in the Administrator role");
+            }
         }
     }
 }

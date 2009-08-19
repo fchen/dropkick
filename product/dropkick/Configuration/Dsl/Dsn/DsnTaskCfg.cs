@@ -6,10 +6,10 @@ namespace dropkick.Dsl.Dsn
         private ServerOptions _options;
         private DsnTask _task;
 
-        public DsnTaskCfg(ServerOptions options, string dsnName)
+        public DsnTaskCfg(ServerOptions options, string dsnName, string databaseName)
         {
             _options = options;
-            _task = new DsnTask(options.Name, dsnName, DsnAction.AddSystemDsn, new DsnDriver());
+            _task = new DsnTask(options.Name, dsnName, DsnAction.AddSystemDsn, DsnDriver.Sql(), databaseName);
         }
     }
 }
