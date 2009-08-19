@@ -61,6 +61,11 @@
     <Compile Include="Dsl\Verification_Demos.cs" />
     <Compile Include="Dsl\Deployments_should_have_parts.cs" />
     <Compile Include="ExecutionArguments_Specs.cs" />
+    <Compile Include="Extensions\Console\PingTest.cs" />
+    <Compile Include="Extensions\Dsn\CreatingDsns.cs" />
+    <Compile Include="Extensions\Files\CopyTest.cs" />
+    <Compile Include="Extensions\Msmq\MsmqTest.cs" />
+    <Compile Include="Extensions\NetworkShare\CreateNetworkShare.cs" />
     <Compile Include="PartCounter.cs" />
     <Compile Include="Scenarios\CommandLineScenario.cs" />
     <Compile Include="Scenarios\Scenario.cs" />

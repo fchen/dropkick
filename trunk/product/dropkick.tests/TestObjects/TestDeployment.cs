@@ -39,7 +39,7 @@ namespace dropkick.tests.TestObjects
                                    .CreateIfNotExist();
 
                             p.OnServer("SrvTopeka19")
-                                .CreateDSN("NAME");
+                                .CreateDSN("NAME", "Enterprise");
 
                             p.OnServer("SrvTopeka19")
                                 .CommandLine("ping")
