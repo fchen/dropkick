@@ -1,7 +1,6 @@
 namespace dropkick.Configuration.Dsl.Files
 {
     using System;
-    using dropkick.Dsl.Files;
 
     public class CopyTaskBuilder :
         CopyOptions

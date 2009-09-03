@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.WinService
+namespace dropkick.Configuration.Dsl.WinService
 {
     using Verification;
 

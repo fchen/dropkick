@@ -1,6 +1,6 @@
 namespace dropkick.tests.Extensions.Console
 {
-    using dropkick.Dsl.CommandLine;
+    using Configuration.Dsl.CommandLine;
     using NUnit.Framework;
     using Verification;
 

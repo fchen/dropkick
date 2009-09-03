@@ -1,7 +1,7 @@
 namespace dropkick.tests.Extensions.Msmq
 {
     using System;
-    using dropkick.Dsl.Msmq;
+    using Configuration.Dsl.Msmq;
     using NUnit.Framework;
 
     [TestFixture]

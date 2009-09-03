@@ -1,7 +1,5 @@
 namespace dropkick.Configuration.Dsl.Files
 {
-    using dropkick.Dsl.Files;
-
     public class SomeFileActions :
         FileActions
     {

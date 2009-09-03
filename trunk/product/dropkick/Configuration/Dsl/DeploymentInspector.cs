@@ -1,7 +1,5 @@
-namespace dropkick.Dsl
+namespace dropkick.Configuration.Dsl
 {
-    using System;
-
     public interface DeploymentInspector
     {
         void Inspect(object obj);

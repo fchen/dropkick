@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.MsSql
+namespace dropkick.Configuration.Dsl.MsSql
 {
     public interface SqlOptions
     {

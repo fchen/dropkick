@@ -1,6 +1,5 @@
-namespace dropkick.Dsl.MsSql
+namespace dropkick.Configuration.Dsl.MsSql
 {
-    using System;
     using System.Data;
     using System.IO;
     using Verification;

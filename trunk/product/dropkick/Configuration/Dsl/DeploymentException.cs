@@ -1,4 +1,4 @@
-namespace dropkick.Dsl
+namespace dropkick.Configuration.Dsl
 {
     using System;
 

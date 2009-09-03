@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.Iis
+namespace dropkick.Configuration.Dsl.Iis
 {
     using System;
     using System.IO;

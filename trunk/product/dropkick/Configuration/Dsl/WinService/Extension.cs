@@ -1,8 +1,5 @@
 namespace dropkick.Configuration.Dsl.WinService
 {
-    using dropkick.Dsl;
-    using dropkick.Dsl.WinService;
-
     public static class Extension
     {
         public static WinServiceOptions WinService(this ServerOptions server, string serviceName)

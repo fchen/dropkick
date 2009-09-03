@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.Files
+namespace dropkick.Configuration.Dsl.Files
 {
     using System;
 

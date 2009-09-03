@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.Dsn
+namespace dropkick.Configuration.Dsl.Dsn
 {
     using System;
     using System.Runtime.InteropServices;
