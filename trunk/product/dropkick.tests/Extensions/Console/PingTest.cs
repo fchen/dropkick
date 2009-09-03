@@ -1,7 +1,7 @@
 namespace dropkick.tests.Extensions.Console
 {
-    using Configuration.Dsl.CommandLine;
     using NUnit.Framework;
+    using Tasks.CommandLine;
     using Verification;
 
     [TestFixture]
