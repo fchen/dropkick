@@ -1,8 +1,9 @@
-namespace dropkick.Configuration.Dsl.CommandLine
+namespace dropkick.Tasks.CommandLine
 {
     using System;
     using System.Diagnostics;
     using System.IO;
+    using Configuration.Dsl;
     using Magnum.DateTimeExtensions;
     using Verification;
 

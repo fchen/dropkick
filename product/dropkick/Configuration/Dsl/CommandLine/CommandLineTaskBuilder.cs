@@ -1,5 +1,7 @@
 namespace dropkick.Configuration.Dsl.CommandLine
 {
+    using Tasks.CommandLine;
+
     public class CommandLineTaskBuilder : 
         CommandLineOptions
     {
