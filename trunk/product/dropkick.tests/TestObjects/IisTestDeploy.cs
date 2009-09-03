@@ -1,7 +1,7 @@
 namespace dropkick.tests.TestObjects
 {
-    using dropkick.Dsl;
-    using dropkick.Dsl.Iis;
+    using Configuration.Dsl;
+    using Configuration.Dsl.Iis;
 
     public class IisTestDeploy :
         Deployment<IisTestDeploy>

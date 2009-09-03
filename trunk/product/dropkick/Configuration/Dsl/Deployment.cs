@@ -1,16 +1,16 @@
-namespace dropkick.Dsl
+namespace dropkick.Configuration.Dsl
 {
     using System;
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Reflection;
+    using dropkick.Dsl;
 
     public interface Deployment :
         DeploymentInspectorSite
     {
     }
 
-    //must-inherit?
     public class Deployment<Inheritor> :
         Deployment
         where Inheritor : Deployment<Inheritor>, new()
@@ -101,14 +101,12 @@ namespace dropkick.Dsl
         public void Inspect(DeploymentInspector inspector)
         {
             inspector.Inspect(this, () =>
+            {
+                foreach(Part<Inheritor> part in _parts.Values)
                 {
-                    foreach(Part<Inheritor> part in _parts.Values)
-                    {
-                        part.Inspect(inspector);
-                    }
-                });
+                    part.Inspect(inspector);
+                }
+            });
         }
     }
-
-    
 }

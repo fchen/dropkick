@@ -1,6 +1,6 @@
 namespace dropkick.Engine
 {
-    using Dsl;
+    using Configuration.Dsl;
 
     public interface DeploymentFinder
     {

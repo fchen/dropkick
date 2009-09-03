@@ -2,7 +2,7 @@ namespace dropkick.Engine
 {
     using System;
     using System.Reflection;
-    using Dsl;
+    using Configuration.Dsl;
     using System.Linq;
 
     public class AssumesOnlyOneDeploymentFinder :

@@ -1,7 +1,7 @@
 namespace dropkick.tests.TestObjects
 {
-    using dropkick.Dsl;
-    using dropkick.Dsl.WinService;
+    using Configuration.Dsl;
+    using Configuration.Dsl.WinService;
     using dropkick.Dsl.Msmq;
 
     public class WinServiceTestDeploy :

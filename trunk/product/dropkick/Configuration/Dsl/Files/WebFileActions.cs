@@ -1,19 +1,22 @@
-namespace dropkick.Dsl.Files
+namespace dropkick.Configuration.Dsl.Files
 {
     using System;
     using System.IO;
-    using Environment=dropkick.Dsl.Environment;
+    using dropkick.Dsl.CommandLine;
+    using dropkick.Dsl.Files;
 
     public class WebFileActions :
         FileAction
     {
-        string fileName = "web.config";
-        PartCfg _part;
+        private readonly PartCfg _part;
+        private string fileName = "web.config";
 
         public WebFileActions(PartCfg part)
         {
             _part = part;
         }
+
+        #region FileAction Members
 
         public FileAction ReplaceIdentityTokensWithPrompt()
         {
@@ -23,14 +26,16 @@ namespace dropkick.Dsl.Files
 
         public FileAction EncryptIdentity()
         {
-            var t = new CommandLine.CommandLineTask(@"aspnet_regiis");
+            var t = new CommandLineTask(@"aspnet_regiis");
             t.Args = @" -pe ""connectionStrings"" -app ""/MachineDPAPI"" -prov ""DataProtectionConfigurationProvider""";
-            var winDir = System.Environment.GetEnvironmentVariable("WINDIR");
+            string winDir = Environment.GetEnvironmentVariable("WINDIR");
             t.ExecutableIsLocatedAt = Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727");
-            
+
             _part.AddTask(t);
 
             return this;
         }
+
+        #endregion
     }
 }

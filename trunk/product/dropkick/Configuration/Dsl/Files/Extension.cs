@@ -1,5 +1,7 @@
-namespace dropkick.Dsl.Files
+namespace dropkick.Configuration.Dsl.Files
 {
+    using dropkick.Dsl.Files;
+
     public static class Extension
     {
         public static CopyOptions CopyFrom(this Part part, string sourcePath)

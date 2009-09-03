@@ -1,6 +1,8 @@
-namespace dropkick.Dsl.Iis
+namespace dropkick.Configuration.Dsl.Iis
 {
     using System;
+    using dropkick.Dsl;
+    using dropkick.Dsl.Iis;
 
     public class IisVersionSelector
     {

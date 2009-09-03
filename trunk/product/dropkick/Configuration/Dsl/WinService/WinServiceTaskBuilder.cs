@@ -1,6 +1,8 @@
-namespace dropkick.Dsl.WinService
+namespace dropkick.Configuration.Dsl.WinService
 {
     using System;
+    using dropkick.Dsl;
+    using dropkick.Dsl.WinService;
 
     public class WinServiceTaskBuilder : 
         WinServiceOptions

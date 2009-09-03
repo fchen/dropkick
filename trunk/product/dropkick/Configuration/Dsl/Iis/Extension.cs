@@ -1,5 +1,8 @@
-namespace dropkick.Dsl.Iis
+namespace dropkick.Configuration.Dsl.Iis
 {
+    using dropkick.Dsl;
+    using dropkick.Dsl.Iis;
+
     public static class Extension
     {
         public static IisSiteOptions IisSite(this ServerOptions server, string websiteName)
