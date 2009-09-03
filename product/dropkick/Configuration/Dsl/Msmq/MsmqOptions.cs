@@ -1,6 +1,5 @@
-namespace dropkick.Dsl.Msmq
+namespace dropkick.Configuration.Dsl.Msmq
 {
-
     public interface QueueOptions
     {
         void CreateIfItDoesntExist();

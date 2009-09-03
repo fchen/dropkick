@@ -1,7 +1,5 @@
-namespace dropkick.Dsl.MsSql
+namespace dropkick.Configuration.Dsl.MsSql
 {
-    using System;
-
     public class MsSqlTaskCfg :
         DatabaseOptions,
         SqlOptions

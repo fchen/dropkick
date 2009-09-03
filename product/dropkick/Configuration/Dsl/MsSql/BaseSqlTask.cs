@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.MsSql
+namespace dropkick.Configuration.Dsl.MsSql
 {
     using System;
     using System.Data;
@@ -55,11 +55,11 @@ namespace dropkick.Dsl.MsSql
         string GetConnectionString()
         {
             var cs = new SqlConnectionStringBuilder
-            {
-                DataSource = ServerName,
-                InitialCatalog = DatabaseName,
-                IntegratedSecurity = true
-            };
+                     {
+                         DataSource = ServerName,
+                         InitialCatalog = DatabaseName,
+                         IntegratedSecurity = true
+                     };
 
             return cs.ConnectionString;
         }

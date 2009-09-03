@@ -2,8 +2,7 @@ namespace dropkick.Configuration.Dsl.Files
 {
     using System;
     using System.IO;
-    using dropkick.Dsl.CommandLine;
-    using dropkick.Dsl.Files;
+    using CommandLine;
 
     public class WebFileActions :
         FileAction

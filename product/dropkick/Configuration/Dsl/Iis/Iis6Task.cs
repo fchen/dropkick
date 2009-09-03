@@ -1,10 +1,9 @@
-namespace dropkick.Dsl.Iis
+namespace dropkick.Configuration.Dsl.Iis
 {
     using System;
     using System.DirectoryServices;
     using Verification;
 
-    // thank you NAnt team for your help!! -dru
     public class Iis6Task :
         BaseIisTask
     {

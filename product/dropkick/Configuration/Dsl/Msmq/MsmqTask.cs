@@ -1,9 +1,9 @@
-namespace dropkick.Dsl.Msmq
+namespace dropkick.Configuration.Dsl.Msmq
 {
     using System;
     using System.Messaging;
     using System.Threading;
-    using MassTransit.Transports.Msmq;
+    using dropkick.Dsl.Msmq;
     using Verification;
 
     public class MsmqTask :

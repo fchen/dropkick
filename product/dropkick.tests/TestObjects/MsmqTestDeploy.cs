@@ -1,7 +1,7 @@
 namespace dropkick.tests.TestObjects
 {
     using Configuration.Dsl;
-    using dropkick.Dsl.Msmq;
+    using Configuration.Dsl.Msmq;
 
     public class MsmqTestDeploy :
         Deployment<MsmqTestDeploy>

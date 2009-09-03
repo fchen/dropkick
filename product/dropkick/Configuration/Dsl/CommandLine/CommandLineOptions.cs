@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.CommandLine
+namespace dropkick.Configuration.Dsl.CommandLine
 {
     public interface CommandLineOptions
     {

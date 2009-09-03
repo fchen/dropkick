@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.Msmq
+namespace dropkick.Configuration.Dsl.Msmq
 {
     public static class Extension
     {

@@ -1,6 +1,5 @@
-namespace dropkick.Dsl.Dsn
+namespace dropkick.Configuration.Dsl.Dsn
 {
-    //http://www.codeproject.com/KB/database/DSNAdmin.aspx
     public static class Extension
     {
         public static DsnOptions CreateDSN(this ServerOptions serverOptions, string dsnName, string databaseName)

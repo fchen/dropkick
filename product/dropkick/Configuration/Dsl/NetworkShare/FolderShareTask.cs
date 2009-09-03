@@ -3,7 +3,6 @@ namespace dropkick.Configuration.Dsl.NetworkShare
     using System;
     using System.IO;
     using System.Management;
-    using dropkick.Dsl;
     using Verification;
 
     public class FolderShareTask :

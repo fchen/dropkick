@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.NetworkShare
+namespace dropkick.Configuration.Dsl.NetworkShare
 {
     public interface FolderShareOptions
     {

@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.Iis
+namespace dropkick.Configuration.Dsl.Iis
 {
     using Microsoft.Web.Administration;
     using Verification;

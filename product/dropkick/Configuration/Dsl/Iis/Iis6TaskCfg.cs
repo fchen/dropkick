@@ -1,8 +1,5 @@
 namespace dropkick.Configuration.Dsl.Iis
 {
-    using dropkick.Dsl;
-    using dropkick.Dsl.Iis;
-
     public class Iis6TaskCfg :
         IisSiteOptions,
         IisVirtualDirectoryOptions

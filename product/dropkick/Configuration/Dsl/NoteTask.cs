@@ -1,6 +1,5 @@
-namespace dropkick.Dsl
+namespace dropkick.Configuration.Dsl
 {
-    using System;
     using Verification;
 
     public class NoteTask :

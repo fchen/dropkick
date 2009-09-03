@@ -1,7 +1,6 @@
 namespace dropkick.tests
 {
     using Configuration.Dsl;
-    using dropkick.Dsl;
 
     public class PartCounter :
         DeploymentInspector

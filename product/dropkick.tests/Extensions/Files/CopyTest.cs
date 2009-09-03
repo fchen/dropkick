@@ -1,7 +1,7 @@
 namespace dropkick.tests.Extensions.Files
 {
     using System.IO;
-    using dropkick.Dsl.Files;
+    using Configuration.Dsl.Files;
     using NUnit.Framework;
 
     [TestFixture]

@@ -1,7 +1,7 @@
 namespace dropkick.tests.Extensions.Dsn
 {
     using System;
-    using dropkick.Dsl.Dsn;
+    using Configuration.Dsl.Dsn;
     using NUnit.Framework;
 
     [TestFixture]

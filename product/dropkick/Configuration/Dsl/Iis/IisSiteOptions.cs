@@ -1,4 +1,4 @@
-namespace dropkick.Dsl.Iis
+namespace dropkick.Configuration.Dsl.Iis
 {
     public interface IisSiteOptions
     {

@@ -1,7 +1,5 @@
-namespace dropkick.Dsl
+namespace dropkick.Configuration.Dsl
 {
-    using Configuration.Dsl;
-
     public class ServerOptions
     {
         public ServerOptions(string name, PartCfg part)

@@ -1,6 +1,5 @@
-namespace dropkick.Dsl
+namespace dropkick.Configuration.Dsl
 {
-    using Configuration.Dsl;
     using Verification;
 
     public interface Task :
