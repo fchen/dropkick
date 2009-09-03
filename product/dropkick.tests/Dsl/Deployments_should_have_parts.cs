@@ -1,6 +1,5 @@
 namespace dropkick.tests.Dsl
 {
-    using dropkick.Dsl.Visitor;
     using NUnit.Framework;
     using TestObjects;
 

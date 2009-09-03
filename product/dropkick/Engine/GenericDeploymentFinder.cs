@@ -1,7 +1,7 @@
 namespace dropkick.Engine
 {
     using System;
-    using Dsl;
+    using Configuration.Dsl;
 
     public class GenericDeploymentFinder<T> :
         DeploymentFinder where T : Deployment

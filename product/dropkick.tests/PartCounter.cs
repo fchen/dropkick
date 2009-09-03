@@ -1,6 +1,7 @@
-namespace dropkick.Dsl.Visitor
+namespace dropkick.tests
 {
-    using System;
+    using Configuration.Dsl;
+    using dropkick.Dsl;
 
     public class PartCounter :
         DeploymentInspector

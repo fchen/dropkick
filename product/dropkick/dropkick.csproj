@@ -73,7 +73,7 @@
     <Compile Include="Configuration\Dsl\Dsn\DsnTask.cs" />
     <Compile Include="Configuration\Dsl\Dsn\DsnTaskCfg.cs" />
     <Compile Include="Configuration\Dsl\Dsn\Extension.cs" />
-    <Compile Include="Configuration\Dsl\Environment.cs" />
+    <Compile Include="Configuration\Dsl\TargetDeploymentEnvironment.cs" />
     <Compile Include="Configuration\Dsl\Files\AppFileActions.cs" />
     <Compile Include="Configuration\Dsl\Files\CopyOptions.cs" />
     <Compile Include="Configuration\Dsl\Files\CopyTask.cs" />

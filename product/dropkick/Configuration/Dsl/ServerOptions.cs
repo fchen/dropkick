@@ -1,5 +1,7 @@
 namespace dropkick.Dsl
 {
+    using Configuration.Dsl;
+
     public class ServerOptions
     {
         public ServerOptions(string name, PartCfg part)
@@ -10,5 +12,12 @@ namespace dropkick.Dsl
 
         public string Name { get; set; }
         public PartCfg Part { get; set; }
+        public bool IsLocal
+        {
+            get
+            {
+                return System.Environment.MachineName == Name;
+            }
+        }
     }
 }

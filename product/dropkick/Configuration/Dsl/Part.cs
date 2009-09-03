@@ -1,7 +1,8 @@
-namespace dropkick.Dsl
+namespace dropkick.Configuration.Dsl
 {
     using System;
     using System.Collections.Generic;
+    using dropkick.Dsl;
 
     public interface Part
     {
@@ -47,12 +48,12 @@ namespace dropkick.Dsl
         public void Inspect(DeploymentInspector inspector)
         {
             inspector.Inspect(this, () =>
+            {
+                foreach(Task task in _tasks)
                 {
-                    foreach(Task task in _tasks)
-                    {
-                        task.Inspect(inspector);
-                    }
-                });
+                    task.Inspect(inspector);
+                }
+            });
         }
 
         public static Part<T> GetPart(Part input)

@@ -1,5 +1,6 @@
 namespace dropkick.Engine
 {
+    using Configuration.Dsl;
     using Dsl;
     using Execution;
     using Magnum.Reflection;

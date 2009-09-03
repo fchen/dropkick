@@ -1,7 +1,7 @@
 namespace dropkick.tests.TestObjects
 {
-    using dropkick.Dsl;
-    using dropkick.Dsl.CommandLine;
+    using Configuration.Dsl;
+    using Configuration.Dsl.CommandLine;
 
     public class CommandTestDeploy :
         Deployment<CommandTestDeploy>

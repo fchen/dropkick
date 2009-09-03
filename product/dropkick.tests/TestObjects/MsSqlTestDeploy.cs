@@ -1,6 +1,6 @@
 namespace dropkick.tests.TestObjects
 {
-    using dropkick.Dsl;
+    using Configuration.Dsl;
     using dropkick.Dsl.MsSql;
 
     public class MsSqlTestDeploy :

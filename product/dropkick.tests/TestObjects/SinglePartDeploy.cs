@@ -1,7 +1,7 @@
 namespace dropkick.tests.TestObjects
 {
-    using dropkick.Dsl;
-    using dropkick.Dsl.Files;
+    using Configuration.Dsl;
+    using Configuration.Dsl.Files;
     using dropkick.Dsl.Msmq;
 
     public class SinglePartDeploy :
