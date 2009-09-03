@@ -60,7 +60,7 @@
       <Link>SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
-    <Compile Include="Configuration\Dsl\CommandLine\CommandLineTask.cs" />
+    <Compile Include="Tasks\CommandLine\CommandLineTask.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineTaskBuilder.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\Extension.cs" />
     <Compile Include="Configuration\Dsl\Deployment.cs" />
