@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.WinService
 {
     using System.Threading;
@@ -20,7 +22,7 @@ namespace dropkick.Configuration.Dsl.WinService
         public abstract string Name{ get;}
 
         public abstract VerificationResult VerifyCanRun();
-        public abstract void Execute();
+        public abstract ExecutionResult Execute();
 
         public string MachineName { get; set; }
         public string ServiceName { get; set; }

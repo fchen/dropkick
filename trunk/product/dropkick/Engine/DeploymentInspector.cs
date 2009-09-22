@@ -51,6 +51,7 @@ namespace dropkick.Engine
         }
 
         readonly ExecutionPlan _plan = new ExecutionPlan();
+
         public ExecutionPlan GetPlan()
         {
             return _plan;

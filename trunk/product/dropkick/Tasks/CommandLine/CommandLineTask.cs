@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Tasks.CommandLine
 {
     using System;
@@ -80,8 +82,10 @@ namespace dropkick.Tasks.CommandLine
             return false;
         }
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
+            var result = new ExecutionResult();
+
             ProcessStartInfo psi = new ProcessStartInfo(Command, Args);
 
             psi.UseShellExecute = false;
@@ -97,6 +101,10 @@ namespace dropkick.Tasks.CommandLine
                 p.WaitForExit(30.Seconds().Milliseconds);
                 output = p.StandardOutput.ReadToEnd();
             }
+
+            result.AddGood("Command Line Executed");
+
+            return result;
         }
 
         public string Command { get; set; }

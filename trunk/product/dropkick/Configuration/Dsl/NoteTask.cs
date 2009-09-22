@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl
 {
     using Verification;
@@ -27,9 +29,10 @@ namespace dropkick.Configuration.Dsl
             return new VerificationResult();
         }
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
             //do nothing
+            return new ExecutionResult();
         }
     }
 }

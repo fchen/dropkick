@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.tests.TestObjects
 {
     using System;
@@ -14,9 +16,10 @@ namespace dropkick.tests.TestObjects
             WasRun = false;
         }
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
             WasRun = true;
+            return new ExecutionResult();
         }
 
         public void Inspect(DeploymentInspector inspector)

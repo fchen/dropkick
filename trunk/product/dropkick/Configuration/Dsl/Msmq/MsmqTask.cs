@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.Msmq
 {
     using System;
@@ -65,12 +67,14 @@ namespace dropkick.Configuration.Dsl.Msmq
             return result;
         }
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
             if (_serverName == Environment.MachineName)
             {
                 MessageQueue.Create(QueuePath);
             }
+
+            return new ExecutionResult();
         }
 
         public void Inspect(DeploymentInspector inspector)

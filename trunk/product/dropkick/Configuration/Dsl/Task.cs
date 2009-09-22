@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl
 {
     using Verification;
@@ -7,6 +9,6 @@ namespace dropkick.Configuration.Dsl
     {
         string Name { get; }
         VerificationResult VerifyCanRun();
-        void Execute();
+        ExecutionResult Execute();
     }
 }

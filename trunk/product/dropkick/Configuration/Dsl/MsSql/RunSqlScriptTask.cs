@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.MsSql
 {
     using System.Data;
@@ -48,10 +50,12 @@ namespace dropkick.Configuration.Dsl.MsSql
             return result;
         }
 
-        public override void Execute()
+        public override ExecutionResult Execute()
         {
             var s = File.ReadAllText(ScriptToRun);
             ExecuteSqlWithNoReturn(s);
+
+            return new ExecutionResult();
         }
 
         void ExecuteSqlWithNoReturn(string sql)

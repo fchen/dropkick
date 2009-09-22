@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.MsSql
 {
     using System;
@@ -61,7 +63,7 @@ namespace dropkick.Configuration.Dsl.MsSql
             return result;
         }
 
-        public override void Execute()
+        public override ExecutionResult Execute()
         {
             using (var conn = GetConnection())
             {
@@ -77,6 +79,8 @@ namespace dropkick.Configuration.Dsl.MsSql
                     }
                 }
             }
+
+            return new ExecutionResult();
         }
 
         void PrintDataReaderToConsole(IDataReader dr)

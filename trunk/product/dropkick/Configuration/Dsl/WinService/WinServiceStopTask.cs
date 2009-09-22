@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.WinService
 {
     using System;
@@ -38,7 +40,7 @@ namespace dropkick.Configuration.Dsl.WinService
             return result;
         }
 
-        public override void Execute()
+        public override ExecutionResult Execute()
         {
             using(ServiceController c = new ServiceController(ServiceName, MachineName))
             {
@@ -46,6 +48,8 @@ namespace dropkick.Configuration.Dsl.WinService
                     c.Stop();
                 c.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(5));
             }
+
+            return new ExecutionResult();
         }
     }
 }

@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.Files
 {
     using System;
@@ -21,8 +23,10 @@ namespace dropkick.Configuration.Dsl.Files
             get { return string.Format("Copy '{0}' to '{1}'", _from, _to); }
         }
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
+            var result = new ExecutionResult();
+
             //check is valid from path
             _from = Path.GetFullPath(_from);
 
@@ -48,6 +52,9 @@ namespace dropkick.Configuration.Dsl.Files
                 //what do you want to do if the directory DOESN'T exist?
             }
 
+            result.AddGood("Copied stuff");
+
+            return result;
         }
 
         public VerificationResult VerifyCanRun()

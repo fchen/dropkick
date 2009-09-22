@@ -27,6 +27,7 @@ namespace dropkick.tests
             }, () =>
             {
                 executeRan = true;
+                return new ExecutionResult();
             });
 
 
@@ -68,6 +69,7 @@ namespace dropkick.tests
             }, () =>
             {
                 executeRan = true;
+                return new ExecutionResult();
             });
 
 
@@ -109,6 +111,7 @@ namespace dropkick.tests
             }, () =>
             {
                 executeRan = true;
+                return new ExecutionResult();
             });
 
 
