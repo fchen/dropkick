@@ -1,14 +1,14 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.Iis
+namespace dropkick.Tasks.Iis
 {
+    using System;
+    using Execution;
     using Microsoft.Web.Administration;
     using Verification;
 
     public class Iis7Task :
         BaseIisTask
     {
-        bool _createIfItDoesntExist;
+        private bool _createIfItDoesntExist;
 
         //ctor
 
@@ -36,12 +36,10 @@ namespace dropkick.Configuration.Dsl.Iis
             return new ExecutionResult();
         }
 
-        
-
 
         private void CheckVersionOfWindowsAndIis(VerificationResult result)
         {
-            var shouldBe6 = System.Environment.OSVersion.Version.Major;
+            int shouldBe6 = Environment.OSVersion.Version.Major;
             if (shouldBe6 != 6)
                 result.AddAlert("This machine does not have IIS7 on it");
         }
@@ -49,13 +47,12 @@ namespace dropkick.Configuration.Dsl.Iis
         public bool DoesSiteExist()
         {
             var iisManager = new ServerManager();
-            foreach (var site in iisManager.Sites)
+            foreach (Site site in iisManager.Sites)
             {
                 if (site.Name.Equals(base.WebsiteName))
                 {
                     return true;
                 }
-
             }
             return false;
         }
@@ -63,12 +60,11 @@ namespace dropkick.Configuration.Dsl.Iis
         public bool DoesVirtualDirectoryExist()
         {
             var iisManager = new ServerManager();
-            foreach (var site in iisManager.Sites)
+            foreach (Site site in iisManager.Sites)
             {
                 if (site.Name.Equals(base.WebsiteName))
                 {
-
-                    foreach (var app in site.Applications)
+                    foreach (Application app in site.Applications)
                     {
                         if (app.Path.Equals("/" + VdirPath))
                         {
@@ -76,7 +72,6 @@ namespace dropkick.Configuration.Dsl.Iis
                         }
                     }
                 }
-
             }
             return false;
         }

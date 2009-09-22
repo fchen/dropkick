@@ -1,22 +1,24 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.Files
+namespace dropkick.Tasks.Files
 {
     using System;
     using System.IO;
+    using Configuration.Dsl;
+    using Execution;
     using Verification;
 
     public class CopyTask :
         Task
     {
-        string _from;
-        string _to;
+        private string _from;
+        private string _to;
 
         public CopyTask(string @from, string to)
         {
             _from = from;
             _to = to;
         }
+
+        #region Task Members
 
         public string Name
         {
@@ -34,17 +36,17 @@ namespace dropkick.Configuration.Dsl.Files
             _to = Path.GetFullPath(_to);
 
             //todo: verify that from exists
-            if(!Directory.Exists(_to))
+            if (!Directory.Exists(_to))
             {
                 Directory.CreateDirectory(_to);
             }
 
             if (Directory.Exists(_from))
             {
-                foreach (var file in Directory.GetFiles(_from))
+                foreach (string file in Directory.GetFiles(_from))
                 {
                     //need to support recursion
-                    var fileName = Path.GetFileName(file);
+                    string fileName = Path.GetFileName(file);
                     File.Copy(file, Path.Combine(_to, fileName));
                     //log file was copied / event?
                 }
@@ -76,7 +78,7 @@ namespace dropkick.Configuration.Dsl.Files
             {
                 result.AddGood(string.Format("'{0}' exists", _from));
                 //check can read from _from
-                var readFiles = Directory.GetFiles(_from);
+                string[] readFiles = Directory.GetFiles(_from);
                 foreach (string file in readFiles)
                 {
                     Stream fs = new MemoryStream();
@@ -107,5 +109,7 @@ namespace dropkick.Configuration.Dsl.Files
         {
             inspector.Inspect(this);
         }
+
+        #endregion
     }
 }
