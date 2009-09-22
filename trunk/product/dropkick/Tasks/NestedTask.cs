@@ -1,15 +1,20 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.WinService
+namespace dropkick.Tasks
 {
+    using Configuration.Dsl;
+    using Execution;
     using Verification;
 
     public class NestedTask :
         Task
     {
+        #region Task Members
+
         public void Inspect(DeploymentInspector inspector)
         {
-            inspector.Inspect(this, ()=>{/*other stuff*/});
+            inspector.Inspect(this, () =>
+                                        {
+/*other stuff*/
+                                        });
         }
 
         public string Name
@@ -27,5 +32,7 @@ namespace dropkick.Configuration.Dsl.WinService
             //execute sub task
             return new ExecutionResult();
         }
+
+        #endregion
     }
 }

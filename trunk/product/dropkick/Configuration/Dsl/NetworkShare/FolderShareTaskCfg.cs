@@ -1,5 +1,7 @@
 namespace dropkick.Configuration.Dsl.NetworkShare
 {
+    using Tasks.NetworkShare;
+
     public class FolderShareTaskCfg :
         FolderShareOptions
     {

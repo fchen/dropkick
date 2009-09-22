@@ -1,9 +1,8 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.WinService
+namespace dropkick.Tasks.WinService
 {
     using System;
     using System.ServiceProcess;
+    using Execution;
     using Verification;
 
     public class WinServiceStopTask :
@@ -26,9 +25,9 @@ namespace dropkick.Configuration.Dsl.WinService
 
             try
             {
-                using (ServiceController c = new ServiceController(ServiceName, MachineName))
+                using (var c = new ServiceController(ServiceName, MachineName))
                 {
-                    var currentStatus = c.Status;
+                    ServiceControllerStatus currentStatus = c.Status;
                     result.AddGood(string.Format("Found service '{0}' it is '{1}'", ServiceName, currentStatus));
                 }
             }
@@ -42,9 +41,9 @@ namespace dropkick.Configuration.Dsl.WinService
 
         public override ExecutionResult Execute()
         {
-            using(ServiceController c = new ServiceController(ServiceName, MachineName))
+            using (var c = new ServiceController(ServiceName, MachineName))
             {
-                if(c.CanStop)
+                if (c.CanStop)
                     c.Stop();
                 c.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(5));
             }

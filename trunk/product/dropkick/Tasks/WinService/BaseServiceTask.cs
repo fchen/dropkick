@@ -1,11 +1,11 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.WinService
+namespace dropkick.Tasks.WinService
 {
     using System.Threading;
+    using Configuration.Dsl;
+    using Execution;
     using Verification;
 
-    public abstract class BaseServiceTask : 
+    public abstract class BaseServiceTask :
         Task
     {
         protected BaseServiceTask(string machineName, string serviceName)
@@ -14,18 +14,22 @@ namespace dropkick.Configuration.Dsl.WinService
             ServiceName = serviceName;
         }
 
+        public string MachineName { get; set; }
+        public string ServiceName { get; set; }
+
+        #region Task Members
+
         public void Inspect(DeploymentInspector inspector)
         {
             inspector.Inspect(this);
         }
 
-        public abstract string Name{ get;}
+        public abstract string Name { get; }
 
         public abstract VerificationResult VerifyCanRun();
         public abstract ExecutionResult Execute();
 
-        public string MachineName { get; set; }
-        public string ServiceName { get; set; }
+        #endregion
 
         protected void VerifyInAdministratorRole(VerificationResult result)
         {
