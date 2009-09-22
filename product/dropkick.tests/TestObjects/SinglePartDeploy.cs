@@ -12,7 +12,7 @@ namespace dropkick.tests.TestObjects
         static SinglePartDeploy()
         {
             Define(() =>
-                   During(Web, (p) =>
+                   DeploymentStepsFor(Web, (p) =>
                        {
                            p.CopyFrom(@".\bob").To(@".\bill");
 

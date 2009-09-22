@@ -11,7 +11,7 @@ namespace dropkick.tests.TestObjects
         static CommandTestDeploy()
         {
             Define(() =>
-                   During(Web, (p) =>
+                   DeploymentStepsFor(Web, (p) =>
                    {
                        p.OnServer(System.Environment.MachineName)
                            .CommandLine("ipconfig");

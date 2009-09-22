@@ -14,13 +14,13 @@ namespace dropkick.tests.TestObjects
             //this is just a means to check the nested closure would work, not that one would actually do this
             Define(() =>
             {
-                During(Web, p => p.OnServer(System.Environment.MachineName)
+                DeploymentStepsFor(Web, p => p.OnServer(System.Environment.MachineName)
                                      .WinService("MSMQ").Do(() => p.OnServer(System.Environment.MachineName)
                                                                       .Msmq()
                                                                       .PrivateQueueNamed("dru")
                                                                       .CreateIfItDoesntExist()));
 
-                During(File, p => p.OnServer(System.Environment.MachineName)
+                DeploymentStepsFor(File, p => p.OnServer(System.Environment.MachineName)
                                       .WinService("W3SVC").Do(() => { }));
 
             });
