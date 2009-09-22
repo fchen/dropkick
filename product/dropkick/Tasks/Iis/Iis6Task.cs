@@ -1,16 +1,15 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.Iis
+namespace dropkick.Tasks.Iis
 {
     using System;
     using System.DirectoryServices;
+    using Execution;
     using Verification;
 
     public class Iis6Task :
         BaseIisTask
     {
-        bool _createIfItDoesntExist;
-        
+        private bool _createIfItDoesntExist;
+
         //ctor
 
         public override int VersionNumber
@@ -21,7 +20,7 @@ namespace dropkick.Configuration.Dsl.Iis
         public override VerificationResult VerifyCanRun()
         {
             var result = new VerificationResult();
-            
+
             CheckVersionOfWindowsAndIis(result);
 
             CheckServerName(result);
@@ -47,12 +46,11 @@ namespace dropkick.Configuration.Dsl.Iis
             return new ExecutionResult();
         }
 
-        
+
         public bool DoesSiteExist()
         {
             return ConvertSiteNameToSiteNumber(WebsiteName) > 0;
         }
-
 
 
         protected bool DoesVirtualDirectoryExist()
@@ -77,7 +75,7 @@ namespace dropkick.Configuration.Dsl.Iis
             }
         }
 
-        DirectoryEntry GetOrMakeNode(string basePath, string relPath, string schemaClassName)
+        private DirectoryEntry GetOrMakeNode(string basePath, string relPath, string schemaClassName)
         {
             //            var vr = new IISVirtualRoot();
             //            string error;
@@ -95,11 +93,12 @@ namespace dropkick.Configuration.Dsl.Iis
             parent.Close();
             return child;
         }
-        void SetIisProperties(DirectoryEntry vdir)
+
+        private void SetIisProperties(DirectoryEntry vdir)
         {
         }
 
-        void CreateApplication(DirectoryEntry vdir)
+        private void CreateApplication(DirectoryEntry vdir)
         {
             vdir.Invoke("AppCreate2", 0);
         }
@@ -109,19 +108,19 @@ namespace dropkick.Configuration.Dsl.Iis
             ShouldCreate = true;
         }
 
-        void CheckVersionOfWindowsAndIis(VerificationResult result)
+        private void CheckVersionOfWindowsAndIis(VerificationResult result)
         {
             int shouldBe5 = Environment.OSVersion.Version.Major;
             if (shouldBe5 != 5)
                 result.AddAlert("This machine does not have IIS6 on it");
         }
 
-        string BuildIisPath(int siteNumber, string vDirPath)
+        private string BuildIisPath(int siteNumber, string vDirPath)
         {
             return string.Format("IIS://localhost/w3svc/{0}/Root/{1}", siteNumber, vDirPath);
         }
 
-        int ConvertSiteNameToSiteNumber(string name)
+        private int ConvertSiteNameToSiteNumber(string name)
         {
             var e = new DirectoryEntry("IIS://localhost/W3SVC");
             e.RefreshCache();
@@ -133,11 +132,11 @@ namespace dropkick.Configuration.Dsl.Iis
                     continue;
                 }
 
-                var x = entry.Name;
+                string x = entry.Name;
                 entry.Close();
                 return int.Parse(x);
             }
-            
+
             throw new Exception("could find your website");
         }
     }

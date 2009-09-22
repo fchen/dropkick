@@ -1,9 +1,9 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.Iis
+namespace dropkick.Tasks.Iis
 {
     using System;
     using System.IO;
+    using Configuration.Dsl;
+    using Execution;
     using Verification;
 
     public abstract class BaseIisTask :
@@ -16,6 +16,8 @@ namespace dropkick.Configuration.Dsl.Iis
         public string ServerName { get; set; }
         public abstract int VersionNumber { get; }
 
+        #region Task Members
+
         public void Inspect(DeploymentInspector inspector)
         {
             inspector.Inspect(this);
@@ -23,11 +25,17 @@ namespace dropkick.Configuration.Dsl.Iis
 
         public string Name
         {
-            get { return "IIS{0}: Create vdir '{1}' in site '{2}' on server '{3}'".FormatWith(VersionNumber, VdirPath, WebsiteName, ServerName); }
+            get
+            {
+                return "IIS{0}: Create vdir '{1}' in site '{2}' on server '{3}'".FormatWith(VersionNumber, VdirPath,
+                                                                                            WebsiteName, ServerName);
+            }
         }
 
         public abstract VerificationResult VerifyCanRun();
         public abstract ExecutionResult Execute();
+
+        #endregion
 
         public void CheckServerName(VerificationResult result)
         {
@@ -51,7 +59,7 @@ namespace dropkick.Configuration.Dsl.Iis
                 else
                 {
                     result.AddAlert("Couldn't find VDir '{0}'", VdirPath);
-                    
+
                     if (ShouldCreate)
                         result.AddAlert("The VDir '{0}' will be created", VdirPath);
                 }
@@ -60,10 +68,9 @@ namespace dropkick.Configuration.Dsl.Iis
             {
                 result.AddAlert("Couldn't find Website '{0}'", WebsiteName);
 
-                if(ShouldCreate)
+                if (ShouldCreate)
                     result.AddAlert("Website '{0}' and VDir '{1}' will be created", WebsiteName, VdirPath);
             }
         }
-
     }
 }
