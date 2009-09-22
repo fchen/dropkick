@@ -1,12 +1,13 @@
+using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+using dropkick.Configuration.Dsl;
+using dropkick.Configuration.Dsl.Dsn;
 using dropkick.Execution;
+using dropkick.Verification;
 
-namespace dropkick.Configuration.Dsl.Dsn
+namespace dropkick.Tasks.Dsn
 {
-    using System;
-    using System.Runtime.InteropServices;
-    using System.Threading;
-    using Verification;
-
     public class DsnTask :
         Task
     {

@@ -70,10 +70,10 @@
     <Compile Include="Configuration\Dsl\DeploymentException.cs" />
     <Compile Include="Configuration\Dsl\DeploymentInspector.cs" />
     <Compile Include="Configuration\Dsl\DeploymentInspectorSite.cs" />
-    <Compile Include="Configuration\Dsl\Dsn\DsnAction.cs" />
-    <Compile Include="Configuration\Dsl\Dsn\DsnDriver.cs" />
+    <Compile Include="Tasks\Dsn\DsnAction.cs" />
+    <Compile Include="Tasks\Dsn\DsnDriver.cs" />
     <Compile Include="Configuration\Dsl\Dsn\DsnOptions.cs" />
-    <Compile Include="Configuration\Dsl\Dsn\DsnTask.cs" />
+    <Compile Include="Tasks\Dsn\DsnTask.cs" />
     <Compile Include="Configuration\Dsl\Dsn\DsnTaskCfg.cs" />
     <Compile Include="Configuration\Dsl\Dsn\Extension.cs" />
     <Compile Include="Configuration\Dsl\TargetDeploymentEnvironment.cs" />

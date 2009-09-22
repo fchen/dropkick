@@ -1,3 +1,5 @@
+using dropkick.Tasks.Dsn;
+
 namespace dropkick.Configuration.Dsl.Dsn
 {
     public class DsnTaskCfg :

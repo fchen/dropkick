@@ -1,3 +1,5 @@
+using dropkick.Tasks.Dsn;
+
 namespace dropkick.tests.Extensions.Dsn
 {
     using System;
