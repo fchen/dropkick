@@ -1,10 +1,10 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.MsSql
+namespace dropkick.Tasks.MsSql
 {
     using System;
     using System.Data;
     using System.Data.SqlClient;
+    using Configuration.Dsl;
+    using Execution;
     using Verification;
 
     public abstract class BaseSqlTask :
@@ -16,20 +16,23 @@ namespace dropkick.Configuration.Dsl.MsSql
             DatabaseName = databaseName;
         }
 
+        public string ServerName { get; set; }
+        public string DatabaseName { get; set; }
+
+        #region Task Members
+
         public abstract void Inspect(DeploymentInspector inspector);
         public abstract string Name { get; }
         public abstract VerificationResult VerifyCanRun();
         public abstract ExecutionResult Execute();
 
-        public string ServerName { get; set; }
-        public string DatabaseName { get; set; }
+        #endregion
 
         public void TestConnectivity(VerificationResult result)
         {
             IDbConnection conn = null;
             try
             {
-
                 conn = GetConnection();
                 conn.Open();
                 result.AddGood("I can talk to the database");
@@ -45,27 +48,25 @@ namespace dropkick.Configuration.Dsl.MsSql
                 {
                     conn.Close();
                     conn.Dispose();
-
                 }
             }
         }
-        
+
         public IDbConnection GetConnection()
         {
             return new SqlConnection(GetConnectionString());
         }
-        string GetConnectionString()
+
+        private string GetConnectionString()
         {
             var cs = new SqlConnectionStringBuilder
-                     {
-                         DataSource = ServerName,
-                         InitialCatalog = DatabaseName,
-                         IntegratedSecurity = true
-                     };
+                         {
+                             DataSource = ServerName,
+                             InitialCatalog = DatabaseName,
+                             IntegratedSecurity = true
+                         };
 
             return cs.ConnectionString;
         }
-
-        
     }
 }

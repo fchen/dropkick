@@ -1,9 +1,9 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.MsSql
+namespace dropkick.Tasks.MsSql
 {
     using System.Data;
     using System.IO;
+    using Configuration.Dsl;
+    using Execution;
     using Verification;
 
     public class RunSqlScriptTask :
@@ -13,25 +13,28 @@ namespace dropkick.Configuration.Dsl.MsSql
         {
         }
 
+        public override string Name
+        {
+            get
+            {
+                return string.Format("Run SqlScritp '{0}' on server '{1}' for database '{2}'", ScriptToRun, ServerName,
+                                     DatabaseName);
+            }
+        }
+
+
+        public string ScriptToRun { get; set; }
+
         public override void Inspect(DeploymentInspector inspector)
         {
             inspector.Inspect(this);
         }
-
-        public override string Name
-        {
-            get { return string.Format("Run SqlScritp '{0}' on server '{1}' for database '{2}'", ScriptToRun, ServerName, DatabaseName); }
-        }
-
-        
-        public string ScriptToRun { get; set; }
 
         public override VerificationResult VerifyCanRun()
         {
             var result = new VerificationResult();
 
             base.TestConnectivity(result);
-
 
 
             if (ScriptToRun != null)
@@ -52,17 +55,17 @@ namespace dropkick.Configuration.Dsl.MsSql
 
         public override ExecutionResult Execute()
         {
-            var s = File.ReadAllText(ScriptToRun);
+            string s = File.ReadAllText(ScriptToRun);
             ExecuteSqlWithNoReturn(s);
 
             return new ExecutionResult();
         }
 
-        void ExecuteSqlWithNoReturn(string sql)
+        private void ExecuteSqlWithNoReturn(string sql)
         {
-            using(var conn = GetConnection())
+            using (IDbConnection conn = GetConnection())
             {
-                using(var cmd = conn.CreateCommand())
+                using (IDbCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = sql;
                     cmd.CommandType = CommandType.Text;
@@ -70,7 +73,5 @@ namespace dropkick.Configuration.Dsl.MsSql
                 }
             }
         }
-
-
     }
 }
