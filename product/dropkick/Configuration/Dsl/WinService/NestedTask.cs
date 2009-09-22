@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.WinService
 {
     using Verification;
@@ -20,9 +22,10 @@ namespace dropkick.Configuration.Dsl.WinService
             return new VerificationResult();
         }
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
             //execute sub task
+            return new ExecutionResult();
         }
     }
 }

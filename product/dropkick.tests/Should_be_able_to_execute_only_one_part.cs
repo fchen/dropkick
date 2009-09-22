@@ -17,12 +17,12 @@ namespace dropkick.tests
             {
                 verifyRanWeb = true;
                 return new VerificationResult();
-            }, ()=>{});
+            }, () => new ExecutionResult());
             var edb = new ExecutionDetail(() => "", () =>
             {
                 verifyRanDb = true;
                 return new VerificationResult();
-            }, () => { });
+            }, () => new ExecutionResult());
 
             
             
@@ -57,12 +57,12 @@ namespace dropkick.tests
             {
                 verifyRanWeb = true;
                 return new VerificationResult();
-            }, () => { });
+            }, () => new ExecutionResult());
             var edb = new ExecutionDetail(() => "", () =>
             {
                 verifyRanDb = true;
                 return new VerificationResult();
-            }, () => { });
+            }, () => new ExecutionResult());
 
 
 

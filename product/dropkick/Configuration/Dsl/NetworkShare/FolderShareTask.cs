@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.NetworkShare
 {
     using System;
@@ -29,8 +31,9 @@ namespace dropkick.Configuration.Dsl.NetworkShare
         }
 
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
+            var result = new ExecutionResult();
             var managementClass = new ManagementClass("Win32_Share");
 
             var args = managementClass.GetMethodParameters("Create");
@@ -46,6 +49,10 @@ namespace dropkick.Configuration.Dsl.NetworkShare
             {
                 throw new Exception("Unable to share directory '{0}' as '{2}' on '{1}'.".FormatWith(PointingTo, Server, ShareName));
             }
+            
+            result.AddGood("Created share");
+
+            return result;
         }
 
         bool _createIfNotExist;

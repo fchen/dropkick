@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.Iis
 {
     using System;
@@ -29,7 +31,7 @@ namespace dropkick.Configuration.Dsl.Iis
             return result;
         }
 
-        public override void Execute()
+        public override ExecutionResult Execute()
         {
             DirectoryEntry vdir =
                 GetOrMakeNode(WebsiteName, VdirPath, "IIsWebVirtualDir");
@@ -41,6 +43,8 @@ namespace dropkick.Configuration.Dsl.Iis
 
             vdir.CommitChanges();
             vdir.Close();
+
+            return new ExecutionResult();
         }
 
         

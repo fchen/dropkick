@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.MsSql
 {
     using System;
@@ -17,7 +19,7 @@ namespace dropkick.Configuration.Dsl.MsSql
         public abstract void Inspect(DeploymentInspector inspector);
         public abstract string Name { get; }
         public abstract VerificationResult VerifyCanRun();
-        public abstract void Execute();
+        public abstract ExecutionResult Execute();
 
         public string ServerName { get; set; }
         public string DatabaseName { get; set; }

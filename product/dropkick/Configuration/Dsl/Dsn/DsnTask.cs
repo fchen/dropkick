@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.Dsn
 {
     using System;
@@ -45,9 +47,22 @@ namespace dropkick.Configuration.Dsl.Dsn
             return result;
         }
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
-            bool value =  SQLConfigDataSource((IntPtr) 0, (int)_action, _driver.Value, "SERVER={0}\0DSN={1}\0DESCRIPTION=NewDSN\0DATABASE={2}\0TRUSTED_CONNECTION=YES".FormatWith(_serverName,_dsnName,_databaseName));
+            var result = new ExecutionResult();
+
+            try
+            {
+                bool value = SQLConfigDataSource((IntPtr)0, (int)_action, _driver.Value, "SERVER={0}\0DSN={1}\0DESCRIPTION=NewDSN\0DATABASE={2}\0TRUSTED_CONNECTION=YES".FormatWith(_serverName, _dsnName, _databaseName));
+                result.AddGood("Created DSN");
+            }
+            catch (Exception ex)
+            {
+                result.AddError("Failed to create DSN", ex);
+            }
+            
+            
+            return result;
         }
 
         void VerifyInAdministratorRole(VerificationResult result)

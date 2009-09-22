@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.Iis
 {
     using Microsoft.Web.Administration;
@@ -28,9 +30,10 @@ namespace dropkick.Configuration.Dsl.Iis
             return result;
         }
 
-        public override void Execute()
+        public override ExecutionResult Execute()
         {
             //ignore
+            return new ExecutionResult();
         }
 
         

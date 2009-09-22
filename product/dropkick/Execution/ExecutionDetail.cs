@@ -7,9 +7,9 @@ namespace dropkick.Execution
     {
         readonly Func<string> _name;
         readonly Func<VerificationResult> _verify;
-        readonly Action _execute;
+        readonly Func<ExecutionResult> _execute;
 
-        public ExecutionDetail(Func<string> name, Func<VerificationResult> verify, Action execute)
+        public ExecutionDetail(Func<string> name, Func<VerificationResult> verify, Func<ExecutionResult> execute)
         {
             _name = name;
             _verify = verify;
@@ -26,9 +26,9 @@ namespace dropkick.Execution
             return _verify();
         }
 
-        public void Execute()
+        public ExecutionResult Execute()
         {
-            _execute();
+            return _execute();
         }
     }
 }

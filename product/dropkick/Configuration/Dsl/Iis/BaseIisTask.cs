@@ -1,3 +1,5 @@
+using dropkick.Execution;
+
 namespace dropkick.Configuration.Dsl.Iis
 {
     using System;
@@ -25,7 +27,7 @@ namespace dropkick.Configuration.Dsl.Iis
         }
 
         public abstract VerificationResult VerifyCanRun();
-        public abstract void Execute();
+        public abstract ExecutionResult Execute();
 
         public void CheckServerName(VerificationResult result)
         {
