@@ -10,7 +10,7 @@ namespace dropkick.tests.TestObjects
 
         static IisTestDeploy()
         {
-            Define(() => During(Web, p =>
+            Define(() => DeploymentStepsFor(Web, p =>
             {
                 p.OnServer(System.Environment.MachineName)
                     .IisSite("Default Web Site")

@@ -1,6 +1,8 @@
 ﻿namespace dropkick.console
 {
+    using System;
     using Engine;
+    using Magnum.CommandLineParser;
 
     internal class Program
     {
@@ -18,6 +20,7 @@
             // -x to execute
             // default is trace
 
+            //dk execute -e:local -p:web -a:FHLBank.Flames.Deployment
             var a = ArgumentParsing.Parse(args);
             var r = new Runner(a.DeploymentFinder);
             r.Deploy(a);

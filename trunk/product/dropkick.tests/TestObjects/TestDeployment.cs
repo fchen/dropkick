@@ -19,7 +19,7 @@ namespace dropkick.tests.TestObjects
                 //Could be on FhlbDeployment
                 //EnableTripwireReporting();         //file copies and movies are evented
 
-                During(Web, (p) =>
+                DeploymentStepsFor(Web, p =>
                 {
 //                            p.OnServer("SrvTopeka19")
 //                                .Iis6Site("Exchequer")
@@ -56,7 +56,7 @@ namespace dropkick.tests.TestObjects
                         });
                 });
 
-                During(Db, (p) =>
+                DeploymentStepsFor(Db, (p) =>
                 {
                     p.OnServer("SrvTopeka02")
                         .SqlInstance(".")
@@ -65,7 +65,7 @@ namespace dropkick.tests.TestObjects
                         .RunTarantinoOn(@".\code_drop\flames_sql");
                 });
 
-                During(Service, (p) =>
+                DeploymentStepsFor(Service, (p) =>
                 {
                     p.OnServer("SrvTopeka19")
                         .WinService("FlamesHost")
@@ -86,7 +86,5 @@ namespace dropkick.tests.TestObjects
         public static Part Web { get; set; }
         public static Part Db { get; set; }
         public static Part Service { get; set; }
-
-        //dropkick r:role(web,db,service | full)
     }
 }

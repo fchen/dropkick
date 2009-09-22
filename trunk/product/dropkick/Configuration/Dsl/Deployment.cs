@@ -53,7 +53,7 @@ namespace dropkick.Configuration.Dsl
         }
 
         //needs to be renamed
-        protected static void During(Part inputPart, Action<Part> action)
+        protected static void DeploymentStepsFor(Part inputPart, Action<Part> action)
         {
             Part<Inheritor> part = Part<Inheritor>.GetPart(inputPart);
             part.BindAction(action);
