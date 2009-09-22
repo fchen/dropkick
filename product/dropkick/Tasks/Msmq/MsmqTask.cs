@@ -1,19 +1,19 @@
-using dropkick.Execution;
-
-namespace dropkick.Configuration.Dsl.Msmq
+namespace dropkick.Tasks.Msmq
 {
     using System;
     using System.Messaging;
     using System.Threading;
-    using dropkick.Dsl.Msmq;
+    using Configuration.Dsl;
+    using Dsl.Msmq;
+    using Execution;
     using Verification;
 
     public class MsmqTask :
         Task
     {
-        bool _createIfNoExst;
-        string _queueName;
-        string _serverName;
+        private bool _createIfNoExst;
+        private string _queueName;
+        private string _serverName;
 
         public string QueueName
         {
@@ -84,7 +84,7 @@ namespace dropkick.Configuration.Dsl.Msmq
 
         #endregion
 
-        void VerifyInAdministratorRole(VerificationResult result)
+        private void VerifyInAdministratorRole(VerificationResult result)
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrator"))
             {

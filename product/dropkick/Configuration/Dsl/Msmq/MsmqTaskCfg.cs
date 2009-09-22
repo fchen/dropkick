@@ -1,5 +1,7 @@
 namespace dropkick.Configuration.Dsl.Msmq
 {
+    using Tasks.Msmq;
+
     public class MsmqTaskCfg :
         MsmqOptions,
         QueueOptions
