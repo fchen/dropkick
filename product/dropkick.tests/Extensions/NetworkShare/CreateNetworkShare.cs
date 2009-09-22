@@ -2,8 +2,8 @@ namespace dropkick.tests.Extensions.NetworkShare
 {
     using System;
     using System.IO;
-    using Configuration.Dsl.NetworkShare;
     using NUnit.Framework;
+    using Tasks.NetworkShare;
 
     [TestFixture]
     public class CreateNetworkShare
