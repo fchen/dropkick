@@ -39,7 +39,7 @@ namespace dropkick.tests
             plan.AddPart(web);
 
 
-            var args = new ExecutionArguments
+            var args = new DeploymentArguments
             {
                 Part = "WEB",
                 Command = DropkickCommands.Trace
@@ -81,7 +81,7 @@ namespace dropkick.tests
             plan.AddPart(web);
 
 
-            var args = new ExecutionArguments
+            var args = new DeploymentArguments
             {
                 Part = "WEB",
                 Command = DropkickCommands.Verify
@@ -123,7 +123,7 @@ namespace dropkick.tests
             plan.AddPart(web);
 
 
-            var args = new ExecutionArguments
+            var args = new DeploymentArguments
             {
                 Part = "WEB",
                 Command = DropkickCommands.Execute

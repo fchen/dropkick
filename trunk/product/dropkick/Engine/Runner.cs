@@ -6,7 +6,7 @@ namespace dropkick.Engine
 
     public static class Runner
     {
-        public static void Deploy(DeploymentFinder finder, ExecutionArguments args)
+        public static void Deploy(DeploymentFinder finder, DeploymentArguments args)
         {
             var deployment = finder.Find(args.Deployment);
 
@@ -26,7 +26,7 @@ namespace dropkick.Engine
 
             var plan = DeploymentPlanBuilder.Build(deployment);
 
-            var exArgs = new ExecutionArguments();
+            var exArgs = new DeploymentArguments();
             plan.Execute(exArgs);
         }
     }

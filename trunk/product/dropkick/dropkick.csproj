@@ -60,7 +60,6 @@
       <Link>SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
-    <Compile Include="Engine\CommandLineParsing\CommandLineArguments.cs" />
     <Compile Include="Engine\CommandLineParsing\MonadicCommandLineParser.cs" />
     <Compile Include="Engine\DeploymentFinders\SearchesForAnAssemblyEndingInDeployment.cs" />
     <Compile Include="Engine\DeploymentFinders\TypeWasSpecifiedAssumingItHasADefaultConstructor.cs" />
@@ -126,7 +125,7 @@
     <Compile Include="Configuration\Dsl\WinService\WinServiceTaskBuilder.cs" />
     <Compile Include="Engine\CommandLineParsing\ArgumentParsing.cs" />
     <Compile Include="Engine\DeploymentFinders\AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass.cs" />
-    <Compile Include="Engine\ExecutionArguments.cs" />
+    <Compile Include="Engine\DeploymentArguments.cs" />
     <Compile Include="Engine\DropkickCommands.cs" />
     <Compile Include="Configuration\Dsl\DropkickDeploymentInspector.cs" />
     <Compile Include="DeploymentModel\DeploymentDetail.cs" />
