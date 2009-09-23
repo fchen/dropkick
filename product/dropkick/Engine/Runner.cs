@@ -21,13 +21,9 @@ namespace dropkick.Engine
             var finder = new SearchesForAnAssemblyEndingInDeployment();
 
             var newArgs = MonadicCommandLineParser.Parse(commandLine);
-
             var deployment = finder.Find(newArgs.Deployment);
 
-            //this seems a bit ginchy
-            var inspector = new DropkickDeploymentInspector();
-            inspector.Inspect(deployment);
-            var plan = inspector.GetPlan();
+            var plan = DeploymentPlanBuilder.Build(deployment);
 
             var exArgs = new ExecutionArguments();
             plan.Execute(exArgs);
