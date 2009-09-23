@@ -65,9 +65,9 @@
     <Compile Include="Engine\DeploymentFinders\SearchesForAnAssemblyEndingInDeployment.cs" />
     <Compile Include="Engine\DeploymentFinders\TypeWasSpecifiedAssumingItHasADefaultConstructor.cs" />
     <Compile Include="Engine\DeploymentPlanBuilder.cs" />
-    <Compile Include="Execution\DeploymentItem.cs" />
-    <Compile Include="Execution\DeploymentResult.cs" />
-    <Compile Include="Execution\DeploymentItemStatus.cs" />
+    <Compile Include="DeploymentModel\DeploymentItem.cs" />
+    <Compile Include="DeploymentModel\DeploymentResult.cs" />
+    <Compile Include="DeploymentModel\DeploymentItemStatus.cs" />
     <Compile Include="Tasks\CommandLine\CommandLineTask.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineTaskBuilder.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\Extension.cs" />
@@ -129,9 +129,9 @@
     <Compile Include="Engine\ExecutionArguments.cs" />
     <Compile Include="Engine\DropkickCommands.cs" />
     <Compile Include="Engine\DropkickDeploymentInspector.cs" />
-    <Compile Include="Execution\DeploymentDetail.cs" />
-    <Compile Include="Execution\DeploymentPart.cs" />
-    <Compile Include="Execution\DeploymentPlan.cs" />
+    <Compile Include="DeploymentModel\DeploymentDetail.cs" />
+    <Compile Include="DeploymentModel\DeploymentPart.cs" />
+    <Compile Include="DeploymentModel\DeploymentPlan.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Configuration\Dsl\WinService\Extension.cs" />
     <Compile Include="Configuration\Dsl\WinService\WinServiceOptions.cs" />
