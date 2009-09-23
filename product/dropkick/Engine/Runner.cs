@@ -7,7 +7,7 @@ namespace dropkick.Engine
     {
         public static void Deploy(DeploymentFinder finder, ExecutionArguments args)
         {
-            var deployment = finder.Find(args.DeploymentAssembly);
+            var deployment = finder.Find(args.Deployment);
 
             var inspector = new DropkickDeploymentInspector();
             inspector.Inspect(deployment);

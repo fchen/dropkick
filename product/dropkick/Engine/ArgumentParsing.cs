@@ -29,7 +29,7 @@ namespace dropkick.Engine
             Action<string, ExecutionArguments, Action<string, ExecutionArguments>> setupPartRegex = (s, ea, a) => curry(s, ea, a, partRegex);
             Action<string, ExecutionArguments, Action<string, ExecutionArguments>> setupInspectorRegex = (input, ea, a) => curry(input, ea, a, inspector);
 
-            Action<string, ExecutionArguments> setDeploymentAssembly = (s, e) => { e.DeploymentAssembly = s; };
+            Action<string, ExecutionArguments> setDeploymentAssembly = (s, e) => { e.Deployment = s; };
             Action<string, ExecutionArguments> setEnvironment = (s, e) => { e.Environment = s; };
             Action<string, ExecutionArguments> setPart = (s, e) => { e.Part = s; };
 

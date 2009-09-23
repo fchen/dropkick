@@ -17,14 +17,13 @@ namespace dropkick.tests.Scenarios
             _interpreter = new DropkickDeploymentInspector();
             _verifyArguments = new ExecutionArguments()
             {
-                DeploymentAssembly = GetType().Assembly.FullName,
-                DeploymentFinder = new GenericDeploymentFinder<CommandTestDeploy>(),
+                Deployment = GetType().Assembly.FullName,
                 Environment = "TEST",
                 Command = DropkickCommands.Verify,
                 Part = "WEB"
             };
 
-            var dep = _verifyArguments.DeploymentFinder.Find("");
+            var dep = new GenericDeploymentFinder<CommandTestDeploy>().Find("");
             dep.Inspect(_interpreter);
 
         }

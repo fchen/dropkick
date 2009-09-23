@@ -17,8 +17,7 @@ namespace dropkick.tests.Dsl
         {
             _verifyArguments = new ExecutionArguments()
                                {
-                                   DeploymentAssembly = GetType().Assembly.FullName,
-                                   DeploymentFinder = new AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass(),
+                                   Deployment = GetType().Assembly.FullName,
                                    Environment = "TEST",
                                    Command = DropkickCommands.Verify,
                                    Part = "WEB"

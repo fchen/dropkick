@@ -2,6 +2,7 @@
 {
     using System;
     using Engine;
+    using Engine.DeploymentFinders;
     using Magnum.CommandLineParser;
 
     internal class Program
@@ -22,7 +23,8 @@
 
             //dk execute -e:local -p:web -a:FHLBank.Flames.Deployment
             var a = ArgumentParsing.Parse(args);
-            Runner.Deploy(a.DeploymentFinder, a);
+            var finder = new AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass();
+            Runner.Deploy(finder, a);
 
             //goal
             Runner.Deploy(Environment.CommandLine);

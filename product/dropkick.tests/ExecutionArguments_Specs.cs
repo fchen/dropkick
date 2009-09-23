@@ -15,7 +15,7 @@ namespace dropkick.tests
             var ea = ArgumentParsing.Parse(arguments);
 
             Assert.AreEqual(ea.Environment, "staging");
-            Assert.AreEqual(ea.DeploymentAssembly, "MyStuff");
+            Assert.AreEqual(ea.Deployment, "MyStuff");
             Assert.AreEqual(ea.Command, DropkickCommands.Verify);
             Assert.AreEqual(ea.Part, "WEB");
         }
@@ -41,7 +41,7 @@ namespace dropkick.tests
         {
             var ea = ArgumentParsing.Parse(_arguments);
 
-            Assert.AreEqual(ea.DeploymentAssembly, "MyStuff");
+            Assert.AreEqual(ea.Deployment, "MyStuff");
         }
         [Test]
         public void Should_parse_out_Environment()
