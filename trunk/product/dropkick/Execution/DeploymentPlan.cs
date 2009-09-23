@@ -7,14 +7,14 @@ namespace dropkick.Execution
 
     public class DeploymentPlan
     {
-        readonly IDictionary<ExecutionOptions, Action<Func<DeploymentPart, bool>>> _actions = new Dictionary<ExecutionOptions, Action<Func<DeploymentPart, bool>>>();
+        readonly IDictionary<DropkickCommands, Action<Func<DeploymentPart, bool>>> _actions = new Dictionary<DropkickCommands, Action<Func<DeploymentPart, bool>>>();
         readonly IList<DeploymentPart> _parts = new List<DeploymentPart>();
 
         public DeploymentPlan()
         {
-            _actions.Add(ExecutionOptions.Execute, Ex);
-            _actions.Add(ExecutionOptions.Verify, Verify);
-            _actions.Add(ExecutionOptions.Trace, Trace);
+            _actions.Add(DropkickCommands.Execute, Ex);
+            _actions.Add(DropkickCommands.Verify, Verify);
+            _actions.Add(DropkickCommands.Trace, Trace);
         }
 
         public string Name { get; set; }

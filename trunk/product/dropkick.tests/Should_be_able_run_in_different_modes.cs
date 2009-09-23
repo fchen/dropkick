@@ -42,7 +42,7 @@ namespace dropkick.tests
             var args = new ExecutionArguments
             {
                 Part = "WEB",
-                Option = ExecutionOptions.Trace
+                Option = DropkickCommands.Trace
             };
 
             plan.Execute(args);
@@ -84,7 +84,7 @@ namespace dropkick.tests
             var args = new ExecutionArguments
             {
                 Part = "WEB",
-                Option = ExecutionOptions.Verify
+                Option = DropkickCommands.Verify
             };
 
             plan.Execute(args);
@@ -126,7 +126,7 @@ namespace dropkick.tests
             var args = new ExecutionArguments
             {
                 Part = "WEB",
-                Option = ExecutionOptions.Execute
+                Option = DropkickCommands.Execute
             };
 
             plan.Execute(args);

@@ -39,7 +39,7 @@ namespace dropkick.tests
             var args = new ExecutionArguments
                        {
                            Part = "WEB",
-                           Option = ExecutionOptions.Verify
+                           Option = DropkickCommands.Verify
                        };
 
             p.Execute(args);
@@ -79,7 +79,7 @@ namespace dropkick.tests
             var args = new ExecutionArguments
             {
                 Part = "DB",
-                Option = ExecutionOptions.Verify
+                Option = DropkickCommands.Verify
             };
 
             p.Execute(args);
