@@ -1,6 +1,7 @@
 namespace dropkick.tests.Scenarios
 {
     using Engine;
+    using Engine.DeploymentFinders;
     using NUnit.Framework;
     using TestObjects;
 

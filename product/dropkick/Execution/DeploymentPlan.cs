@@ -3,7 +3,6 @@ namespace dropkick.Execution
     using System;
     using System.Collections.Generic;
     using Engine;
-    
 
     public class DeploymentPlan
     {

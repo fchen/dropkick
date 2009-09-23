@@ -128,7 +128,6 @@
     <Compile Include="Engine\DeploymentFinders\AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass.cs" />
     <Compile Include="Engine\ExecutionArguments.cs" />
     <Compile Include="Engine\DropkickCommands.cs" />
-    <Compile Include="Engine\DeploymentFinders\GenericDeploymentFinder.cs" />
     <Compile Include="Engine\DropkickDeploymentInspector.cs" />
     <Compile Include="Execution\DeploymentDetail.cs" />
     <Compile Include="Execution\DeploymentPart.cs" />
