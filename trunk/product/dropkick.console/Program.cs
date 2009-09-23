@@ -22,8 +22,10 @@
 
             //dk execute -e:local -p:web -a:FHLBank.Flames.Deployment
             var a = ArgumentParsing.Parse(args);
-            var r = new Runner(a.DeploymentFinder);
-            r.Deploy(a);
+            Runner.Deploy(a.DeploymentFinder, a);
+
+            //goal
+            Runner.Deploy(Environment.CommandLine);
         }
     }
 }

@@ -1,5 +1,6 @@
 namespace dropkick.Engine
 {
+    using DeploymentFinders;
     using Dsl;
 
     public class ExecutionArguments
@@ -7,7 +8,7 @@ namespace dropkick.Engine
         public ExecutionArguments()
         {
             Option = DropkickCommands.Trace;
-            DeploymentFinder = new AssumesOnlyOneDeploymentFinder();
+            DeploymentFinder = new AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass();
             Part = "ALL";
         }
         public string Environment { get; set; }

@@ -2,13 +2,14 @@ namespace dropkick.tests.Dsl
 {
     using System;
     using Engine;
+    using Engine.DeploymentFinders;
     using NUnit.Framework;
     using TestObjects;
 
     [TestFixture]
     public class Verification_Demos
     {
-        DeploymentInspector _interpreter;
+        DropkickDeploymentInspector _interpreter;
         ExecutionArguments _verifyArguments;
 
         [SetUp]
@@ -17,13 +18,13 @@ namespace dropkick.tests.Dsl
             _verifyArguments = new ExecutionArguments()
                                {
                                    DeploymentAssembly = GetType().Assembly.FullName,
-                                   DeploymentFinder = new AssumesOnlyOneDeploymentFinder(),
+                                   DeploymentFinder = new AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass(),
                                    Environment = "TEST",
                                    Option = DropkickCommands.Verify,
                                    Part = "WEB"
                                };
 
-            _interpreter = new DeploymentInspector();
+            _interpreter = new DropkickDeploymentInspector();
         }
 
         [TearDown]
