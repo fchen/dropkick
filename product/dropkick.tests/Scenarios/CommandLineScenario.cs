@@ -9,12 +9,12 @@ namespace dropkick.tests.Scenarios
         Scenario
     {
         ExecutionArguments _verifyArguments;
-        DeploymentInspector _interpreter;
+        DropkickDeploymentInspector _interpreter;
 
         [Test]
         public void Verify()
         {
-            _interpreter = new DeploymentInspector();
+            _interpreter = new DropkickDeploymentInspector();
             _verifyArguments = new ExecutionArguments()
             {
                 DeploymentAssembly = GetType().Assembly.FullName,

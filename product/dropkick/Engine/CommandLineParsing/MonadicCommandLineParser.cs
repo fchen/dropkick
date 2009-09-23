@@ -3,15 +3,14 @@ namespace dropkick.Engine.CommandLineParsing
     using System.Collections.Generic;
     using Magnum.CommandLineParser;
 
-    public class MonadicCommandLineParser
+    public static class MonadicCommandLineParser
     {
-        
-        public void Parse()
+        public static CommandLineArguments Parse(string commandline)
         {
-            
+            return new CommandLineArguments();
         }
 
-        private IEnumerable<ICommandLineElement> P(string commandLine)
+        static IEnumerable<ICommandLineElement> P(string commandLine)
         {
             var parser = new Magnum.CommandLineParser.MonadicCommandLineParser();
             return parser.Parse(commandLine);

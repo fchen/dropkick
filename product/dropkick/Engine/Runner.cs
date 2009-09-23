@@ -1,23 +1,36 @@
 namespace dropkick.Engine
 {
-    public class Runner
+    using CommandLineParsing;
+    using DeploymentFinders;
+
+    public static class Runner
     {
-        readonly DeploymentFinder _finder;
-
-        public Runner(DeploymentFinder finder)
+        public static void Deploy(DeploymentFinder finder, ExecutionArguments args)
         {
-            _finder = finder;
-        }
+            var deployment = finder.Find(args.DeploymentAssembly);
 
-        public void Deploy(ExecutionArguments args)
-        {
-            var deployment = _finder.Find(args.DeploymentAssembly);
-
-            var inspector = new DeploymentInspector();
+            var inspector = new DropkickDeploymentInspector();
             inspector.Inspect(deployment);
 
             var plan = inspector.GetPlan();
             plan.Execute(args);
+        }
+
+        public static void Deploy(string commandLine)
+        {
+            var finder = new SearchesForAnAssemblyEndingInDeployment();
+
+            var newArgs = MonadicCommandLineParser.Parse(commandLine);
+
+            var deployment = finder.Find(newArgs.Deployment);
+
+            //this seems a bit ginchy
+            var inspector = new DropkickDeploymentInspector();
+            inspector.Inspect(deployment);
+            var plan = inspector.GetPlan();
+
+            var exArgs = new ExecutionArguments();
+            plan.Execute(exArgs);
         }
     }
 }
