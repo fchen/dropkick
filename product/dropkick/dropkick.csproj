@@ -60,6 +60,8 @@
       <Link>SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
+    <Compile Include="Engine\CommandLineParsing\CommandLineArguments.cs" />
+    <Compile Include="Engine\CommandLineParsing\MonadicCommandLineParser.cs" />
     <Compile Include="Execution\DeploymentItem.cs" />
     <Compile Include="Execution\DeploymentResult.cs" />
     <Compile Include="Execution\DeploymentItemStatus.cs" />
@@ -120,10 +122,10 @@
     <Compile Include="Tasks\WinService\WinServiceStopTask.cs" />
     <Compile Include="Configuration\Dsl\WinService\WinServiceTaskBuilder.cs" />
     <Compile Include="Engine\ArgumentParsing.cs" />
-    <Compile Include="Engine\AssumesOnlyOneDeploymentFinder.cs" />
+    <Compile Include="Engine\DeploymentFinders\AssumesOnlyOneDeploymentFinder.cs" />
     <Compile Include="Engine\ExecutionArguments.cs" />
-    <Compile Include="Engine\ExecutionOptions.cs" />
-    <Compile Include="Engine\GenericDeploymentFinder.cs" />
+    <Compile Include="Engine\DropkickCommands.cs" />
+    <Compile Include="Engine\DeploymentFinders\GenericDeploymentFinder.cs" />
     <Compile Include="Engine\DeploymentInspector.cs" />
     <Compile Include="Execution\DeploymentDetail.cs" />
     <Compile Include="Execution\DeploymentPart.cs" />

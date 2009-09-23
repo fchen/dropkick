@@ -6,14 +6,14 @@ namespace dropkick.Engine
     {
         public ExecutionArguments()
         {
-            Option = ExecutionOptions.Trace;
+            Option = DropkickCommands.Trace;
             DeploymentFinder = new AssumesOnlyOneDeploymentFinder();
             Part = "ALL";
         }
         public string Environment { get; set; }
         public string Part { get; set; }
         public string DeploymentAssembly { get; set; }
-        public ExecutionOptions Option { get; set; }
+        public DropkickCommands Option { get; set; }
         public DeploymentFinder DeploymentFinder { get; set; }
     }
 
@@ -22,6 +22,6 @@ namespace dropkick.Engine
         public string Environment { get; set; }
         public string Part { get; set; }
         public string Deployment { get; set; }
-        public ExecutionOptions Option { get; set; }
+        public DropkickCommands Option { get; set; }
     }
 }

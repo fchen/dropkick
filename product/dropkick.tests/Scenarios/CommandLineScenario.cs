@@ -20,7 +20,7 @@ namespace dropkick.tests.Scenarios
                 DeploymentAssembly = GetType().Assembly.FullName,
                 DeploymentFinder = new GenericDeploymentFinder<CommandTestDeploy>(),
                 Environment = "TEST",
-                Option = ExecutionOptions.Verify,
+                Option = DropkickCommands.Verify,
                 Part = "WEB"
             };
 

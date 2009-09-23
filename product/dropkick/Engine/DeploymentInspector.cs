@@ -4,14 +4,19 @@ namespace dropkick.Engine
     using Execution;
     using Magnum.Reflection;
 
-    public class DeploymentInspector : 
+    public class DeploymentInspector :
         ReflectiveVisitorBase<DeploymentInspector>,
         Configuration.Dsl.DeploymentInspector
     {
+        readonly DeploymentPlan _plan = new DeploymentPlan();
+        DeploymentPart _currentPart;
+
         public DeploymentInspector() :
             base("Inspect")
         {
         }
+
+        #region DeploymentInspector Members
 
         public void Inspect(object obj)
         {
@@ -27,6 +32,7 @@ namespace dropkick.Engine
             });
         }
 
+        #endregion
 
         public bool Inspect(Deployment deployment)
         {
@@ -35,7 +41,7 @@ namespace dropkick.Engine
         }
 
         //TODO: This smells pretty nasty
-        DeploymentPart _currentPart = null;
+
         public bool Inspect(Part part)
         {
             _currentPart = new DeploymentPart(part.Name);
@@ -45,12 +51,10 @@ namespace dropkick.Engine
 
         public bool Inspect(Task task)
         {
-            var detail = new DeploymentDetail(()=>task.Name, task.VerifyCanRun, task.Execute);
+            var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
             _currentPart.AddDetail(detail);
             return true;
         }
-
-        readonly DeploymentPlan _plan = new DeploymentPlan();
 
         public DeploymentPlan GetPlan()
         {

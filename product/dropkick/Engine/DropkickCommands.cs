@@ -1,6 +1,6 @@
 namespace dropkick.Engine
 {
-    public enum ExecutionOptions
+    public enum DropkickCommands
     {
         Trace,
         Verify,

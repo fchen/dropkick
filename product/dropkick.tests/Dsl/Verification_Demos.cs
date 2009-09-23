@@ -19,7 +19,7 @@ namespace dropkick.tests.Dsl
                                    DeploymentAssembly = GetType().Assembly.FullName,
                                    DeploymentFinder = new AssumesOnlyOneDeploymentFinder(),
                                    Environment = "TEST",
-                                   Option = ExecutionOptions.Verify,
+                                   Option = DropkickCommands.Verify,
                                    Part = "WEB"
                                };
 
