@@ -39,9 +39,9 @@ namespace dropkick.Tasks.NetworkShare
         }
 
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
-            var result = new ExecutionResult();
+            var result = new DeploymentResult();
             var managementClass = new ManagementClass("Win32_Share");
 
             ManagementBaseObject args = managementClass.GetMethodParameters("Create");

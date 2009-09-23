@@ -16,10 +16,10 @@ namespace dropkick.tests.TestObjects
             WasRun = false;
         }
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
             WasRun = true;
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
 
         public void Inspect(DeploymentInspector inspector)

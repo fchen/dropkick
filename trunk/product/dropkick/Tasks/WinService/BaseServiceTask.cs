@@ -27,7 +27,7 @@ namespace dropkick.Tasks.WinService
         public abstract string Name { get; }
 
         public abstract VerificationResult VerifyCanRun();
-        public abstract ExecutionResult Execute();
+        public abstract DeploymentResult Execute();
 
         #endregion
 

@@ -29,10 +29,10 @@ namespace dropkick.Configuration.Dsl
             return new VerificationResult();
         }
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
             //do nothing
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
     }
 }

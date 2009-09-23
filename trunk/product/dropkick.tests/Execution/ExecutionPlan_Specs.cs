@@ -10,7 +10,7 @@ namespace dropkick.tests.Execution
         [Test]
         public void Empty_Plan()
         {
-            var ep = new ExecutionPlan();
+            var ep = new DeploymentPlan();
             var args = new ExecutionArguments();
             ep.Execute(args);
         }
@@ -18,9 +18,9 @@ namespace dropkick.tests.Execution
         [Test]
         public void One_Action()
         {
-            var ep = new ExecutionPlan();
+            var ep = new DeploymentPlan();
             var args = new ExecutionArguments();
-            ep.AddPart(new ExecutionPart("name"));
+            ep.AddPart(new DeploymentPart("name"));
             ep.Execute(args);
         }
     }

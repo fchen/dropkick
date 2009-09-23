@@ -24,7 +24,7 @@ namespace dropkick.Tasks.MsSql
         public abstract void Inspect(DeploymentInspector inspector);
         public abstract string Name { get; }
         public abstract VerificationResult VerifyCanRun();
-        public abstract ExecutionResult Execute();
+        public abstract DeploymentResult Execute();
 
         #endregion
 

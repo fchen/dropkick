@@ -82,9 +82,9 @@ namespace dropkick.Tasks.CommandLine
             return false;
         }
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
-            var result = new ExecutionResult();
+            var result = new DeploymentResult();
 
             ProcessStartInfo psi = new ProcessStartInfo(Command, Args);
 

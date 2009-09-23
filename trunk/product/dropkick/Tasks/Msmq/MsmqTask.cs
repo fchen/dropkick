@@ -67,14 +67,14 @@ namespace dropkick.Tasks.Msmq
             return result;
         }
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
             if (_serverName == Environment.MachineName)
             {
                 MessageQueue.Create(QueuePath);
             }
 
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
 
         public void Inspect(DeploymentInspector inspector)

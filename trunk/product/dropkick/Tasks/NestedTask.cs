@@ -27,10 +27,10 @@ namespace dropkick.Tasks
             return new VerificationResult();
         }
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
             //execute sub task
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
 
         #endregion

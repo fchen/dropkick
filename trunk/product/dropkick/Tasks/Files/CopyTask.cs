@@ -25,9 +25,9 @@ namespace dropkick.Tasks.Files
             get { return string.Format("Copy '{0}' to '{1}'", _from, _to); }
         }
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
-            var result = new ExecutionResult();
+            var result = new DeploymentResult();
 
             //check is valid from path
             _from = Path.GetFullPath(_from);

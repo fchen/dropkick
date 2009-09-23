@@ -35,24 +35,24 @@ namespace dropkick.Engine
         }
 
         //TODO: This smells pretty nasty
-        ExecutionPart _currentPart = null;
+        DeploymentPart _currentPart = null;
         public bool Inspect(Part part)
         {
-            _currentPart = new ExecutionPart(part.Name);
+            _currentPart = new DeploymentPart(part.Name);
             _plan.AddPart(_currentPart);
             return true;
         }
 
         public bool Inspect(Task task)
         {
-            var detail = new ExecutionDetail(()=>task.Name, task.VerifyCanRun, task.Execute);
+            var detail = new DeploymentDetail(()=>task.Name, task.VerifyCanRun, task.Execute);
             _currentPart.AddDetail(detail);
             return true;
         }
 
-        readonly ExecutionPlan _plan = new ExecutionPlan();
+        readonly DeploymentPlan _plan = new DeploymentPlan();
 
-        public ExecutionPlan GetPlan()
+        public DeploymentPlan GetPlan()
         {
             return _plan;
         }

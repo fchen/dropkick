@@ -30,7 +30,7 @@ namespace dropkick.Tasks.Iis
             return result;
         }
 
-        public override ExecutionResult Execute()
+        public override DeploymentResult Execute()
         {
             DirectoryEntry vdir =
                 GetOrMakeNode(WebsiteName, VdirPath, "IIsWebVirtualDir");
@@ -43,7 +43,7 @@ namespace dropkick.Tasks.Iis
             vdir.CommitChanges();
             vdir.Close();
 
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
 
 
