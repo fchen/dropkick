@@ -1,5 +1,6 @@
 namespace dropkick.Execution
 {
+    using System;
     using System.Diagnostics;
 
     [DebuggerDisplay("[{Status}:{Message}")]
@@ -11,7 +12,15 @@ namespace dropkick.Execution
             Message = message;
         }
 
+        public DeploymentItem(DeploymentItemStatus status, string message, Exception exception)
+        {
+            Status = status;
+            Message = message;
+            Exception = exception;
+        }
+
         public DeploymentItemStatus Status { get; set; }
         public string Message { get; set; }
+        public Exception Exception { get; set; }
     }
 }

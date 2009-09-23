@@ -2,7 +2,6 @@ namespace dropkick.Execution
 {
     using System;
     
-
     public class DeploymentDetail
     {
         readonly Func<string> _name;
