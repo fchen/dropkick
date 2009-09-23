@@ -13,26 +13,26 @@ namespace dropkick.tests
         {
             bool verifyRanDb = false;
             bool verifyRanWeb = false;
-            var ew = new ExecutionDetail(()=>"", ()=>
+            var ew = new DeploymentDetail(()=>"", ()=>
             {
                 verifyRanWeb = true;
                 return new VerificationResult();
-            }, () => new ExecutionResult());
-            var edb = new ExecutionDetail(() => "", () =>
+            }, () => new DeploymentResult());
+            var edb = new DeploymentDetail(() => "", () =>
             {
                 verifyRanDb = true;
                 return new VerificationResult();
-            }, () => new ExecutionResult());
+            }, () => new DeploymentResult());
 
             
             
-            var p = new ExecutionPlan();
-            var web = new ExecutionPart("WEB");
+            var p = new DeploymentPlan();
+            var web = new DeploymentPart("WEB");
             web.AddDetail(ew);
 
             p.AddPart(web);
 
-            var db = new ExecutionPart("DB");
+            var db = new DeploymentPart("DB");
             db.AddDetail(edb);
             p.AddPart(db);
 
@@ -53,26 +53,26 @@ namespace dropkick.tests
         {
             bool verifyRanDb = false;
             bool verifyRanWeb = false;
-            var ew = new ExecutionDetail(() => "", () =>
+            var ew = new DeploymentDetail(() => "", () =>
             {
                 verifyRanWeb = true;
                 return new VerificationResult();
-            }, () => new ExecutionResult());
-            var edb = new ExecutionDetail(() => "", () =>
+            }, () => new DeploymentResult());
+            var edb = new DeploymentDetail(() => "", () =>
             {
                 verifyRanDb = true;
                 return new VerificationResult();
-            }, () => new ExecutionResult());
+            }, () => new DeploymentResult());
 
 
 
-            var p = new ExecutionPlan();
-            var web = new ExecutionPart("WEB");
+            var p = new DeploymentPlan();
+            var web = new DeploymentPart("WEB");
             web.AddDetail(ew);
 
             p.AddPart(web);
 
-            var db = new ExecutionPart("DB");
+            var db = new DeploymentPart("DB");
             db.AddDetail(edb);
             p.AddPart(db);
 

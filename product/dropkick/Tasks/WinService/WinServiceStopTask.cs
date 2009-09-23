@@ -39,7 +39,7 @@ namespace dropkick.Tasks.WinService
             return result;
         }
 
-        public override ExecutionResult Execute()
+        public override DeploymentResult Execute()
         {
             using (var c = new ServiceController(ServiceName, MachineName))
             {
@@ -48,7 +48,7 @@ namespace dropkick.Tasks.WinService
                 c.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(5));
             }
 
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
     }
 }

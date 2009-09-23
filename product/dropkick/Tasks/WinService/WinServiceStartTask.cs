@@ -39,9 +39,9 @@ namespace dropkick.Tasks.WinService
             return result;
         }
 
-        public override ExecutionResult Execute()
+        public override DeploymentResult Execute()
         {
-            var result = new ExecutionResult();
+            var result = new DeploymentResult();
 
             using (var c = new ServiceController(ServiceName, MachineName))
             {

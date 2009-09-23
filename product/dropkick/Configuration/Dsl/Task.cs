@@ -9,6 +9,6 @@ namespace dropkick.Configuration.Dsl
     {
         string Name { get; }
         VerificationResult VerifyCanRun();
-        ExecutionResult Execute();
+        DeploymentResult Execute();
     }
 }

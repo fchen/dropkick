@@ -17,7 +17,7 @@ namespace dropkick.tests
             bool executeRan = false;
             bool traceRan = false;
 
-            var detail = new ExecutionDetail(() =>
+            var detail = new DeploymentDetail(() =>
             {
                 traceRan = true;
                 return "trace";
@@ -28,14 +28,14 @@ namespace dropkick.tests
             }, () =>
             {
                 executeRan = true;
-                return new ExecutionResult();
+                return new DeploymentResult();
             });
 
 
-            var web = new ExecutionPart("WEB");
+            var web = new DeploymentPart("WEB");
             web.AddDetail(detail);
 
-            var plan = new ExecutionPlan();
+            var plan = new DeploymentPlan();
             plan.AddPart(web);
 
 
@@ -59,7 +59,7 @@ namespace dropkick.tests
             bool executeRan = false;
             bool traceRan = false;
 
-            var detail = new ExecutionDetail(() =>
+            var detail = new DeploymentDetail(() =>
             {
                 traceRan = true;
                 return "trace";
@@ -70,14 +70,14 @@ namespace dropkick.tests
             }, () =>
             {
                 executeRan = true;
-                return new ExecutionResult();
+                return new DeploymentResult();
             });
 
 
-            var web = new ExecutionPart("WEB");
+            var web = new DeploymentPart("WEB");
             web.AddDetail(detail);
 
-            var plan = new ExecutionPlan();
+            var plan = new DeploymentPlan();
             plan.AddPart(web);
 
 
@@ -101,7 +101,7 @@ namespace dropkick.tests
             bool executeRan = false;
             bool traceRan = false;
 
-            var detail = new ExecutionDetail(() =>
+            var detail = new DeploymentDetail(() =>
             {
                 traceRan = true;
                 return "trace";
@@ -112,14 +112,14 @@ namespace dropkick.tests
             }, () =>
             {
                 executeRan = true;
-                return new ExecutionResult();
+                return new DeploymentResult();
             });
 
 
-            var web = new ExecutionPart("WEB");
+            var web = new DeploymentPart("WEB");
             web.AddDetail(detail);
 
-            var plan = new ExecutionPlan();
+            var plan = new DeploymentPlan();
             plan.AddPart(web);
 
 

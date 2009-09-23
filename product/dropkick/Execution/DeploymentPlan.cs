@@ -5,12 +5,12 @@ namespace dropkick.Execution
     using Engine;
     using Verification;
 
-    public class ExecutionPlan
+    public class DeploymentPlan
     {
-        readonly IDictionary<ExecutionOptions, Action<Func<ExecutionPart, bool>>> _actions = new Dictionary<ExecutionOptions, Action<Func<ExecutionPart, bool>>>();
-        readonly IList<ExecutionPart> _parts = new List<ExecutionPart>();
+        readonly IDictionary<ExecutionOptions, Action<Func<DeploymentPart, bool>>> _actions = new Dictionary<ExecutionOptions, Action<Func<DeploymentPart, bool>>>();
+        readonly IList<DeploymentPart> _parts = new List<DeploymentPart>();
 
-        public ExecutionPlan()
+        public DeploymentPlan()
         {
             _actions.Add(ExecutionOptions.Execute, Ex);
             _actions.Add(ExecutionOptions.Verify, Verify);
@@ -19,7 +19,7 @@ namespace dropkick.Execution
 
         public string Name { get; set; }
 
-        public void AddPart(ExecutionPart part)
+        public void AddPart(DeploymentPart part)
         {
             _parts.Add(part);
         }
@@ -31,9 +31,9 @@ namespace dropkick.Execution
             _actions[arguments.Option](criteria);
         }
 
-        static Func<ExecutionPart, bool> BuildCriteria(ExecutionArguments args)
+        static Func<DeploymentPart, bool> BuildCriteria(ExecutionArguments args)
         {
-            Func<ExecutionPart, bool> criteria = p => true;
+            Func<DeploymentPart, bool> criteria = p => true;
 
             if (!args.Part.Equals("ALL"))
                 criteria = p => p.Name.Equals(args.Part);
@@ -41,7 +41,7 @@ namespace dropkick.Execution
             return criteria;
         }
 
-        void Verify(Func<ExecutionPart, bool> partCriteria)
+        void Verify(Func<DeploymentPart, bool> partCriteria)
         {
             Walk(partCriteria,
                  plan => Console.WriteLine(plan.Name),
@@ -57,7 +57,7 @@ namespace dropkick.Execution
                  });
         }
 
-        void Ex(Func<ExecutionPart, bool> partCriteria)
+        void Ex(Func<DeploymentPart, bool> partCriteria)
         {
             Walk(partCriteria,
                  plan => Console.WriteLine(plan.Name),
@@ -70,7 +70,7 @@ namespace dropkick.Execution
                  });
         }
 
-        void Trace(Func<ExecutionPart, bool> partCriteria)
+        void Trace(Func<DeploymentPart, bool> partCriteria)
         {
             Walk(partCriteria,
                  plan => Console.WriteLine(plan.Name),
@@ -78,7 +78,7 @@ namespace dropkick.Execution
                  detail => Console.WriteLine("    {0}", detail.Name));
         }
 
-        void Walk(Func<ExecutionPart, bool> partCriteria, Action<ExecutionPlan> planAction, Action<ExecutionPart> partAction, Action<ExecutionDetail> detailAction)
+        void Walk(Func<DeploymentPart, bool> partCriteria, Action<DeploymentPlan> planAction, Action<DeploymentPart> partAction, Action<DeploymentDetail> detailAction)
         {
             planAction(this);
             foreach (var part in _parts)

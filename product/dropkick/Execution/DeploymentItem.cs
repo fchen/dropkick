@@ -1,11 +1,11 @@
 namespace dropkick.Execution
 {
-    public class ExecutionItem
+    public class DeploymentItem
     {
-        public ExecutionStatus Status { get; set; }
+        public DeploymentItemStatus Status { get; set; }
         public string Message { get; set; }
 
-        public ExecutionItem(ExecutionStatus status, string message)
+        public DeploymentItem(DeploymentItemStatus status, string message)
         {
             Status = status;
             Message = message;

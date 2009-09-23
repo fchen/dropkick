@@ -53,12 +53,12 @@ namespace dropkick.Tasks.MsSql
             return result;
         }
 
-        public override ExecutionResult Execute()
+        public override DeploymentResult Execute()
         {
             string s = File.ReadAllText(ScriptToRun);
             ExecuteSqlWithNoReturn(s);
 
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
 
         private void ExecuteSqlWithNoReturn(string sql)

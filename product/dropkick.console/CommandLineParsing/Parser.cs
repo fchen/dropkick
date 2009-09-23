@@ -4,6 +4,6 @@ namespace dropkick.console.CommandLineParsing
 
     public interface Parser
     {
-        ExecutionPlan Parse(string[] args);
+        DeploymentPlan Parse(string[] args);
     }
 }

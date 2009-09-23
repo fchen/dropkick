@@ -61,7 +61,7 @@ namespace dropkick.Tasks.MsSql
             return result;
         }
 
-        public override ExecutionResult Execute()
+        public override DeploymentResult Execute()
         {
             using (IDbConnection conn = GetConnection())
             {
@@ -78,7 +78,7 @@ namespace dropkick.Tasks.MsSql
                 }
             }
 
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
 
         private void PrintDataReaderToConsole(IDataReader dr)

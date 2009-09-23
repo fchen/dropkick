@@ -33,7 +33,7 @@ namespace dropkick.Tasks.Iis
         }
 
         public abstract VerificationResult VerifyCanRun();
-        public abstract ExecutionResult Execute();
+        public abstract DeploymentResult Execute();
 
         #endregion
 

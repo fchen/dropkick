@@ -1,6 +1,6 @@
 namespace dropkick.Execution
 {
-    public enum ExecutionStatus
+    public enum DeploymentItemStatus
     {
         Good,
         Alert,

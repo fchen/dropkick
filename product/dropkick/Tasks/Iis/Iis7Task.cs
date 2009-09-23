@@ -30,10 +30,10 @@ namespace dropkick.Tasks.Iis
             return result;
         }
 
-        public override ExecutionResult Execute()
+        public override DeploymentResult Execute()
         {
             //ignore
-            return new ExecutionResult();
+            return new DeploymentResult();
         }
 
 

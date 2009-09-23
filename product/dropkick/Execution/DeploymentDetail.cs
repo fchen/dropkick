@@ -3,13 +3,13 @@ namespace dropkick.Execution
     using System;
     using Verification;
 
-    public class ExecutionDetail
+    public class DeploymentDetail
     {
         readonly Func<string> _name;
         readonly Func<VerificationResult> _verify;
-        readonly Func<ExecutionResult> _execute;
+        readonly Func<DeploymentResult> _execute;
 
-        public ExecutionDetail(Func<string> name, Func<VerificationResult> verify, Func<ExecutionResult> execute)
+        public DeploymentDetail(Func<string> name, Func<VerificationResult> verify, Func<DeploymentResult> execute)
         {
             _name = name;
             _verify = verify;
@@ -26,7 +26,7 @@ namespace dropkick.Execution
             return _verify();
         }
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
             return _execute();
         }

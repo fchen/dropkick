@@ -48,9 +48,9 @@ namespace dropkick.Tasks.Dsn
             return result;
         }
 
-        public ExecutionResult Execute()
+        public DeploymentResult Execute()
         {
-            var result = new ExecutionResult();
+            var result = new DeploymentResult();
 
             try
             {
