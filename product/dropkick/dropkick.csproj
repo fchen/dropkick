@@ -124,11 +124,11 @@
     <Compile Include="Tasks\WinService\WinServiceStartTask.cs" />
     <Compile Include="Tasks\WinService\WinServiceStopTask.cs" />
     <Compile Include="Configuration\Dsl\WinService\WinServiceTaskBuilder.cs" />
-    <Compile Include="Engine\ArgumentParsing.cs" />
+    <Compile Include="Engine\CommandLineParsing\ArgumentParsing.cs" />
     <Compile Include="Engine\DeploymentFinders\AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass.cs" />
     <Compile Include="Engine\ExecutionArguments.cs" />
     <Compile Include="Engine\DropkickCommands.cs" />
-    <Compile Include="Engine\DropkickDeploymentInspector.cs" />
+    <Compile Include="Configuration\Dsl\DropkickDeploymentInspector.cs" />
     <Compile Include="DeploymentModel\DeploymentDetail.cs" />
     <Compile Include="DeploymentModel\DeploymentPart.cs" />
     <Compile Include="DeploymentModel\DeploymentPlan.cs" />
