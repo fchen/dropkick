@@ -5,9 +5,9 @@ namespace dropkick.Engine.CommandLineParsing
 
     public static class MonadicCommandLineParser
     {
-        public static CommandLineArguments Parse(string commandline)
+        public static DeploymentArguments Parse(string commandline)
         {
-            return new CommandLineArguments();
+            return new DeploymentArguments();
         }
 
         static IEnumerable<ICommandLineElement> P(string commandLine)

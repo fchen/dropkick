@@ -23,14 +23,14 @@ namespace dropkick.Execution
             _parts.Add(part);
         }
 
-        public void Execute(ExecutionArguments arguments)
+        public void Execute(DeploymentArguments arguments)
         {
             var criteria = BuildCriteria(arguments);
 
             _actions[arguments.Command](criteria);
         }
 
-        static Func<DeploymentPart, bool> BuildCriteria(ExecutionArguments args)
+        static Func<DeploymentPart, bool> BuildCriteria(DeploymentArguments args)
         {
             Func<DeploymentPart, bool> criteria = p => true;
 

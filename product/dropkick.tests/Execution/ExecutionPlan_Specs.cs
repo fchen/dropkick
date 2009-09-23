@@ -11,7 +11,7 @@ namespace dropkick.tests.Execution
         public void Empty_Plan()
         {
             var ep = new DeploymentPlan();
-            var args = new ExecutionArguments();
+            var args = new DeploymentArguments();
             ep.Execute(args);
         }
 
@@ -19,7 +19,7 @@ namespace dropkick.tests.Execution
         public void One_Action()
         {
             var ep = new DeploymentPlan();
-            var args = new ExecutionArguments();
+            var args = new DeploymentArguments();
             ep.AddPart(new DeploymentPart("name"));
             ep.Execute(args);
         }

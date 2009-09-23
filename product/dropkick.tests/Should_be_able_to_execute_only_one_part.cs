@@ -36,7 +36,7 @@ namespace dropkick.tests
             db.AddDetail(edb);
             p.AddPart(db);
 
-            var args = new ExecutionArguments
+            var args = new DeploymentArguments
                        {
                            Part = "WEB",
                            Command = DropkickCommands.Verify
@@ -76,7 +76,7 @@ namespace dropkick.tests
             db.AddDetail(edb);
             p.AddPart(db);
 
-            var args = new ExecutionArguments
+            var args = new DeploymentArguments
             {
                 Part = "DB",
                 Command = DropkickCommands.Verify

@@ -12,11 +12,11 @@ namespace dropkick.Engine
         static readonly Regex inspector = new Regex(@"(-|/)(?<value>v|x)");
         static readonly Regex partRegex = new Regex(@"(-|/)p:(?<value>\w+)");
         
-        static readonly Action<string, ExecutionArguments> ParseItAllOut;
+        static readonly Action<string, DeploymentArguments> ParseItAllOut;
 
         static ArgumentParsing()
         {
-            Action<string, ExecutionArguments, Action<string, ExecutionArguments>, Regex> curry = (s, ea, a, r) =>
+            Action<string, DeploymentArguments, Action<string, DeploymentArguments>, Regex> curry = (s, ea, a, r) =>
                 {
                     Match m = r.Match(s);
                     if (m.Success)
@@ -24,31 +24,31 @@ namespace dropkick.Engine
                 };
 
 
-            Action<string, ExecutionArguments, Action<string, ExecutionArguments>> setupDeployRegex = (s, ea, a) => curry(s, ea, a, deployRegex);
-            Action<string, ExecutionArguments, Action<string, ExecutionArguments>> setupEnvironmentRegex = (s, ea, a) => curry(s, ea, a, envRegex);
-            Action<string, ExecutionArguments, Action<string, ExecutionArguments>> setupPartRegex = (s, ea, a) => curry(s, ea, a, partRegex);
-            Action<string, ExecutionArguments, Action<string, ExecutionArguments>> setupInspectorRegex = (input, ea, a) => curry(input, ea, a, inspector);
+            Action<string, DeploymentArguments, Action<string, DeploymentArguments>> setupDeployRegex = (s, ea, a) => curry(s, ea, a, deployRegex);
+            Action<string, DeploymentArguments, Action<string, DeploymentArguments>> setupEnvironmentRegex = (s, ea, a) => curry(s, ea, a, envRegex);
+            Action<string, DeploymentArguments, Action<string, DeploymentArguments>> setupPartRegex = (s, ea, a) => curry(s, ea, a, partRegex);
+            Action<string, DeploymentArguments, Action<string, DeploymentArguments>> setupInspectorRegex = (input, ea, a) => curry(input, ea, a, inspector);
 
-            Action<string, ExecutionArguments> setDeploymentAssembly = (s, e) => { e.Deployment = s; };
-            Action<string, ExecutionArguments> setEnvironment = (s, e) => { e.Environment = s; };
-            Action<string, ExecutionArguments> setPart = (s, e) => { e.Part = s; };
+            Action<string, DeploymentArguments> setDeploymentAssembly = (s, e) => { e.Deployment = s; };
+            Action<string, DeploymentArguments> setEnvironment = (s, e) => { e.Environment = s; };
+            Action<string, DeploymentArguments> setPart = (s, e) => { e.Part = s; };
 
-            Action<string, ExecutionArguments> parseDeploymentAssembly = (s, ea) => setupDeployRegex(s, ea, setDeploymentAssembly);
-            Action<string, ExecutionArguments> parseEnvironment = (s, ea) => setupEnvironmentRegex(s, ea, setEnvironment);
-            Action<string, ExecutionArguments> parsePart = (s, ea) => setupPartRegex(s, ea, setPart);
+            Action<string, DeploymentArguments> parseDeploymentAssembly = (s, ea) => setupDeployRegex(s, ea, setDeploymentAssembly);
+            Action<string, DeploymentArguments> parseEnvironment = (s, ea) => setupEnvironmentRegex(s, ea, setEnvironment);
+            Action<string, DeploymentArguments> parsePart = (s, ea) => setupPartRegex(s, ea, setPart);
 
-            Action<string, ExecutionArguments> verify2 = (input, ea) => setupInspectorRegex(input, ea, (s, e) =>
+            Action<string, DeploymentArguments> verify2 = (input, ea) => setupInspectorRegex(input, ea, (s, e) =>
                 {
                     if(s.Equals("v")) 
                         e.Command = DropkickCommands.Verify;
                 });
-            Action<string, ExecutionArguments> execute2 = (input, ea) => setupInspectorRegex(input, ea, (s, e) =>
+            Action<string, DeploymentArguments> execute2 = (input, ea) => setupInspectorRegex(input, ea, (s, e) =>
                 {
                     if(s.Equals("x")) 
                         e.Command = DropkickCommands.Execute;
                 });
 
-            Action<string, ExecutionArguments> parseInspector = (input, ea) =>
+            Action<string, DeploymentArguments> parseInspector = (input, ea) =>
                 {
                     verify2(input, ea);
                     execute2(input, ea);
@@ -64,9 +64,9 @@ namespace dropkick.Engine
                 };
         }
 
-        public static ExecutionArguments Parse(string[] args)
+        public static DeploymentArguments Parse(string[] args)
         {
-            var result = new ExecutionArguments();
+            var result = new DeploymentArguments();
 
             foreach (string s in args)
                 ParseItAllOut(s, result);

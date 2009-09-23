@@ -11,12 +11,12 @@ namespace dropkick.tests.Dsl
     public class Verification_Demos
     {
         DropkickDeploymentInspector _interpreter;
-        ExecutionArguments _verifyArguments;
+        DeploymentArguments _verifyArguments;
 
         [SetUp]
         public void Setup()
         {
-            _verifyArguments = new ExecutionArguments()
+            _verifyArguments = new DeploymentArguments()
                                {
                                    Deployment = GetType().Assembly.FullName,
                                    Environment = "TEST",

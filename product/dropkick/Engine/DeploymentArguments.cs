@@ -1,8 +1,8 @@
 namespace dropkick.Engine
 {
-    public class ExecutionArguments
+    public class DeploymentArguments
     {
-        public ExecutionArguments()
+        public DeploymentArguments()
         {
             Command = DropkickCommands.Trace;
             Part = "ALL";
