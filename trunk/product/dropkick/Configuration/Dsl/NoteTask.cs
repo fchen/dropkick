@@ -2,7 +2,7 @@ using dropkick.Execution;
 
 namespace dropkick.Configuration.Dsl
 {
-    using Verification;
+    
 
     public class NoteTask :
         Task
@@ -24,9 +24,9 @@ namespace dropkick.Configuration.Dsl
             get { return "NOTE: {0}".FormatWith(_message); }
         }
 
-        public VerificationResult VerifyCanRun()
+        public DeploymentResult VerifyCanRun()
         {
-            return new VerificationResult();
+            return new DeploymentResult();
         }
 
         public DeploymentResult Execute()

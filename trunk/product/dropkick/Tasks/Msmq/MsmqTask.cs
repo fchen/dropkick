@@ -6,7 +6,7 @@ namespace dropkick.Tasks.Msmq
     using Configuration.Dsl;
     using Dsl.Msmq;
     using Execution;
-    using Verification;
+    
 
     public class MsmqTask :
         Task
@@ -39,9 +39,9 @@ namespace dropkick.Tasks.Msmq
             get { return string.Format("MsmqTask for server '{0}' and private queue named '{1}'", _serverName, _queueName); }
         }
 
-        public VerificationResult VerifyCanRun()
+        public DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             VerifyInAdministratorRole(result);
 
@@ -84,7 +84,7 @@ namespace dropkick.Tasks.Msmq
 
         #endregion
 
-        private void VerifyInAdministratorRole(VerificationResult result)
+        private void VerifyInAdministratorRole(DeploymentResult result)
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrator"))
             {

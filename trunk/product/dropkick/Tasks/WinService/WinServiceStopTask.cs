@@ -3,7 +3,7 @@ namespace dropkick.Tasks.WinService
     using System;
     using System.ServiceProcess;
     using Execution;
-    using Verification;
+    
 
     public class WinServiceStopTask :
         BaseServiceTask
@@ -17,9 +17,9 @@ namespace dropkick.Tasks.WinService
             get { return string.Format("Stopping service '{0}'", ServiceName); }
         }
 
-        public override VerificationResult VerifyCanRun()
+        public override DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             VerifyInAdministratorRole(result);
 

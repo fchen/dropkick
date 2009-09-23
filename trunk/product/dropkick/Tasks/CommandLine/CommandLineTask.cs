@@ -7,7 +7,7 @@ namespace dropkick.Tasks.CommandLine
     using System.IO;
     using Configuration.Dsl;
     using Magnum.DateTimeExtensions;
-    using Verification;
+    
 
     public class CommandLineTask :
         Task
@@ -32,9 +32,9 @@ namespace dropkick.Tasks.CommandLine
             }
         }
 
-        public VerificationResult VerifyCanRun()
+        public DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
             
             if(!Directory.Exists(ExecutableIsLocatedAt))
                 result.AddAlert(string.Format("Can't find the executable '{0}'", Path.Combine(ExecutableIsLocatedAt, Command)));

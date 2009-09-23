@@ -5,7 +5,7 @@ namespace dropkick.Tasks.MsSql
     using System.Text;
     using Configuration.Dsl;
     using Execution;
-    using Verification;
+    
 
     public class OutputSqlTask :
         BaseSqlTask
@@ -26,9 +26,9 @@ namespace dropkick.Tasks.MsSql
             inspector.Inspect(this);
         }
 
-        public override VerificationResult VerifyCanRun()
+        public override DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             //can I connect to the server?
 

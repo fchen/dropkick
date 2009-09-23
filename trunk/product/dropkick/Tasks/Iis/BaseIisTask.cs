@@ -4,7 +4,7 @@ namespace dropkick.Tasks.Iis
     using System.IO;
     using Configuration.Dsl;
     using Execution;
-    using Verification;
+    
 
     public abstract class BaseIisTask :
         Task
@@ -32,12 +32,12 @@ namespace dropkick.Tasks.Iis
             }
         }
 
-        public abstract VerificationResult VerifyCanRun();
+        public abstract DeploymentResult VerifyCanRun();
         public abstract DeploymentResult Execute();
 
         #endregion
 
-        public void CheckServerName(VerificationResult result)
+        public void CheckServerName(DeploymentResult result)
         {
             if (!Environment.MachineName.Equals(ServerName))
             {
@@ -46,7 +46,7 @@ namespace dropkick.Tasks.Iis
             }
         }
 
-        public void CheckForSiteAndVDirExistance(Func<bool> website, Func<bool> vdir, VerificationResult result)
+        public void CheckForSiteAndVDirExistance(Func<bool> website, Func<bool> vdir, DeploymentResult result)
         {
             if (website())
             {

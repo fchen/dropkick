@@ -3,7 +3,7 @@ namespace dropkick.tests
     using dropkick.Execution;
     using Engine;
     using NUnit.Framework;
-    using Verification;
+    
 
     [TestFixture]
     public class Should_be_able_to_execute_only_one_part
@@ -16,12 +16,12 @@ namespace dropkick.tests
             var ew = new DeploymentDetail(()=>"", ()=>
             {
                 verifyRanWeb = true;
-                return new VerificationResult();
+                return new DeploymentResult();
             }, () => new DeploymentResult());
             var edb = new DeploymentDetail(() => "", () =>
             {
                 verifyRanDb = true;
-                return new VerificationResult();
+                return new DeploymentResult();
             }, () => new DeploymentResult());
 
             
@@ -56,12 +56,12 @@ namespace dropkick.tests
             var ew = new DeploymentDetail(() => "", () =>
             {
                 verifyRanWeb = true;
-                return new VerificationResult();
+                return new DeploymentResult();
             }, () => new DeploymentResult());
             var edb = new DeploymentDetail(() => "", () =>
             {
                 verifyRanDb = true;
-                return new VerificationResult();
+                return new DeploymentResult();
             }, () => new DeploymentResult());
 
 

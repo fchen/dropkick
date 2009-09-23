@@ -4,7 +4,7 @@ namespace dropkick.tests
     using Engine;
     using Execution;
     using NUnit.Framework;
-    using Verification;
+    
 
     [TestFixture]
     public class Should_be_able_run_in_different_modes
@@ -24,7 +24,7 @@ namespace dropkick.tests
             }, () =>
             {
                 verifyRan = true;
-                return new VerificationResult();
+                return new DeploymentResult();
             }, () =>
             {
                 executeRan = true;
@@ -66,7 +66,7 @@ namespace dropkick.tests
             }, () =>
             {
                 verifyRan = true;
-                return new VerificationResult();
+                return new DeploymentResult();
             }, () =>
             {
                 executeRan = true;
@@ -108,7 +108,7 @@ namespace dropkick.tests
             }, () =>
             {
                 verifyRan = true;
-                return new VerificationResult();
+                return new DeploymentResult();
             }, () =>
             {
                 executeRan = true;

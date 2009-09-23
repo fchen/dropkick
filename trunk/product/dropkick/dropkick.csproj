@@ -139,10 +139,10 @@
     <Compile Include="Engine\DeploymentFinder.cs" />
     <Compile Include="Engine\Runner.cs" />
     <Compile Include="Configuration\Dsl\Task.cs" />
-    <Compile Include="Verification\VerificationItem.cs" />
-    <Compile Include="Verification\VerificationResult.cs" />
-    <Compile Include="Verification\VerificationStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Verification\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

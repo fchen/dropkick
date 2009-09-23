@@ -3,7 +3,7 @@ namespace dropkick.Tasks.Iis
     using System;
     using System.DirectoryServices;
     using Execution;
-    using Verification;
+    
 
     public class Iis6Task :
         BaseIisTask
@@ -17,9 +17,9 @@ namespace dropkick.Tasks.Iis
             get { return 6; }
         }
 
-        public override VerificationResult VerifyCanRun()
+        public override DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             CheckVersionOfWindowsAndIis(result);
 
@@ -108,7 +108,7 @@ namespace dropkick.Tasks.Iis
             ShouldCreate = true;
         }
 
-        private void CheckVersionOfWindowsAndIis(VerificationResult result)
+        private void CheckVersionOfWindowsAndIis(DeploymentResult result)
         {
             int shouldBe5 = Environment.OSVersion.Version.Major;
             if (shouldBe5 != 5)
