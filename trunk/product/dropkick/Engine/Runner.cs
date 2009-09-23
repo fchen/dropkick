@@ -1,6 +1,7 @@
 namespace dropkick.Engine
 {
     using CommandLineParsing;
+    using Configuration.Dsl;
     using DeploymentFinders;
 
     public static class Runner

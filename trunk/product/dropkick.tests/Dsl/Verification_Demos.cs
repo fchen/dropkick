@@ -1,6 +1,7 @@
 namespace dropkick.tests.Dsl
 {
     using System;
+    using Configuration.Dsl;
     using Engine;
     using Engine.DeploymentFinders;
     using NUnit.Framework;
