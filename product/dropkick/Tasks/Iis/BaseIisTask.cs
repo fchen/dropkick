@@ -3,8 +3,8 @@ namespace dropkick.Tasks.Iis
     using System;
     using System.IO;
     using Configuration.Dsl;
-    using Execution;
-    
+    using DeploymentModel;
+
 
     public abstract class BaseIisTask :
         Task

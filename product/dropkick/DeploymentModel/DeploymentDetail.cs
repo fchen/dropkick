@@ -1,7 +1,7 @@
-namespace dropkick.Execution
+namespace dropkick.DeploymentModel
 {
     using System;
-    
+
     public class DeploymentDetail
     {
         readonly Func<string> _name;

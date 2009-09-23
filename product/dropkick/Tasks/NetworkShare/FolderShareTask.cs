@@ -4,8 +4,8 @@ namespace dropkick.Tasks.NetworkShare
     using System.IO;
     using System.Management;
     using Configuration.Dsl;
-    using Execution;
-    
+    using DeploymentModel;
+
 
     public class FolderShareTask :
         Task

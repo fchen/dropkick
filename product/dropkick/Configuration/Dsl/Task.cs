@@ -1,8 +1,7 @@
-using dropkick.Execution;
-
 namespace dropkick.Configuration.Dsl
 {
-    
+    using DeploymentModel;
+
 
     public interface Task :
         DeploymentInspectorSite

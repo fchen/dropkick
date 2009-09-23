@@ -3,8 +3,8 @@ namespace dropkick.Tasks.Files
     using System;
     using System.IO;
     using Configuration.Dsl;
-    using Execution;
-    
+    using DeploymentModel;
+
 
     public class CopyTask :
         Task

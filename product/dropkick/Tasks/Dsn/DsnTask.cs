@@ -5,7 +5,7 @@ namespace dropkick.Tasks.Dsn
     using System.Threading;
     using Configuration.Dsl;
     using Configuration.Dsl.Dsn;
-    using Execution;
+    using DeploymentModel;
 
     public class DsnTask :
         Task

@@ -1,7 +1,7 @@
 namespace dropkick.Engine
 {
     using Configuration.Dsl;
-    using Execution;
+    using DeploymentModel;
 
     public static class DeploymentPlanBuilder
     {
