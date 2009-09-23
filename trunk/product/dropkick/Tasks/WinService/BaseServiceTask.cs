@@ -2,8 +2,8 @@ namespace dropkick.Tasks.WinService
 {
     using System.Threading;
     using Configuration.Dsl;
-    using Execution;
-    
+    using DeploymentModel;
+
 
     public abstract class BaseServiceTask :
         Task

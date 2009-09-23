@@ -1,4 +1,4 @@
-namespace dropkick.Execution
+namespace dropkick.DeploymentModel
 {
     using System;
     using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace dropkick.Execution
 
         public void AddAlert(string message)
         {
-           AddItem(DeploymentItemStatus.Alert, message);
+            AddItem(DeploymentItemStatus.Alert, message);
         }
 
         public void AddAlert(string messageFormat, params string[] args)

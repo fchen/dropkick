@@ -2,8 +2,8 @@ namespace dropkick.Tasks.Iis
 {
     using System;
     using System.DirectoryServices;
-    using Execution;
-    
+    using DeploymentModel;
+
 
     public class Iis6Task :
         BaseIisTask

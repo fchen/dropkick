@@ -1,8 +1,8 @@
 namespace dropkick.Tasks
 {
     using Configuration.Dsl;
-    using Execution;
-    
+    using DeploymentModel;
+
 
     public class NestedTask :
         Task

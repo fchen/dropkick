@@ -1,6 +1,6 @@
 namespace dropkick.Configuration.Dsl
 {
-    using Execution;
+    using DeploymentModel;
     using Magnum.Reflection;
 
     public class DropkickDeploymentInspector :

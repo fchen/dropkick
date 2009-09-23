@@ -1,10 +1,9 @@
-using dropkick.Execution;
-
 namespace dropkick.tests.TestObjects
 {
     using System;
     using Configuration.Dsl;
-    
+    using DeploymentModel;
+
 
     public class TestTask :
         Task

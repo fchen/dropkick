@@ -4,9 +4,9 @@ namespace dropkick.Tasks.Msmq
     using System.Messaging;
     using System.Threading;
     using Configuration.Dsl;
+    using DeploymentModel;
     using Dsl.Msmq;
-    using Execution;
-    
+
 
     public class MsmqTask :
         Task

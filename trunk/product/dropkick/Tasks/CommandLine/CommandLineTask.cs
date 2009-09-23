@@ -1,11 +1,10 @@
-using dropkick.Execution;
-
 namespace dropkick.Tasks.CommandLine
 {
     using System;
     using System.Diagnostics;
     using System.IO;
     using Configuration.Dsl;
+    using DeploymentModel;
     using Magnum.DateTimeExtensions;
     
 

@@ -1,6 +1,6 @@
 namespace dropkick.tests.Execution
 {
-    using dropkick.Execution;
+    using DeploymentModel;
     using Engine;
     using NUnit.Framework;
 

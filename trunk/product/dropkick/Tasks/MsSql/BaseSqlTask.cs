@@ -4,8 +4,8 @@ namespace dropkick.Tasks.MsSql
     using System.Data;
     using System.Data.SqlClient;
     using Configuration.Dsl;
-    using Execution;
-    
+    using DeploymentModel;
+
 
     public abstract class BaseSqlTask :
         Task

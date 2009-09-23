@@ -1,6 +1,6 @@
 namespace dropkick.tests.Extensions.Console
 {
-    using dropkick.Execution;
+    using DeploymentModel;
     using NUnit.Framework;
     using Tasks.CommandLine;
     

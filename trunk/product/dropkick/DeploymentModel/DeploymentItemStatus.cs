@@ -1,4 +1,4 @@
-namespace dropkick.Execution
+namespace dropkick.DeploymentModel
 {
     public enum DeploymentItemStatus
     {
