@@ -40,12 +40,12 @@ namespace dropkick.Engine
             Action<string, ExecutionArguments> verify2 = (input, ea) => setupInspectorRegex(input, ea, (s, e) =>
                 {
                     if(s.Equals("v")) 
-                        e.Option = DropkickCommands.Verify;
+                        e.Command = DropkickCommands.Verify;
                 });
             Action<string, ExecutionArguments> execute2 = (input, ea) => setupInspectorRegex(input, ea, (s, e) =>
                 {
                     if(s.Equals("x")) 
-                        e.Option = DropkickCommands.Execute;
+                        e.Command = DropkickCommands.Execute;
                 });
 
             Action<string, ExecutionArguments> parseInspector = (input, ea) =>

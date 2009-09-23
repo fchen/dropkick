@@ -28,7 +28,7 @@ namespace dropkick.Execution
         {
             var criteria = BuildCriteria(arguments);
 
-            _actions[arguments.Option](criteria);
+            _actions[arguments.Command](criteria);
         }
 
         static Func<DeploymentPart, bool> BuildCriteria(ExecutionArguments args)
