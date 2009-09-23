@@ -2,7 +2,7 @@ namespace dropkick.Tasks
 {
     using Configuration.Dsl;
     using Execution;
-    using Verification;
+    
 
     public class NestedTask :
         Task
@@ -22,9 +22,9 @@ namespace dropkick.Tasks
             get { return "NESTED TASK"; }
         }
 
-        public VerificationResult VerifyCanRun()
+        public DeploymentResult VerifyCanRun()
         {
-            return new VerificationResult();
+            return new DeploymentResult();
         }
 
         public DeploymentResult Execute()

@@ -3,7 +3,7 @@ namespace dropkick.Tasks.Iis
     using System;
     using Execution;
     using Microsoft.Web.Administration;
-    using Verification;
+    
 
     public class Iis7Task :
         BaseIisTask
@@ -17,9 +17,9 @@ namespace dropkick.Tasks.Iis
             get { return 7; }
         }
 
-        public override VerificationResult VerifyCanRun()
+        public override DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             CheckVersionOfWindowsAndIis(result);
 
@@ -37,7 +37,7 @@ namespace dropkick.Tasks.Iis
         }
 
 
-        private void CheckVersionOfWindowsAndIis(VerificationResult result)
+        private void CheckVersionOfWindowsAndIis(DeploymentResult result)
         {
             int shouldBe6 = Environment.OSVersion.Version.Major;
             if (shouldBe6 != 6)

@@ -3,7 +3,7 @@ namespace dropkick.Tasks.WinService
     using System.Threading;
     using Configuration.Dsl;
     using Execution;
-    using Verification;
+    
 
     public abstract class BaseServiceTask :
         Task
@@ -26,12 +26,12 @@ namespace dropkick.Tasks.WinService
 
         public abstract string Name { get; }
 
-        public abstract VerificationResult VerifyCanRun();
+        public abstract DeploymentResult VerifyCanRun();
         public abstract DeploymentResult Execute();
 
         #endregion
 
-        protected void VerifyInAdministratorRole(VerificationResult result)
+        protected void VerifyInAdministratorRole(DeploymentResult result)
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrator"))
             {

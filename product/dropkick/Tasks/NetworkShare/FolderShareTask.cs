@@ -5,7 +5,7 @@ namespace dropkick.Tasks.NetworkShare
     using System.Management;
     using Configuration.Dsl;
     using Execution;
-    using Verification;
+    
 
     public class FolderShareTask :
         Task
@@ -24,10 +24,10 @@ namespace dropkick.Tasks.NetworkShare
             inspector.Inspect(this);
         }
 
-        public VerificationResult VerifyCanRun()
+        public DeploymentResult VerifyCanRun()
         {
             //verify admin
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             if (!Directory.Exists(PointingTo))
                 result.AddAlert("'{0}' doesn't exist", PointingTo);

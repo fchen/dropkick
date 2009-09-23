@@ -4,7 +4,7 @@ namespace dropkick.Tasks.Files
     using System.IO;
     using Configuration.Dsl;
     using Execution;
-    using Verification;
+    
 
     public class CopyTask :
         Task
@@ -59,9 +59,9 @@ namespace dropkick.Tasks.Files
             return result;
         }
 
-        public VerificationResult VerifyCanRun()
+        public DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             //check is valid from path
             //TODO: need to handle wild cards

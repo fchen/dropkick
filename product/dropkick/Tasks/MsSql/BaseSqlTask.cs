@@ -5,7 +5,7 @@ namespace dropkick.Tasks.MsSql
     using System.Data.SqlClient;
     using Configuration.Dsl;
     using Execution;
-    using Verification;
+    
 
     public abstract class BaseSqlTask :
         Task
@@ -23,12 +23,12 @@ namespace dropkick.Tasks.MsSql
 
         public abstract void Inspect(DeploymentInspector inspector);
         public abstract string Name { get; }
-        public abstract VerificationResult VerifyCanRun();
+        public abstract DeploymentResult VerifyCanRun();
         public abstract DeploymentResult Execute();
 
         #endregion
 
-        public void TestConnectivity(VerificationResult result)
+        public void TestConnectivity(DeploymentResult result)
         {
             IDbConnection conn = null;
             try

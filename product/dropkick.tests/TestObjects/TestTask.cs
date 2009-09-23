@@ -4,7 +4,7 @@ namespace dropkick.tests.TestObjects
 {
     using System;
     using Configuration.Dsl;
-    using Verification;
+    
 
     public class TestTask :
         Task
@@ -33,9 +33,9 @@ namespace dropkick.tests.TestObjects
             get { return "test"; }
         }
 
-        public VerificationResult VerifyCanRun()
+        public DeploymentResult VerifyCanRun()
         {
-            return new VerificationResult();
+            return new DeploymentResult();
         }
     }
 }

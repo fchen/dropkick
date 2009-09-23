@@ -3,7 +3,7 @@ namespace dropkick.Execution
     using System;
     using System.Collections.Generic;
     using Engine;
-    using Verification;
+    
 
     public class DeploymentPlan
     {
@@ -49,8 +49,8 @@ namespace dropkick.Execution
                  detail =>
                  {
                      Console.WriteLine("    {0}", detail.Name);
-                     VerificationResult r = detail.Verify();
-                     foreach (VerificationItem item in r.Results)
+                     var r = detail.Verify();
+                     foreach (var item in r.Results)
                      {
                          Console.WriteLine("      [{0}] {1}", item.Status, item.Message);
                      }

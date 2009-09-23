@@ -1,24 +1,20 @@
-using System;
-using System.Runtime.InteropServices;
-using System.Threading;
-using dropkick.Configuration.Dsl;
-using dropkick.Configuration.Dsl.Dsn;
-using dropkick.Execution;
-using dropkick.Verification;
-
 namespace dropkick.Tasks.Dsn
 {
+    using System;
+    using System.Runtime.InteropServices;
+    using System.Threading;
+    using Configuration.Dsl;
+    using Configuration.Dsl.Dsn;
+    using Execution;
+
     public class DsnTask :
         Task
     {
-        [DllImport("ODBCCP32.dll")]
-        private static extern bool SQLConfigDataSource(IntPtr parent, int request, string driver, string attributes);
-
-        private string _dsnName;
-        private DsnAction _action;
-        private DsnDriver _driver;
-        private string _serverName;
-        string _databaseName;
+        readonly DsnAction _action;
+        readonly string _databaseName;
+        readonly DsnDriver _driver;
+        readonly string _dsnName;
+        readonly string _serverName;
 
         public DsnTask(string serverName, string dsnName, DsnAction action, DsnDriver driver, string databaseName)
         {
@@ -28,6 +24,8 @@ namespace dropkick.Tasks.Dsn
             _action = action;
             _driver = driver;
         }
+
+        #region Task Members
 
         public void Inspect(DeploymentInspector inspector)
         {
@@ -39,9 +37,9 @@ namespace dropkick.Tasks.Dsn
             get { return "DSN: {0}".FormatWith(_dsnName); }
         }
 
-        public VerificationResult VerifyCanRun()
+        public DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             VerifyInAdministratorRole(result);
 
@@ -54,19 +52,24 @@ namespace dropkick.Tasks.Dsn
 
             try
             {
-                bool value = SQLConfigDataSource((IntPtr)0, (int)_action, _driver.Value, "SERVER={0}\0DSN={1}\0DESCRIPTION=NewDSN\0DATABASE={2}\0TRUSTED_CONNECTION=YES".FormatWith(_serverName, _dsnName, _databaseName));
+                bool value = SQLConfigDataSource((IntPtr) 0, (int) _action, _driver.Value, "SERVER={0}\0DSN={1}\0DESCRIPTION=NewDSN\0DATABASE={2}\0TRUSTED_CONNECTION=YES".FormatWith(_serverName, _dsnName, _databaseName));
                 result.AddGood("Created DSN");
             }
             catch (Exception ex)
             {
                 result.AddError("Failed to create DSN", ex);
             }
-            
-            
+
+
             return result;
         }
 
-        void VerifyInAdministratorRole(VerificationResult result)
+        #endregion
+
+        [DllImport("ODBCCP32.dll")]
+        static extern bool SQLConfigDataSource(IntPtr parent, int request, string driver, string attributes);
+
+        void VerifyInAdministratorRole(DeploymentResult result)
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrator"))
             {

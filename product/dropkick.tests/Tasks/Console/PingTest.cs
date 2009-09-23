@@ -1,8 +1,9 @@
 namespace dropkick.tests.Extensions.Console
 {
+    using dropkick.Execution;
     using NUnit.Framework;
     using Tasks.CommandLine;
-    using Verification;
+    
 
     [TestFixture]
     public class PingTest
@@ -22,7 +23,7 @@ namespace dropkick.tests.Extensions.Console
             var t = new CommandLineTask("ping");
             t.Args = "localhost";
             var r = t.VerifyCanRun();
-            var vi = new VerificationItem(VerificationStatus.Good, "");
+            var vi = new DeploymentItem(DeploymentItemStatus.Good, "");
 
             Assert.AreEqual(1, r.Results.Count);
             

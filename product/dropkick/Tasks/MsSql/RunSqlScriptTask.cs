@@ -4,7 +4,7 @@ namespace dropkick.Tasks.MsSql
     using System.IO;
     using Configuration.Dsl;
     using Execution;
-    using Verification;
+    
 
     public class RunSqlScriptTask :
         BaseSqlTask
@@ -30,9 +30,9 @@ namespace dropkick.Tasks.MsSql
             inspector.Inspect(this);
         }
 
-        public override VerificationResult VerifyCanRun()
+        public override DeploymentResult VerifyCanRun()
         {
-            var result = new VerificationResult();
+            var result = new DeploymentResult();
 
             base.TestConnectivity(result);
 
