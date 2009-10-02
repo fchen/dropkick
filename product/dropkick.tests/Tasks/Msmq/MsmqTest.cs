@@ -5,6 +5,7 @@ namespace dropkick.tests.Extensions.Msmq
     using Tasks.Msmq;
 
     [TestFixture]
+    [Category("Integration")]
     public class MsmqTest
     {
         [Test]

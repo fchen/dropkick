@@ -6,6 +6,7 @@ namespace dropkick.tests.Extensions.NetworkShare
     using Tasks.NetworkShare;
 
     [TestFixture]
+    [Category("Integration")]
     public class CreateNetworkShare
     {
         [Test]

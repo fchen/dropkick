@@ -11,27 +11,17 @@ if '%1' == '?' goto usage
 if '%1' == '/help' goto usage
 
 SET DIR=%~d0%~p0%
+SET NANT="%DIR%lib\tools\Nant\nant.exe"
+SET build.config.settings="%DIR%settings\UppercuT.config"
 
-SET build.config.settings="%DIR%Settings\UppercuT.config"
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\_compile.build -D:build.config.settings=%build.config.settings%
-
-if %ERRORLEVEL% NEQ 0 goto errors
-
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\analyzers\_test.build %1 -D:build.config.settings=%build.config.settings%
+%NANT% /f:.\build\compile.step -D:build.config.settings=%build.config.settings%
 
 if %ERRORLEVEL% NEQ 0 goto errors
 
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts\analyzers\_test.build open_results -D:build.config.settings=%build.config.settings%
+%NANT% /f:.\build\analyzers\test.step %1 -D:build.config.settings=%build.config.settings%
+%NANT% /f:.\build\analyzers\test.step open_results -D:build.config.settings=%build.config.settings%
+
 if %ERRORLEVEL% NEQ 0 goto errors
-
-goto bdddoc
-
-:bdddoc
-
-SET APP_BDDDOC="..\lib\testing\bdddoc\bdddoc.console.exe"
-
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts.Custom\_bdddoc.build -D:app.bdddoc=%APP_BDDDOC% -D:build.config.settings=%build.config.settings%
-"%DIR%lib\tools\Nant\nant.exe" /f:.\BuildScripts.Custom\_bdddoc.build open_results -D:build.config.settings=%build.config.settings%
 
 goto finish
 
