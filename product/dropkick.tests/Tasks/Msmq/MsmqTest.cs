@@ -1,8 +1,8 @@
-namespace dropkick.tests.Extensions.Msmq
+namespace dropkick.tests.Tasks.Msmq
 {
     using System;
+    using dropkick.Tasks.Msmq;
     using NUnit.Framework;
-    using Tasks.Msmq;
 
     [TestFixture]
     [Category("Integration")]
@@ -25,11 +25,9 @@ namespace dropkick.tests.Extensions.Msmq
             var t = new MsmqTask();
             t.QueueName = "dk_test";
             t.ServerName = Environment.MachineName;
-            
+
 
             var r = t.VerifyCanRun();
-            
         }
-        
     }
 }

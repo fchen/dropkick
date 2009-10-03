@@ -1,9 +1,8 @@
-namespace dropkick.tests.Extensions.Console
+namespace dropkick.tests.Tasks.Console
 {
     using DeploymentModel;
+    using dropkick.Tasks.CommandLine;
     using NUnit.Framework;
-    using Tasks.CommandLine;
-    
 
     [TestFixture]
     public class PingTest
