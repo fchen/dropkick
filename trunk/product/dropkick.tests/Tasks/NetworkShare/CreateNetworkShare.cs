@@ -1,9 +1,9 @@
-namespace dropkick.tests.Extensions.NetworkShare
+namespace dropkick.tests.Tasks.NetworkShare
 {
     using System;
     using System.IO;
+    using dropkick.Tasks.NetworkShare;
     using NUnit.Framework;
-    using Tasks.NetworkShare;
 
     [TestFixture]
     [Category("Integration")]

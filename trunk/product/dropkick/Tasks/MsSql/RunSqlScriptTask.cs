@@ -56,6 +56,8 @@ namespace dropkick.Tasks.MsSql
         public override DeploymentResult Execute()
         {
             string s = File.ReadAllText(ScriptToRun);
+
+            //TODO: need to use the sql dmo stuff
             ExecuteSqlWithNoReturn(s);
 
             return new DeploymentResult();
@@ -65,6 +67,7 @@ namespace dropkick.Tasks.MsSql
         {
             using (IDbConnection conn = GetConnection())
             {
+                conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = sql;

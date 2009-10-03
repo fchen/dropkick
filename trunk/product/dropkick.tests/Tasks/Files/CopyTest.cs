@@ -1,8 +1,8 @@
-namespace dropkick.tests.Extensions.Files
+namespace dropkick.tests.Tasks.Files
 {
     using System.IO;
+    using dropkick.Tasks.Files;
     using NUnit.Framework;
-    using Tasks.Files;
 
     [TestFixture]
     public class CopyTest
@@ -28,9 +28,9 @@ namespace dropkick.tests.Extensions.Files
 
         #endregion
 
-        private string _path = ".\\test";
-        private string _source = ".\\test\\source";
-        private string _dest = ".\\test\\dest";
+        string _path = ".\\test";
+        string _source = ".\\test\\source";
+        string _dest = ".\\test\\dest";
 
         [Test]
         public void Copy()
