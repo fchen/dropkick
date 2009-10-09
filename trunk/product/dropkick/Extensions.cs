@@ -21,7 +21,7 @@ namespace dropkick
             return elements
                 .Where(x => typeof(IDefinitionElement).IsAssignableFrom(x.GetType()))
                 .Select(x => x as IDefinitionElement)
-                .Where(x => x.Key == key)
+                .Where(x => x.Key == key || x.Key[0] == key[0])
                 .Select(x => x.Value)
                 .Single();
         }
@@ -31,7 +31,7 @@ namespace dropkick
             return elements
                 .Where(x => typeof(IDefinitionElement).IsAssignableFrom(x.GetType()))
                 .Select(x => x as IDefinitionElement)
-                .Where(x => x.Key == key)
+                .Where(x => x.Key == key || x.Key[0] == key[0])
                 .Select(x => x.Value)
                 .DefaultIfEmpty(defaultValue)
                 .Single();
