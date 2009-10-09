@@ -27,8 +27,7 @@ namespace dropkick.Engine.CommandLineParsing
             arguments.Command = command.ToEnum<DropkickCommands>();
 
 
-            var deployment = commandLineElements.GetDefinition("deployment", "ERROR");
-            if(deployment == "ERROR") throw new ArgumentException("the deployment parameter must be supplied");
+            var deployment = commandLineElements.GetDefinition("deployment", "SEARCH");
             arguments.Deployment = deployment;
 
 

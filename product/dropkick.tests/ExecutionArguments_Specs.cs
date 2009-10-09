@@ -32,7 +32,7 @@ namespace dropkick.tests
         [Test]
         public void Default_parts_should_be_ALL()
         {
-            var ea = DropkickCommandLineParser.Parse("-deployment:bob.dll");
+            var ea = DropkickCommandLineParser.Parse("");
 
             Assert.AreEqual(ea.Part, "ALL");
         }
@@ -54,7 +54,7 @@ namespace dropkick.tests
         [Test]
         public void Should_parse_out_verify()
         {
-            var arguments = "verify -deployment:d";
+            var arguments = "verify";
             var ea = DropkickCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DropkickCommands.Verify);
@@ -63,7 +63,7 @@ namespace dropkick.tests
         [Test]
         public void Should_parse_out_execute()
         {
-            var arguments = "execute -deployment:d";
+            var arguments = "execute";
             var ea = DropkickCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DropkickCommands.Execute);
@@ -72,7 +72,7 @@ namespace dropkick.tests
         [Test]
         public void Default_should_be_trace()
         {
-            var arguments = "-deployment:d";
+            var arguments = "";
             var ea = DropkickCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DropkickCommands.Trace);
