@@ -61,7 +61,7 @@
     </Compile>
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
     <Compile Include="DeploymentModel\Node.cs" />
-    <Compile Include="Engine\CommandLineParsing\MonadicCommandLineParser.cs" />
+    <Compile Include="Engine\DropkickCommandLineParser.cs" />
     <Compile Include="Engine\DeploymentFinders\SearchesForAnAssemblyEndingInDeployment.cs" />
     <Compile Include="Engine\DeploymentFinders\TypeWasSpecifiedAssumingItHasADefaultConstructor.cs" />
     <Compile Include="Engine\DeploymentPlanBuilder.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="Tasks\WinService\WinServiceStartTask.cs" />
     <Compile Include="Tasks\WinService\WinServiceStopTask.cs" />
     <Compile Include="Configuration\Dsl\WinService\WinServiceTaskBuilder.cs" />
-    <Compile Include="Engine\CommandLineParsing\ArgumentParsing.cs" />
     <Compile Include="Engine\DeploymentFinders\AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass.cs" />
     <Compile Include="Engine\DeploymentArguments.cs" />
     <Compile Include="Engine\DropkickCommands.cs" />

@@ -2,6 +2,7 @@
 {
     using System;
     using Engine;
+    using Engine.CommandLineParsing;
     using Engine.DeploymentFinders;
     using Magnum.CommandLineParser;
 
@@ -22,7 +23,7 @@
             // default is trace
 
             //dk execute -e:local -p:web -a:FHLBank.Flames.Deployment
-            var a = ArgumentParsing.Parse(args);
+            var a = DropkickCommandLineParser.Parse(Environment.CommandLine);
             var finder = new AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass();
             Runner.Deploy(finder, a);
 

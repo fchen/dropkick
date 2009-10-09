@@ -1,29 +1,30 @@
 namespace dropkick.tests
 {
     using Engine;
+    using Engine.CommandLineParsing;
     using NUnit.Framework;
 
     [TestFixture]
     public class ExecutionArguments_Specs
     {
-        string[] _arguments = new [] { "-e:staging", "-d:MyStuff.dll", "-p:WEB", "-v" };
+        string _arguments = "verify -environment:staging -deployment:MyStuff.dll -part:WEB";
 
         [Test]
         public void Should_handle_dashes_and_slashes()
         {
-            var arguments = new string[] { "/e:staging", "-d:MyStuff.dll", "/p:WEB", "-v" };
-            var ea = ArgumentParsing.Parse(arguments);
+            var arguments = "verify /environment:staging -deployment:MyStuff.dll /part:WEB";
+            var ea = DropkickCommandLineParser.Parse(arguments);
 
-            Assert.AreEqual(ea.Environment, "staging");
-            Assert.AreEqual(ea.Deployment, "MyStuff");
-            Assert.AreEqual(ea.Command, DropkickCommands.Verify);
-            Assert.AreEqual(ea.Part, "WEB");
+            Assert.AreEqual("staging",ea.Environment);
+            Assert.AreEqual("MyStuff.dll", ea.Deployment);
+            Assert.AreEqual(DropkickCommands.Verify, ea.Command);
+            Assert.AreEqual("WEB", ea.Part);
         }
 
         [Test]
         public void Should_parse_out_parts()
         {
-            var ea = ArgumentParsing.Parse(_arguments);
+            var ea = DropkickCommandLineParser.Parse(_arguments);
 
             Assert.AreEqual(ea.Part, "WEB");
         }
@@ -31,7 +32,7 @@ namespace dropkick.tests
         [Test]
         public void Default_parts_should_be_ALL()
         {
-            var ea = ArgumentParsing.Parse(new string[] {});
+            var ea = DropkickCommandLineParser.Parse("-deployment:bob.dll");
 
             Assert.AreEqual(ea.Part, "ALL");
         }
@@ -39,22 +40,22 @@ namespace dropkick.tests
         [Test]
         public void Should_parse_out_assembly()
         {
-            var ea = ArgumentParsing.Parse(_arguments);
+            var ea = DropkickCommandLineParser.Parse(_arguments);
 
-            Assert.AreEqual(ea.Deployment, "MyStuff");
+            Assert.AreEqual("MyStuff.dll", ea.Deployment);
         }
         [Test]
         public void Should_parse_out_Environment()
         {
-            var ea = ArgumentParsing.Parse(_arguments);
-            Assert.AreEqual(ea.Environment, "staging");
+            var ea = DropkickCommandLineParser.Parse(_arguments);
+            Assert.AreEqual("staging", ea.Environment);
         }
 
         [Test]
         public void Should_parse_out_verify()
         {
-            var arguments = new string[] {"-v"};
-            var ea = ArgumentParsing.Parse(arguments);
+            var arguments = "verify -deployment:d";
+            var ea = DropkickCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DropkickCommands.Verify);
         }
@@ -62,17 +63,17 @@ namespace dropkick.tests
         [Test]
         public void Should_parse_out_execute()
         {
-            var arguments = new string[] { "-x" };
-            var ea = ArgumentParsing.Parse(arguments);
+            var arguments = "execute -deployment:d";
+            var ea = DropkickCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DropkickCommands.Execute);
         }
-
+        
         [Test]
         public void Default_should_be_trace()
         {
-            var arguments = new string[] {  };
-            var ea = ArgumentParsing.Parse(arguments);
+            var arguments = "-deployment:d";
+            var ea = DropkickCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DropkickCommands.Trace);
         }
