@@ -23,13 +23,6 @@
             //      /d:FHLBank.Flames.Deployment.StandardDepoy (a class, lack of .dll)
             //      (null) - if omitted search for a dll ending with 'Deployment' then pass that name in
 
-            //dk execute -e:local -p:web -a:FHLBank.Flames.Deployment
-            var a = DropkickCommandLineParser.Parse(Environment.CommandLine);
-
-            //need a better way to do finding
-            var finder = new AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass();
-            Runner.Deploy(finder, a);
-
             //goal
             Runner.Deploy(Environment.CommandLine);
         }
