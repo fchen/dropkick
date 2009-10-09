@@ -5,15 +5,15 @@ namespace dropkick.Engine.CommandLineParsing
     using System.Linq;
     using Magnum.CommandLineParser;
 
-    public static class MonadicCommandLineParser
+    public static class DropkickCommandLineParser
     {
         public static DeploymentArguments Parse(string commandline)
         {
             var result = new DeploymentArguments();
 
-            Set(result, P(commandline));
+            Set( result, P(commandline));
 
-            return new DeploymentArguments();
+            return result;
         }
 
         static void Set(DeploymentArguments arguments, IEnumerable<ICommandLineElement> commandLineElements)
@@ -21,28 +21,22 @@ namespace dropkick.Engine.CommandLineParsing
             var command = commandLineElements.Where(x => x is IArgumentElement)
                 .Select(x => (IArgumentElement) x)
                 .DefaultIfEmpty(new ArgumentElement("trace"))
+                .Select(x=>x.Id)
                 .SingleOrDefault();
 
-            arguments.Command = command.Id.ToEnum<DropkickCommands>();
-
-            
-            var deployment = commandLineElements.Where(x => x is IDefinitionElement)
-                .Select(x => x as IDefinitionElement)
-                .Where(x => x.Key == "d")
-                .DefaultIfEmpty(new DefinitionElement("d","value"))
-                .SingleOrDefault();
-
-            arguments.Deployment = deployment.Value;
+            arguments.Command = command.ToEnum<DropkickCommands>();
 
 
-            var part = commandLineElements.Where(x => x is IDefinitionElement)
-                .Select(x => x as IDefinitionElement)
-                .Where(x => x.Key == "p")
-                .DefaultIfEmpty(new DefinitionElement("p", "ALL"))
-                .SingleOrDefault();
+            var deployment = commandLineElements.GetDefinition("deployment", "ERROR");
+            if(deployment == "ERROR") throw new ArgumentException("the deployment parameter must be supplied");
+            arguments.Deployment = deployment;
 
-            arguments.Part = part.Value;
 
+            var part = commandLineElements.GetDefinition("part", "ALL");
+            arguments.Part = part;
+
+            var enviro = commandLineElements.GetDefinition("environment", "LOCAL");
+            arguments.Environment = enviro;
 
         }
 
