@@ -42,7 +42,7 @@ namespace dropkick.tests
                            Command = DropkickCommands.Verify
                        };
 
-            p.Execute(args);
+            p.Execute();
 
             Assert.IsTrue(verifyRanWeb);
             Assert.IsFalse(verifyRanDb);
@@ -82,7 +82,7 @@ namespace dropkick.tests
                 Command = DropkickCommands.Verify
             };
 
-            p.Execute(args);
+            p.Execute();
 
             Assert.IsFalse(verifyRanWeb);
             Assert.IsTrue(verifyRanDb);

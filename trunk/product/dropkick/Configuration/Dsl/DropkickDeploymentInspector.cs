@@ -1,6 +1,8 @@
 namespace dropkick.Configuration.Dsl
 {
+    using System;
     using DeploymentModel;
+    using Engine;
     using Magnum.Reflection;
 
     public class DropkickDeploymentInspector :
@@ -9,6 +11,7 @@ namespace dropkick.Configuration.Dsl
     {
         readonly DeploymentPlan _plan = new DeploymentPlan();
         DeploymentPart _currentPart;
+        Func<DeploymentPart, bool> _partCriteria;
 
         public DropkickDeploymentInspector() :
             base("Inspect")
@@ -33,6 +36,7 @@ namespace dropkick.Configuration.Dsl
 
         #endregion
 
+        #region Inspect Methods
         public bool Inspect(Deployment deployment)
         {
             _plan.Name = deployment.GetType().Name;
@@ -44,7 +48,9 @@ namespace dropkick.Configuration.Dsl
         public bool Inspect(Part part)
         {
             _currentPart = new DeploymentPart(part.Name);
-            _plan.AddPart(_currentPart);
+            if(_partCriteria(_currentPart))
+                _plan.AddPart(_currentPart);
+
             return true;
         }
 
@@ -54,10 +60,24 @@ namespace dropkick.Configuration.Dsl
             _currentPart.AddDetail(detail);
             return true;
         }
+        #endregion
 
-        public DeploymentPlan GetPlan()
+        public DeploymentPlan GetPlan(Deployment deployment, DeploymentArguments args)
         {
+            _partCriteria = Criteria(args);
+            Inspect(deployment);
             return _plan;
+        }
+
+        static Func<DeploymentPart, bool> Criteria(DeploymentArguments args)
+        {
+            Func<DeploymentPart, bool> criteria = p => true;
+
+            //need multi-part deploys too
+            if (!args.Part.Equals("ALL"))
+                criteria = p => p.Name.Equals(args.Part);
+
+            return criteria;
         }
     }
 }

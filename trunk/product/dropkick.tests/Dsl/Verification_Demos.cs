@@ -38,8 +38,8 @@ namespace dropkick.tests.Dsl
         {
             var dep = new MsSqlTestDeploy();
             dep.Inspect(_interpreter);
-            var plan = _interpreter.GetPlan();
-            plan.Execute(_verifyArguments);
+            var plan = _interpreter.GetPlan(dep, _verifyArguments);
+            plan.Execute();
         }
 
         [Test]
@@ -47,8 +47,8 @@ namespace dropkick.tests.Dsl
         {
             var dep = new MsmqTestDeploy();
             dep.Inspect(_interpreter);
-            var plan = _interpreter.GetPlan();
-            plan.Execute(_verifyArguments);
+            var plan = _interpreter.GetPlan(dep, _verifyArguments);
+            plan.Execute();
         }
 
         [Test]
@@ -57,8 +57,8 @@ namespace dropkick.tests.Dsl
             Setup();
             var dep = new CommandTestDeploy();
             dep.Inspect(_interpreter);
-            var plan = _interpreter.GetPlan();
-            plan.Execute(_verifyArguments);
+            var plan = _interpreter.GetPlan(dep, _verifyArguments);
+            plan.Execute();
         }
 
         [Test]
@@ -66,8 +66,8 @@ namespace dropkick.tests.Dsl
         {
             var dep = new WinServiceTestDeploy();
             dep.Inspect(_interpreter);
-            var plan = _interpreter.GetPlan();
-            plan.Execute(_verifyArguments);
+            var plan = _interpreter.GetPlan(dep, _verifyArguments);
+            plan.Execute();
         }
 
         [Test]
@@ -75,8 +75,8 @@ namespace dropkick.tests.Dsl
         {
             var dep = new IisTestDeploy();
             dep.Inspect(_interpreter);
-            var plan = _interpreter.GetPlan();
-            plan.Execute(_verifyArguments);
+            var plan = _interpreter.GetPlan(dep, _verifyArguments);
+            plan.Execute();
         }
 
 
@@ -85,8 +85,8 @@ namespace dropkick.tests.Dsl
         {
             var dep = new TestDeployment();
             dep.Inspect(_interpreter);
-            var plan = _interpreter.GetPlan();
-            plan.Execute(_verifyArguments);
+            var plan = _interpreter.GetPlan(dep, _verifyArguments);
+            plan.Execute();
         }
     }
 }
