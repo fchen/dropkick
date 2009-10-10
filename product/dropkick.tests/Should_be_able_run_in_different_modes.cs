@@ -45,7 +45,7 @@ namespace dropkick.tests
                 Command = DropkickCommands.Trace
             };
 
-            plan.Execute(args);
+            plan.Execute();
 
             Assert.IsTrue(traceRan);
             Assert.IsFalse(verifyRan);
@@ -87,7 +87,7 @@ namespace dropkick.tests
                 Command = DropkickCommands.Verify
             };
 
-            plan.Execute(args);
+            plan.Execute();
 
             Assert.IsTrue(traceRan);
             Assert.IsTrue(verifyRan);
@@ -129,7 +129,7 @@ namespace dropkick.tests
                 Command = DropkickCommands.Execute
             };
 
-            plan.Execute(args);
+            plan.Execute();
 
             Assert.IsTrue(traceRan);
             Assert.IsTrue(verifyRan);

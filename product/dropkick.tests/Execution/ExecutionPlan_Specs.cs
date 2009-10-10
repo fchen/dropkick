@@ -1,7 +1,6 @@
 namespace dropkick.tests.Execution
 {
     using DeploymentModel;
-    using Engine;
     using NUnit.Framework;
 
     [TestFixture]
@@ -11,17 +10,15 @@ namespace dropkick.tests.Execution
         public void Empty_Plan()
         {
             var ep = new DeploymentPlan();
-            var args = new DeploymentArguments();
-            ep.Execute(args);
+            ep.Execute();
         }
 
         [Test]
         public void One_Action()
         {
             var ep = new DeploymentPlan();
-            var args = new DeploymentArguments();
             ep.AddPart(new DeploymentPart("name"));
-            ep.Execute(args);
+            ep.Execute();
         }
     }
 }
