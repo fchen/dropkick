@@ -7,14 +7,14 @@ namespace dropkick.Engine
 
     public static class DeploymentPlanBuilder
     {
-        static readonly IDictionary<DropkickCommands, Action<DeploymentPlan>> _actions = new Dictionary<DropkickCommands, Action<DeploymentPlan>>();
+        static readonly IDictionary<DeploymentCommands, Action<DeploymentPlan>> _actions = new Dictionary<DeploymentCommands, Action<DeploymentPlan>>();
         static readonly DropkickDeploymentInspector _inspector = new DropkickDeploymentInspector();
 
         static DeploymentPlanBuilder()
         {
-            _actions.Add(DropkickCommands.Execute, Ex);
-            _actions.Add(DropkickCommands.Verify, Verify);
-            _actions.Add(DropkickCommands.Trace, Trace);
+            _actions.Add(DeploymentCommands.Execute, Ex);
+            _actions.Add(DeploymentCommands.Verify, Verify);
+            _actions.Add(DeploymentCommands.Trace, Trace);
         }
 
         public static DeploymentPlan Build(Deployment deployment, DeploymentArguments args)

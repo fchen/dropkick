@@ -24,7 +24,7 @@ namespace dropkick.Engine.CommandLineParsing
                 .Select(x=>x.Id)
                 .SingleOrDefault();
 
-            arguments.Command = command.ToEnum<DropkickCommands>();
+            arguments.Command = command.ToEnum<DeploymentCommands>();
 
 
             var deployment = commandLineElements.GetDefinition("deployment", "SEARCH");
