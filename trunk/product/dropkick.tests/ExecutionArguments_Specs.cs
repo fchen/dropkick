@@ -17,7 +17,7 @@ namespace dropkick.tests
 
             Assert.AreEqual("staging",ea.Environment);
             Assert.AreEqual("MyStuff.dll", ea.Deployment);
-            Assert.AreEqual(DropkickCommands.Verify, ea.Command);
+            Assert.AreEqual(DeploymentCommands.Verify, ea.Command);
             Assert.AreEqual("WEB", ea.Part);
         }
 
@@ -57,7 +57,7 @@ namespace dropkick.tests
             var arguments = "verify";
             var ea = DropkickCommandLineParser.Parse(arguments);
 
-            Assert.AreEqual(ea.Command, DropkickCommands.Verify);
+            Assert.AreEqual(ea.Command, DeploymentCommands.Verify);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace dropkick.tests
             var arguments = "execute";
             var ea = DropkickCommandLineParser.Parse(arguments);
 
-            Assert.AreEqual(ea.Command, DropkickCommands.Execute);
+            Assert.AreEqual(ea.Command, DeploymentCommands.Execute);
         }
         
         [Test]
@@ -75,7 +75,7 @@ namespace dropkick.tests
             var arguments = "";
             var ea = DropkickCommandLineParser.Parse(arguments);
 
-            Assert.AreEqual(ea.Command, DropkickCommands.Trace);
+            Assert.AreEqual(ea.Command, DeploymentCommands.Trace);
         }
     }
 }

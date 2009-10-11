@@ -20,7 +20,7 @@ namespace dropkick.tests.Dsl
                                {
                                    Deployment = GetType().Assembly.FullName,
                                    Environment = "TEST",
-                                   Command = DropkickCommands.Verify,
+                                   Command = DeploymentCommands.Verify,
                                    Part = "WEB"
                                };
 

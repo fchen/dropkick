@@ -60,7 +60,6 @@
       <Link>SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
-    <Compile Include="DeploymentModel\Node.cs" />
     <Compile Include="Engine\DropkickCommandLineParser.cs" />
     <Compile Include="Engine\DeploymentFinders\SearchesForAnAssemblyEndingInDeployment.cs" />
     <Compile Include="Engine\DeploymentFinders\TypeWasSpecifiedAssumingItHasADefaultConstructor.cs" />
@@ -126,7 +125,7 @@
     <Compile Include="Configuration\Dsl\WinService\WinServiceTaskBuilder.cs" />
     <Compile Include="Engine\DeploymentFinders\AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass.cs" />
     <Compile Include="Engine\DeploymentArguments.cs" />
-    <Compile Include="Engine\DropkickCommands.cs" />
+    <Compile Include="Engine\DeploymentCommands.cs" />
     <Compile Include="Configuration\Dsl\DropkickDeploymentInspector.cs" />
     <Compile Include="DeploymentModel\DeploymentDetail.cs" />
     <Compile Include="DeploymentModel\DeploymentPart.cs" />
@@ -138,6 +137,9 @@
     <Compile Include="Engine\Runner.cs" />
     <Compile Include="Configuration\Dsl\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logging\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

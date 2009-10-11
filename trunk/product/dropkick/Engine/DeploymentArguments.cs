@@ -4,13 +4,13 @@ namespace dropkick.Engine
     {
         public DeploymentArguments()
         {
-            Command = DropkickCommands.Trace;
+            Command = DeploymentCommands.Trace;
             Part = "ALL";
         }
 
         public string Environment { get; set; }
         public string Part { get; set; }
         public string Deployment { get; set; }
-        public DropkickCommands Command { get; set; }
+        public DeploymentCommands Command { get; set; }
     }
 }

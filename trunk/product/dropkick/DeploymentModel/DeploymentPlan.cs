@@ -12,6 +12,7 @@ namespace dropkick.DeploymentModel
         public Action<DeploymentPlan> PlanAction;
         public Action<DeploymentPart> PartAction;
         public Action<DeploymentDetail> DetailAction;
+
         public string Name { get; set; }
 
         public void AddPart(DeploymentPart part)
@@ -21,15 +22,12 @@ namespace dropkick.DeploymentModel
 
         public void Execute()
         {
-            Action<DeploymentDetail> detailAction = (p) => { };
             PlanAction(this);
             foreach (var part in _parts)
             {
                 PartAction(part);
-                foreach (var detail in part.Details)
-                {
-                    DetailAction(detail);
-                }
+
+                part.ForEachDetail(DetailAction);
             }
         }
 
