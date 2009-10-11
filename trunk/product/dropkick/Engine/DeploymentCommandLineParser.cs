@@ -1,11 +1,10 @@
-namespace dropkick.Engine.CommandLineParsing
+namespace dropkick.Engine
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Magnum.CommandLineParser;
 
-    public static class DropkickCommandLineParser
+    public static class DeploymentCommandLineParser
     {
         public static DeploymentArguments Parse(string commandline)
         {

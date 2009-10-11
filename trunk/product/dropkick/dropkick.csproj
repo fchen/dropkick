@@ -60,7 +60,7 @@
       <Link>SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
-    <Compile Include="Engine\DropkickCommandLineParser.cs" />
+    <Compile Include="Engine\DeploymentCommandLineParser.cs" />
     <Compile Include="Engine\DeploymentFinders\SearchesForAnAssemblyEndingInDeployment.cs" />
     <Compile Include="Engine\DeploymentFinders\TypeWasSpecifiedAssumingItHasADefaultConstructor.cs" />
     <Compile Include="Engine\DeploymentPlanBuilder.cs" />
