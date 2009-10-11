@@ -1,7 +1,6 @@
 namespace dropkick.tests
 {
     using Engine;
-    using Engine.CommandLineParsing;
     using NUnit.Framework;
 
     [TestFixture]
@@ -13,7 +12,7 @@ namespace dropkick.tests
         public void Should_handle_dashes_and_slashes()
         {
             var arguments = "verify /environment:staging -deployment:MyStuff.dll /part:WEB";
-            var ea = DropkickCommandLineParser.Parse(arguments);
+            var ea = DeploymentCommandLineParser.Parse(arguments);
 
             Assert.AreEqual("staging",ea.Environment);
             Assert.AreEqual("MyStuff.dll", ea.Deployment);
@@ -24,7 +23,7 @@ namespace dropkick.tests
         [Test]
         public void Should_parse_out_parts()
         {
-            var ea = DropkickCommandLineParser.Parse(_arguments);
+            var ea = DeploymentCommandLineParser.Parse(_arguments);
 
             Assert.AreEqual(ea.Part, "WEB");
         }
@@ -32,7 +31,7 @@ namespace dropkick.tests
         [Test]
         public void Default_parts_should_be_ALL()
         {
-            var ea = DropkickCommandLineParser.Parse("");
+            var ea = DeploymentCommandLineParser.Parse("");
 
             Assert.AreEqual(ea.Part, "ALL");
         }
@@ -40,14 +39,14 @@ namespace dropkick.tests
         [Test]
         public void Should_parse_out_assembly()
         {
-            var ea = DropkickCommandLineParser.Parse(_arguments);
+            var ea = DeploymentCommandLineParser.Parse(_arguments);
 
             Assert.AreEqual("MyStuff.dll", ea.Deployment);
         }
         [Test]
         public void Should_parse_out_Environment()
         {
-            var ea = DropkickCommandLineParser.Parse(_arguments);
+            var ea = DeploymentCommandLineParser.Parse(_arguments);
             Assert.AreEqual("staging", ea.Environment);
         }
 
@@ -55,7 +54,7 @@ namespace dropkick.tests
         public void Should_parse_out_verify()
         {
             var arguments = "verify";
-            var ea = DropkickCommandLineParser.Parse(arguments);
+            var ea = DeploymentCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DeploymentCommands.Verify);
         }
@@ -64,7 +63,7 @@ namespace dropkick.tests
         public void Should_parse_out_execute()
         {
             var arguments = "execute";
-            var ea = DropkickCommandLineParser.Parse(arguments);
+            var ea = DeploymentCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DeploymentCommands.Execute);
         }
@@ -73,7 +72,7 @@ namespace dropkick.tests
         public void Default_should_be_trace()
         {
             var arguments = "";
-            var ea = DropkickCommandLineParser.Parse(arguments);
+            var ea = DeploymentCommandLineParser.Parse(arguments);
 
             Assert.AreEqual(ea.Command, DeploymentCommands.Trace);
         }

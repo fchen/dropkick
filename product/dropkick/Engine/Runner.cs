@@ -1,13 +1,12 @@
 namespace dropkick.Engine
 {
-    using CommandLineParsing;
     using DeploymentFinders;
 
     public static class Runner
     {
         public static void Deploy(string commandLine)
         {
-            var newArgs = DropkickCommandLineParser.Parse(commandLine);
+            var newArgs = DeploymentCommandLineParser.Parse(commandLine);
             
             //how much more complicated can I make this?
             DeploymentFinder finder = newArgs.Deployment == "SEARCH" ? 
