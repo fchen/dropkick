@@ -63,7 +63,7 @@
     <Compile Include="ExecutionArguments_Specs.cs" />
     <Compile Include="DeploymentModel\Model_Specs.cs" />
     <Compile Include="Extentions.cs" />
-    <Compile Include="Scenarios\GenericDeploymentFinder.cs" />
+    <Compile Include="TestObjects\GenericDeploymentFinder.cs" />
     <Compile Include="Tasks\Console\PingTest.cs" />
     <Compile Include="Tasks\Dsn\CreatingDsns.cs" />
     <Compile Include="Tasks\Files\CopyTest.cs" />
@@ -72,8 +72,6 @@
     <Compile Include="Tasks\MsSql\RunSqlScriptTaskTest.cs" />
     <Compile Include="Tasks\NetworkShare\CreateNetworkShare.cs" />
     <Compile Include="PartCounter.cs" />
-    <Compile Include="Scenarios\CommandLineScenario.cs" />
-    <Compile Include="Scenarios\Scenario.cs" />
     <Compile Include="Should_be_able_run_in_different_modes.cs" />
     <Compile Include="Should_be_able_to_execute_only_one_part.cs" />
     <Compile Include="Tasks\WinService\WinTests.cs" />
