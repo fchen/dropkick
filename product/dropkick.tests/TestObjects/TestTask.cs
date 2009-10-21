@@ -1,8 +1,8 @@
 namespace dropkick.tests.TestObjects
 {
     using System;
-    using Configuration.Dsl;
     using DeploymentModel;
+    using dropkick.Configuration.Dsl;
 
 
     public class TestTask :

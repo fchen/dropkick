@@ -1,13 +1,13 @@
 namespace dropkick.tests.TestObjects
 {
-    using Configuration.Dsl;
-    using Configuration.Dsl.CommandLine;
-    using Configuration.Dsl.Dsn;
-    using Configuration.Dsl.Files;
-    using Configuration.Dsl.Msmq;
-    using Configuration.Dsl.MsSql;
-    using Configuration.Dsl.NetworkShare;
-    using Configuration.Dsl.WinService;
+    using dropkick.Configuration.Dsl;
+    using dropkick.Configuration.Dsl.CommandLine;
+    using dropkick.Configuration.Dsl.Dsn;
+    using dropkick.Configuration.Dsl.Files;
+    using dropkick.Configuration.Dsl.Msmq;
+    using dropkick.Configuration.Dsl.MsSql;
+    using dropkick.Configuration.Dsl.NetworkShare;
+    using dropkick.Configuration.Dsl.WinService;
 
     public class TestDeployment :
         Deployment<TestDeployment>

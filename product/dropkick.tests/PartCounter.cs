@@ -1,15 +1,22 @@
 namespace dropkick.tests
 {
-    using Configuration.Dsl;
+    using dropkick.Configuration.Dsl;
 
     public class PartCounter :
         DeploymentInspector
     {
         int _count;
 
+        public int Count
+        {
+            get { return _count; }
+        }
+
+        #region DeploymentInspector Members
+
         public void Inspect(object obj)
         {
-            if(obj is Part)
+            if (obj is Part)
                 _count++;
         }
 
@@ -20,9 +27,6 @@ namespace dropkick.tests
             additionalInspections();
         }
 
-        public int Count
-        {
-            get { return _count; }
-        }
+        #endregion
     }
 }

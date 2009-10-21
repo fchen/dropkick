@@ -1,4 +1,4 @@
-namespace dropkick.tests.Dsl
+namespace dropkick.tests.Configuration.Dsl
 {
     using NUnit.Framework;
     using TestObjects;

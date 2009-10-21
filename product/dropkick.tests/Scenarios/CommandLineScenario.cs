@@ -1,6 +1,6 @@
 namespace dropkick.tests.Scenarios
 {
-    using Configuration.Dsl;
+    using dropkick.Configuration.Dsl;
     using Engine.DeploymentFinders;
     using NUnit.Framework;
     using TestObjects;
@@ -18,8 +18,6 @@ namespace dropkick.tests.Scenarios
 
             var dep = new GenericDeploymentFinder<CommandTestDeploy>().Find("");
             dep.Inspect(_interpreter);
-
         }
     }
-
 }
