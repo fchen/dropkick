@@ -1,9 +1,8 @@
-using dropkick.Tasks.Dsn;
-
-namespace dropkick.tests.Extensions.Dsn
+namespace dropkick.tests.Tasks.Dsn
 {
     using System;
-    using Configuration.Dsl.Dsn;
+    using dropkick.Configuration.Dsl.Dsn;
+    using dropkick.Tasks.Dsn;
     using NUnit.Framework;
 
     [TestFixture]

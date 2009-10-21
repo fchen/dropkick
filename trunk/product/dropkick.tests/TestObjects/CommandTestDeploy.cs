@@ -1,25 +1,26 @@
 namespace dropkick.tests.TestObjects
 {
-    using Configuration.Dsl;
-    using Configuration.Dsl.CommandLine;
+    using System;
+    using dropkick.Configuration.Dsl;
+    using dropkick.Configuration.Dsl.CommandLine;
 
     public class CommandTestDeploy :
         Deployment<CommandTestDeploy>
     {
-        public static Part Web { get; set; }
-
         static CommandTestDeploy()
         {
             Define(() =>
                    DeploymentStepsFor(Web, (p) =>
                    {
-                       p.OnServer(System.Environment.MachineName)
+                       p.OnServer(Environment.MachineName)
                            .CommandLine("ipconfig");
 //                       p.OnServer(System.Environment.MachineName)
 //                           .CommandLine("ping").Args("www.google.com")
 //                           .ExecutableIsLocatedAt(@"C:\bill");
-                   })        
+                   })
                 );
         }
+
+        public static Part Web { get; set; }
     }
 }

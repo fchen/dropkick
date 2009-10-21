@@ -1,7 +1,7 @@
 namespace dropkick.tests.TestObjects
 {
-    using Configuration.Dsl;
-    using Configuration.Dsl.Files;
+    using dropkick.Configuration.Dsl;
+    using dropkick.Configuration.Dsl.Files;
 
     public class TwoPartDeploy :
         Deployment<TwoPartDeploy>
