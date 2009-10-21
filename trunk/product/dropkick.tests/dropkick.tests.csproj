@@ -58,8 +58,8 @@
     <Compile Include="..\..\SolutionVersion.cs">
       <Link>SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="Dsl\Verification_Demos.cs" />
-    <Compile Include="Dsl\Deployments_should_have_parts.cs" />
+    <Compile Include="Configuration\Dsl\Verification_Demos.cs" />
+    <Compile Include="Configuration\Dsl\Deployments_should_have_parts.cs" />
     <Compile Include="ExecutionArguments_Specs.cs" />
     <Compile Include="Execution\ExecutionPlan_Specs.cs" />
     <Compile Include="Scenarios\GenericDeploymentFinder.cs" />
