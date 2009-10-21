@@ -32,9 +32,7 @@ namespace dropkick.Engine
         static void Verify(DeploymentPlan plan)
         {
             plan.PlanAction = p => Console.WriteLine(p.Name);
-
             plan.PartAction = p => Console.WriteLine("  {0}", p.Name);
-
             plan.DetailAction = detail =>
             {
                 Console.WriteLine("    {0}", detail.Name);
@@ -58,10 +56,8 @@ namespace dropkick.Engine
         }
         static void Trace(DeploymentPlan plan)
         {
-            plan.PlanAction =
-                p => Console.WriteLine(p.Name);
-
-            plan.PartAction = part => Console.WriteLine("  {0}", part.Name);
+            plan.PlanAction = p =>        Console.WriteLine(p.Name);
+            plan.PartAction = part =>     Console.WriteLine("  {0}", part.Name);
             plan.DetailAction = detail => Console.WriteLine("    {0}", detail.Name);
         }
     }

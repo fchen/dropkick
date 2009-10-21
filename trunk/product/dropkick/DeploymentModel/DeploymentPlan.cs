@@ -8,9 +8,9 @@ namespace dropkick.DeploymentModel
     {
         readonly IList<DeploymentPart> _parts = new List<DeploymentPart>();
 
-        public Action<DeploymentPlan> PlanAction;
-        public Action<DeploymentPart> PartAction;
-        public Action<DeploymentDetail> DetailAction;
+        public Action<DeploymentPlan> PlanAction = a=> { };
+        public Action<DeploymentPart> PartAction = a => { };
+        public Action<DeploymentDetail> DetailAction = a => { };
 
         public string Name { get; set; }
 
