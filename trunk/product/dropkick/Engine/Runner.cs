@@ -8,7 +8,7 @@ namespace dropkick.Engine
         {
             var newArgs = DeploymentCommandLineParser.Parse(commandLine);
             
-            //how much more complicated can I make this?
+            //what is the better way to state this?
             DeploymentFinder finder = newArgs.Deployment == "SEARCH" ? 
                 new SearchesForAnAssemblyEndingInDeployment() :
                     newArgs.Deployment.EndsWith(".dll") ?
