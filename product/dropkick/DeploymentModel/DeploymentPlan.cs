@@ -2,7 +2,6 @@ namespace dropkick.DeploymentModel
 {
     using System;
     using System.Collections.Generic;
-    using Engine;
 
     //shouldn't know jack about execute/verify/trace - should just be a collection of shiz to run
     public class DeploymentPlan
