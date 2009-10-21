@@ -61,7 +61,7 @@
     <Compile Include="Configuration\Dsl\Verification_Demos.cs" />
     <Compile Include="Configuration\Dsl\Deployments_should_have_parts.cs" />
     <Compile Include="ExecutionArguments_Specs.cs" />
-    <Compile Include="Execution\ExecutionPlan_Specs.cs" />
+    <Compile Include="DeploymentModel\ExecutionPlan_Specs.cs" />
     <Compile Include="Scenarios\GenericDeploymentFinder.cs" />
     <Compile Include="Tasks\Console\PingTest.cs" />
     <Compile Include="Tasks\Dsn\CreatingDsns.cs" />
