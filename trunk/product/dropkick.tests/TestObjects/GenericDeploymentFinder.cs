@@ -1,7 +1,8 @@
-namespace dropkick.Engine.DeploymentFinders
+namespace dropkick.tests.TestObjects
 {
     using System;
-    using Configuration.Dsl;
+    using dropkick.Configuration.Dsl;
+    using Engine;
 
     public class GenericDeploymentFinder<T> :
         DeploymentFinder where T : Deployment
