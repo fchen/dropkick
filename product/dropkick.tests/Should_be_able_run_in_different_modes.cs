@@ -44,7 +44,7 @@ namespace dropkick.tests
                 Command = DeploymentCommands.Trace
             };
 
-            plan.Execute();
+            plan.Trace();
 
             Assert.IsTrue(traceRan);
             Assert.IsFalse(verifyRan);
@@ -86,7 +86,7 @@ namespace dropkick.tests
                 Command = DeploymentCommands.Verify
             };
 
-            plan.Execute();
+            plan.Verify();
 
             Assert.IsTrue(traceRan);
             Assert.IsTrue(verifyRan);
@@ -107,11 +107,15 @@ namespace dropkick.tests
             }, () =>
             {
                 verifyRan = true;
-                return new DeploymentResult();
+                var r = new DeploymentResult();
+                r.AddGood("test:v");
+                return r;
             }, () =>
             {
                 executeRan = true;
-                return new DeploymentResult();
+                var r = new DeploymentResult();
+                r.AddGood("test:e");
+                return r;
             });
 
 
@@ -130,9 +134,9 @@ namespace dropkick.tests
 
             plan.Execute();
 
-            Assert.IsTrue(traceRan);
-            Assert.IsTrue(verifyRan);
-            Assert.IsTrue(executeRan);
+            Assert.IsTrue(traceRan, "trace");
+            Assert.IsTrue(verifyRan, "verify");
+            Assert.IsTrue(executeRan, "execute");
         }
     }
 }

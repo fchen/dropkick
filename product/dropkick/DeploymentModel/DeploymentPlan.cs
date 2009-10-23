@@ -17,7 +17,13 @@ namespace dropkick.DeploymentModel
 
         public void Execute()
         {
-            Ex(d=>d.Execute());
+            Ex(d=>
+            {
+                var o = d.Verify();
+                var oo = d.Execute();
+
+                return o.MergedWith(oo);
+            });
         }
         public void Verify()
         {

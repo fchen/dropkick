@@ -1,9 +1,6 @@
-namespace dropkick.tests.Dsl
+namespace dropkick.tests.Configuration.Dsl
 {
-    using System;
-    using Configuration.Dsl;
     using Engine;
-    using Engine.DeploymentFinders;
     using NUnit.Framework;
     using TestObjects;
 
@@ -62,7 +59,7 @@ namespace dropkick.tests.Dsl
         public void Verify_Iis()
         {
             var dep = new IisTestDeploy();
-           DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
+            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
             
         }
 
