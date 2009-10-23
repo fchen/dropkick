@@ -42,5 +42,15 @@ namespace dropkick.DeploymentModel
         {
             _items.Add(new DeploymentItem(status, message));
         }
+
+        public DeploymentResult MergedWith(DeploymentResult result)
+        {
+            foreach (var item in result.Results)
+            {
+                _items.Add(item);
+            }
+
+            return this;
+        }
     }
 }

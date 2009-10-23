@@ -12,6 +12,7 @@ namespace dropkick.Engine
 
         static DeploymentPlanDispatcher()
         {
+            //is this smelly?
             _actions.Add(DeploymentCommands.Execute, d=>d.Execute());
             _actions.Add(DeploymentCommands.Verify,  d=>d.Verify());
             _actions.Add(DeploymentCommands.Trace,   d=>d.Trace());
