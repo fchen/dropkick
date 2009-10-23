@@ -1,8 +1,9 @@
 namespace dropkick.Configuration.Dsl.Iis
 {
     using System;
+    using Tasks;
 
-    public class IisVersionSelector
+    public static class IisVersionSelector
     {
         public static IisSiteOptions SelectTheCorrectConfig(ServerOptions server, string websiteName)
         {

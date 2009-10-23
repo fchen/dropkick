@@ -6,8 +6,6 @@ namespace dropkick.Configuration.Dsl.Msmq
         MsmqOptions,
         QueueOptions
     {
-        readonly ServerOptions _options;
-        bool _createIfDoesntExist;
         readonly MsmqTask _task;
 
         //task

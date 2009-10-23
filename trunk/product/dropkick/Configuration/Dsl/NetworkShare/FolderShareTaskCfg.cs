@@ -5,8 +5,8 @@ namespace dropkick.Configuration.Dsl.NetworkShare
     public class FolderShareTaskCfg :
         FolderShareOptions
     {
-        ServerOptions _server;
-        FolderShareTask _task;
+        readonly ServerOptions _server;
+        readonly FolderShareTask _task;
         public FolderShareTaskCfg(ServerOptions server, string name)
         {
             _server = server;

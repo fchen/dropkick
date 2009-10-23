@@ -6,8 +6,7 @@ namespace dropkick.Configuration.Dsl.Iis
         IisSiteOptions,
         IisVirtualDirectoryOptions
     {
-        bool _createIfDoesntExist;
-        Iis7Task _task;
+        readonly Iis7Task _task;
 
         public Iis7TaskCfg(ServerOptions server, string websiteName)
         {
