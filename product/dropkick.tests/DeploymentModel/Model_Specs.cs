@@ -1,6 +1,6 @@
-namespace dropkick.tests.Execution
+namespace dropkick.tests.DeploymentModel
 {
-    using DeploymentModel;
+    using dropkick.DeploymentModel;
     using NUnit.Framework;
 
     [TestFixture]
