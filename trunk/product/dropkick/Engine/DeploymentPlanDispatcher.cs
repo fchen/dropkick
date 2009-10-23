@@ -24,8 +24,4 @@ namespace dropkick.Engine
             _actions[args.Command](plan);
         }
     }
-
-    public delegate void PlanAction(Deployment deployment);
-    public delegate Action<DeploymentPart> PartCriteria(DeploymentPart part);
-    public delegate Action<DeploymentDetail> DetailCriteria(DeploymentDetail detail);
 }
