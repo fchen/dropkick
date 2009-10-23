@@ -6,8 +6,8 @@ namespace dropkick.Configuration.Dsl.Iis
         IisSiteOptions,
         IisVirtualDirectoryOptions
     {
-        PartCfg _part;
-        Iis6Task _task;
+        readonly PartCfg _part;
+        readonly Iis6Task _task;
 
 
         public Iis6TaskCfg(ServerOptions server, string websiteName)

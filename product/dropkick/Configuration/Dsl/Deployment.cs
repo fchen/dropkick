@@ -43,7 +43,7 @@ namespace dropkick.Configuration.Dsl
         static void VerifyDeploymentConfiguration()
         {
             if(_parts.Count == 0)
-                throw new DeploymentException("A deployment must have at least one part to be valid.");
+                throw new DeploymentConfigurationException("A deployment must have at least one part to be valid.");
         }
 
         //initial setup to be called in the static constructor
@@ -71,22 +71,6 @@ namespace dropkick.Configuration.Dsl
             var action = Expression.Lambda<Action<TValue>>(Expression.Call(propertyInfo.GetSetMethod(), value), new[] {value}).Compile();
 
             TValue propertyValue = getValue(propertyInfo);
-            action(propertyValue);
-
-            return propertyValue;
-        }
-
-        static object SetPropertyValue(PropertyInfo propertyInfo, Func<PropertyInfo, object> getValue)
-        {
-            var value = Expression.Parameter(typeof(object), "value");
-            var valueCast = propertyInfo.PropertyType.IsValueType
-                                ? Expression.TypeAs(value, propertyInfo.PropertyType)
-                                : Expression.Convert(value, propertyInfo.PropertyType);
-
-            var action =
-                Expression.Lambda<Action<object>>(Expression.Call(propertyInfo.GetSetMethod(), valueCast), new[] {value}).Compile();
-
-            object propertyValue = getValue(propertyInfo);
             action(propertyValue);
 
             return propertyValue;

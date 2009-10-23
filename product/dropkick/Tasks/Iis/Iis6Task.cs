@@ -4,14 +4,9 @@ namespace dropkick.Tasks.Iis
     using System.DirectoryServices;
     using DeploymentModel;
 
-
     public class Iis6Task :
         BaseIisTask
     {
-        private bool _createIfItDoesntExist;
-
-        //ctor
-
         public override int VersionNumber
         {
             get { return 6; }

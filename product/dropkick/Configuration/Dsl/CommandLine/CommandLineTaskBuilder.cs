@@ -2,11 +2,11 @@ namespace dropkick.Configuration.Dsl.CommandLine
 {
     using Tasks.CommandLine;
 
-    public class CommandLineTaskBuilder : 
+    public class CommandLineTaskBuilder :
         CommandLineOptions
     {
-        private PartCfg _part;
-        private CommandLineTask _task;
+        readonly PartCfg _part;
+        readonly CommandLineTask _task;
 
         public CommandLineTaskBuilder(PartCfg part, string command)
         {
@@ -14,6 +14,8 @@ namespace dropkick.Configuration.Dsl.CommandLine
             _task = new CommandLineTask(command);
             _part.AddTask(_task);
         }
+
+        #region CommandLineOptions Members
 
         public CommandLineOptions Args(string args)
         {
@@ -32,5 +34,7 @@ namespace dropkick.Configuration.Dsl.CommandLine
             _task.WorkingDirectory = path;
             return this;
         }
+
+        #endregion
     }
 }

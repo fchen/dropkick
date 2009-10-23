@@ -1,4 +1,4 @@
-namespace dropkick.Configuration.Dsl
+namespace dropkick.Exceptions
 {
     using System;
 

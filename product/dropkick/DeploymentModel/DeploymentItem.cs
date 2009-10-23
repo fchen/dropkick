@@ -19,8 +19,8 @@ namespace dropkick.DeploymentModel
             Exception = exception;
         }
 
-        public DeploymentItemStatus Status { get; set; }
-        public string Message { get; set; }
-        public Exception Exception { get; set; }
+        public DeploymentItemStatus Status { get; private set; }
+        public string Message { get; private set; }
+        public Exception Exception { get; private set; }
     }
 }

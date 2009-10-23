@@ -1,7 +1,7 @@
-namespace dropkick.Configuration.Dsl
+namespace dropkick.Tasks
 {
+    using Configuration.Dsl;
     using DeploymentModel;
-
 
     public class NoteTask :
         Task

@@ -4,14 +4,9 @@ namespace dropkick.Tasks.Iis
     using DeploymentModel;
     using Microsoft.Web.Administration;
     
-
     public class Iis7Task :
         BaseIisTask
     {
-        private bool _createIfItDoesntExist;
-
-        //ctor
-
         public override int VersionNumber
         {
             get { return 7; }
@@ -47,7 +42,7 @@ namespace dropkick.Tasks.Iis
         public bool DoesSiteExist()
         {
             var iisManager = new ServerManager();
-            foreach (Site site in iisManager.Sites)
+            foreach (var site in iisManager.Sites)
             {
                 if (site.Name.Equals(base.WebsiteName))
                 {
@@ -60,16 +55,15 @@ namespace dropkick.Tasks.Iis
         public bool DoesVirtualDirectoryExist()
         {
             var iisManager = new ServerManager();
-            foreach (Site site in iisManager.Sites)
+            foreach (var site in iisManager.Sites)
             {
-                if (site.Name.Equals(base.WebsiteName))
+                if (!site.Name.Equals(base.WebsiteName)) continue;
+
+                foreach (var app in site.Applications)
                 {
-                    foreach (Application app in site.Applications)
+                    if (app.Path.Equals("/" + VdirPath))
                     {
-                        if (app.Path.Equals("/" + VdirPath))
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }

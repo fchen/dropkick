@@ -7,8 +7,7 @@ namespace dropkick.Configuration.Dsl.Files
     public class WebFileActions :
         FileAction
     {
-        private readonly PartCfg _part;
-        private string fileName = "web.config";
+        readonly PartCfg _part;
 
         public WebFileActions(PartCfg part)
         {

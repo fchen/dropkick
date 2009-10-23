@@ -6,11 +6,11 @@ namespace dropkick.Configuration.Dsl.MsSql
         DatabaseOptions,
         SqlOptions
     {
-        private readonly ServerOptions _options;
-        private readonly string _serverName;
-        private string _databaseName;
-        private string _lightspeedBackupLocation;
-        private string _tarantinoScripts;
+        readonly ServerOptions _options;
+        readonly string _serverName;
+        string _databaseName;
+        string _lightspeedBackupLocation;
+        string _tarantinoScripts;
 
         public MsSqlTaskCfg(ServerOptions options)
         {
@@ -35,17 +35,17 @@ namespace dropkick.Configuration.Dsl.MsSql
         public void OutputSql(string sql)
         {
             _options.Part.AddTask(new OutputSqlTask(_serverName, _databaseName)
-                                      {
-                                          OutputSql = sql
-                                      });
+                                  {
+                                      OutputSql = sql
+                                  });
         }
 
         public void RunScript(string scriptFile)
         {
             _options.Part.AddTask(new RunSqlScriptTask(_serverName, _databaseName)
-                                      {
-                                          ScriptToRun = scriptFile
-                                      });
+                                  {
+                                      ScriptToRun = scriptFile
+                                  });
         }
 
         #endregion
