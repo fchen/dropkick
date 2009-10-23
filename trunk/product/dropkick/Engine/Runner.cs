@@ -18,7 +18,7 @@ namespace dropkick.Engine
 
             var deployment = finder.Find(newArgs.Deployment);
 
-            DeploymentPlanRunner.Build(deployment, newArgs);
+            DeploymentPlanDispatcher.KickItOutThereAlready(deployment, newArgs);
         }
     }
 }
