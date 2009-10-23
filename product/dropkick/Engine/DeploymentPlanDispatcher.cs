@@ -20,9 +20,19 @@ namespace dropkick.Engine
 
         public static void KickItOutThereAlready(Deployment deployment, DeploymentArguments args)
         {
-            var plan = _inspector.GetPlan(deployment, args);
+            var crit = Criteria(args);
+            var plan = _inspector.GetPlan(deployment, crit);
 
             _actions[args.Command](plan);
+        }
+
+        static PartCriteria Criteria(DeploymentArguments args)
+        {
+            //need multi-part deploys too
+            if (!args.Part.Equals("ALL"))
+                return p => p.Name.Equals(args.Part);
+
+            return p => true;
         }
     }
 }

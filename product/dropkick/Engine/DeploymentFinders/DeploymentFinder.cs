@@ -1,4 +1,4 @@
-namespace dropkick.Engine
+namespace dropkick.Engine.DeploymentFinders
 {
     using Configuration.Dsl;
 

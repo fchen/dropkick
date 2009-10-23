@@ -1,4 +1,4 @@
-namespace dropkick.Configuration.Dsl.Dsn
+namespace dropkick.Tasks.Dsn
 {
     public enum DsnAction
     {

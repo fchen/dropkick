@@ -1,7 +1,6 @@
 namespace dropkick.tests.Tasks.Dsn
 {
     using System;
-    using dropkick.Configuration.Dsl.Dsn;
     using dropkick.Tasks.Dsn;
     using NUnit.Framework;
 
