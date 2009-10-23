@@ -8,10 +8,6 @@ namespace dropkick.DeploymentModel
     {
         readonly IList<DeploymentPart> _parts = new List<DeploymentPart>();
 
-        public Action<DeploymentPlan> PlanAction = a=> { };
-        public Action<DeploymentPart> PartAction = a => { };
-        public Action<DeploymentDetail> DetailAction = a => { };
-
         public string Name { get; set; }
 
         public void AddPart(DeploymentPart part)
@@ -21,12 +17,34 @@ namespace dropkick.DeploymentModel
 
         public void Execute()
         {
-            PlanAction(this);
+            Ex(d=>d.Execute());
+        }
+        public void Verify()
+        {
+            Ex(d=>d.Verify());
+        }
+        public void Trace()
+        {
+            Ex(d=> new DeploymentResult());
+        }
+
+        void Ex(Func<DeploymentDetail, DeploymentResult> action)
+        {
+            Console.WriteLine(Name);
+        
             foreach (var part in _parts)
             {
-                PartAction(part);
+                Console.WriteLine("  {0}", part.Name);
 
-                part.ForEachDetail(DetailAction);
+                part.ForEachDetail(d=>
+                {
+                    Console.WriteLine("    {0}", d.Name);
+                    var r = action(d);
+                    foreach (var item in r.Results)
+                    {
+                        Console.WriteLine("      [{0}] {1}", item.Status, item.Message);
+                    }
+                });
             }
         }
 
