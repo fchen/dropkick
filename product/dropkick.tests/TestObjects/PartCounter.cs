@@ -1,4 +1,4 @@
-namespace dropkick.tests
+namespace dropkick.tests.TestObjects
 {
     using dropkick.Configuration.Dsl;
 
