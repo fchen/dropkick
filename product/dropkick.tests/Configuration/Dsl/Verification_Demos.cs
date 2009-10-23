@@ -33,14 +33,14 @@ namespace dropkick.tests.Dsl
         public void Verify_MsSql_Test()
         {
             var dep = new MsSqlTestDeploy();
-            DeploymentPlanRunner.Build(dep, _verifyArguments);
+            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
         }
 
         [Test]
         public void Verify_MSMQ_Test()
         {
             var dep = new MsmqTestDeploy();
-            DeploymentPlanRunner.Build(dep, _verifyArguments);
+            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
         }
 
         [Test]
@@ -48,21 +48,21 @@ namespace dropkick.tests.Dsl
         {
             Setup();
             var dep = new CommandTestDeploy();
-            DeploymentPlanRunner.Build(dep, _verifyArguments);
+            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
         }
 
         [Test]
         public void Verify_WinService()
         {
             var dep = new WinServiceTestDeploy();
-            DeploymentPlanRunner.Build(dep, _verifyArguments);
+            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
         }
 
         [Test]
         public void Verify_Iis()
         {
             var dep = new IisTestDeploy();
-           DeploymentPlanRunner.Build(dep, _verifyArguments);
+           DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
             
         }
 
@@ -71,7 +71,7 @@ namespace dropkick.tests.Dsl
         public void Verify_TestDeploy()
         {
             var dep = new TestDeployment();
-            DeploymentPlanRunner.Build(dep, _verifyArguments);
+            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
             
         }
     }

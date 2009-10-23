@@ -64,7 +64,7 @@
     <Compile Include="Engine\DeploymentCommandLineParser.cs" />
     <Compile Include="Engine\DeploymentFinders\SearchesForAnAssemblyEndingInDeployment.cs" />
     <Compile Include="Engine\DeploymentFinders\TypeWasSpecifiedAssumingItHasADefaultConstructor.cs" />
-    <Compile Include="Engine\DeploymentPlanRunner.cs" />
+    <Compile Include="Engine\DeploymentPlanDispatcher.cs" />
     <Compile Include="DeploymentModel\DeploymentItem.cs" />
     <Compile Include="DeploymentModel\DeploymentResult.cs" />
     <Compile Include="DeploymentModel\DeploymentItemStatus.cs" />
