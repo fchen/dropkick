@@ -1,6 +1,7 @@
 namespace dropkick.tests
 {
     using DeploymentModel;
+    using dropkick.DeploymentModel;
     using Engine;
     using NUnit.Framework;
     

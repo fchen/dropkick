@@ -3,6 +3,7 @@ namespace dropkick.tests.TestObjects
     using System;
     using DeploymentModel;
     using dropkick.Configuration.Dsl;
+    using dropkick.DeploymentModel;
 
 
     public class TestTask :

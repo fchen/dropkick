@@ -1,6 +1,7 @@
 namespace dropkick.tests.Tasks.Console
 {
     using DeploymentModel;
+    using dropkick.DeploymentModel;
     using dropkick.Tasks.CommandLine;
     using NUnit.Framework;
 
