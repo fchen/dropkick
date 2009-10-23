@@ -134,7 +134,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Configuration\Dsl\WinService\Extension.cs" />
     <Compile Include="Configuration\Dsl\WinService\WinServiceOptions.cs" />
-    <Compile Include="Engine\DeploymentFinder.cs" />
+    <Compile Include="Engine\DeploymentFinders\DeploymentFinder.cs" />
     <Compile Include="Engine\Runner.cs" />
     <Compile Include="Configuration\Dsl\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

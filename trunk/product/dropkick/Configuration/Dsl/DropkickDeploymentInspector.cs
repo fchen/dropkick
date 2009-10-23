@@ -11,7 +11,7 @@ namespace dropkick.Configuration.Dsl
     {
         readonly DeploymentPlan _plan = new DeploymentPlan();
         DeploymentPart _currentPart;
-        Func<DeploymentPart, bool> _partCriteria;
+        PartCriteria _partCriteria;
 
         public DropkickDeploymentInspector() :
             base("Inspect")
@@ -62,22 +62,14 @@ namespace dropkick.Configuration.Dsl
         }
         #endregion
 
-        public DeploymentPlan GetPlan(Deployment deployment, DeploymentArguments args)
+        public DeploymentPlan GetPlan(Deployment deployment, PartCriteria criteria)
         {
-            _partCriteria = Criteria(args);
+            _partCriteria = criteria;
             Inspect(deployment);
             return _plan;
         }
-
-        static Func<DeploymentPart, bool> Criteria(DeploymentArguments args)
-        {
-            Func<DeploymentPart, bool> criteria = p => true;
-
-            //need multi-part deploys too
-            if (!args.Part.Equals("ALL"))
-                criteria = p => p.Name.Equals(args.Part);
-
-            return criteria;
-        }
+        
     }
+
+    public delegate bool PartCriteria(DeploymentPart part);
 }
