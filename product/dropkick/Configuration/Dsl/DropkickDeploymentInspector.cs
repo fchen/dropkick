@@ -12,7 +12,7 @@ namespace dropkick.Configuration.Dsl
         PartCriteria _partCriteria;
 
         public DropkickDeploymentInspector() :
-            base("Inspect")
+            base("Look")
         {
         }
 
@@ -35,7 +35,7 @@ namespace dropkick.Configuration.Dsl
         #endregion
 
         #region Inspect Methods
-        public bool Inspect(Deployment deployment)
+        public bool Look(Deployment deployment)
         {
             _plan.Name = deployment.GetType().Name;
             return true;
@@ -43,7 +43,7 @@ namespace dropkick.Configuration.Dsl
 
         //TODO: This smells pretty nasty
 
-        public bool Inspect(Part part)
+        public bool Look(Part part)
         {
             _currentPart = new DeploymentPart(part.Name);
             if(_partCriteria(_currentPart))
@@ -52,7 +52,7 @@ namespace dropkick.Configuration.Dsl
             return true;
         }
 
-        public bool Inspect(Task task)
+        public bool Look(Task task)
         {
             var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
             _currentPart.AddDetail(detail);
@@ -63,7 +63,9 @@ namespace dropkick.Configuration.Dsl
         public DeploymentPlan GetPlan(Deployment deployment, PartCriteria criteria)
         {
             _partCriteria = criteria;
-            Inspect(deployment);
+
+            //TODO: separate out?
+            deployment.Inspect(this);
             return _plan;
         }
         

@@ -29,8 +29,8 @@ namespace dropkick.Engine
         static PartCriteria Criteria(DeploymentArguments args)
         {
             //need multi-part deploys too
-            if (!args.Part.Equals("ALL"))
-                return p => p.Name.Equals(args.Part);
+            if (!args.Part.Equals("ALL", StringComparison.InvariantCultureIgnoreCase))
+                return p => p.Name.Equals(args.Part, StringComparison.InvariantCultureIgnoreCase);
 
             return p => true;
         }
