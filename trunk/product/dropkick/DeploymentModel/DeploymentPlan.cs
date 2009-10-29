@@ -9,6 +9,11 @@ namespace dropkick.DeploymentModel
 
         public string Name { get; set; }
 
+        public int PartCount
+        {
+            get { return _parts.Count; }
+        }
+
         public void AddPart(DeploymentPart part)
         {
             _parts.Add(part);
