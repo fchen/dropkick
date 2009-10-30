@@ -5,6 +5,7 @@ namespace dropkick.tests.Configuration.Dsl
     using TestObjects;
 
     [TestFixture]
+    [Category("Integration")]
     public class Verification_Demos
     {
         DeploymentArguments _verifyArguments;
@@ -56,6 +57,7 @@ namespace dropkick.tests.Configuration.Dsl
         }
 
         [Test]
+        [Category("Integration")]
         public void Verify_Iis()
         {
             var dep = new IisTestDeploy();
