@@ -13,6 +13,7 @@ namespace dropkick.Tasks.CommandLine
     {
         public CommandLineTask(string command)
         {
+            WorkingDirectory = Environment.CurrentDirectory;
             Command = command;
             ExecutableIsLocatedAt = FindThePathToTheCommand(command);
         }

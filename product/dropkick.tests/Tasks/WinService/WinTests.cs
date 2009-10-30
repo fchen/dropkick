@@ -7,7 +7,7 @@ namespace dropkick.tests.Tasks.WinService
     [TestFixture]
     public class WinTests
     {
-        [Test]
+        [Test][Category("Integration")]
         public void Start()
         {
             //TODO: friggin 2008 LUA-must run as admin

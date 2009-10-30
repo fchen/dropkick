@@ -2,6 +2,7 @@ namespace dropkick.tests
 {
     using Engine;
     using NUnit.Framework;
+    using System.Linq;
 
     [TestFixture]
     public class ExecutionArguments_Specs
