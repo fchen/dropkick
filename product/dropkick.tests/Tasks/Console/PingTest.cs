@@ -11,7 +11,7 @@ namespace dropkick.tests.Tasks.Console
         [Test]
         public void Execute()
         {
-            var t = new CommandLineTask("ping");
+            var t = new LocalCommandLineTask("ping");
             t.Args = "localhost";
             t.Execute();
 
@@ -20,7 +20,7 @@ namespace dropkick.tests.Tasks.Console
         [Test]
         public void Verify()
         {
-            var t = new CommandLineTask("ping");
+            var t = new LocalCommandLineTask("ping");
             t.Args = "localhost";
             var r = t.VerifyCanRun();
             var vi = new DeploymentItem(DeploymentItemStatus.Good, "");
