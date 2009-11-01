@@ -4,6 +4,7 @@ namespace dropkick.Tasks.Files
     using System.IO;
     using Configuration.Dsl;
     using DeploymentModel;
+    using Exceptions;
 
 
     public class CopyTask :
@@ -29,10 +30,10 @@ namespace dropkick.Tasks.Files
         {
             var result = new DeploymentResult();
 
-            //check is valid from path
-            _from = Path.GetFullPath(_from);
+            ValidatePath(result, _to);
+            ValidatePath(result, _from);
 
-            //check is valid to path
+            _from = Path.GetFullPath(_from);
             _to = Path.GetFullPath(_to);
 
             //todo: verify that from exists
@@ -63,11 +64,10 @@ namespace dropkick.Tasks.Files
         {
             var result = new DeploymentResult();
 
-            //check is valid from path
-            //TODO: need to handle wild cards
-            _from = Path.GetFullPath(_from);
+            ValidatePath(result, _to);
+            ValidatePath(result, _from);
 
-            //check is valid to path
+            _from = Path.GetFullPath(_from);
             _to = Path.GetFullPath(_to);
 
             //check can write from _to
@@ -103,6 +103,18 @@ namespace dropkick.Tasks.Files
             }
 
             return result;
+        }
+
+        void ValidatePath(DeploymentResult result, string path)
+        {
+            try
+            {
+                Path.GetFullPath(_to);
+            }
+            catch (Exception ex)
+            {
+                throw new DeploymentException("'{0}' is not an acceptable path".FormatWith(_to));
+            }
         }
 
         public void Inspect(DeploymentInspector inspector)
