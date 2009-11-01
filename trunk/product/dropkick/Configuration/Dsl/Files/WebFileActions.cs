@@ -24,7 +24,7 @@ namespace dropkick.Configuration.Dsl.Files
 
         public FileAction EncryptIdentity()
         {
-            var t = new CommandLineTask(@"aspnet_regiis");
+            var t = new LocalCommandLineTask(@"aspnet_regiis");
             t.Args = @" -pe ""connectionStrings"" -app ""/MachineDPAPI"" -prov ""DataProtectionConfigurationProvider""";
             string winDir = Environment.GetEnvironmentVariable("WINDIR");
             t.ExecutableIsLocatedAt = Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727");

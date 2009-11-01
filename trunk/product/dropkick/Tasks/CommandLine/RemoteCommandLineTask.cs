@@ -1,12 +1,13 @@
 namespace dropkick.Tasks.CommandLine
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Management;
     using Configuration.Dsl;
     using DeploymentModel;
 
-    public class RemoteCommandLine :
+    public class RemoteCommandLineTask :
         Task
     {
         public void Inspect(DeploymentInspector inspector)
@@ -79,32 +80,34 @@ namespace dropkick.Tasks.CommandLine
 
             int returnVal = Convert.ToInt32(outParams["returnValue"]);
 
-            switch (returnVal)
-            {
-                case 2:
-                    throw new Exception("Access is denied.");
-
-                case 3:
-                    throw new Exception("Insufficient privileges.");
-
-                case 8:
-                    throw new Exception("Unknown failure.");
-
-                case 9:
-                    throw new Exception("Path not found.");
-
-                case 21:
-                    throw new Exception("Invalid parameter");
-            }
+            if(returnVal != 0)
+                result.AddError(_status[returnVal]);
+            //TODO: how to tell DK to stop executing?
 
             return result;
         }
-
 
         public string Command { get; set; }
         public string Args { get; set; }
         public string ExecutableIsLocatedAt { get; set; }
         public string WorkingDirectory { get; set; }
         public string Machine { get; set; }
+
+
+        private readonly Dictionary<int, string> _status = new Dictionary<int, string>()
+                                                  {
+                                                      {2, "Access is denied"},
+                                                      {3, "Insufficient privileges"},
+                                                      {8, "Unknown failure"},
+                                                      {9, "Path not found"},
+                                                      {21, "Invalid parameter"}
+                                                  };
+
+        public RemoteCommandLineTask(string command)
+        {
+
+            WorkingDirectory = Environment.CurrentDirectory;
+            Command = command;
+        }
     }
 }

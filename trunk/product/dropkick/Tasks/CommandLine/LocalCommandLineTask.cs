@@ -8,10 +8,10 @@ namespace dropkick.Tasks.CommandLine
     using Magnum.DateTimeExtensions;
     
 
-    public class CommandLineTask :
+    public class LocalCommandLineTask :
         Task
     {
-        public CommandLineTask(string command)
+        public LocalCommandLineTask(string command)
         {
             WorkingDirectory = Environment.CurrentDirectory;
             Command = command;

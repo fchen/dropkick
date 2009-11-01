@@ -33,6 +33,10 @@ namespace dropkick.DeploymentModel
             AddItem(DeploymentItemStatus.Alert, string.Format(messageFormat, args));
         }
 
+        public void AddError(string message)
+        {
+            AddItem(DeploymentItemStatus.Error, message);
+        }
         public void AddError(string message, Exception exception)
         {
             AddItem(DeploymentItemStatus.Error, message);

@@ -2,16 +2,16 @@ namespace dropkick.Configuration.Dsl.CommandLine
 {
     using Tasks.CommandLine;
 
-    public class CommandLineTaskBuilder :
+    public class RemoteCommandLineTaskBuilder :
         CommandLineOptions
     {
         readonly PartCfg _part;
-        readonly LocalCommandLineTask _task;
+        readonly RemoteCommandLineTask _task;
 
-        public CommandLineTaskBuilder(PartCfg part, string command)
+        public RemoteCommandLineTaskBuilder(PartCfg part, string command)
         {
             _part = part;
-            _task = new LocalCommandLineTask(command);
+            _task = new RemoteCommandLineTask(command);
             _part.AddTask(_task);
         }
 
