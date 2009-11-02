@@ -27,28 +27,30 @@ namespace dropkick.tests.TestObjects
 //                                .CreateIfItDoesntExist();
 
 
-                    p.OnServer("SrvTopeka19")
-                        .ShareFolder("bob").PointingTo(@"E:\Tools")
-                        .CreateIfNotExist();
+                    p.OnServer("SrvTopeka19", s =>
+                    {
+                        s.ShareFolder("bob").PointingTo(@"E:\Tools")
+                            .CreateIfNotExist();
 
-                    p.OnServer("SrvTopeka19")
-                        .CreateDSN("NAME", "Enterprise");
+                        s.CreateDSN("NAME", "Enterprise");
 
-                    p.OnServer("SrvTopeka19")
-                        .CommandLine("ping")
-                        .Args("www.google.com")
-                        .ExecutableIsLocatedAt("");
+                        s.CommandLine("ping")
+                            .Args("www.google.com")
+                            .ExecutableIsLocatedAt("");
 
-                    p.OnServer("SrvTopeka19")
-                        .Msmq()
-                        .PrivateQueueNamed("bob")
-                        .CreateIfItDoesntExist();
+                        s.Msmq()
+                            .PrivateQueueNamed("bob")
+                            .CreateIfItDoesntExist();
+                    });
+
+
 
                     p.CopyFrom(@".\code_drop\flamesweb\").To(@"\\srvtopeka19\exchecquer\flames\")
                         //.BackupTo(path, o=>o.TimestampIt())
                         .And(f => f.WebConfig
                                       .ReplaceIdentityTokensWithPrompt()
                                       .EncryptIdentity());
+
                     p.OnServer("SrvTopeka02")
                         .WinService("MSMQ").Do(() =>
                         {
