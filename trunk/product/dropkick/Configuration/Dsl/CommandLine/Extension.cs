@@ -5,7 +5,7 @@ namespace dropkick.Configuration.Dsl.CommandLine
         public static CommandLineOptions CommandLine(this ServerOptions options, string command)
         {
             if (options.IsLocal)
-                return new CommandLineTaskBuilder(options.Part, command);
+                return new LocalCommandLineTaskBuilder(options.Part, command);
             else
                 return new RemoteCommandLineTaskBuilder(options.Part, command);
         }

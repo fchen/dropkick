@@ -7,6 +7,7 @@ namespace dropkick.Configuration.Dsl
     {
         string Name { get; }
         ServerOptions OnServer(string serverName);
+        void OnServer(string serverName, Action<ServerOptions> server);
     }
 
     public interface PartCfg : Part
@@ -37,6 +38,12 @@ namespace dropkick.Configuration.Dsl
         public ServerOptions OnServer(string serverName)
         {
             return new ServerOptions(serverName, this);
+        }
+
+        public void OnServer(string serverName, Action<ServerOptions> server)
+        {
+            var so = new ServerOptions(serverName, this);
+            server(so);
         }
 
         public void BindAction(Action<Part> action)

@@ -71,7 +71,7 @@
     <Compile Include="DeploymentModel\DeploymentResult.cs" />
     <Compile Include="DeploymentModel\DeploymentItemStatus.cs" />
     <Compile Include="Tasks\CommandLine\LocalCommandLineTask.cs" />
-    <Compile Include="Configuration\Dsl\CommandLine\CommandLineTaskBuilder.cs" />
+    <Compile Include="Configuration\Dsl\CommandLine\LocalCommandLineTaskBuilder.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\Extension.cs" />
     <Compile Include="Configuration\Dsl\Deployment.cs" />
     <Compile Include="Exceptions\DeploymentException.cs" />
