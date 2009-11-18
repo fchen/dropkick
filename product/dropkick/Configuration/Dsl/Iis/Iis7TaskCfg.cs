@@ -11,7 +11,7 @@ namespace dropkick.Configuration.Dsl.Iis
         public Iis7TaskCfg(ServerOptions server, string websiteName)
         {
             _task = new Iis7Task(){WebsiteName = websiteName,ServerName = server.Name};
-            server.Part.AddTask(_task);
+            server.Role.AddTask(_task);
             
         }
 

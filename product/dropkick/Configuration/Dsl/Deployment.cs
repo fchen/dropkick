@@ -53,9 +53,9 @@ namespace dropkick.Configuration.Dsl
         }
 
         //needs to be renamed
-        protected static void DeploymentStepsFor(Part inputPart, Action<Part> action)
+        protected static void DeploymentStepsFor(Role inputRole, Action<Role> action)
         {
-            Part<Inheritor> part = Part<Inheritor>.GetPart(inputPart);
+            Part<Inheritor> part = Part<Inheritor>.GetPart(inputRole);
             part.BindAction(action);
         }
 
@@ -78,7 +78,7 @@ namespace dropkick.Configuration.Dsl
 
         static bool IsNotAPart(PropertyInfo propertyInfo)
         {
-            return !(propertyInfo.PropertyType == typeof(Part<Inheritor>) || propertyInfo.PropertyType == typeof(Part));
+            return !(propertyInfo.PropertyType == typeof(Part<Inheritor>) || propertyInfo.PropertyType == typeof(Role));
         }
 
         public void Inspect(DeploymentInspector inspector)

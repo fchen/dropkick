@@ -6,13 +6,13 @@ namespace dropkick.Configuration.Dsl.Iis
         IisSiteOptions,
         IisVirtualDirectoryOptions
     {
-        readonly PartCfg _part;
+        readonly RoleCfg _role;
         readonly Iis6Task _task;
 
 
         public Iis6TaskCfg(ServerOptions server, string websiteName)
         {
-            _part = server.Part;
+            _role = server.Role;
             _task = new Iis6Task()
                     {
                         ServerName = server.Name,
@@ -23,7 +23,7 @@ namespace dropkick.Configuration.Dsl.Iis
         public IisVirtualDirectoryOptions VirtualDirectory(string name)
         {
             _task.VdirPath = name;
-            _part.AddTask(_task);
+            _role.AddTask(_task);
             return this;
         }
 

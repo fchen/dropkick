@@ -119,7 +119,7 @@
     <Compile Include="Tasks\NetworkShare\FolderShareTask.cs" />
     <Compile Include="Configuration\Dsl\NetworkShare\FolderShareTaskCfg.cs" />
     <Compile Include="Tasks\NoteTask.cs" />
-    <Compile Include="Configuration\Dsl\Part.cs" />
+    <Compile Include="Configuration\Dsl\Role.cs" />
     <Compile Include="Configuration\Dsl\ServerOptions.cs" />
     <Compile Include="Tasks\WinService\BaseServiceTask.cs" />
     <Compile Include="Tasks\NestedTask.cs" />

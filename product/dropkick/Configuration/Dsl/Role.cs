@@ -3,20 +3,20 @@ namespace dropkick.Configuration.Dsl
     using System;
     using System.Collections.Generic;
 
-    public interface Part
+    public interface Role
     {
         string Name { get; }
         ServerOptions OnServer(string serverName);
         void OnServer(string serverName, Action<ServerOptions> server);
     }
 
-    public interface PartCfg : Part
+    public interface RoleCfg : Role
     {
         void AddTask(Task task);
     }
 
     public class Part<T> :
-        PartCfg,
+        RoleCfg,
         DeploymentInspectorSite
         where T : Deployment<T>, new()
     {
@@ -46,7 +46,7 @@ namespace dropkick.Configuration.Dsl
             server(so);
         }
 
-        public void BindAction(Action<Part> action)
+        public void BindAction(Action<Role> action)
         {
             action(this);
         }
@@ -62,7 +62,7 @@ namespace dropkick.Configuration.Dsl
             });
         }
 
-        public static Part<T> GetPart(Part input)
+        public static Part<T> GetPart(Role input)
         {
             Part<T> result = input as Part<T>;
             if(result == null)

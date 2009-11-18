@@ -21,12 +21,6 @@ namespace dropkick.tests.TestObjects
 
                 DeploymentStepsFor(Web, p =>
                 {
-//                            p.OnServer("SrvTopeka19")
-//                                .Iis6Site("Exchequer")
-//                                .VirtualDirectory("flames")
-//                                .CreateIfItDoesntExist();
-
-
                     p.OnServer("SrvTopeka19", s =>
                     {
                         s.ShareFolder("bob").PointingTo(@"E:\Tools")
@@ -51,26 +45,35 @@ namespace dropkick.tests.TestObjects
                                       .ReplaceIdentityTokensWithPrompt()
                                       .EncryptIdentity());
 
-                    p.OnServer("SrvTopeka02")
-                        .WinService("MSMQ").Do(() =>
+                    p.OnServer("bob", o =>
+                    {
+                        o.WinService("MSMQ").Do(() =>
                         {
-                            // do stuff here like copy files
+                            //service stops
+
+                            //do stuff
+
+                            //service starts
                         });
+                    });
                 });
 
                 DeploymentStepsFor(Db, (p) =>
                 {
-                    p.OnServer("SrvTopeka02")
-                        .SqlInstance(".")
-                        .Database("Enterprise")
-                        .BackupWithLightspeedTo(@"\\appdev\dev\sqlbacksups\")
-                        .RunTarantinoOn(@".\code_drop\flames_sql");
+                    p.OnServer("", o =>
+                    {
+                        o.SqlInstance(".")
+                            .Database("Enterprise")
+                            .BackupWithLightspeedTo(@"\\appdev\dev\sqlbacksups\")
+                            .RunTarantinoOn(@".\code_drop\flames_sql");
+                    });
                 });
 
                 DeploymentStepsFor(Service, (p) =>
                 {
-                    p.OnServer("SrvTopeka19")
-                        .WinService("FlamesHost")
+                    p.OnServer("bob", o =>
+                    {
+                        o.WinService("FlamesHost")
                         .Do(() => //auto-stop
                         {
                             p.CopyFrom(@".\code_drop\flameshost").To(@"\\srvtopeka00\whatever")
@@ -81,12 +84,13 @@ namespace dropkick.tests.TestObjects
                                         .EncryptIdentity();
                                 });
                         }); //auto-start
+                    });    
                 });
             });
         }
 
-        public static Part Web { get; set; }
-        public static Part Db { get; set; }
-        public static Part Service { get; set; }
+        public static Role Web { get; set; }
+        public static Role Db { get; set; }
+        public static Role Service { get; set; }
     }
 }

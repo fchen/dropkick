@@ -2,14 +2,14 @@ namespace dropkick.Configuration.Dsl
 {
     public class ServerOptions
     {
-        public ServerOptions(string name, PartCfg part)
+        public ServerOptions(string name, RoleCfg role)
         {
             Name = name;
-            Part = part;
+            Role = role;
         }
 
         public string Name { get; set; }
-        public PartCfg Part { get; set; }
+        public RoleCfg Role { get; set; }
         public bool IsLocal
         {
             get

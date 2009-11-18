@@ -34,7 +34,7 @@ namespace dropkick.Configuration.Dsl.MsSql
 
         public void OutputSql(string sql)
         {
-            _options.Part.AddTask(new OutputSqlTask(_serverName, _databaseName)
+            _options.Role.AddTask(new OutputSqlTask(_serverName, _databaseName)
                                   {
                                       OutputSql = sql
                                   });
@@ -42,7 +42,7 @@ namespace dropkick.Configuration.Dsl.MsSql
 
         public void RunScript(string scriptFile)
         {
-            _options.Part.AddTask(new RunSqlScriptTask(_serverName, _databaseName)
+            _options.Role.AddTask(new RunSqlScriptTask(_serverName, _databaseName)
                                   {
                                       ScriptToRun = scriptFile
                                   });

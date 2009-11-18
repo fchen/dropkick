@@ -13,7 +13,7 @@ namespace dropkick.Configuration.Dsl.Msmq
         {
             //set server name
             _task = new MsmqTask {ServerName = options.Name};
-            options.Part.AddTask(_task);
+            options.Role.AddTask(_task);
         }
 
         public QueueOptions PrivateQueueNamed(string name)

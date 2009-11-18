@@ -4,22 +4,22 @@ namespace dropkick.tests.Configuration.Dsl
     using TestObjects;
 
     [TestFixture]
-    public class Deployments_should_have_parts
+    public class Deployments_should_have_roles
     {
         [Test]
-        public void Should_have_one_part()
+        public void Should_have_one_role()
         {
             var dep = new SinglePartDeploy();
-            var pc = new PartCounter();
+            var pc = new RoleCounter();
             dep.Inspect(pc);
             Assert.AreEqual(1,pc.Count);
         }
 
         [Test]
-        public void Should_have_two_parts()
+        public void Should_have_two_roles()
         {
             var dep = new TwoPartDeploy();
-            var pc = new PartCounter();
+            var pc = new RoleCounter();
             dep.Inspect(pc);
             Assert.AreEqual(2, pc.Count);
         }
