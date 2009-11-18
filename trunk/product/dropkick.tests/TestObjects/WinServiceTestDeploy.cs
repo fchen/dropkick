@@ -7,8 +7,8 @@ namespace dropkick.tests.TestObjects
     public class WinServiceTestDeploy :
         Deployment<WinServiceTestDeploy>
     {
-        public static Part Web { get; set; }
-        public static Part File { get; set; }
+        public static Role Web { get; set; }
+        public static Role File { get; set; }
         static WinServiceTestDeploy()
         {
             //this is just a means to check the nested closure would work, not that one would actually do this

@@ -6,18 +6,18 @@ namespace dropkick.tests.TestObjects
     public class TwoPartDeploy :
         Deployment<TwoPartDeploy>
     {
-        public static Part Web { get; set; }
-        public static Part Db { get; set; }
+        public static Role Web { get; set; }
+        public static Role Db { get; set; }
 
         static TwoPartDeploy()
         {
             Define(() =>
                 {
-                    DeploymentStepsFor(Web, (p) =>
+                    DeploymentStepsFor(Web, p =>
                         {
                             p.CopyFrom(".\\anthony").To(".\\katie");
                         });
-                    DeploymentStepsFor(Db, (p) =>
+                    DeploymentStepsFor(Db, p =>
                         {
                             p.CopyFrom(".\\rob").To(".\\brandy");
                         });

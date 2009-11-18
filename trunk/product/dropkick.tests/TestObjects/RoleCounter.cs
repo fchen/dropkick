@@ -2,7 +2,7 @@ namespace dropkick.tests.TestObjects
 {
     using dropkick.Configuration.Dsl;
 
-    public class PartCounter :
+    public class RoleCounter :
         DeploymentInspector
     {
         int _count;
@@ -16,7 +16,7 @@ namespace dropkick.tests.TestObjects
 
         public void Inspect(object obj)
         {
-            if (obj is Part)
+            if (obj is Role)
                 _count++;
         }
 

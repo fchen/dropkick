@@ -43,9 +43,9 @@ namespace dropkick.Configuration.Dsl
 
         //TODO: This smells pretty nasty
 
-        public bool Look(Part part)
+        public bool Look(Role role)
         {
-            _currentPart = new DeploymentPart(part.Name);
+            _currentPart = new DeploymentPart(role.Name);
             if(_partCriteria(_currentPart))
                 _plan.AddPart(_currentPart);
 

@@ -16,6 +16,6 @@ namespace dropkick.tests.TestObjects
                 );
         }
 
-        public static Part Web { get; set; }
+        public static Role Web { get; set; }
     }
 }
