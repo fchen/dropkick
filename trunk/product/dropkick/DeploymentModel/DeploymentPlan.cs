@@ -5,7 +5,7 @@ namespace dropkick.DeploymentModel
 
     public class DeploymentPlan
     {
-        readonly IList<DeploymentPart> _parts = new List<DeploymentPart>();
+        readonly IList<DeploymentRole> _parts = new List<DeploymentRole>();
 
         public string Name { get; set; }
 
@@ -14,9 +14,9 @@ namespace dropkick.DeploymentModel
             get { return _parts.Count; }
         }
 
-        public void AddPart(DeploymentPart part)
+        public void AddPart(DeploymentRole role)
         {
-            _parts.Add(part);
+            _parts.Add(role);
         }
 
         public void Execute()

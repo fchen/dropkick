@@ -3,11 +3,11 @@ namespace dropkick.DeploymentModel
     using System;
     using System.Collections.Generic;
 
-    public class DeploymentPart
+    public class DeploymentRole
     {
         readonly IList<DeploymentDetail> _details;
 
-        public DeploymentPart(string name)
+        public DeploymentRole(string name)
         {
             Name = name;
             _details = new List<DeploymentDetail>();
