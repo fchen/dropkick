@@ -15,14 +15,14 @@ namespace dropkick.Configuration.Dsl
         void AddTask(Task task);
     }
 
-    public class Part<T> :
+    public class Role<T> :
         RoleCfg,
         DeploymentInspectorSite
         where T : Deployment<T>, new()
     {
         readonly List<Task> _tasks = new List<Task>();
 
-        public Part(string name)
+        public Role(string name)
         {
             Name = name;
         }
@@ -62,9 +62,9 @@ namespace dropkick.Configuration.Dsl
             });
         }
 
-        public static Part<T> GetPart(Role input)
+        public static Role<T> GetRole(Role input)
         {
-            Part<T> result = input as Part<T>;
+            Role<T> result = input as Role<T>;
             if(result == null)
                 throw new ArgumentException(string.Format("The part is not valid for this deployment"), "input");
 

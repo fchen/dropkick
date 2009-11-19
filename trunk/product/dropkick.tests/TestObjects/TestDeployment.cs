@@ -19,9 +19,10 @@ namespace dropkick.tests.TestObjects
                 //Could be on FhlbDeployment
                 //EnableTripwireReporting();         //file copies and movies are evented
 
-                DeploymentStepsFor(Web, p =>
+                DeploymentStepsFor(Web, r =>
                 {
-                    p.OnServer("SrvTopeka19", s =>
+                    //how to get this to be the current server?
+                    r.OnServer("SrvTopeka19", s =>
                     {
                         s.ShareFolder("bob").PointingTo(@"E:\Tools")
                             .CreateIfNotExist();
@@ -39,13 +40,13 @@ namespace dropkick.tests.TestObjects
 
 
 
-                    p.CopyFrom(@".\code_drop\flamesweb\").To(@"\\srvtopeka19\exchecquer\flames\")
+                    r.CopyFrom(@".\code_drop\flamesweb\").To(@"\\srvtopeka19\exchecquer\flames\")
                         //.BackupTo(path, o=>o.TimestampIt())
                         .And(f => f.WebConfig
                                       .ReplaceIdentityTokensWithPrompt()
                                       .EncryptIdentity());
 
-                    p.OnServer("bob", o =>
+                    r.OnServer("bob", o =>
                     {
                         o.WinService("MSMQ").Do(() =>
                         {

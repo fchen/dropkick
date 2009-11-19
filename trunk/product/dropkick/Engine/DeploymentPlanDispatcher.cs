@@ -26,7 +26,7 @@ namespace dropkick.Engine
             _actions[args.Command](plan);
         }
 
-        static PartCriteria Criteria(DeploymentArguments args)
+        static RoleCriteria Criteria(DeploymentArguments args)
         {
             //need multi-part deploys too
             if (!args.Part.Equals("ALL", StringComparison.InvariantCultureIgnoreCase))

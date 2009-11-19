@@ -14,7 +14,7 @@ namespace dropkick.Configuration.Dsl
         Deployment
         where Inheritor : Deployment<Inheritor>, new()
     {
-        static readonly Dictionary<string, Part<Inheritor>> _parts = new Dictionary<string, Part<Inheritor>>();
+        static readonly Dictionary<string, Role<Inheritor>> _parts = new Dictionary<string, Role<Inheritor>>();
 
         static Deployment()
         {
@@ -34,9 +34,9 @@ namespace dropkick.Configuration.Dsl
             {
                 if(IsNotAPart(propertyInfo)) continue;
 
-                Part<Inheritor> part = SetPropertyValue(propertyInfo, x => new Part<Inheritor>(x.Name));
+                Role<Inheritor> role = SetPropertyValue(propertyInfo, x => new Role<Inheritor>(x.Name));
 
-                _parts.Add(part.Name, part);
+                _parts.Add(role.Name, role);
             }
         }
 
@@ -55,13 +55,13 @@ namespace dropkick.Configuration.Dsl
         //needs to be renamed
         protected static void DeploymentStepsFor(Role inputRole, Action<Role> action)
         {
-            Part<Inheritor> part = Part<Inheritor>.GetPart(inputRole);
-            part.BindAction(action);
+            Role<Inheritor> role = Role<Inheritor>.GetRole(inputRole);
+            role.BindAction(action);
         }
 
-        public static Part<Inheritor> GetPart(string name)
+        public static Role<Inheritor> GetPart(string name)
         {
-            Part<Inheritor> state;
+            Role<Inheritor> state;
             return _parts.TryGetValue(name, out state) ? state : null;
         }
 
@@ -78,14 +78,14 @@ namespace dropkick.Configuration.Dsl
 
         static bool IsNotAPart(PropertyInfo propertyInfo)
         {
-            return !(propertyInfo.PropertyType == typeof(Part<Inheritor>) || propertyInfo.PropertyType == typeof(Role));
+            return !(propertyInfo.PropertyType == typeof(Role<Inheritor>) || propertyInfo.PropertyType == typeof(Role));
         }
 
         public void Inspect(DeploymentInspector inspector)
         {
             inspector.Inspect(this, () =>
             {
-                foreach(Part<Inheritor> part in _parts.Values)
+                foreach(Role<Inheritor> part in _parts.Values)
                 {
                     part.Inspect(inspector);
                 }
