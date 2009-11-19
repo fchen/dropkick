@@ -5,23 +5,23 @@ namespace dropkick.DeploymentModel
 
     public class DeploymentPlan
     {
-        readonly IList<DeploymentRole> _parts = new List<DeploymentRole>();
+        readonly IList<DeploymentRole> _roles = new List<DeploymentRole>();
 
         public string Name { get; set; }
 
         public int PartCount
         {
-            get { return _parts.Count; }
+            get { return _roles.Count; }
         }
 
         public void AddPart(DeploymentRole role)
         {
-            _parts.Add(role);
+            _roles.Add(role);
         }
 
-        public void Execute()
+        public DeploymentResult Execute()
         {
-            Ex(d=>
+            return Ex(d=>
             {
                 var o = d.Verify();
                 var oo = d.Execute();
@@ -29,33 +29,37 @@ namespace dropkick.DeploymentModel
                 return o.MergedWith(oo);
             });
         }
-        public void Verify()
+        public DeploymentResult Verify()
         {
-            Ex(d=>d.Verify());
+            return Ex(d=>d.Verify());
         }
-        public void Trace()
+        public DeploymentResult Trace()
         {
-            Ex(d=> new DeploymentResult());
+            return Ex(d=> new DeploymentResult());
         }
 
-        void Ex(Func<DeploymentDetail, DeploymentResult> action)
+        DeploymentResult Ex(Func<DeploymentDetail, DeploymentResult> action)
         {
             Console.WriteLine(Name);
-        
-            foreach (var part in _parts)
-            {
-                Console.WriteLine("  {0}", part.Name);
+            var result = new DeploymentResult();
 
-                part.ForEachDetail(d=>
+            foreach (var role in _roles)
+            {
+                Console.WriteLine("  {0}", role.Name);
+
+                role.ForEachDetail(d=>
                 {
                     Console.WriteLine("    {0}", d.Name);
                     var r = action(d);
+                    result.MergedWith(r);
                     foreach (var item in r.Results)
                     {
                         Console.WriteLine("      [{0}] {1}", item.Status, item.Message);
                     }
                 });
             }
+
+            return result;
         }
 
     }
