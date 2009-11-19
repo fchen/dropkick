@@ -32,7 +32,7 @@ namespace dropkick.tests
             });
 
 
-            var web = new DeploymentPart("WEB");
+            var web = new DeploymentRole("WEB");
             web.AddDetail(detail);
 
             var plan = new DeploymentPlan();
@@ -74,7 +74,7 @@ namespace dropkick.tests
             });
 
 
-            var web = new DeploymentPart("WEB");
+            var web = new DeploymentRole("WEB");
             web.AddDetail(detail);
 
             var plan = new DeploymentPlan();
@@ -120,7 +120,7 @@ namespace dropkick.tests
             });
 
 
-            var web = new DeploymentPart("WEB");
+            var web = new DeploymentRole("WEB");
             web.AddDetail(detail);
 
             var plan = new DeploymentPlan();

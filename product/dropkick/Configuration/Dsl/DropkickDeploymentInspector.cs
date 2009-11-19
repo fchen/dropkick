@@ -8,7 +8,7 @@ namespace dropkick.Configuration.Dsl
         DeploymentInspector
     {
         readonly DeploymentPlan _plan = new DeploymentPlan();
-        DeploymentPart _currentPart;
+        DeploymentRole _currentRole;
         RoleCriteria _roleCriteria;
 
         public DropkickDeploymentInspector() :
@@ -45,9 +45,9 @@ namespace dropkick.Configuration.Dsl
 
         public bool Look(Role role)
         {
-            _currentPart = new DeploymentPart(role.Name);
-            if(_roleCriteria(_currentPart))
-                _plan.AddPart(_currentPart);
+            _currentRole = new DeploymentRole(role.Name);
+            if(_roleCriteria(_currentRole))
+                _plan.AddPart(_currentRole);
 
             return true;
         }
@@ -55,7 +55,7 @@ namespace dropkick.Configuration.Dsl
         public bool Look(Task task)
         {
             var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
-            _currentPart.AddDetail(detail);
+            _currentRole.AddDetail(detail);
             return true;
         }
         #endregion
@@ -71,5 +71,5 @@ namespace dropkick.Configuration.Dsl
         
     }
 
-    public delegate bool RoleCriteria(DeploymentPart part);
+    public delegate bool RoleCriteria(DeploymentRole role);
 }

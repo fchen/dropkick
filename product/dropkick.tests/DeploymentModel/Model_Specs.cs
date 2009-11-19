@@ -13,7 +13,7 @@ namespace dropkick.tests.DeploymentModel
             ep.Execute();
 
             var plan = new DeploymentPlan();
-            plan.AddPart(new DeploymentPart("name"));
+            plan.AddPart(new DeploymentRole("name"));
             plan.Execute();
         }
 
@@ -21,7 +21,7 @@ namespace dropkick.tests.DeploymentModel
         public void Part()
         {
             var detail = new DeploymentDetail(() => "name_d", () => new DeploymentResult(), () => new DeploymentResult());
-            var part = new DeploymentPart("name");
+            var part = new DeploymentRole("name");
             part.AddDetail(detail);
             var plan = new DeploymentPlan();
             plan.AddPart(part);
