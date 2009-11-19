@@ -1,10 +1,12 @@
 namespace dropkick.DeploymentModel
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
-    public class DeploymentResult
+    public class DeploymentResult :
+        IEnumerable<DeploymentItem>
     {
         readonly List<DeploymentItem> _items = new List<DeploymentItem>();
 
@@ -46,7 +48,10 @@ namespace dropkick.DeploymentModel
         {
             _items.Add(new DeploymentItem(status, message));
         }
-
+        public void Add(DeploymentItem item)
+        {
+            _items.Add(item);
+        }
         public DeploymentResult MergedWith(DeploymentResult result)
         {
             foreach (var item in result.Results)
@@ -55,6 +60,20 @@ namespace dropkick.DeploymentModel
             }
 
             return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public IEnumerator<DeploymentItem> GetEnumerator()
+        {
+            foreach (var item in _items)
+            {
+                yield return item;
+            }
+            yield break;
         }
     }
 }
