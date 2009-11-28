@@ -21,7 +21,7 @@ namespace dropkick.Tasks.Iis
 
             CheckServerName(result);
 
-            CheckForSiteAndVDirExistance(DoesSiteExist, DoesVirtualDirectoryExist, result);
+            CheckForSiteAndVDirExistance(DoesSiteExist, ()=>DoesVirtualDirectoryExist(GetSite(new ServerManager(), WebsiteName )), result);
 
             return result;
         }
@@ -30,33 +30,31 @@ namespace dropkick.Tasks.Iis
         {
             var result = new DeploymentResult();
 
+            var iisManager = new ServerManager();
+
             if(DoesSiteExist())
             {
-                result.AddGood("site exists");
-                if(!DoesVirtualDirectoryExist())
+                result.AddGood("'{0}' site exists", WebsiteName);
+                Site site = GetSite(iisManager, WebsiteName);
+
+                if(!DoesVirtualDirectoryExist(site))
                 {
-                    CreateVirtualDirectory();
+                    result.AddAlert("'{0}' doesn't exist. creating.", VdirPath);
+                    CreateVirtualDirectory(site);
+                    result.AddGood("'{0}' was created", VdirPath);
                 }
             }
+
+
+            iisManager.CommitChanges();
 
             return result;
         }
 
-        void CreateVirtualDirectory()
+        void CreateVirtualDirectory(Site site)
         {
-            var iisManager = new ServerManager();
-            Site siteToAdd = null;
-            foreach (var site in iisManager.Sites)
-            {
-                if (site.Name.Equals(base.WebsiteName))
-                {
-                    siteToAdd = site;
-                    break;
-                }
-            }
-
             Application appToAdd = null;
-            foreach (var app in siteToAdd.Applications)
+            foreach (var app in site.Applications)
             {
                 if (app.Path.Equals("/" + VdirPath))
                 {
@@ -67,9 +65,8 @@ namespace dropkick.Tasks.Iis
             if(appToAdd == null)
             {
                 //create it
-                siteToAdd.Applications.Add("/" +VdirPath, PathOnServer.FullName);
+                site.Applications.Add("/" +VdirPath, PathOnServer.FullName);
             }
-            iisManager.CommitChanges();
         }
 
 
@@ -93,27 +90,35 @@ namespace dropkick.Tasks.Iis
             return false;
         }
 
-        public bool DoesVirtualDirectoryExist()
+        public bool DoesVirtualDirectoryExist(Site site)
         {
-            var iisManager = new ServerManager();
-            foreach (var site in iisManager.Sites)
+            foreach (var app in site.Applications)
             {
-                if (!site.Name.Equals(base.WebsiteName)) continue;
-
-                foreach (var app in site.Applications)
+                if (app.Path.Equals("/" + VdirPath))
                 {
-                    if (app.Path.Equals("/" + VdirPath))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
+
             return false;
         }
 
         public void CreateIfItDoesntExist()
         {
             ShouldCreate = true;
+        }
+
+        public Site GetSite(ServerManager iisManager, string name)
+        {
+            foreach (var site in iisManager.Sites)
+            {
+                if (site.Name.Equals(name))
+                {
+                    return site;
+                }
+            }
+
+            throw new Exception("cant find site");
         }
     }
 }
