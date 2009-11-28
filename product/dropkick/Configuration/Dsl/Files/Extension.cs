@@ -2,10 +2,9 @@ namespace dropkick.Configuration.Dsl.Files
 {
     public static class Extension
     {
-        public static CopyOptions CopyFrom(this Role role, string sourcePath)
+        public static CopyOptions CopyTo(this ServerOptions server, string targetPath)
         {
-            //because I don't use the server name I had to do this upcast
-            return new CopyTaskBuilder(sourcePath, (RoleCfg)role);
+            return new CopyTaskBuilder(server);
         }
     }
 }

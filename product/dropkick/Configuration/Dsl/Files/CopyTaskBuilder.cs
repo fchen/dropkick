@@ -4,34 +4,38 @@ namespace dropkick.Configuration.Dsl.Files
     using Tasks.Files;
 
     public class CopyTaskBuilder :
-        CopyOptions
+    CopyOptions
     {
-        private readonly string _from;
-        private readonly RoleCfg _role;
-        private Action<FileActions> _followOn;
+        private string _from;
         private CopyTask _task;
         private string _to;
+        readonly ServerOptions _server;
+        Action<FileActions> _followOn;
 
-        public CopyTaskBuilder(string from, RoleCfg role)
+        public CopyTaskBuilder(ServerOptions server)
         {
-            _from = from;
-            _role = role;
+            _server = server;
         }
 
         #region CopyOptions Members
 
+        public CopyOptions From(string sourcePath)
+        {
+            _from = sourcePath;
+            return this;
+        }
         public CopyOptions To(string targetPath)
         {
             _to = targetPath;
             _task = new CopyTask(_from, _to);
-            _role.AddTask(_task);
+            _server.Role.AddTask(_task);
             return this;
         }
 
-        public void And(Action<FileActions> copyAction)
+        public void With(Action<FileActions> copyAction)
         {
             _followOn = copyAction;
-            copyAction(new SomeFileActions(_role));
+            copyAction(new SomeFileActions(_server));
         }
 
         #endregion

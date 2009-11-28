@@ -12,11 +12,14 @@ namespace dropkick.tests.TestObjects
             Define(() =>
                    DeploymentStepsFor(Web, (p) =>
                    {
-                       p.CopyFrom(@".\bob").To(@".\bill");
+                       p.OnServer("srvtopeka", s =>
+                       {
+                           s.CopyTo(@".\bill")
+                               .From(@".\bob");
 
-                       p.OnServer("srvtopeka")
-                           .Msmq()
-                           .PrivateQueueNamed("mt_timeout");
+                           s.Msmq()
+                               .PrivateQueueNamed("mt_timeout");
+                       });
                    })
                 );
         }
