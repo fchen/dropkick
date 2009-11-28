@@ -27,8 +27,48 @@ namespace dropkick.Tasks.Iis
 
         public override DeploymentResult Execute()
         {
-            //ignore
-            return new DeploymentResult();
+            var result = new DeploymentResult();
+
+            if(DoesSiteExist())
+            {
+                result.AddGood("site exists");
+                if(!DoesVirtualDirectoryExist())
+                {
+                    CreateVirtualDirectory();
+                }
+            }
+
+            return result;
+        }
+
+        void CreateVirtualDirectory()
+        {
+            var iisManager = new ServerManager();
+            Site siteToAdd = null;
+            foreach (var site in iisManager.Sites)
+            {
+                if (site.Name.Equals(base.WebsiteName))
+                {
+                    siteToAdd = site;
+                    break;
+                }
+            }
+
+            Application appToAdd = null;
+            foreach (var app in siteToAdd.Applications)
+            {
+                if (app.Path.Equals("/" + VdirPath))
+                {
+                    appToAdd = app;
+                }
+            }
+
+            if(appToAdd == null)
+            {
+                //create it
+                siteToAdd.Applications.Add("/" +VdirPath, PathOnServer.FullName);
+            }
+            iisManager.CommitChanges();
         }
 
 

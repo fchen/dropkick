@@ -23,9 +23,10 @@ namespace dropkick.tests.DeploymentModel
             role.AddDetail(detail);
             _plan = new DeploymentPlan();
             _plan.AddPart(role);
-            
+
             BecauseOf();
         }
+
         public void BecauseOf()
         {
             _result  = _plan.Execute();
