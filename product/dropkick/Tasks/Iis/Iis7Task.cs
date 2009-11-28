@@ -3,7 +3,8 @@ namespace dropkick.Tasks.Iis
     using System;
     using DeploymentModel;
     using Microsoft.Web.Administration;
-    
+
+    //http://blogs.msdn.com/carlosag/archive/2006/04/17/MicrosoftWebAdministration.aspx
     public class Iis7Task :
         BaseIisTask
     {
