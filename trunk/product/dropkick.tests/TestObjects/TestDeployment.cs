@@ -36,15 +36,18 @@ namespace dropkick.tests.TestObjects
                         s.Msmq()
                             .PrivateQueueNamed("bob")
                             .CreateIfItDoesntExist();
-                    });
 
+                        s.CopyTo(@"E:\FHLBApplications\atlas")
+                            .From(@"\\someserver\bob\bill");
 
-
-                    r.CopyFrom(@".\code_drop\flamesweb\").To(@"\\srvtopeka19\exchecquer\flames\")
-                        //.BackupTo(path, o=>o.TimestampIt())
-                        .And(f => f.WebConfig
+                        s.CopyTo(@"\\srvtopeka19\exchecquer\flames\")
+                            .From(@".\code_drop\flamesweb\")
+                            .With(f => f.WebConfig
                                       .ReplaceIdentityTokensWithPrompt()
                                       .EncryptIdentity());
+                        //.BackupTo(path, o=>o.TimestampIt())
+                    });
+                        
 
                     r.OnServer("bob", o =>
                     {
@@ -77,8 +80,8 @@ namespace dropkick.tests.TestObjects
                         o.WinService("FlamesHost")
                         .Do(() => //auto-stop
                         {
-                            p.CopyFrom(@".\code_drop\flameshost").To(@"\\srvtopeka00\whatever")
-                                .And((f) =>
+                            o.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
+                                .With(f =>
                                 {
                                     f.AppConfig
                                         .ReplaceIdentityTokensWithPrompt()

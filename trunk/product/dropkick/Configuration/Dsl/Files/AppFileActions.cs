@@ -3,11 +3,11 @@ namespace dropkick.Configuration.Dsl.Files
     public class AppFileActions :
         FileAction
     {
-        Role _role;
+        ServerOptions _server;
 
-        public AppFileActions(Role role)
+        public AppFileActions(ServerOptions server)
         {
-            _role = role;
+            _server = server;
         }
 
         public FileAction ReplaceIdentityTokensWithPrompt()

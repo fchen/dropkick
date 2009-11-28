@@ -7,11 +7,11 @@ namespace dropkick.Configuration.Dsl.Files
     public class WebFileActions :
         FileAction
     {
-        readonly RoleCfg _role;
+        readonly ServerOptions _server;
 
-        public WebFileActions(RoleCfg role)
+        public WebFileActions(ServerOptions server)
         {
-            _role = role;
+            _server = server;
         }
 
         #region FileAction Members
@@ -29,7 +29,7 @@ namespace dropkick.Configuration.Dsl.Files
             string winDir = Environment.GetEnvironmentVariable("WINDIR");
             t.ExecutableIsLocatedAt = Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727");
 
-            _role.AddTask(t);
+            _server.Role.AddTask(t);
 
             return this;
         }
