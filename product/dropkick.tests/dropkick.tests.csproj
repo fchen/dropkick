@@ -63,6 +63,7 @@
     <Compile Include="Engine\ExecutionArguments_Specs.cs" />
     <Compile Include="DeploymentModel\Model_Specs.cs" />
     <Compile Include="Extentions.cs" />
+    <Compile Include="Tasks\Iis\NewVirtualDirTest.cs" />
     <Compile Include="TestObjects\GenericDeploymentFinder.cs" />
     <Compile Include="Tasks\Console\PingTest.cs" />
     <Compile Include="Tasks\Dsn\CreatingDsns.cs" />
