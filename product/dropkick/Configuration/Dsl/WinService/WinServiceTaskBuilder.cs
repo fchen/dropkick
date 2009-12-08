@@ -6,14 +6,16 @@ namespace dropkick.Configuration.Dsl.WinService
     public class WinServiceTaskBuilder :
         WinServiceOptions
     {
-        readonly Role _role;
+        readonly RoleCfg _role;
+        readonly string _server;
         readonly string _serviceName;
         Action _action;
 
-        public WinServiceTaskBuilder(Role role, string name)
+        public WinServiceTaskBuilder(ServerOptions options, string name)
         {
             _serviceName = name;
-            _role = role;
+            _server = options.Name;
+            _role = options.Role;
         }
 
         #region WinServiceOptions Members
@@ -22,12 +24,12 @@ namespace dropkick.Configuration.Dsl.WinService
         {
             _action = thingToDo;
 
-            _role.AddTask(new WinServiceStopTask(_role, _serviceName));
+            _role.AddTask(new WinServiceStopTask(_server, _serviceName));
 
             //child task
             _action();
 
-            _role.AddTask(new WinServiceStartTask(_role, _serviceName));
+            _role.AddTask(new WinServiceStartTask(_server, _serviceName));
 
             return this;
         }

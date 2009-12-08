@@ -2,14 +2,13 @@ namespace dropkick.Tasks.WinService
 {
     using System;
     using System.ServiceProcess;
-    using Configuration.Dsl;
     using DeploymentModel;
 
 
     public class WinServiceStartTask :
         BaseServiceTask
     {
-        public WinServiceStartTask(Role role, string serviceName) : base(role, serviceName)
+        public WinServiceStartTask(string machineName, string serviceName) : base(machineName, serviceName)
         {
         }
 
@@ -26,8 +25,7 @@ namespace dropkick.Tasks.WinService
 
             try
             {
-                string machineName = "FIX"; //TODO: fix
-                using (var c = new ServiceController(ServiceName, machineName))
+                using (var c = new ServiceController(ServiceName, MachineName))
                 {
                     ServiceControllerStatus currentStatus = c.Status;
                     result.AddGood(string.Format("Found service '{0}' it is '{1}'", ServiceName, currentStatus));
@@ -45,8 +43,7 @@ namespace dropkick.Tasks.WinService
         {
             var result = new DeploymentResult();
 
-            string machineName = "FIX"; //TODO: fix this
-            using (var c = new ServiceController(ServiceName, machineName))
+            using (var c = new ServiceController(ServiceName, MachineName))
             {
                 c.Start();
                 c.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromSeconds(5));

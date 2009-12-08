@@ -10,13 +10,16 @@ namespace dropkick.tests.TestObjects
         static SinglePartDeploy()
         {
             Define(() =>
-                   DeploymentStepsFor(Web, p =>
+                   DeploymentStepsFor(Web, (p) =>
                    {
-                       p.CopyTo(@".\bill")
-                           .From(@".\bob");
-                       p.Msmq()
-                           .PrivateQueueNamed("mt_timeout");
+                       p.OnServer("srvtopeka", s =>
+                       {
+                           s.CopyTo(@".\bill")
+                               .From(@".\bob");
 
+                           s.Msmq()
+                               .PrivateQueueNamed("mt_timeout");
+                       });
                    })
                 );
         }

@@ -9,11 +9,11 @@ namespace dropkick.Configuration.Dsl.Msmq
         readonly MsmqTask _task;
 
         //task
-        public MsmqTaskCfg(Role role)
+        public MsmqTaskCfg(ServerOptions options)
         {
             //set server name
-            _task = new MsmqTask {ServerName = role.Name};
-            role.AddTask(_task);
+            _task = new MsmqTask {ServerName = options.Name};
+            options.Role.AddTask(_task);
         }
 
         public QueueOptions PrivateQueueNamed(string name)

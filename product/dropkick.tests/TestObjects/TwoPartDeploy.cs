@@ -13,13 +13,13 @@ namespace dropkick.tests.TestObjects
         {
             Define(() =>
                 {
-                    DeploymentStepsFor(Web, r =>
+                    DeploymentStepsFor(Web, p =>
                         {
-                            r.CopyTo(".\\anthony").From(".\\katie");
+                            p.OnServer("hsh").CopyTo(".\\anthony").From(".\\katie");
                         });
-                    DeploymentStepsFor(Db, r =>
+                    DeploymentStepsFor(Db, p =>
                         {
-                            r.CopyTo(".\\rob").From(".\\brandy");
+                            p.OnServer("topeka").CopyTo(".\\rob").From(".\\brandy");
                         });
                 });
         }

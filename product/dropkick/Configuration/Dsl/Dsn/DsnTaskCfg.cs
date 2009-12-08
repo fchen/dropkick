@@ -5,14 +5,13 @@ namespace dropkick.Configuration.Dsl.Dsn
     public class DsnTaskCfg :
         DsnOptions
     {
-        readonly Role _role;
+        readonly ServerOptions _options;
         readonly DsnTask _task;
 
-        public DsnTaskCfg(Role role, string dsnName, string databaseName)
+        public DsnTaskCfg(ServerOptions options, string dsnName, string databaseName)
         {
-            _role = role;
-            //TODO: fix - not role.name
-            _task = new DsnTask(role.Name, dsnName, DsnAction.AddSystemDsn, DsnDriver.Sql(), databaseName);
+            _options = options;
+            _task = new DsnTask(options.Name, dsnName, DsnAction.AddSystemDsn, DsnDriver.Sql(), databaseName);
         }
     }
 }
