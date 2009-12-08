@@ -21,10 +21,7 @@ namespace dropkick.tests
 
             var ins = new DropkickDeploymentInspector();
 
-            var plan = ins.GetPlan(dep, p =>
-            {
-                return p.Name == "Web";
-            }, maps);
+            var plan = ins.GetPlan(dep, maps);
 
             Assert.AreEqual(1, plan.PartCount);   
         }
@@ -38,10 +35,7 @@ namespace dropkick.tests
 
             var ins = new DropkickDeploymentInspector();
 
-            var plan = ins.GetPlan(dep, p =>
-            {
-                return p.Name == "Db";
-            }, maps);
+            var plan = ins.GetPlan(dep, maps);
             
             Assert.AreEqual(1, plan.PartCount);
         }

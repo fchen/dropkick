@@ -19,21 +19,10 @@ namespace dropkick.Engine
         }
 
         public static void KickItOutThereAlready(Deployment deployment, DeploymentArguments args)
-        {
-            var crit = Criteria(args);
-            
-            var plan = _inspector.GetPlan(deployment, crit, args.ServerMappings);
+        {   
+            var plan = _inspector.GetPlan(deployment, args.ServerMappings);
             
             _actions[args.Command](plan);
-        }
-
-        static RoleCriteria Criteria(DeploymentArguments args)
-        {
-            //need multi-part deploys too
-            if (!args.Part.Equals("ALL", StringComparison.InvariantCultureIgnoreCase))
-                return p => p.Name.Equals(args.Part, StringComparison.InvariantCultureIgnoreCase);
-
-            return p => true;
         }
     }
 }

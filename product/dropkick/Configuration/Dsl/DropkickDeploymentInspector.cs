@@ -11,7 +11,6 @@ namespace dropkick.Configuration.Dsl
     {
         readonly DeploymentPlan _plan = new DeploymentPlan();
         DeploymentRole _currentRole;
-        RoleCriteria _roleCriteria;
 
         public DropkickDeploymentInspector() :
             base("Look")
@@ -53,8 +52,8 @@ namespace dropkick.Configuration.Dsl
             {
                 _currentRole.AddServer(new DeploymentServer(server));
             }
-            if(_roleCriteria(_currentRole))
-                _plan.AddPart(_currentRole);
+
+            _plan.AddPart(_currentRole);
 
             return true;
         }
@@ -68,9 +67,8 @@ namespace dropkick.Configuration.Dsl
         #endregion
 
         MultiDictionary<string, string> _serverMappings;
-        public DeploymentPlan GetPlan(Deployment deployment, RoleCriteria criteria, MultiDictionary<string, string> serverMappings)
+        public DeploymentPlan GetPlan(Deployment deployment, MultiDictionary<string, string> serverMappings)
         {
-            _roleCriteria = criteria;
             _serverMappings = serverMappings;
             //TODO: separate out?
             deployment.Inspect(this);
@@ -78,6 +76,4 @@ namespace dropkick.Configuration.Dsl
         }
         
     }
-
-    public delegate bool RoleCriteria(DeploymentRole role);
 }
