@@ -34,11 +34,13 @@ namespace dropkick.tests.TestObjects
                     r.Msmq()
                         .PrivateQueueNamed("bob")
                         .CreateIfItDoesntExist();
+
+                    r.ShareFolder("bob").PointingTo(@"E:\Tools")
+                            .CreateIfNotExist();
+
                     //how to get this to be the current server?
                     r.OnServer("SrvTopeka19", s =>
                     {
-                        s.ShareFolder("bob").PointingTo(@"E:\Tools")
-                            .CreateIfNotExist();
 
                         s.CreateDSN("NAME", "Enterprise");
 
