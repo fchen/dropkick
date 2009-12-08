@@ -8,15 +8,11 @@ namespace dropkick.Configuration.Dsl
         string Name { get; }
         ServerOptions OnServer(string serverName);
         void OnServer(string serverName, Action<ServerOptions> server);
-    }
-
-    public interface RoleCfg : Role
-    {
         void AddTask(Task task);
     }
 
     public class Role<T> :
-        RoleCfg,
+        Role,
         DeploymentInspectorSite
         where T : Deployment<T>, new()
     {
