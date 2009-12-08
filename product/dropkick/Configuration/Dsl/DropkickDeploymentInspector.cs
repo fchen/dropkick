@@ -48,13 +48,15 @@ namespace dropkick.Configuration.Dsl
         public bool Look(Role role)
         {
             _currentRole = new DeploymentRole(role.Name);
-            foreach (var server in _serverMappings[role.Name])
+            foreach (var serverName in _serverMappings[role.Name])
             {
-                _currentRole.AddServer(new DeploymentServer(server));
+                _currentRole.AddServer(serverName);
             }
 
+            _currentRole.ForEachServer(role.ConfigureServer);
             _plan.AddRole(_currentRole);
 
+            
             return true;
         }
 

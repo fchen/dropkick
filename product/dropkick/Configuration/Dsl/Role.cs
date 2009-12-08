@@ -7,7 +7,7 @@ namespace dropkick.Configuration.Dsl
     public interface Role
     {
         string Name { get; }
-        void AddTask(Task task);
+        void ConfigureServer(DeploymentServer server);
     }
 
     public class Role<T> :
@@ -16,7 +16,7 @@ namespace dropkick.Configuration.Dsl
         where T : Deployment<T>, new()
     {
         readonly List<Task> _tasks = new List<Task>();
-        readonly IList<DeploymentServer> _servers = new List<DeploymentServer>();
+        Action<DeploymentServer> _serverConfiguration;
 
         public Role(string name)
         {
@@ -28,14 +28,6 @@ namespace dropkick.Configuration.Dsl
         public void AddTask(Task task)
         {
             _tasks.Add(task);
-        }
-
-        public void BindAction(Action<DeploymentServer> action)
-        {
-            foreach (var server in _servers)
-            {
-                action(server);
-            }
         }
 
         public void Inspect(DeploymentInspector inspector)
@@ -56,6 +48,16 @@ namespace dropkick.Configuration.Dsl
                 throw new ArgumentException(string.Format("The part is not valid for this deployment"), "input");
 
             return result;
+        }
+
+        public void BindAction(Action<DeploymentServer> action)
+        {
+            _serverConfiguration = action;
+        }
+
+        public void ConfigureServer(DeploymentServer server)
+        {
+            _serverConfiguration(server);
         }
     }
 }
