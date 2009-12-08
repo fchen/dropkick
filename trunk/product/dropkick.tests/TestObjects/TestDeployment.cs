@@ -36,21 +36,13 @@ namespace dropkick.tests.TestObjects
                         .CreateIfItDoesntExist();
 
                     r.ShareFolder("bob").PointingTo(@"E:\Tools")
-                            .CreateIfNotExist();
+                        .CreateIfNotExist();
 
-                    //how to get this to be the current server?
-                    r.OnServer("SrvTopeka19", s =>
-                    {
+                    r.CreateDSN("NAME", "Enterprise");
+                    r.CommandLine("ping")
+                        .Args("www.google.com")
+                        .ExecutableIsLocatedAt("");
 
-                        s.CreateDSN("NAME", "Enterprise");
-
-                        s.CommandLine("ping")
-                            .Args("www.google.com")
-                            .ExecutableIsLocatedAt("");
-
-
-                        //.BackupTo(path, o=>o.TimestampIt())
-                    });
 
 
                     r.WinService("MSMQ").Do(() =>

@@ -2,9 +2,9 @@ namespace dropkick.Configuration.Dsl.Dsn
 {
     public static class Extension
     {
-        public static DsnOptions CreateDSN(this ServerOptions serverOptions, string dsnName, string databaseName)
+        public static DsnOptions CreateDSN(this Role role, string dsnName, string databaseName)
         {
-            return new DsnTaskCfg(serverOptions, dsnName, databaseName);
+            return new DsnTaskCfg(role, dsnName, databaseName);
         }
     }
 }
