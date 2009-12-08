@@ -13,4 +13,12 @@ namespace dropkick.Configuration.Dsl
         //Change to Func<DeploymentResult>
         DeploymentResult Execute();
     }
+
+    public static class TaskHelpers
+    {
+        public static DeploymentDetail ToDetail(this Task task)
+        {
+            return new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
+        }
+    }
 }

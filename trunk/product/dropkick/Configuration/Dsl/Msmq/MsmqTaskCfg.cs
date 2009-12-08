@@ -1,5 +1,6 @@
 namespace dropkick.Configuration.Dsl.Msmq
 {
+    using DeploymentModel;
     using Tasks.Msmq;
 
     public class MsmqTaskCfg :
@@ -9,11 +10,11 @@ namespace dropkick.Configuration.Dsl.Msmq
         readonly MsmqTask _task;
 
         //task
-        public MsmqTaskCfg(Server options)
+        public MsmqTaskCfg(DeploymentServer server)
         {
             //set server name
-            _task = new MsmqTask {ServerName = options.Name};
-            options.Role.AddTask(_task);
+            _task = new MsmqTask {ServerName = server.Name};
+            server.AddDetail(_task.ToDetail());
         }
 
         public QueueOptions PrivateQueueNamed(string name)

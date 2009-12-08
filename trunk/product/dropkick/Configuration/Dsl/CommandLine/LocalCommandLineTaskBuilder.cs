@@ -1,18 +1,19 @@
 namespace dropkick.Configuration.Dsl.CommandLine
 {
+    using DeploymentModel;
     using Tasks.CommandLine;
 
     public class LocalCommandLineTaskBuilder :
         CommandLineOptions
     {
-        readonly Server _server;
+        readonly DeploymentServer _server;
         readonly LocalCommandLineTask _task;
 
-        public LocalCommandLineTaskBuilder(Server role, string command)
+        public LocalCommandLineTaskBuilder(DeploymentServer server, string command)
         {
-            _server = role;
+            _server = server;
             _task = new LocalCommandLineTask(command);
-            _server.Role.AddTask(_task);
+            _server.AddDetail(_task.ToDetail());
         }
 
         #region CommandLineOptions Members

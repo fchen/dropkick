@@ -1,5 +1,6 @@
 namespace dropkick.Configuration.Dsl.Iis
 {
+    using DeploymentModel;
     using Tasks.Iis;
 
     public class Iis7TaskCfg : 
@@ -8,10 +9,10 @@ namespace dropkick.Configuration.Dsl.Iis
     {
         readonly Iis7Task _task;
 
-        public Iis7TaskCfg(Server server, string websiteName)
+        public Iis7TaskCfg(DeploymentServer server, string websiteName)
         {
             _task = new Iis7Task(){WebsiteName = websiteName,ServerName = server.Name};
-            server.Role.AddTask(_task);
+            server.AddDetail(_task.ToDetail());
             
         }
 

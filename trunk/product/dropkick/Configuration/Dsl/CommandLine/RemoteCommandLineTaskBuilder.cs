@@ -1,18 +1,19 @@
 namespace dropkick.Configuration.Dsl.CommandLine
 {
+    using DeploymentModel;
     using Tasks.CommandLine;
 
     public class RemoteCommandLineTaskBuilder :
         CommandLineOptions
     {
-        readonly Server _server;
+        readonly DeploymentServer _server;
         readonly RemoteCommandLineTask _task;
 
-        public RemoteCommandLineTaskBuilder(Server server, string command)
+        public RemoteCommandLineTaskBuilder(DeploymentServer server, string command)
         {
             _server = server;
             _task = new RemoteCommandLineTask(command);
-            _server.Role.AddTask(_task);
+            _server.AddDetail(_task.ToDetail());
         }
 
         #region CommandLineOptions Members

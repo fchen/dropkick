@@ -2,14 +2,15 @@ namespace dropkick.Configuration.Dsl.Files
 {
     using System;
     using System.IO;
+    using DeploymentModel;
     using Tasks.CommandLine;
 
     public class WebFileActions :
         FileAction
     {
-        readonly Server _server;
+        readonly DeploymentServer _server;
 
-        public WebFileActions(Server server)
+        public WebFileActions(DeploymentServer server)
         {
             _server = server;
         }
@@ -29,7 +30,7 @@ namespace dropkick.Configuration.Dsl.Files
             string winDir = Environment.GetEnvironmentVariable("WINDIR");
             t.ExecutableIsLocatedAt = Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727");
 
-            _server.Role.AddTask(t);
+            _server.AddDetail(t.ToDetail());
 
             return this;
         }

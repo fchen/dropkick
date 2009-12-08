@@ -1,11 +1,13 @@
 namespace dropkick.Configuration.Dsl.Files
 {
+    using DeploymentModel;
+
     public class AppFileActions :
         FileAction
     {
-        Server _server;
+        DeploymentServer _server;
 
-        public AppFileActions(Server server)
+        public AppFileActions(DeploymentServer server)
         {
             _server = server;
         }

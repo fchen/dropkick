@@ -4,6 +4,7 @@ namespace dropkick.Configuration.Dsl
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Reflection;
+    using DeploymentModel;
 
     public interface Deployment :
         DeploymentInspectorSite
@@ -53,7 +54,7 @@ namespace dropkick.Configuration.Dsl
         }
 
         //needs to be renamed
-        protected static void DeploymentStepsFor(Role inputRole, Action<Server> action)
+        protected static void DeploymentStepsFor(Role inputRole, Action<DeploymentServer> action)
         {
             Role<Inheritor> role = Role<Inheritor>.GetRole(inputRole);
             role.BindAction(action);

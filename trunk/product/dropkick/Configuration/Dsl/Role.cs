@@ -2,6 +2,7 @@ namespace dropkick.Configuration.Dsl
 {
     using System;
     using System.Collections.Generic;
+    using DeploymentModel;
 
     public interface Role
     {
@@ -15,7 +16,7 @@ namespace dropkick.Configuration.Dsl
         where T : Deployment<T>, new()
     {
         readonly List<Task> _tasks = new List<Task>();
-        readonly IList<Server> _servers = new List<Server>();
+        readonly IList<DeploymentServer> _servers = new List<DeploymentServer>();
 
         public Role(string name)
         {
@@ -29,7 +30,7 @@ namespace dropkick.Configuration.Dsl
             _tasks.Add(task);
         }
 
-        public void BindAction(Action<Server> action)
+        public void BindAction(Action<DeploymentServer> action)
         {
             foreach (var server in _servers)
             {
