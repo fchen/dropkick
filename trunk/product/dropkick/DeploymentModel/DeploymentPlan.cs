@@ -9,12 +9,12 @@ namespace dropkick.DeploymentModel
 
         public string Name { get; set; }
 
-        public int PartCount
+        public int RoleCount
         {
             get { return _roles.Count; }
         }
 
-        public void AddPart(DeploymentRole role)
+        public void AddRole(DeploymentRole role)
         {
             _roles.Add(role);
         }
@@ -65,6 +65,5 @@ namespace dropkick.DeploymentModel
 
             return result;
         }
-
     }
 }

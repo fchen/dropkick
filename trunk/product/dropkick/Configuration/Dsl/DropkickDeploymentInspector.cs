@@ -53,7 +53,7 @@ namespace dropkick.Configuration.Dsl
                 _currentRole.AddServer(new DeploymentServer(server));
             }
 
-            _plan.AddPart(_currentRole);
+            _plan.AddRole(_currentRole);
 
             return true;
         }
@@ -72,6 +72,7 @@ namespace dropkick.Configuration.Dsl
             _serverMappings = serverMappings;
             //TODO: separate out?
             deployment.Inspect(this);
+            
             return _plan;
         }
         

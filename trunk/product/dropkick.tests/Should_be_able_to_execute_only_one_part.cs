@@ -23,7 +23,7 @@ namespace dropkick.tests
 
             var plan = ins.GetPlan(dep, maps);
 
-            Assert.AreEqual(1, plan.PartCount);   
+            Assert.AreEqual(1, plan.RoleCount);   
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace dropkick.tests
 
             var plan = ins.GetPlan(dep, maps);
             
-            Assert.AreEqual(1, plan.PartCount);
+            Assert.AreEqual(1, plan.RoleCount);
         }
     }
 }

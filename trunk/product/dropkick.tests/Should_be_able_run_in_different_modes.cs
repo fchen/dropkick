@@ -37,7 +37,7 @@ namespace dropkick.tests
             web.ForEachServer(s=>s.AddDetail(detail));
 
             var plan = new DeploymentPlan();
-            plan.AddPart(web);
+            plan.AddRole(web);
 
 
             var args = new DeploymentArguments
@@ -80,7 +80,7 @@ namespace dropkick.tests
             web.ForEachServer(s=>s.AddDetail(detail));
 
             var plan = new DeploymentPlan();
-            plan.AddPart(web);
+            plan.AddRole(web);
 
 
             var args = new DeploymentArguments
@@ -127,7 +127,7 @@ namespace dropkick.tests
             web.ForEachServer(s=>s.AddDetail(detail));
 
             var plan = new DeploymentPlan();
-            plan.AddPart(web);
+            plan.AddRole(web);
 
 
             var args = new DeploymentArguments
