@@ -21,6 +21,16 @@ namespace dropkick.tests.TestObjects
 
                 DeploymentStepsFor(Web, r =>
                 {
+
+                    r.CopyTo(@"E:\FHLBApplications\atlas")
+                        .From(@"\\someserver\bob\bill");
+
+                    r.CopyTo(@"\\srvtopeka19\exchecquer\flames\")
+                        .From(@".\code_drop\flamesweb\")
+                        .With(f => f.WebConfig
+                                  .ReplaceIdentityTokensWithPrompt()
+                                  .EncryptIdentity());
+
                     //how to get this to be the current server?
                     r.OnServer("SrvTopeka19", s =>
                     {
@@ -37,14 +47,6 @@ namespace dropkick.tests.TestObjects
                             .PrivateQueueNamed("bob")
                             .CreateIfItDoesntExist();
 
-                        s.CopyTo(@"E:\FHLBApplications\atlas")
-                            .From(@"\\someserver\bob\bill");
-
-                        s.CopyTo(@"\\srvtopeka19\exchecquer\flames\")
-                            .From(@".\code_drop\flamesweb\")
-                            .With(f => f.WebConfig
-                                      .ReplaceIdentityTokensWithPrompt()
-                                      .EncryptIdentity());
                         //.BackupTo(path, o=>o.TimestampIt())
                     });
                         
@@ -73,14 +75,14 @@ namespace dropkick.tests.TestObjects
                     });
                 });
 
-                DeploymentStepsFor(Service, (p) =>
+                DeploymentStepsFor(Service, p =>
                 {
                     p.OnServer("bob", o =>
                     {
                         o.WinService("FlamesHost")
                         .Do(() => //auto-stop
                         {
-                            o.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
+                            p.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
                                 .With(f =>
                                 {
                                     f.AppConfig

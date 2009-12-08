@@ -3,21 +3,21 @@ namespace dropkick.Configuration.Dsl.Files
     public class SomeFileActions :
         FileActions
     {
-        readonly ServerOptions _server;
+        readonly Role _role;
 
-        public SomeFileActions(ServerOptions server)
+        public SomeFileActions(Role role)
         {
-            _server = server;
+            _role = role;
         }
 
         public FileAction WebConfig
         {
-            get { return new WebFileActions(_server); }
+            get { return new WebFileActions(_role); }
         }
 
         public FileAction AppConfig
         {
-            get { return new AppFileActions(_server); }
+            get { return new AppFileActions(_role); }
         }
     }
 }
