@@ -9,15 +9,13 @@ namespace dropkick.tests.TestObjects
     {
         static IisTestDeploy()
         {
-            Define(() => DeploymentStepsFor(Web, p =>
+            Define(() => DeploymentStepsFor(Web, server =>
             {
-                p.OnServer(Environment.MachineName)
-                    .IisSite("Default Web Site")
+                server.IisSite("Default Web Site")
                     .VirtualDirectory("dk_test")
                     .CreateIfItDoesntExist();
 
-                p.OnServer(Environment.MachineName)
-                    .IisSite("Default Web Site")
+                server.IisSite("Default Web Site")
                     .VirtualDirectory("fp")
                     .CreateIfItDoesntExist();
             }));
