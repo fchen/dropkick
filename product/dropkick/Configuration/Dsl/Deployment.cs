@@ -14,7 +14,7 @@ namespace dropkick.Configuration.Dsl
         Deployment
         where Inheritor : Deployment<Inheritor>, new()
     {
-        static readonly Dictionary<string, Role<Inheritor>> _parts = new Dictionary<string, Role<Inheritor>>();
+        static readonly Dictionary<string, Role<Inheritor>> _roles = new Dictionary<string, Role<Inheritor>>();
 
         static Deployment()
         {
@@ -32,17 +32,17 @@ namespace dropkick.Configuration.Dsl
 
             foreach(PropertyInfo propertyInfo in machineType.GetProperties(BindingFlags.Static | BindingFlags.Public))
             {
-                if(IsNotAPart(propertyInfo)) continue;
+                if(IsNotARole(propertyInfo)) continue;
 
                 Role<Inheritor> role = SetPropertyValue(propertyInfo, x => new Role<Inheritor>(x.Name));
 
-                _parts.Add(role.Name, role);
+                _roles.Add(role.Name, role);
             }
         }
 
         static void VerifyDeploymentConfiguration()
         {
-            if(_parts.Count == 0)
+            if(_roles.Count == 0)
                 throw new DeploymentConfigurationException("A deployment must have at least one part to be valid.");
         }
 
@@ -59,10 +59,10 @@ namespace dropkick.Configuration.Dsl
             role.BindAction(action);
         }
 
-        public static Role<Inheritor> GetPart(string name)
+        public static Role<Inheritor> GetRole(string name)
         {
             Role<Inheritor> state;
-            return _parts.TryGetValue(name, out state) ? state : null;
+            return _roles.TryGetValue(name, out state) ? state : null;
         }
 
         static TValue SetPropertyValue<TValue>(PropertyInfo propertyInfo, Func<PropertyInfo, TValue> getValue)
@@ -76,7 +76,7 @@ namespace dropkick.Configuration.Dsl
             return propertyValue;
         }
 
-        static bool IsNotAPart(PropertyInfo propertyInfo)
+        static bool IsNotARole(PropertyInfo propertyInfo)
         {
             return !(propertyInfo.PropertyType == typeof(Role<Inheritor>) || propertyInfo.PropertyType == typeof(Role));
         }
@@ -85,9 +85,9 @@ namespace dropkick.Configuration.Dsl
         {
             inspector.Inspect(this, () =>
             {
-                foreach(Role<Inheritor> part in _parts.Values)
+                foreach(Role<Inheritor> role in _roles.Values)
                 {
-                    part.Inspect(inspector);
+                    role.Inspect(inspector);
                 }
             });
         }

@@ -64,6 +64,7 @@
     <Compile Include="Configuration\Dsl\CommandLine\RemoteCommandLineTaskBuilder.cs" />
     <Compile Include="Configuration\Dsl\DeploymentConfigurationException.cs" />
     <Compile Include="Configuration\MachineSpec\RoleToServerMap.cs" />
+    <Compile Include="DeploymentModel\DeploymentServer.cs" />
     <Compile Include="Engine\DeploymentCommandLineParser.cs" />
     <Compile Include="Engine\DeploymentFinders\SearchesForAnAssemblyEndingInDeployment.cs" />
     <Compile Include="Engine\DeploymentFinders\TypeWasSpecifiedAssumingItHasADefaultConstructor.cs" />

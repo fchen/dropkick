@@ -6,7 +6,6 @@ namespace dropkick.Configuration.Dsl
     public interface Role
     {
         string Name { get; }
-        void OnServer(string serverName, Action<Server> server);
         void AddTask(Task task);
     }
 
@@ -28,12 +27,6 @@ namespace dropkick.Configuration.Dsl
         public void AddTask(Task task)
         {
             _tasks.Add(task);
-        }
-
-        public void OnServer(string serverName, Action<Server> server)
-        {
-            var so = new Server(serverName, this);
-            server(so);
         }
 
         public void BindAction(Action<Server> action)

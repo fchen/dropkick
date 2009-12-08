@@ -1,8 +1,14 @@
 namespace dropkick.Configuration.Dsl
 {
-    public class Server
+    public interface Server
     {
-        public Server(string name, Role role)
+        string Name { get; }
+        Role Role { get; }
+        bool IsLocal { get; }
+    }
+    public class ServerI : Server
+    {
+        public ServerI(string name, Role role)
         {
             Name = name;
             Role = role;
