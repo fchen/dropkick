@@ -6,7 +6,7 @@ namespace dropkick.Configuration.Dsl.Iis
         IisSiteOptions,
         IisVirtualDirectoryOptions
     {
-        readonly RoleCfg _role;
+        readonly Role _role;
         readonly Iis6Task _task;
 
 

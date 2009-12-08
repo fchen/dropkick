@@ -6,7 +6,7 @@ namespace dropkick.Configuration.Dsl.WinService
     public class WinServiceTaskBuilder :
         WinServiceOptions
     {
-        readonly RoleCfg _role;
+        readonly Role _role;
         readonly string _server;
         readonly string _serviceName;
         Action _action;
