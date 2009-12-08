@@ -33,7 +33,8 @@ namespace dropkick.tests
 
 
             var web = new DeploymentRole("WEB");
-            web.AddDetail(detail);
+            web.AddServer(new DeploymentServer("bob"));
+            web.ForEachServer(s=>s.AddDetail(detail));
 
             var plan = new DeploymentPlan();
             plan.AddPart(web);
@@ -75,7 +76,8 @@ namespace dropkick.tests
 
 
             var web = new DeploymentRole("WEB");
-            web.AddDetail(detail);
+            web.AddServer("bob");
+            web.ForEachServer(s=>s.AddDetail(detail));
 
             var plan = new DeploymentPlan();
             plan.AddPart(web);
@@ -121,7 +123,8 @@ namespace dropkick.tests
 
 
             var web = new DeploymentRole("WEB");
-            web.AddDetail(detail);
+            web.AddServer("BILL");
+            web.ForEachServer(s=>s.AddDetail(detail));
 
             var plan = new DeploymentPlan();
             plan.AddPart(web);

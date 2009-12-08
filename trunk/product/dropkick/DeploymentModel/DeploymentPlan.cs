@@ -47,15 +47,19 @@ namespace dropkick.DeploymentModel
             {
                 Console.WriteLine("  {0}", role.Name);
 
-                role.ForEachDetail(d=>
+                role.ForEachServer(s =>
                 {
-                    Console.WriteLine("    {0}", d.Name);
-                    var r = action(d);
-                    result.MergedWith(r);
-                    foreach (var item in r.Results)
+                    Console.WriteLine("    {0}", s.Name);
+                    s.ForEachDetail(d =>
                     {
-                        Console.WriteLine("      [{0}] {1}", item.Status, item.Message);
-                    }
+                        Console.WriteLine("      {0}", d.Name);
+                        var r = action(d);
+                        result.MergedWith(r);
+                        foreach (var item in r.Results)
+                        {
+                            Console.WriteLine("      [{0}] {1}", item.Status, item.Message);
+                        }
+                    });
                 });
             }
 

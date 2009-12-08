@@ -22,7 +22,7 @@ namespace dropkick.Engine
         {
             var crit = Criteria(args);
             
-            var plan = _inspector.GetPlan(deployment, crit);
+            var plan = _inspector.GetPlan(deployment, crit, args.ServerMappings);
             
             _actions[args.Command](plan);
         }

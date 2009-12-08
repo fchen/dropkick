@@ -1,6 +1,8 @@
 namespace dropkick.Configuration.Dsl
 {
+    using System;
     using DeploymentModel;
+    using Magnum.Collections;
     using Magnum.Reflection;
 
     public class DropkickDeploymentInspector :
@@ -46,8 +48,11 @@ namespace dropkick.Configuration.Dsl
 
         public bool Look(Role role)
         {
-            //TODO: handle the multiple servers here?
             _currentRole = new DeploymentRole(role.Name);
+            foreach (var server in _serverMappings[role.Name])
+            {
+                _currentRole.AddServer(new DeploymentServer(server));
+            }
             if(_roleCriteria(_currentRole))
                 _plan.AddPart(_currentRole);
 
@@ -57,15 +62,16 @@ namespace dropkick.Configuration.Dsl
         public bool Look(Task task)
         {
             var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
-            _currentRole.AddDetail(detail);
+            _currentRole.ForEachServer(s=>s.AddDetail(detail));
             return true;
         }
         #endregion
 
-        public DeploymentPlan GetPlan(Deployment deployment, RoleCriteria criteria)
+        MultiDictionary<string, string> _serverMappings;
+        public DeploymentPlan GetPlan(Deployment deployment, RoleCriteria criteria, MultiDictionary<string, string> serverMappings)
         {
             _roleCriteria = criteria;
-
+            _serverMappings = serverMappings;
             //TODO: separate out?
             deployment.Inspect(this);
             return _plan;

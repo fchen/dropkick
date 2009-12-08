@@ -20,7 +20,8 @@ namespace dropkick.tests.DeploymentModel
                                                                                  new DeploymentItem(DeploymentItemStatus.Good, "execute")
                                                                              });
             var role = new DeploymentRole("name");
-            role.AddDetail(detail);
+            role.AddServer(new DeploymentServer("bob"));
+            role.ForEachServer(s=>s.AddDetail(detail));
             _plan = new DeploymentPlan();
             _plan.AddPart(role);
 
