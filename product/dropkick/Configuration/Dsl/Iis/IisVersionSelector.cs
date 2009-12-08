@@ -5,7 +5,7 @@ namespace dropkick.Configuration.Dsl.Iis
 
     public static class IisVersionSelector
     {
-        public static IisSiteOptions SelectTheCorrectConfig(ServerOptions server, string websiteName)
+        public static IisSiteOptions SelectTheCorrectConfig(Server server, string websiteName)
         {
             server.Role.AddTask(new NoteTask("IIS Version Detection Used"));
 

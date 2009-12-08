@@ -1,8 +1,8 @@
 namespace dropkick.Configuration.Dsl
 {
-    public class ServerOptions
+    public class Server
     {
-        public ServerOptions(string name, Role role)
+        public Server(string name, Role role)
         {
             Name = name;
             Role = role;

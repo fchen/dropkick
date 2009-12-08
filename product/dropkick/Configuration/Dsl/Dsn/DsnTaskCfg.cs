@@ -5,10 +5,10 @@ namespace dropkick.Configuration.Dsl.Dsn
     public class DsnTaskCfg :
         DsnOptions
     {
-        readonly ServerOptions _options;
+        readonly Server _options;
         readonly DsnTask _task;
 
-        public DsnTaskCfg(ServerOptions options, string dsnName, string databaseName)
+        public DsnTaskCfg(Server options, string dsnName, string databaseName)
         {
             _options = options;
             _task = new DsnTask(options.Name, dsnName, DsnAction.AddSystemDsn, DsnDriver.Sql(), databaseName);

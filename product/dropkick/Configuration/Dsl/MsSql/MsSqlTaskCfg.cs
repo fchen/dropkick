@@ -6,13 +6,13 @@ namespace dropkick.Configuration.Dsl.MsSql
         DatabaseOptions,
         SqlOptions
     {
-        readonly ServerOptions _options;
+        readonly Server _options;
         readonly string _serverName;
         string _databaseName;
         string _lightspeedBackupLocation;
         string _tarantinoScripts;
 
-        public MsSqlTaskCfg(ServerOptions options)
+        public MsSqlTaskCfg(Server options)
         {
             _options = options;
             _serverName = options.Name;

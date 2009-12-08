@@ -9,7 +9,7 @@ namespace dropkick.Configuration.Dsl.Msmq
         readonly MsmqTask _task;
 
         //task
-        public MsmqTaskCfg(ServerOptions options)
+        public MsmqTaskCfg(Server options)
         {
             //set server name
             _task = new MsmqTask {ServerName = options.Name};
