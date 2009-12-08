@@ -15,11 +15,11 @@ namespace dropkick.tests.TestObjects
                 {
                     DeploymentStepsFor(Web, p =>
                         {
-                            p.OnServer("hsh").CopyTo(".\\anthony").From(".\\katie");
+                            p.CopyTo(".\\anthony").From(".\\katie");
                         });
                     DeploymentStepsFor(Db, p =>
                         {
-                            p.OnServer("topeka").CopyTo(".\\rob").From(".\\brandy");
+                            p.CopyTo(".\\rob").From(".\\brandy");
                         });
                 });
         }

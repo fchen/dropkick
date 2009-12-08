@@ -19,76 +19,69 @@ namespace dropkick.tests.TestObjects
                 //Could be on FhlbDeployment
                 //EnableTripwireReporting();         //file copies and movies are evented
 
-                DeploymentStepsFor(Web, r =>
+                DeploymentStepsFor(Web, server =>
                 {
                     //how to get this to be the current server?
-                    r.OnServer("SrvTopeka19", s =>
+
+                    server.ShareFolder("bob").PointingTo(@"E:\Tools")
+                        .CreateIfNotExist();
+
+                    server.CreateDSN("NAME", "Enterprise");
+
+                    server.CommandLine("ping")
+                        .Args("www.google.com")
+                        .ExecutableIsLocatedAt("");
+
+                    server.Msmq()
+                        .PrivateQueueNamed("bob")
+                        .CreateIfItDoesntExist();
+
+                    server.CopyTo(@"E:\FHLBApplications\atlas")
+                        .From(@"\\someserver\bob\bill");
+
+                    server.CopyTo(@"\\srvtopeka19\exchecquer\flames\")
+                        .From(@".\code_drop\flamesweb\")
+                        .With(f => f.WebConfig
+                                       .ReplaceIdentityTokensWithPrompt()
+                                       .EncryptIdentity());
+                    //.BackupTo(path, o=>o.TimestampIt())
+
+
+                    server.WinService("MSMQ").Do(() =>
                     {
-                        s.ShareFolder("bob").PointingTo(@"E:\Tools")
-                            .CreateIfNotExist();
+                        //service stops
 
-                        s.CreateDSN("NAME", "Enterprise");
+                        //do stuff
 
-                        s.CommandLine("ping")
-                            .Args("www.google.com")
-                            .ExecutableIsLocatedAt("");
-
-                        s.Msmq()
-                            .PrivateQueueNamed("bob")
-                            .CreateIfItDoesntExist();
-
-                        s.CopyTo(@"E:\FHLBApplications\atlas")
-                            .From(@"\\someserver\bob\bill");
-
-                        s.CopyTo(@"\\srvtopeka19\exchecquer\flames\")
-                            .From(@".\code_drop\flamesweb\")
-                            .With(f => f.WebConfig
-                                      .ReplaceIdentityTokensWithPrompt()
-                                      .EncryptIdentity());
-                        //.BackupTo(path, o=>o.TimestampIt())
+                        //service starts
                     });
-                        
 
-                    r.OnServer("bob", o =>
-                    {
-                        o.WinService("MSMQ").Do(() =>
-                        {
-                            //service stops
 
-                            //do stuff
-
-                            //service starts
-                        });
-                    });
                 });
 
-                DeploymentStepsFor(Db, (p) =>
+                DeploymentStepsFor(Db, server =>
                 {
-                    p.OnServer("", o =>
-                    {
-                        o.SqlInstance(".")
-                            .Database("Enterprise")
-                            .BackupWithLightspeedTo(@"\\appdev\dev\sqlbacksups\")
-                            .RunTarantinoOn(@".\code_drop\flames_sql");
-                    });
+                    server.SqlInstance(".")
+                        .Database("Enterprise")
+                        .BackupWithLightspeedTo(@"\\appdev\dev\sqlbacksups\")
+                        .RunTarantinoOn(@".\code_drop\flames_sql");
+
                 });
 
-                DeploymentStepsFor(Service, (p) =>
+                DeploymentStepsFor(Service, server =>
                 {
-                    p.OnServer("bob", o =>
-                    {
-                        o.WinService("FlamesHost")
+
+                    server.WinService("FlamesHost")
                         .Do(() => //auto-stop
                         {
-                            o.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
+                            server.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
                                 .With(f =>
                                 {
                                     f.AppConfig
                                         .ReplaceIdentityTokensWithPrompt()
                                         .EncryptIdentity();
                                 });
-                        }); //auto-start
-                    });    
+                        }); //auto-start   
                 });
             });
         }

@@ -10,14 +10,7 @@ namespace dropkick.tests.TestObjects
         static CommandTestDeploy()
         {
             Define(() =>
-                   DeploymentStepsFor(Web, (p) =>
-                   {
-                       p.OnServer(Environment.MachineName)
-                           .CommandLine("ipconfig");
-//                       p.OnServer(System.Environment.MachineName)
-//                           .CommandLine("ping").Args("www.google.com")
-//                           .ExecutableIsLocatedAt(@"C:\bill");
-                   })
+                   DeploymentStepsFor(Web, server => server.CommandLine("ipconfig"))
                 );
         }
 
