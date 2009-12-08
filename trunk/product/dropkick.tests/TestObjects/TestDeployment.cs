@@ -28,8 +28,8 @@ namespace dropkick.tests.TestObjects
                     r.CopyTo(@"\\srvtopeka19\exchecquer\flames\")
                         .From(@".\code_drop\flamesweb\")
                         .With(f => f.WebConfig
-                                  .ReplaceIdentityTokensWithPrompt()
-                                  .EncryptIdentity());
+                                       .ReplaceIdentityTokensWithPrompt()
+                                       .EncryptIdentity());
 
                     //how to get this to be the current server?
                     r.OnServer("SrvTopeka19", s =>
@@ -49,18 +49,15 @@ namespace dropkick.tests.TestObjects
 
                         //.BackupTo(path, o=>o.TimestampIt())
                     });
-                        
 
-                    r.OnServer("bob", o =>
+
+                    r.WinService("MSMQ").Do(() =>
                     {
-                        o.WinService("MSMQ").Do(() =>
-                        {
-                            //service stops
+                        //service stops
 
-                            //do stuff
+                        //do stuff
 
-                            //service starts
-                        });
+                        //service starts
                     });
                 });
 
@@ -77,9 +74,7 @@ namespace dropkick.tests.TestObjects
 
                 DeploymentStepsFor(Service, p =>
                 {
-                    p.OnServer("bob", o =>
-                    {
-                        o.WinService("FlamesHost")
+                    p.WinService("FlamesHost")
                         .Do(() => //auto-stop
                         {
                             p.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
@@ -90,7 +85,6 @@ namespace dropkick.tests.TestObjects
                                         .EncryptIdentity();
                                 });
                         }); //auto-start
-                    });    
                 });
             });
         }

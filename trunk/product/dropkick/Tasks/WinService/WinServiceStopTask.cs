@@ -2,13 +2,15 @@ namespace dropkick.Tasks.WinService
 {
     using System;
     using System.ServiceProcess;
+    using Configuration.Dsl;
     using DeploymentModel;
 
 
     public class WinServiceStopTask :
         BaseServiceTask
     {
-        public WinServiceStopTask(string machineName, string serviceName) : base(machineName, serviceName)
+        public WinServiceStopTask(Role role, string serviceName) :
+            base(role, serviceName)
         {
         }
 
@@ -25,7 +27,8 @@ namespace dropkick.Tasks.WinService
 
             try
             {
-                using (var c = new ServiceController(ServiceName, MachineName))
+                string machineName = "FIX"; //TODO: Fix this
+                using (var c = new ServiceController(ServiceName, machineName))
                 {
                     ServiceControllerStatus currentStatus = c.Status;
                     result.AddGood(string.Format("Found service '{0}' it is '{1}'", ServiceName, currentStatus));
@@ -41,7 +44,8 @@ namespace dropkick.Tasks.WinService
 
         public override DeploymentResult Execute()
         {
-            using (var c = new ServiceController(ServiceName, MachineName))
+            string machineName = "FIX"; //TODO: Fix this
+            using (var c = new ServiceController(ServiceName, machineName))
             {
                 if (c.CanStop)
                     c.Stop();
