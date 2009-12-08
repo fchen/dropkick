@@ -62,9 +62,7 @@ namespace dropkick.tests.TestObjects
                 DeploymentStepsFor(Db, server =>
                 {
                     server.SqlInstance(".")
-                        .Database("Enterprise")
-                        .BackupWithLightspeedTo(@"\\appdev\dev\sqlbacksups\")
-                        .RunTarantinoOn(@".\code_drop\flames_sql");
+                        .Database("Enterprise");
 
                 });
 

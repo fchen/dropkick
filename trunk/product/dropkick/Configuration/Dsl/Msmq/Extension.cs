@@ -2,9 +2,9 @@ namespace dropkick.Configuration.Dsl.Msmq
 {
     public static class Extension
     {
-        public static MsmqOptions Msmq(this Server serverName)
+        public static MsmqOptions Msmq(this Server server)
         {
-            return new MsmqTaskCfg(serverName);
+            return new MsmqTaskCfg(server);
         }
     }
 }
