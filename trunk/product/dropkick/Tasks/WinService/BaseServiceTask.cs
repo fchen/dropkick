@@ -8,13 +8,13 @@ namespace dropkick.Tasks.WinService
     public abstract class BaseServiceTask :
         Task
     {
-        protected BaseServiceTask(Role machineName, string serviceName)
+        protected BaseServiceTask(string machineName, string serviceName)
         {
             MachineName = machineName;
             ServiceName = serviceName;
         }
 
-        public Role MachineName { get; set; }
+        public string MachineName { get; set; }
         public string ServiceName { get; set; }
 
         #region Task Members

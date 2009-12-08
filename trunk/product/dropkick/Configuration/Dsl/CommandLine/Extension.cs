@@ -2,19 +2,12 @@ namespace dropkick.Configuration.Dsl.CommandLine
 {
     public static class Extension
     {
-        public static CommandLineOptions CommandLine(this Role role, string command)
+        public static CommandLineOptions CommandLine(this ServerOptions options, string command)
         {
-            foreach (var server in role.Servers)
-            {
-                
-            if (server.IsLocal)
-                return new LocalCommandLineTaskBuilder(server.Role, command);
+            if (options.IsLocal)
+                return new LocalCommandLineTaskBuilder(options.Role, command);
             else
-                return new RemoteCommandLineTaskBuilder(server.Role, command);
-            }
-
-            //TODO: arcgh
-            return null;
+                return new RemoteCommandLineTaskBuilder(options.Role, command);
         }
     }
 }

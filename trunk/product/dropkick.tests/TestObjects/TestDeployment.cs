@@ -21,37 +21,44 @@ namespace dropkick.tests.TestObjects
 
                 DeploymentStepsFor(Web, r =>
                 {
-
-                    r.CopyTo(@"E:\FHLBApplications\atlas")
-                        .From(@"\\someserver\bob\bill");
-
-                    r.CopyTo(@"\\srvtopeka19\exchecquer\flames\")
-                        .From(@".\code_drop\flamesweb\")
-                        .With(f => f.WebConfig
-                                       .ReplaceIdentityTokensWithPrompt()
-                                       .EncryptIdentity());
-
-                    r.Msmq()
-                        .PrivateQueueNamed("bob")
-                        .CreateIfItDoesntExist();
-
-                    r.ShareFolder("bob").PointingTo(@"E:\Tools")
-                        .CreateIfNotExist();
-
-                    r.CreateDSN("NAME", "Enterprise");
-                    r.CommandLine("ping")
-                        .Args("www.google.com")
-                        .ExecutableIsLocatedAt("");
-
-
-
-                    r.WinService("MSMQ").Do(() =>
+                    //how to get this to be the current server?
+                    r.OnServer("SrvTopeka19", s =>
                     {
-                        //service stops
+                        s.ShareFolder("bob").PointingTo(@"E:\Tools")
+                            .CreateIfNotExist();
 
-                        //do stuff
+                        s.CreateDSN("NAME", "Enterprise");
 
-                        //service starts
+                        s.CommandLine("ping")
+                            .Args("www.google.com")
+                            .ExecutableIsLocatedAt("");
+
+                        s.Msmq()
+                            .PrivateQueueNamed("bob")
+                            .CreateIfItDoesntExist();
+
+                        s.CopyTo(@"E:\FHLBApplications\atlas")
+                            .From(@"\\someserver\bob\bill");
+
+                        s.CopyTo(@"\\srvtopeka19\exchecquer\flames\")
+                            .From(@".\code_drop\flamesweb\")
+                            .With(f => f.WebConfig
+                                      .ReplaceIdentityTokensWithPrompt()
+                                      .EncryptIdentity());
+                        //.BackupTo(path, o=>o.TimestampIt())
+                    });
+                        
+
+                    r.OnServer("bob", o =>
+                    {
+                        o.WinService("MSMQ").Do(() =>
+                        {
+                            //service stops
+
+                            //do stuff
+
+                            //service starts
+                        });
                     });
                 });
 
@@ -66,12 +73,14 @@ namespace dropkick.tests.TestObjects
                     });
                 });
 
-                DeploymentStepsFor(Service, p =>
+                DeploymentStepsFor(Service, (p) =>
                 {
-                    p.WinService("FlamesHost")
+                    p.OnServer("bob", o =>
+                    {
+                        o.WinService("FlamesHost")
                         .Do(() => //auto-stop
                         {
-                            p.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
+                            o.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
                                 .With(f =>
                                 {
                                     f.AppConfig
@@ -79,6 +88,7 @@ namespace dropkick.tests.TestObjects
                                         .EncryptIdentity();
                                 });
                         }); //auto-start
+                    });    
                 });
             });
         }
