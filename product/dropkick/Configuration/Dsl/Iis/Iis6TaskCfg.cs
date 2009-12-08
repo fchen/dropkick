@@ -1,29 +1,30 @@
 namespace dropkick.Configuration.Dsl.Iis
 {
+    using DeploymentModel;
     using Tasks.Iis;
 
     public class Iis6TaskCfg :
         IisSiteOptions,
         IisVirtualDirectoryOptions
     {
-        readonly Role _role;
         readonly Iis6Task _task;
+        readonly DeploymentServer _server;
 
-
-        public Iis6TaskCfg(Server server, string websiteName)
+        public Iis6TaskCfg(DeploymentServer server, string websiteName)
         {
-            _role = server.Role;
+            _server = server;
             _task = new Iis6Task()
                     {
                         ServerName = server.Name,
                         WebsiteName = websiteName
                     };
+            server.AddDetail(_task.ToDetail());
         }
 
         public IisVirtualDirectoryOptions VirtualDirectory(string name)
         {
             _task.VdirPath = name;
-            _role.AddTask(_task);
+            _server.AddDetail(_task.ToDetail());
             return this;
         }
 

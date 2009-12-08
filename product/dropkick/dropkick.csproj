@@ -63,7 +63,7 @@
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\RemoteCommandLineTaskBuilder.cs" />
     <Compile Include="Configuration\Dsl\DeploymentConfigurationException.cs" />
-    <Compile Include="Configuration\MachineSpec\RoleToServerMap.cs" />
+    <Compile Include="Engine\RoleToServerMap.cs" />
     <Compile Include="DeploymentModel\DeploymentServer.cs" />
     <Compile Include="Engine\DeploymentCommandLineParser.cs" />
     <Compile Include="Engine\DeploymentFinders\SearchesForAnAssemblyEndingInDeployment.cs" />
@@ -122,7 +122,6 @@
     <Compile Include="Configuration\Dsl\NetworkShare\FolderShareTaskCfg.cs" />
     <Compile Include="Tasks\NoteTask.cs" />
     <Compile Include="Configuration\Dsl\Role.cs" />
-    <Compile Include="Configuration\Dsl\Server.cs" />
     <Compile Include="Tasks\WinService\BaseServiceTask.cs" />
     <Compile Include="Tasks\NestedTask.cs" />
     <Compile Include="Tasks\WinService\WinServiceStartTask.cs" />
@@ -142,9 +141,6 @@
     <Compile Include="Engine\Runner.cs" />
     <Compile Include="Configuration\Dsl\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Configuration\MachineSpec\sample.roles" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\" />
