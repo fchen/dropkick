@@ -1,6 +1,7 @@
 namespace dropkick.tests.Tasks.WinService
 {
     using System;
+    using dropkick.Configuration.Dsl;
     using dropkick.Tasks.WinService;
     using NUnit.Framework;
 
@@ -11,10 +12,11 @@ namespace dropkick.tests.Tasks.WinService
         public void Start()
         {
             //TODO: friggin 2008 LUA-must run as admin
-            var t = new WinServiceStopTask(Environment.MachineName,"MSMQ");
+            Role role = null; //TODO: Fix
+            var t = new WinServiceStopTask(role,"MSMQ");
             var o  = t.VerifyCanRun();
             t.Execute();
-            var t2 = new WinServiceStartTask(Environment.MachineName, "MSMQ");
+            var t2 = new WinServiceStartTask(role, "MSMQ");
             t.Execute();
 
         }
