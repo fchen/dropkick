@@ -7,13 +7,12 @@ namespace dropkick.Configuration.Dsl
     {
         string Name { get; }
         ServerOptions OnServer(string serverName);
+        IList<ServerOptions> Servers { get; }
         void OnServer(string serverName, Action<ServerOptions> server);
-    }
-
-    public interface RoleCfg : Role
-    {
         void AddTask(Task task);
     }
+
+    public interface RoleCfg : Role {}
 
     public class Role<T> :
         RoleCfg,
@@ -21,6 +20,7 @@ namespace dropkick.Configuration.Dsl
         where T : Deployment<T>, new()
     {
         readonly List<Task> _tasks = new List<Task>();
+        readonly IList<ServerOptions> _servers = new List<ServerOptions>();
 
         public Role(string name)
         {
@@ -38,6 +38,11 @@ namespace dropkick.Configuration.Dsl
         public ServerOptions OnServer(string serverName)
         {
             return new ServerOptions(serverName, this);
+        }
+
+        public IList<ServerOptions> Servers
+        {
+            get { return _servers; }
         }
 
         public void OnServer(string serverName, Action<ServerOptions> server)

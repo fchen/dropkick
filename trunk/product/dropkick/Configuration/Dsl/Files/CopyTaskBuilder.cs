@@ -9,12 +9,12 @@ namespace dropkick.Configuration.Dsl.Files
         private string _from;
         private CopyTask _task;
         private string _to;
-        readonly ServerOptions _server;
+        readonly Role _role;
         Action<FileActions> _followOn;
 
-        public CopyTaskBuilder(ServerOptions server)
+        public CopyTaskBuilder(Role role)
         {
-            _server = server;
+            _role = role;
         }
 
         #region CopyOptions Members
@@ -28,14 +28,14 @@ namespace dropkick.Configuration.Dsl.Files
         {
             _to = targetPath;
             _task = new CopyTask(_from, _to);
-            _server.Role.AddTask(_task);
+            _role.AddTask(_task);
             return this;
         }
 
         public void With(Action<FileActions> copyAction)
         {
             _followOn = copyAction;
-            copyAction(new SomeFileActions(_server));
+            copyAction(new SomeFileActions(_role));
         }
 
         #endregion
