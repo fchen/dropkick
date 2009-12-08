@@ -53,7 +53,7 @@ namespace dropkick.Configuration.Dsl
         }
 
         //needs to be renamed
-        protected static void DeploymentStepsFor(Role inputRole, Action<ServerOptions> action)
+        protected static void DeploymentStepsFor(Role inputRole, Action<Server> action)
         {
             Role<Inheritor> role = Role<Inheritor>.GetRole(inputRole);
             role.BindAction(action);

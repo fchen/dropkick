@@ -11,11 +11,11 @@ namespace dropkick.Configuration.Dsl.WinService
         readonly string _serviceName;
         Action _action;
 
-        public WinServiceTaskBuilder(ServerOptions options, string name)
+        public WinServiceTaskBuilder(Server server, string name)
         {
             _serviceName = name;
-            _server = options.Name;
-            _role = options.Role;
+            _server = server.Name;
+            _role = server.Role;
         }
 
         #region WinServiceOptions Members

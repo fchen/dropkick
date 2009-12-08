@@ -6,8 +6,8 @@ namespace dropkick.Configuration.Dsl
     public interface Role
     {
         string Name { get; }
-        ServerOptions OnServer(string serverName);
-        void OnServer(string serverName, Action<ServerOptions> server);
+        Server OnServer(string serverName);
+        void OnServer(string serverName, Action<Server> server);
         void AddTask(Task task);
     }
 
@@ -17,7 +17,7 @@ namespace dropkick.Configuration.Dsl
         where T : Deployment<T>, new()
     {
         readonly List<Task> _tasks = new List<Task>();
-        readonly IList<ServerOptions> _servers = new List<ServerOptions>();
+        readonly IList<Server> _servers = new List<Server>();
 
         public Role(string name)
         {
@@ -32,18 +32,18 @@ namespace dropkick.Configuration.Dsl
         }
 
 
-        public ServerOptions OnServer(string serverName)
+        public Server OnServer(string serverName)
         {
-            return new ServerOptions(serverName, this);
+            return new Server(serverName, this);
         }
 
-        public void OnServer(string serverName, Action<ServerOptions> server)
+        public void OnServer(string serverName, Action<Server> server)
         {
-            var so = new ServerOptions(serverName, this);
+            var so = new Server(serverName, this);
             server(so);
         }
 
-        public void BindAction(Action<ServerOptions> action)
+        public void BindAction(Action<Server> action)
         {
             foreach (var server in _servers)
             {

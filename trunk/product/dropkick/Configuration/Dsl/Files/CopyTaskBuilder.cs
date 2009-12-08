@@ -9,10 +9,10 @@ namespace dropkick.Configuration.Dsl.Files
         private string _from;
         private CopyTask _task;
         private string _to;
-        readonly ServerOptions _server;
+        readonly Server _server;
         Action<FileActions> _followOn;
 
-        public CopyTaskBuilder(ServerOptions server)
+        public CopyTaskBuilder(Server server)
         {
             _server = server;
         }

@@ -3,9 +3,9 @@ namespace dropkick.Configuration.Dsl.Files
     public class SomeFileActions :
         FileActions
     {
-        readonly ServerOptions _server;
+        readonly Server _server;
 
-        public SomeFileActions(ServerOptions server)
+        public SomeFileActions(Server server)
         {
             _server = server;
         }

@@ -10,7 +10,7 @@ namespace dropkick.Configuration.Dsl.Iis
         readonly Iis6Task _task;
 
 
-        public Iis6TaskCfg(ServerOptions server, string websiteName)
+        public Iis6TaskCfg(Server server, string websiteName)
         {
             _role = server.Role;
             _task = new Iis6Task()
