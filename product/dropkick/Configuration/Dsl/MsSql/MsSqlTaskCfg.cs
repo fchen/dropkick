@@ -6,35 +6,21 @@ namespace dropkick.Configuration.Dsl.MsSql
         DatabaseOptions,
         SqlOptions
     {
-        readonly Server _options;
+        readonly Server _server;
         readonly string _serverName;
         string _databaseName;
-        string _lightspeedBackupLocation;
-        string _tarantinoScripts;
 
-        public MsSqlTaskCfg(Server options)
+        public MsSqlTaskCfg(Server server)
         {
-            _options = options;
-            _serverName = options.Name;
+            _server = server;
+            _serverName = server.Name;
         }
 
         #region DatabaseOptions Members
 
-        public DatabaseOptions RunTarantinoOn(string locationOfScripts)
-        {
-            _tarantinoScripts = locationOfScripts;
-            return this;
-        }
-
-        public DatabaseOptions BackupWithLightspeedTo(string backupLocation)
-        {
-            _lightspeedBackupLocation = backupLocation;
-            return this;
-        }
-
         public void OutputSql(string sql)
         {
-            _options.Role.AddTask(new OutputSqlTask(_serverName, _databaseName)
+            _server.Role.AddTask(new OutputSqlTask(_serverName, _databaseName)
                                   {
                                       OutputSql = sql
                                   });
@@ -42,7 +28,7 @@ namespace dropkick.Configuration.Dsl.MsSql
 
         public void RunScript(string scriptFile)
         {
-            _options.Role.AddTask(new RunSqlScriptTask(_serverName, _databaseName)
+            _server.Role.AddTask(new RunSqlScriptTask(_serverName, _databaseName)
                                   {
                                       ScriptToRun = scriptFile
                                   });
