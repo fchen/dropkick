@@ -37,6 +37,7 @@ namespace dropkick.Configuration.Dsl
         #region Inspect Methods
         public bool Look(Deployment deployment)
         {
+            //TODO: handle the multiple servers here?
             _plan.Name = deployment.GetType().Name;
             return true;
         }
@@ -45,6 +46,7 @@ namespace dropkick.Configuration.Dsl
 
         public bool Look(Role role)
         {
+            //TODO: handle the multiple servers here?
             _currentRole = new DeploymentRole(role.Name);
             if(_roleCriteria(_currentRole))
                 _plan.AddPart(_currentRole);

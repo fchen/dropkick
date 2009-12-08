@@ -21,8 +21,9 @@ namespace dropkick.Engine
         public static void KickItOutThereAlready(Deployment deployment, DeploymentArguments args)
         {
             var crit = Criteria(args);
+            
             var plan = _inspector.GetPlan(deployment, crit);
-
+            
             _actions[args.Command](plan);
         }
 

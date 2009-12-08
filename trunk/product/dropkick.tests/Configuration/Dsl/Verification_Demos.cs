@@ -20,6 +20,7 @@ namespace dropkick.tests.Configuration.Dsl
                                    Command = DeploymentCommands.Verify,
                                    Part = "WEB"
                                };
+            _verifyArguments.ServerMappings.Add("WEB", "SrvTopeka02");
         }
 
         [TearDown]
