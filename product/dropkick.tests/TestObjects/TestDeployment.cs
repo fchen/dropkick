@@ -31,6 +31,9 @@ namespace dropkick.tests.TestObjects
                                        .ReplaceIdentityTokensWithPrompt()
                                        .EncryptIdentity());
 
+                    r.Msmq()
+                        .PrivateQueueNamed("bob")
+                        .CreateIfItDoesntExist();
                     //how to get this to be the current server?
                     r.OnServer("SrvTopeka19", s =>
                     {
@@ -43,9 +46,6 @@ namespace dropkick.tests.TestObjects
                             .Args("www.google.com")
                             .ExecutableIsLocatedAt("");
 
-                        s.Msmq()
-                            .PrivateQueueNamed("bob")
-                            .CreateIfItDoesntExist();
 
                         //.BackupTo(path, o=>o.TimestampIt())
                     });

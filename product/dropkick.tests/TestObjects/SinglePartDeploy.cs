@@ -14,12 +14,9 @@ namespace dropkick.tests.TestObjects
                    {
                        p.CopyTo(@".\bill")
                            .From(@".\bob");
-                       p.OnServer("srvtopeka", s =>
-                       {
+                       p.Msmq()
+                           .PrivateQueueNamed("mt_timeout");
 
-                           s.Msmq()
-                               .PrivateQueueNamed("mt_timeout");
-                       });
                    })
                 );
         }
