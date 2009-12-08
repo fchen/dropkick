@@ -4,6 +4,7 @@ namespace dropkick.tests
     using dropkick.Configuration.Dsl;
     using dropkick.DeploymentModel;
     using Engine;
+    using Magnum.Collections;
     using NUnit.Framework;
     using TestObjects;
 
@@ -15,13 +16,15 @@ namespace dropkick.tests
         public void TryWeb()
         {
             var dep = new TwoPartDeploy();
+            var maps = new MultiDictionary<string, string>(true);
+            maps.Add("WEB","BOB");
 
             var ins = new DropkickDeploymentInspector();
 
             var plan = ins.GetPlan(dep, p =>
             {
                 return p.Name == "Web";
-            });
+            }, maps);
 
             Assert.AreEqual(1, plan.PartCount);   
         }
@@ -30,13 +33,15 @@ namespace dropkick.tests
         public void TryDb()
         {
             var dep = new TwoPartDeploy();
+            var maps = new MultiDictionary<string, string>(true);
+            maps.Add("WEB", "BOB");
 
             var ins = new DropkickDeploymentInspector();
 
             var plan = ins.GetPlan(dep, p =>
             {
                 return p.Name == "Db";
-            });
+            }, maps);
             
             Assert.AreEqual(1, plan.PartCount);
         }

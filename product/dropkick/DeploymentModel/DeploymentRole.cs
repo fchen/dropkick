@@ -6,33 +6,32 @@ namespace dropkick.DeploymentModel
     public class DeploymentRole
     {
         readonly IList<DeploymentServer> _servers;
-        readonly IList<DeploymentDetail> _details;
 
         public DeploymentRole(string name)
         {
             Name = name;
-            _details = new List<DeploymentDetail>();
             _servers = new List<DeploymentServer>();
         }
 
         public string Name { get; private set; }
-
-        public void AddDetail(DeploymentDetail detail)
-        {
-            _details.Add(detail);
-        }
 
         public void AddServer(DeploymentServer server)
         {
             _servers.Add(server);
         }
 
-        public void ForEachDetail(Action<DeploymentDetail> detailAction)
+
+        public void ForEachServer(Action<DeploymentServer> detailAction)
         {
-            foreach (var detail in _details)
+            foreach (var server in _servers)
             {
-                detailAction(detail);
+                detailAction(server);
             }
+        }
+
+        public void AddServer(string name)
+        {
+            AddServer(new DeploymentServer(name));
         }
     }
 }
