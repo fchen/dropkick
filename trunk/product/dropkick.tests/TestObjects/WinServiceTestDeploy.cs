@@ -17,8 +17,7 @@ namespace dropkick.tests.TestObjects
                 DeploymentStepsFor(Web, r =>
                 {
                                                 r.WinService("MSMQ")
-                                                    .Do(() => r.OnServer(System.Environment.MachineName)
-                                                                  .Msmq()
+                                                    .Do(() => r.Msmq()
                                                                   .PrivateQueueNamed("dru")
                                                                   .CreateIfItDoesntExist());
                 });
