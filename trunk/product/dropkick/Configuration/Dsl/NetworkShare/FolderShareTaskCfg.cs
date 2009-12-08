@@ -5,14 +5,14 @@ namespace dropkick.Configuration.Dsl.NetworkShare
     public class FolderShareTaskCfg :
         FolderShareOptions
     {
-        readonly ServerOptions _server;
         readonly FolderShareTask _task;
-        public FolderShareTaskCfg(ServerOptions server, string name)
+        readonly Role _role;
+        public FolderShareTaskCfg(Role role, string name)
         {
-            _server = server;
+            _role = role;
             _task = new FolderShareTask()
                     {
-                        Server = server.Name,
+                        Server = role.Name,
                         ShareName = name,
                     };
         }
@@ -20,7 +20,7 @@ namespace dropkick.Configuration.Dsl.NetworkShare
         public FolderShareOptions PointingTo(string path)
         {
             _task.PointingTo = path;
-            _server.Role.AddTask(_task);
+            _role.AddTask(_task);
             return this;
         }
 
