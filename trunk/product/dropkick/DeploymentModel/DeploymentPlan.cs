@@ -2,6 +2,7 @@ namespace dropkick.DeploymentModel
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class DeploymentPlan
     {
@@ -70,6 +71,11 @@ namespace dropkick.DeploymentModel
             }
 
             return result;
+        }
+
+        public DeploymentRole GetRole(string name)
+        {
+            return _roles.Where(r => r.Name == name).First();
         }
     }
 }

@@ -58,6 +58,8 @@
     <Compile Include="..\..\SolutionVersion.cs">
       <Link>SolutionVersion.cs</Link>
     </Compile>
+    <Compile Include="Configuration\Dsl\CheckingPlanBuildingLogic.cs" />
+    <Compile Include="Configuration\Dsl\WithTwoPartDeployContext.cs" />
     <Compile Include="Configuration\Dsl\Verification_Demos.cs" />
     <Compile Include="Configuration\Dsl\Deployments_should_have_roles.cs" />
     <Compile Include="Engine\ExecutionArguments_Specs.cs" />
