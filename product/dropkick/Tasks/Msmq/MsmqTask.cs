@@ -32,7 +32,7 @@ namespace dropkick.Tasks.Msmq
             set { _serverName = value.Equals(".") ? Environment.MachineName : value; }
         }
 
-        #region Task Members
+
 
         public string Name
         {
@@ -77,12 +77,6 @@ namespace dropkick.Tasks.Msmq
             return new DeploymentResult();
         }
 
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
-
-        #endregion
 
         private void VerifyInAdministratorRole(DeploymentResult result)
         {

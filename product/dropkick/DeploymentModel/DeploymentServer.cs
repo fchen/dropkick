@@ -16,6 +16,13 @@ namespace dropkick.DeploymentModel
 
         public string Name { get; private set; }
 
+        public void AddDetail(DeploymentDetail[] details)
+        {
+            foreach (var detail in details)
+            {
+                AddDetail(detail);
+            }
+        }
         public void AddDetail(DeploymentDetail detail)
         {
             _details.Add(detail);

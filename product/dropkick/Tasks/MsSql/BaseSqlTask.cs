@@ -19,14 +19,10 @@ namespace dropkick.Tasks.MsSql
         public string ServerName { get; set; }
         public string DatabaseName { get; set; }
 
-        #region Task Members
-
-        public abstract void Inspect(DeploymentInspector inspector);
         public abstract string Name { get; }
         public abstract DeploymentResult VerifyCanRun();
         public abstract DeploymentResult Execute();
 
-        #endregion
 
         public void TestConnectivity(DeploymentResult result)
         {

@@ -21,7 +21,7 @@ namespace dropkick.Configuration.Dsl.NetworkShare
         public FolderShareOptions PointingTo(string path)
         {
             _task.PointingTo = path;
-            _server.AddDetail(_task.ToDetail());
+            _server.AddDetail(_task.ToDetail(_server));
             return this;
         }
 

@@ -2,7 +2,6 @@ namespace dropkick.Tasks.Files
 {
     using System;
     using System.IO;
-    using Configuration.Dsl;
     using DeploymentModel;
     using Exceptions;
 
@@ -19,7 +18,7 @@ namespace dropkick.Tasks.Files
             _to = to;
         }
 
-        #region Task Members
+
 
         public string Name
         {
@@ -117,11 +116,5 @@ namespace dropkick.Tasks.Files
             }
         }
 
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
-
-        #endregion
     }
 }

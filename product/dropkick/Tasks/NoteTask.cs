@@ -1,6 +1,5 @@
 namespace dropkick.Tasks
 {
-    using Configuration.Dsl;
     using DeploymentModel;
 
     public class NoteTask :
@@ -11,11 +10,6 @@ namespace dropkick.Tasks
         public NoteTask(string message)
         {
             _message = message;
-        }
-
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
         }
 
         public string Name

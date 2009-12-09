@@ -13,7 +13,7 @@ namespace dropkick.Configuration.Dsl.CommandLine
         {
             _server = server;
             _task = new LocalCommandLineTask(command);
-            _server.AddDetail(_task.ToDetail());
+            _server.AddDetail(_task.ToDetail(server));
         }
 
         #region CommandLineOptions Members

@@ -20,12 +20,12 @@ namespace dropkick.Configuration.Dsl.WinService
 
         public WinServiceOptions Do(Action registerAdditionalActions)
         {
-            _server.AddDetail(new WinServiceStopTask(_server.Name, _serviceName).ToDetail());
+            _server.AddDetail(new WinServiceStopTask(_server.Name, _serviceName).ToDetail(_server));
 
             //child task
             registerAdditionalActions();
 
-            _server.AddDetail(new WinServiceStartTask(_server.Name, _serviceName).ToDetail());
+            _server.AddDetail(new WinServiceStartTask(_server.Name, _serviceName).ToDetail(_server));
 
             return this;
         }

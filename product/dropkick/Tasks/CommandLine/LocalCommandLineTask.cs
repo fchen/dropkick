@@ -18,10 +18,6 @@ namespace dropkick.Tasks.CommandLine
             ExecutableIsLocatedAt = FindThePathToTheCommand(command);
         }
 
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
 
         public string Name
         {

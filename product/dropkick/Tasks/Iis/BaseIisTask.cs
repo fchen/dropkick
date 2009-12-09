@@ -16,12 +16,7 @@ namespace dropkick.Tasks.Iis
         public string ServerName { get; set; }
         public abstract int VersionNumber { get; }
 
-        #region Task Members
 
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
 
         public string Name
         {
@@ -35,7 +30,7 @@ namespace dropkick.Tasks.Iis
         public abstract DeploymentResult VerifyCanRun();
         public abstract DeploymentResult Execute();
 
-        #endregion
+
 
         public void CheckServerName(DeploymentResult result)
         {

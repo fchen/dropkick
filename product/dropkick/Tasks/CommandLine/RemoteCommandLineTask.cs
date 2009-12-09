@@ -10,10 +10,6 @@ namespace dropkick.Tasks.CommandLine
     public class RemoteCommandLineTask :
         Task
     {
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
 
         public string Name
         {

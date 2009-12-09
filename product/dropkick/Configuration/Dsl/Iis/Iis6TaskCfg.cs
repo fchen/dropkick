@@ -18,13 +18,13 @@ namespace dropkick.Configuration.Dsl.Iis
                         ServerName = server.Name,
                         WebsiteName = websiteName
                     };
-            server.AddDetail(_task.ToDetail());
+            server.AddDetail(_task.ToDetail(server));
         }
 
         public IisVirtualDirectoryOptions VirtualDirectory(string name)
         {
             _task.VdirPath = name;
-            _server.AddDetail(_task.ToDetail());
+            _server.AddDetail(_task.ToDetail(_server));
             return this;
         }
 

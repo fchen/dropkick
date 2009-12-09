@@ -1,7 +1,6 @@
 namespace dropkick.tests.TestObjects
 {
     using System;
-    using DeploymentModel;
     using dropkick.Configuration.Dsl;
     using dropkick.DeploymentModel;
 
@@ -22,7 +21,7 @@ namespace dropkick.tests.TestObjects
             return new DeploymentResult();
         }
 
-        public void Inspect(DeploymentInspector inspector)
+        public void InspectWith(DeploymentInspector inspector)
         {
             Console.WriteLine("task inspection");
             inspector.Inspect(this);

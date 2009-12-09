@@ -14,6 +14,12 @@ namespace dropkick.DeploymentModel
             get { return _roles.Count; }
         }
 
+        public DeploymentRole AddRole(string name)
+        {
+            var role = new DeploymentRole(name);
+            _roles.Add(role);
+            return role;
+        }
         public void AddRole(DeploymentRole role)
         {
             _roles.Add(role);

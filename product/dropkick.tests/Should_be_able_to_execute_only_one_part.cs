@@ -16,8 +16,8 @@ namespace dropkick.tests
         public void TryWeb()
         {
             var dep = new TwoPartDeploy();
-            var maps = new MultiDictionary<string, string>(true);
-            maps.Add("WEB","BOB");
+            var maps = new RoleToServerMap();
+            maps.AddMap("WEB","BOB");
 
             var ins = new DropkickDeploymentInspector();
 
@@ -30,8 +30,8 @@ namespace dropkick.tests
         public void TryDb()
         {
             var dep = new TwoPartDeploy();
-            var maps = new MultiDictionary<string, string>(true);
-            maps.Add("WEB", "BOB");
+            var maps = new RoleToServerMap();
+            maps.AddMap("WEB", "BOB");
 
             var ins = new DropkickDeploymentInspector();
 

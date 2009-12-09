@@ -7,16 +7,6 @@ namespace dropkick.Tasks
     public class NestedTask :
         Task
     {
-        #region Task Members
-
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this, () =>
-                                        {
-/*other stuff*/
-                                        });
-        }
-
         public string Name
         {
             get { return "NESTED TASK"; }
@@ -32,7 +22,5 @@ namespace dropkick.Tasks
             //execute sub task
             return new DeploymentResult();
         }
-
-        #endregion
     }
 }

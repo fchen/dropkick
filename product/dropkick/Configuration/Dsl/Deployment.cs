@@ -60,12 +60,6 @@ namespace dropkick.Configuration.Dsl
             role.BindAction(action);
         }
 
-        public static Role<Inheritor> GetRole(string name)
-        {
-            Role<Inheritor> state;
-            return _roles.TryGetValue(name, out state) ? state : null;
-        }
-
         static TValue SetPropertyValue<TValue>(PropertyInfo propertyInfo, Func<PropertyInfo, TValue> getValue)
         {
             var value = Expression.Parameter(typeof(TValue), "value");
@@ -82,13 +76,13 @@ namespace dropkick.Configuration.Dsl
             return !(propertyInfo.PropertyType == typeof(Role<Inheritor>) || propertyInfo.PropertyType == typeof(Role));
         }
 
-        public void Inspect(DeploymentInspector inspector)
+        public void InspectWith(DeploymentInspector inspector)
         {
             inspector.Inspect(this, () =>
             {
                 foreach(Role<Inheritor> role in _roles.Values)
                 {
-                    role.Inspect(inspector);
+                    role.InspectWith(inspector);
                 }
             });
         }

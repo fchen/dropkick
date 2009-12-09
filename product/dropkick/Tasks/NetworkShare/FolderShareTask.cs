@@ -17,12 +17,7 @@ namespace dropkick.Tasks.NetworkShare
         public string ShareName { get; set; }
         public string PointingTo { get; set; }
 
-        #region Task Members
 
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
 
         public DeploymentResult VerifyCanRun()
         {
@@ -69,7 +64,6 @@ namespace dropkick.Tasks.NetworkShare
             get { return "Share Folder '{0}' as '{1}' on '{2}'".FormatWith(PointingTo, ShareName, Server); }
         }
 
-        #endregion
 
         public void CreateIfNotExist()
         {
