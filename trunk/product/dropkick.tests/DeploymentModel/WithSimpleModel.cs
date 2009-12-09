@@ -4,41 +4,29 @@ namespace dropkick.tests.DeploymentModel
     using NUnit.Framework;
 
     [TestFixture]
-    public class Model_Specs
+    public abstract class WithSimpleModel
     {
-        DeploymentPlan _plan;
-        DeploymentResult _result;
+        public DeploymentPlan Plan { get; private set;}
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void SetUp()
         {
-            var detail = new DeploymentDetail(() => "name_d", () => new DeploymentResult()
+            var detail = new DeploymentDetail(() => "test detail", () => new DeploymentResult()
                                                                     {
                                                                         new DeploymentItem(DeploymentItemStatus.Good, "verify")
                                                                     }, () => new DeploymentResult()
                                                                              {
                                                                                  new DeploymentItem(DeploymentItemStatus.Good, "execute")
                                                                              });
-            var role = new DeploymentRole("name");
-            role.AddServer(new DeploymentServer("bob"));
+            var role = new DeploymentRole("test role");
+            role.AddServer(new DeploymentServer("srvtest"));
             role.ForEachServer(s=>s.AddDetail(detail));
-            _plan = new DeploymentPlan();
-            _plan.AddRole(role);
+            Plan = new DeploymentPlan();
+            Plan.AddRole(role);
 
             BecauseOf();
         }
 
-        public void BecauseOf()
-        {
-            _result  = _plan.Execute();
-        }
-
-        [Test]
-        public void Part()
-        {
-            Assert.AreEqual(2, _result.Results.Count);
-       
-        }
-
+        public abstract void BecauseOf();
     }
 }
