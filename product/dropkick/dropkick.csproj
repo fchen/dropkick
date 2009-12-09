@@ -63,6 +63,7 @@
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\RemoteCommandLineTaskBuilder.cs" />
     <Compile Include="Configuration\Dsl\DeploymentConfigurationException.cs" />
+    <Compile Include="Configuration\Dsl\Server.cs" />
     <Compile Include="Engine\RoleToServerMap.cs" />
     <Compile Include="DeploymentModel\DeploymentServer.cs" />
     <Compile Include="Engine\DeploymentCommandLineParser.cs" />

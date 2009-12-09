@@ -7,11 +7,11 @@ namespace dropkick.Configuration.Dsl.MsSql
         DatabaseOptions,
         SqlOptions
     {
-        readonly DeploymentServer _server;
+        readonly Server _server;
         readonly string _serverName;
         string _databaseName;
 
-        public MsSqlTaskCfg(DeploymentServer server)
+        public MsSqlTaskCfg(Server server)
         {
             _server = server;
             _serverName = server.Name;
@@ -21,18 +21,18 @@ namespace dropkick.Configuration.Dsl.MsSql
 
         public void OutputSql(string sql)
         {
-            _server.AddDetail(new OutputSqlTask(_serverName, _databaseName)
+            _server.RegisterTask(new OutputSqlTask(_serverName, _databaseName)
                                   {
                                       OutputSql = sql
-                                  }.ToDetail(_server));
+                                  });
         }
 
         public void RunScript(string scriptFile)
         {
-            _server.AddDetail(new RunSqlScriptTask(_serverName, _databaseName)
+            _server.RegisterTask(new RunSqlScriptTask(_serverName, _databaseName)
                                   {
                                       ScriptToRun = scriptFile
-                                  }.ToDetail(_server));
+                                  });
         }
 
         #endregion

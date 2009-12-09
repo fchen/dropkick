@@ -1,16 +1,27 @@
+// Copyright 2007-2008 The Apache Software Foundation.
+// 
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
+// this file except in compliance with the License. You may obtain a copy of the 
+// License at 
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0 
+// 
+// Unless required by applicable law or agreed to in writing, software distributed 
+// under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
+// CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+// specific language governing permissions and limitations under the License.
 namespace dropkick.Configuration.Dsl.Files
 {
     using System;
     using System.IO;
-    using DeploymentModel;
     using Tasks.CommandLine;
 
     public class WebFileActions :
         FileAction
     {
-        readonly DeploymentServer _server;
+        readonly Server _server;
 
-        public WebFileActions(DeploymentServer server)
+        public WebFileActions(Server server)
         {
             _server = server;
         }
@@ -25,12 +36,12 @@ namespace dropkick.Configuration.Dsl.Files
 
         public FileAction EncryptIdentity()
         {
-            var t = new LocalCommandLineTask(@"aspnet_regiis");
-            t.Args = @" -pe ""connectionStrings"" -app ""/MachineDPAPI"" -prov ""DataProtectionConfigurationProvider""";
+            var task = new LocalCommandLineTask(@"aspnet_regiis");
+            task.Args = @" -pe ""connectionStrings"" -app ""/MachineDPAPI"" -prov ""DataProtectionConfigurationProvider""";
             string winDir = Environment.GetEnvironmentVariable("WINDIR");
-            t.ExecutableIsLocatedAt = Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727");
+            task.ExecutableIsLocatedAt = Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727");
 
-            _server.AddDetail(t.ToDetail(_server));
+            _server.RegisterTask(task);
 
             return this;
         }
