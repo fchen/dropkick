@@ -15,9 +15,9 @@ namespace dropkick.tests.DeploymentModel
         }
 
         [Test]
-        public void ShouldBeTwoResults()
+        public void ThreeTasksSixResults()
         {
-            Assert.AreEqual(2, Result.ResultCount);
+            Assert.AreEqual(6, Result.ResultCount);
         }
     }
 }
