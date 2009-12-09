@@ -15,8 +15,8 @@ namespace dropkick.Configuration.Dsl
         DeploymentInspectorSite
         where T : Deployment<T>, new()
     {
-        readonly List<TaskBuilder> _tasks = new List<TaskBuilder>();
-        Action<DeploymentServer> _serverConfiguration;
+        Action<Server> _serverConfiguration;
+        Server _server = new PrototypicalServer();
 
         public Role(string name)
         {
@@ -25,20 +25,10 @@ namespace dropkick.Configuration.Dsl
 
         public string Name { get; set; }
 
-        public void AddTask(TaskBuilder taskBuilder)
-        {
-            _tasks.Add(taskBuilder);
-        }
 
         public void InspectWith(DeploymentInspector inspector)
         {
-            inspector.Inspect(this, () =>
-            {
-                foreach(TaskBuilder task in _tasks)
-                {
-                    task.InspectWith(inspector);
-                }
-            });
+            inspector.Inspect(this, () => _server.InspectWith(inspector));
         }
 
         public static Role<T> GetRole(Role input)
@@ -50,14 +40,14 @@ namespace dropkick.Configuration.Dsl
             return result;
         }
 
-        public void BindAction(Action<DeploymentServer> action)
+        public void BindAction(Action<Server> action)
         {
-            _serverConfiguration = action;
+            action(_server);
         }
 
         public void ConfigureServer(DeploymentServer server)
         {
-            _serverConfiguration(server);
+            _server.MapTo(server);
         }
     }
 }
