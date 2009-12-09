@@ -15,7 +15,6 @@ namespace dropkick.Configuration.Dsl.CommandLine
             _server.RegisterTask(_task);
         }
 
-        #region CommandLineOptions Members
 
         public CommandLineOptions Args(string args)
         {
@@ -34,7 +33,5 @@ namespace dropkick.Configuration.Dsl.CommandLine
             _task.WorkingDirectory = path;
             return this;
         }
-
-        #endregion
     }
 }

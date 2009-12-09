@@ -35,10 +35,7 @@ namespace dropkick.Configuration.Dsl
         {
             foreach (var task in _tasks)
             {
-                foreach (var tasksForServer in task.ConstructTasksForServer(server))
-                {
-                    server.AddDetail(tasksForServer.ToDetail(server));
-                }
+                server.AddDetail(task.ConstructTasksForServer(server).ToDetail(server));
             }
         }
 
