@@ -76,8 +76,8 @@
     <Compile Include="Tasks\MsSql\RunSqlScriptTaskTest.cs" />
     <Compile Include="Tasks\NetworkShare\CreateNetworkShare.cs" />
     <Compile Include="TestObjects\RoleCounter.cs" />
-    <Compile Include="Should_be_able_run_in_different_modes.cs" />
-    <Compile Include="Should_be_able_to_execute_only_one_part.cs" />
+    <Compile Include="DeploymentModel\Should_be_able_run_in_different_modes.cs" />
+    <Compile Include="DeploymentModel\Should_be_able_to_execute_only_one_part.cs" />
     <Compile Include="Tasks\WinService\WinTests.cs" />
     <Compile Include="TestObjects\CommandTestDeploy.cs" />
     <Compile Include="TestObjects\IisTestDeploy.cs" />
