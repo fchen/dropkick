@@ -8,13 +8,13 @@ namespace dropkick.Engine
         {
             Command = DeploymentCommands.Trace;
             Part = "ALL";
-            ServerMappings = new MultiDictionary<string, string>(true);
+            ServerMappings = new RoleToServerMap();
         }
 
         public string Environment { get; set; }
         public string Part { get; set; }
         public string Deployment { get; set; }
         public DeploymentCommands Command { get; set; }
-        public MultiDictionary<string, string> ServerMappings { get; private set; }
+        public RoleToServerMap ServerMappings { get; private set; }
     }
 }

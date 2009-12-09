@@ -11,7 +11,7 @@ namespace dropkick.tests.Configuration.Dsl
         {
             var dep = new SinglePartDeploy();
             var pc = new RoleCounter();
-            dep.Inspect(pc);
+            dep.InspectWith(pc);
             Assert.AreEqual(1,pc.Count);
         }
 
@@ -20,7 +20,7 @@ namespace dropkick.tests.Configuration.Dsl
         {
             var dep = new TwoPartDeploy();
             var pc = new RoleCounter();
-            dep.Inspect(pc);
+            dep.InspectWith(pc);
             Assert.AreEqual(2, pc.Count);
         }
     }

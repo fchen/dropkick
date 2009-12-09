@@ -11,7 +11,7 @@ namespace dropkick.Configuration.Dsl.Dsn
         public DsnTaskCfg(DeploymentServer server, string dsnName, string databaseName)
         {
             _task = new DsnTask(server.Name, dsnName, DsnAction.AddSystemDsn, DsnDriver.Sql(), databaseName);
-            server.AddDetail(_task.ToDetail());
+            server.AddDetail(_task.ToDetail(server));
         }
     }
 }

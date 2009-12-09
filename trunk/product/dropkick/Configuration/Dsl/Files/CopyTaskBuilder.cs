@@ -29,7 +29,7 @@ namespace dropkick.Configuration.Dsl.Files
         {
             _to = targetPath;
             _task = new CopyTask(_from, _to);
-            _server.AddDetail(_task.ToDetail());
+            _server.AddDetail(_task.ToDetail(_server));
             return this;
         }
 

@@ -21,11 +21,6 @@ namespace dropkick.Tasks.MsSql
 
         public string OutputSql { get; set; }
 
-        public override void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
-
         public override DeploymentResult VerifyCanRun()
         {
             var result = new DeploymentResult();

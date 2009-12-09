@@ -16,13 +16,8 @@ namespace dropkick.tests.TestObjects
         {
             Define(() =>
             {
-                //Could be on FhlbDeployment
-                //EnableTripwireReporting();         //file copies and movies are evented
-
                 DeploymentStepsFor(Web, server =>
                 {
-                    //how to get this to be the current server?
-
                     server.ShareFolder("bob").PointingTo(@"E:\Tools")
                         .CreateIfNotExist();
 
@@ -44,7 +39,6 @@ namespace dropkick.tests.TestObjects
                         .With(f => f.WebConfig
                                        .ReplaceIdentityTokensWithPrompt()
                                        .EncryptIdentity());
-                    //.BackupTo(path, o=>o.TimestampIt())
 
 
                     server.WinService("MSMQ").Do(() =>

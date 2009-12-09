@@ -8,16 +8,17 @@ namespace dropkick.Configuration.Dsl.Iis
     {
         public static IisSiteOptions SelectTheCorrectConfig(DeploymentServer server, string websiteName)
         {
-            server.AddDetail(new NoteTask("IIS Version Detection Used").ToDetail());
+            //how to go from taskbuilder -> task -> detail?
+            server.AddDetail(new NoteTask("IIS Version Detection Used").ToDetail(server));
 
             if (System.Environment.OSVersion.Version.Major == 1)
             {
-                server.AddDetail(new NoteTask("IIS Version was automatically set to IIS6").ToDetail());
+                server.AddDetail(new NoteTask("IIS Version was automatically set to IIS6").ToDetail(server));
                 return new Iis6TaskCfg(server, websiteName);
             }
             else if(System.Environment.OSVersion.Version.Major == 6)
             {
-                server.AddDetail(new NoteTask("IIS Version was automatically set to IIS7").ToDetail());
+                server.AddDetail(new NoteTask("IIS Version was automatically set to IIS7").ToDetail(server));
                 return new Iis7TaskCfg(server, websiteName);            
             }
             else

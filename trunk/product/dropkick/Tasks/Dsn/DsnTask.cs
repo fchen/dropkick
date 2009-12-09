@@ -24,12 +24,7 @@ namespace dropkick.Tasks.Dsn
             _driver = driver;
         }
 
-        #region Task Members
 
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
 
         public string Name
         {
@@ -63,7 +58,6 @@ namespace dropkick.Tasks.Dsn
             return result;
         }
 
-        #endregion
 
         [DllImport("ODBCCP32.dll")]
         static extern bool SQLConfigDataSource(IntPtr parent, int request, string driver, string attributes);

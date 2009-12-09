@@ -1,8 +1,7 @@
 namespace dropkick.Configuration.Dsl
 {
-    using System;
     using DeploymentModel;
-    using Magnum.Collections;
+    using Engine;
     using Magnum.Reflection;
 
     public class DropkickDeploymentInspector :
@@ -11,13 +10,12 @@ namespace dropkick.Configuration.Dsl
     {
         readonly DeploymentPlan _plan = new DeploymentPlan();
         DeploymentRole _currentRole;
+        RoleToServerMap _serverMappings;
 
         public DropkickDeploymentInspector() :
             base("Look")
         {
         }
-
-        #region DeploymentInspector Members
 
         public void Inspect(object obj)
         {
@@ -33,47 +31,48 @@ namespace dropkick.Configuration.Dsl
             });
         }
 
-        #endregion
-
         #region Inspect Methods
         public bool Look(Deployment deployment)
         {
-            //TODO: handle the multiple servers here?
             _plan.Name = deployment.GetType().Name;
             return true;
         }
 
-        //TODO: This smells pretty nasty
-
         public bool Look(Role role)
         {
-            _currentRole = new DeploymentRole(role.Name);
-            foreach (var serverName in _serverMappings[role.Name])
+            _currentRole = _plan.AddRole(role.Name);
+
+            foreach (var serverName in _serverMappings.GetServers(role.Name))
             {
                 _currentRole.AddServer(serverName);
             }
 
             _currentRole.ForEachServer(role.ConfigureServer);
-            _plan.AddRole(_currentRole);
-
             
             return true;
         }
 
-        public bool Look(Task task)
+        public bool Look(TaskBuilder taskBuilder)
         {
-            var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
-            _currentRole.ForEachServer(s=>s.AddDetail(detail));
+            _currentRole.ForEachServer(server =>
+            {
+                var tasks = taskBuilder.ConstructTasksForServer(server);
+                foreach (var task in tasks)
+                {
+                    var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
+                    server.AddDetail(detail);
+                }
+            });
+
             return true;
         }
         #endregion
 
-        MultiDictionary<string, string> _serverMappings;
-        public DeploymentPlan GetPlan(Deployment deployment, MultiDictionary<string, string> serverMappings)
+        public DeploymentPlan GetPlan(Deployment deployment, RoleToServerMap serverMappings)
         {
             _serverMappings = serverMappings;
-            //TODO: separate out?
-            deployment.Inspect(this);
+            
+            deployment.InspectWith(this);
             
             return _plan;
         }

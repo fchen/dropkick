@@ -17,19 +17,12 @@ namespace dropkick.Tasks.WinService
         public string MachineName { get; set; }
         public string ServiceName { get; set; }
 
-        #region Task Members
-
-        public void Inspect(DeploymentInspector inspector)
-        {
-            inspector.Inspect(this);
-        }
-
         public abstract string Name { get; }
 
         public abstract DeploymentResult VerifyCanRun();
         public abstract DeploymentResult Execute();
 
-        #endregion
+
 
         protected void VerifyInAdministratorRole(DeploymentResult result)
         {

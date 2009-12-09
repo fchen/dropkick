@@ -30,7 +30,7 @@ namespace dropkick.Configuration.Dsl.Files
             string winDir = Environment.GetEnvironmentVariable("WINDIR");
             t.ExecutableIsLocatedAt = Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727");
 
-            _server.AddDetail(t.ToDetail());
+            _server.AddDetail(t.ToDetail(_server));
 
             return this;
         }

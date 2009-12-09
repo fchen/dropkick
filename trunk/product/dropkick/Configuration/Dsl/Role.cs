@@ -15,7 +15,7 @@ namespace dropkick.Configuration.Dsl
         DeploymentInspectorSite
         where T : Deployment<T>, new()
     {
-        readonly List<Task> _tasks = new List<Task>();
+        readonly List<TaskBuilder> _tasks = new List<TaskBuilder>();
         Action<DeploymentServer> _serverConfiguration;
 
         public Role(string name)
@@ -25,18 +25,18 @@ namespace dropkick.Configuration.Dsl
 
         public string Name { get; set; }
 
-        public void AddTask(Task task)
+        public void AddTask(TaskBuilder taskBuilder)
         {
-            _tasks.Add(task);
+            _tasks.Add(taskBuilder);
         }
 
-        public void Inspect(DeploymentInspector inspector)
+        public void InspectWith(DeploymentInspector inspector)
         {
             inspector.Inspect(this, () =>
             {
-                foreach(Task task in _tasks)
+                foreach(TaskBuilder task in _tasks)
                 {
-                    task.Inspect(inspector);
+                    task.InspectWith(inspector);
                 }
             });
         }
