@@ -38,5 +38,10 @@ namespace dropkick.DeploymentModel
                 return System.Environment.MachineName == Name;
             }
         }
+
+        public int DetailCount
+        {
+            get { return _details.Count; }
+        }
     }
 }
