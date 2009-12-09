@@ -1,5 +1,7 @@
 namespace dropkick.Configuration.Dsl.CommandLine
 {
+    using System;
+
     public interface CommandLineOptions
     {
         CommandLineOptions Args(string args);

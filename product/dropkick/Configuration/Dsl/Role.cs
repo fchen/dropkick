@@ -25,7 +25,6 @@ namespace dropkick.Configuration.Dsl
 
         public string Name { get; set; }
 
-
         public void InspectWith(DeploymentInspector inspector)
         {
             inspector.Inspect(this, () => _server.InspectWith(inspector));

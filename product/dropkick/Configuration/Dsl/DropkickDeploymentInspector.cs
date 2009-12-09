@@ -9,7 +9,7 @@ namespace dropkick.Configuration.Dsl
         DeploymentInspector
     {
         readonly DeploymentPlan _plan = new DeploymentPlan();
-        DeploymentRole _currentRole;
+        DeploymentRole _currentRole; //TODO: seems hackish
         RoleToServerMap _serverMappings;
 
         public DropkickDeploymentInspector() :
@@ -46,22 +46,24 @@ namespace dropkick.Configuration.Dsl
             {
                 _currentRole.AddServer(serverName);
             }
-
-            _currentRole.ForEachServer(role.ConfigureServer);
             
+            return true;
+        }
+
+        public bool Look(Server server)
+        {
+            //TODO: implement
             return true;
         }
 
         public bool Look(TaskBuilder taskBuilder)
         {
+            //TODO: hackish
             _currentRole.ForEachServer(server =>
             {
-                var tasks = taskBuilder.ConstructTasksForServer(server);
-                foreach (var task in tasks)
-                {
-                    var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
-                    server.AddDetail(detail);
-                }
+                var task = taskBuilder.ConstructTasksForServer(server);
+                var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
+                server.AddDetail(detail);
             });
 
             return true;
