@@ -61,9 +61,10 @@
     <Compile Include="Configuration\Dsl\CheckingPlanBuildingLogic.cs" />
     <Compile Include="Configuration\Dsl\WithTwoPartDeployContext.cs" />
     <Compile Include="Configuration\Dsl\Verification_Demos.cs" />
-    <Compile Include="Configuration\Dsl\Deployments_should_have_roles.cs" />
+    <Compile Include="DeploymentModel\DeploymentPlanExecution.cs" />
+    <Compile Include="DeploymentModel\DeploymentPlanVerification.cs" />
     <Compile Include="Engine\ExecutionArguments_Specs.cs" />
-    <Compile Include="DeploymentModel\Model_Specs.cs" />
+    <Compile Include="DeploymentModel\WithSimpleModel.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="Tasks\Iis\NewVirtualDirTest.cs" />
     <Compile Include="TestObjects\GenericDeploymentFinder.cs" />

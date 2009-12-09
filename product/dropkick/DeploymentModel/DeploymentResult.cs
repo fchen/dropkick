@@ -15,6 +15,14 @@ namespace dropkick.DeploymentModel
             get { return new ReadOnlyCollection<DeploymentItem>(_items); }
         }
 
+        public int ResultCount
+        {
+            get
+            {
+                return _items.Count;
+            }
+        }
+
         public void AddGood(string message)
         {
             AddItem(DeploymentItemStatus.Good, message);
