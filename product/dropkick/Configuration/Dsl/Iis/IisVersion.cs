@@ -12,22 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace dropkick.Configuration.Dsl.Iis
 {
-    public static class Extension //ProtoTaskBuilder
+    public enum IisVersion
     {
-        public static IisSiteOptions Iis6Site(this Server server, string websiteName)
-        {
-            return new IisProtoTask(server, websiteName)
-                   {
-                       Version = IisVersion.Six
-                   };
-        }
-
-        public static IisSiteOptions Iis7Site(this Server server, string websiteName)
-        {
-            return new IisProtoTask(server, websiteName)
-                   {
-                       Version = IisVersion.Seven
-                   };
-        }
+        Six,
+        Seven
     }
 }

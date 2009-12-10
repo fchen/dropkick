@@ -56,12 +56,12 @@ namespace dropkick.Configuration.Dsl
             return true;
         }
 
-        public bool Look(TaskBuilder taskBuilder)
+        public bool Look(ProtoTask protoTask)
         {
             //TODO: hackish
             _currentRole.ForEachServer(server =>
             {
-                var task = taskBuilder.ConstructTasksForServer(server);
+                var task = protoTask.ConstructTasksForServer(server);
                 var detail = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
                 server.AddDetail(detail);
             });

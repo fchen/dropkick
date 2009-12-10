@@ -21,7 +21,7 @@ namespace dropkick.tests.TestObjects
                     server.ShareFolder("bob").PointingTo(@"E:\Tools")
                         .CreateIfNotExist();
 
-                    server.CreateDSN("NAME", "Enterprise");
+                    server.CreateDSN("NAME").ForDatabase("Enterprise");
 
                     server.CommandLine("ping")
                         .Args("www.google.com")

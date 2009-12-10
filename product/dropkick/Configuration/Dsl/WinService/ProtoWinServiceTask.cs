@@ -13,34 +13,42 @@
 namespace dropkick.Configuration.Dsl.WinService
 {
     using System;
+    using DeploymentModel;
+    using Tasks;
     using Tasks.WinService;
 
-    public class WinServiceTaskBuilder :
+    public class ProtoWinServiceTask :
+        BaseTask,
         WinServiceOptions
     {
-        readonly Server _server;
         readonly string _serviceName;
+        Action _registerAdditionalActions;
 
-        public WinServiceTaskBuilder(Server server, string name)
+        public ProtoWinServiceTask(string serviceName)
         {
-            _serviceName = name;
-            _server = server;
+            _serviceName = serviceName;
         }
 
         #region WinServiceOptions Members
 
         public WinServiceOptions Do(Action registerAdditionalActions)
         {
-            _server.RegisterTask(new WinServiceStopTask(_server.Name, _serviceName));
-
             //child task
-            registerAdditionalActions();
-
-            _server.RegisterTask(new WinServiceStartTask(_server.Name, _serviceName));
+            _registerAdditionalActions = registerAdditionalActions;
 
             return this;
         }
 
         #endregion
+
+        public override Task ConstructTasksForServer(DeploymentServer server)
+        {
+            var stop = new WinServiceStopTask(server.Name, _serviceName);
+            //child task
+            _registerAdditionalActions();
+
+            var start = new WinServiceStartTask(server.Name, _serviceName);
+            return new NestedTask();
+        }
     }
 }

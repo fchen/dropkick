@@ -2,7 +2,6 @@ namespace dropkick.Tasks.MsSql
 {
     using System.Data;
     using System.IO;
-    using Configuration.Dsl;
     using DeploymentModel;
 
 

@@ -12,11 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace dropkick.Configuration.Dsl.CommandLine
 {
-    public static class Extension
+    public static class Extension //proto task builder
     {
         public static CommandLineOptions CommandLine(this Server server, string command)
         {
-            return new CommandLineTaskBuilder(command);
+            var proto = new ProtoCommandLineTask(command);
+            server.RegisterTask(proto);
+            return proto;
         }
     }
 }

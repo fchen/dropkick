@@ -10,20 +10,30 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace dropkick.Configuration.Dsl.CommandLine
+namespace dropkick.Configuration.Dsl.MsSql
 {
-    using Tasks.CommandLine;
+    using DeploymentModel;
+    using Tasks;
+    using Tasks.MsSql;
 
-    public class RemoteCommandLineTaskBuilder
+    public class ProtoOutputSqlTask :
+        BaseTask
     {
-        readonly Server _server;
-        readonly RemoteCommandLineTask _task;
+        readonly string _databaseName;
 
-        public RemoteCommandLineTaskBuilder(Server server, string command)
+        public ProtoOutputSqlTask(string databaseName)
         {
-            _server = server;
-            _task = new RemoteCommandLineTask(command);
-            _server.RegisterTask(_task);
+            _databaseName = databaseName;
+        }
+
+        public string OutputSql { get; set; }
+
+        public override Task ConstructTasksForServer(DeploymentServer server)
+        {
+            return new OutputSqlTask(server.Name, _databaseName)
+                   {
+                       OutputSql = OutputSql
+                   };
         }
     }
 }
