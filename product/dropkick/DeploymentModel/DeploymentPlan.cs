@@ -31,6 +31,11 @@ namespace dropkick.DeploymentModel
             return Ex(d=>
             {
                 var o = d.Verify();
+                if(o.ContainsError())
+                {
+                    //stop. report verify error.
+                    return o;
+                }
                 var oo = d.Execute();
 
                 return o.MergedWith(oo);
