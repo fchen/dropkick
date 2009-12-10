@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{05E8B70A-3A2A-48AD-AF36-EE1A0D0A914B}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -62,7 +62,9 @@
     <Compile Include="Configuration\Dsl\WithTwoPartDeployContext.cs" />
     <Compile Include="Configuration\Dsl\Verification_Demos.cs" />
     <Compile Include="DeploymentModel\DeploymentPlanExecution.cs" />
+    <Compile Include="DeploymentModel\DeploymentPlanFailingExecution.cs" />
     <Compile Include="DeploymentModel\DeploymentPlanVerification.cs" />
+    <Compile Include="DeploymentModel\WithFailingModel.cs" />
     <Compile Include="Engine\ExecutionArguments_Specs.cs" />
     <Compile Include="DeploymentModel\WithSimpleModel.cs" />
     <Compile Include="Extentions.cs" />

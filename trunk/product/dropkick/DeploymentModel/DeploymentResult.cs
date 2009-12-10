@@ -4,6 +4,7 @@ namespace dropkick.DeploymentModel
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
 
     public class DeploymentResult :
         IEnumerable<DeploymentItem>
@@ -68,6 +69,11 @@ namespace dropkick.DeploymentModel
             }
 
             return this;
+        }
+
+        public bool ContainsError()
+        {
+            return _items.Any(x => x.Status == DeploymentItemStatus.Error);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

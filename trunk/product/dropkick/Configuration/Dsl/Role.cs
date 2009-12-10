@@ -1,7 +1,6 @@
 namespace dropkick.Configuration.Dsl
 {
     using System;
-    using System.Collections.Generic;
     using DeploymentModel;
 
     public interface Role
