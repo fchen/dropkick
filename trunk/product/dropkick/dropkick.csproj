@@ -61,10 +61,19 @@
     </Compile>
     <Compile Include="Configuration\DeploymentPlanBuilder.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\CommandLineOptions.cs" />
-    <Compile Include="Configuration\Dsl\CommandLine\CommandLineTaskBuilder.cs" />
-    <Compile Include="Configuration\Dsl\CommandLine\RemoteCommandLineTaskBuilder.cs" />
+    <Compile Include="Configuration\Dsl\CommandLine\ProtoCommandLineTask.cs" />
     <Compile Include="Configuration\Dsl\DeploymentConfigurationException.cs" />
+    <Compile Include="Configuration\Dsl\Dsn\ProtoDsnTask.cs" />
+    <Compile Include="Configuration\Dsl\Files\ProtoCopyTask.cs" />
+    <Compile Include="Configuration\Dsl\Iis\IisProtoTask.cs" />
+    <Compile Include="Configuration\Dsl\Iis\IisVersion.cs" />
+    <Compile Include="Configuration\Dsl\Msmq\ProtoMsmqTask.cs" />
+    <Compile Include="Configuration\Dsl\MsSql\ProtoMsSqlTask.cs" />
+    <Compile Include="Configuration\Dsl\MsSql\ProtoOutputSqlTask.cs" />
+    <Compile Include="Configuration\Dsl\MsSql\ProtoRunSqlScriptTask.cs" />
+    <Compile Include="Configuration\Dsl\NetworkShare\ProtoFolderShareTask.cs" />
     <Compile Include="Configuration\Dsl\Server.cs" />
+    <Compile Include="Configuration\Dsl\WinService\ProtoWinServiceTask.cs" />
     <Compile Include="Engine\RoleToServerMap.cs" />
     <Compile Include="DeploymentModel\DeploymentServer.cs" />
     <Compile Include="Engine\DeploymentCommandLineParser.cs" />
@@ -76,7 +85,6 @@
     <Compile Include="DeploymentModel\DeploymentItemStatus.cs" />
     <Compile Include="Tasks\BaseTask.cs" />
     <Compile Include="Tasks\CommandLine\LocalCommandLineTask.cs" />
-    <Compile Include="Configuration\Dsl\CommandLine\LocalCommandLineTaskBuilder.cs" />
     <Compile Include="Configuration\Dsl\CommandLine\Extension.cs" />
     <Compile Include="Configuration\Dsl\Deployment.cs" />
     <Compile Include="Exceptions\DeploymentException.cs" />
@@ -87,12 +95,10 @@
     <Compile Include="Tasks\Dsn\DsnDriver.cs" />
     <Compile Include="Configuration\Dsl\Dsn\DsnOptions.cs" />
     <Compile Include="Tasks\Dsn\DsnTask.cs" />
-    <Compile Include="Configuration\Dsl\Dsn\DsnTaskCfg.cs" />
     <Compile Include="Configuration\Dsl\Dsn\Extension.cs" />
     <Compile Include="Configuration\Dsl\Files\AppFileActions.cs" />
     <Compile Include="Configuration\Dsl\Files\CopyOptions.cs" />
     <Compile Include="Tasks\Files\CopyTask.cs" />
-    <Compile Include="Configuration\Dsl\Files\CopyTaskBuilder.cs" />
     <Compile Include="Configuration\Dsl\Files\Extension.cs" />
     <Compile Include="Configuration\Dsl\Files\FileAction.cs" />
     <Compile Include="Configuration\Dsl\Files\FileActions.cs" />
@@ -101,28 +107,23 @@
     <Compile Include="Tasks\Iis\BaseIisTask.cs" />
     <Compile Include="Configuration\Dsl\Iis\Extension.cs" />
     <Compile Include="Tasks\Iis\Iis7Task.cs" />
-    <Compile Include="Configuration\Dsl\Iis\Iis7TaskCfg.cs" />
     <Compile Include="Configuration\Dsl\Iis\IisSiteOptions.cs" />
     <Compile Include="Tasks\Iis\Iis6Task.cs" />
-    <Compile Include="Configuration\Dsl\Iis\Iis6TaskCfg.cs" />
     <Compile Include="Configuration\Dsl\Iis\IisVersionSelector.cs" />
     <Compile Include="Configuration\Dsl\Iis\IisVirtualDirectoryOptions.cs" />
     <Compile Include="Configuration\Dsl\Msmq\Extension.cs" />
     <Compile Include="Configuration\Dsl\Msmq\MsmqOptions.cs" />
     <Compile Include="Tasks\Msmq\MsmqTask.cs" />
-    <Compile Include="Configuration\Dsl\Msmq\MsmqTaskCfg.cs" />
     <Compile Include="Configuration\Dsl\Msmq\QueueAddress.cs" />
     <Compile Include="Tasks\MsSql\BaseSqlTask.cs" />
     <Compile Include="Configuration\Dsl\MsSql\DatabaseOptions.cs" />
     <Compile Include="Configuration\Dsl\MsSql\Extension.cs" />
     <Compile Include="Tasks\MsSql\OutputSqlTask.cs" />
-    <Compile Include="Configuration\Dsl\MsSql\MsSqlTaskCfg.cs" />
     <Compile Include="Tasks\MsSql\RunSqlScriptTask.cs" />
     <Compile Include="Configuration\Dsl\MsSql\SqlOptions.cs" />
     <Compile Include="Configuration\Dsl\NetworkShare\Extensions.cs" />
     <Compile Include="Configuration\Dsl\NetworkShare\FolderShareOptions.cs" />
     <Compile Include="Tasks\NetworkShare\FolderShareTask.cs" />
-    <Compile Include="Configuration\Dsl\NetworkShare\FolderShareTaskCfg.cs" />
     <Compile Include="Tasks\NoteTask.cs" />
     <Compile Include="Configuration\Dsl\Role.cs" />
     <Compile Include="DeploymentModel\Task.cs" />
@@ -130,7 +131,6 @@
     <Compile Include="Tasks\NestedTask.cs" />
     <Compile Include="Tasks\WinService\WinServiceStartTask.cs" />
     <Compile Include="Tasks\WinService\WinServiceStopTask.cs" />
-    <Compile Include="Configuration\Dsl\WinService\WinServiceTaskBuilder.cs" />
     <Compile Include="Engine\DeploymentFinders\AssemblyWasSpecifiedAssumingOnlyOneDeploymentClass.cs" />
     <Compile Include="Engine\DeploymentArguments.cs" />
     <Compile Include="Engine\DeploymentCommands.cs" />
@@ -143,7 +143,7 @@
     <Compile Include="Configuration\Dsl\WinService\WinServiceOptions.cs" />
     <Compile Include="Engine\DeploymentFinders\DeploymentFinder.cs" />
     <Compile Include="Engine\Runner.cs" />
-    <Compile Include="Configuration\Dsl\TaskBuilder.cs" />
+    <Compile Include="Configuration\Dsl\ProtoTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

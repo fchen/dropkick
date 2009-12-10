@@ -10,24 +10,36 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace dropkick.Configuration.Dsl.Iis
+namespace dropkick.Configuration.Dsl.Dsn
 {
-    public static class Extension //ProtoTaskBuilder
+    using DeploymentModel;
+    using Tasks;
+    using Tasks.Dsn;
+
+    public class ProtoDsnTask :
+        BaseTask,
+        DsnOptions
     {
-        public static IisSiteOptions Iis6Site(this Server server, string websiteName)
+        readonly string _dsnName;
+        string _databaseName;
+
+        public ProtoDsnTask(string dsnName)
         {
-            return new IisProtoTask(server, websiteName)
-                   {
-                       Version = IisVersion.Six
-                   };
+            _dsnName = dsnName;
         }
 
-        public static IisSiteOptions Iis7Site(this Server server, string websiteName)
+        #region DsnOptions Members
+
+        public void ForDatabase(string name)
         {
-            return new IisProtoTask(server, websiteName)
-                   {
-                       Version = IisVersion.Seven
-                   };
+            _databaseName = name;
+        }
+
+        #endregion
+
+        public override Task ConstructTasksForServer(DeploymentServer server)
+        {
+            return new DsnTask(server.Name, _dsnName, DsnAction.AddSystemDsn, DsnDriver.Sql(), _databaseName);
         }
     }
 }

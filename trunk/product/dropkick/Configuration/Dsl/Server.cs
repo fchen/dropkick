@@ -8,22 +8,20 @@ namespace dropkick.Configuration.Dsl
     public interface Server :
         DeploymentInspectorSite
     {
-        string Name { get; }
         void MapTo(DeploymentServer server);
-        void RegisterTask(Task task);
+        void RegisterTask(ProtoTask protoTask);
     }
 
     public class PrototypicalServer :
         Server
     {
-        IList<TaskBuilder> _tasks = new List<TaskBuilder>();
+        IList<ProtoTask> _tasks = new List<ProtoTask>();
 
-        public string Name { get; set; }
         public void InspectWith(DeploymentInspector inspector)
         {
             inspector.Inspect(this, ()=>
             {
-                foreach (TaskBuilder task in _tasks)
+                foreach (ProtoTask task in _tasks)
                 {
                     task.InspectWith(inspector);
                 }
@@ -39,9 +37,9 @@ namespace dropkick.Configuration.Dsl
             }
         }
 
-        public void RegisterTask(Task task)
+        public void RegisterTask(ProtoTask protoTask)
         {
-            throw new NotImplementedException();
+            _tasks.Add(protoTask);
         }
     }
 }

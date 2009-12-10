@@ -10,40 +10,47 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace dropkick.Configuration.Dsl.NetworkShare
+namespace dropkick.Configuration.Dsl.Files
 {
-    using Tasks.NetworkShare;
+    using System;
+    using DeploymentModel;
+    using Tasks;
+    using Tasks.Files;
 
-    public class FolderShareTaskCfg :
-        FolderShareOptions
+    public class ProtoCopyTask :
+        BaseTask,
+        CopyOptions
     {
         readonly Server _server;
-        readonly FolderShareTask _task;
+        readonly string _to;
+        Action<FileActions> _followOn;
+        string _from;
 
-        public FolderShareTaskCfg(Server server, string name)
+        public ProtoCopyTask(Server server, string to)
         {
+            _to = to;
             _server = server;
-            _task = new FolderShareTask
-                    {
-                        Server = server.Name,
-                        ShareName = name,
-                    };
         }
 
-        #region FolderShareOptions Members
+        #region CopyOptions Members
 
-        public FolderShareOptions PointingTo(string path)
+        public CopyOptions From(string sourcePath)
         {
-            _task.PointingTo = path;
-            _server.RegisterTask(_task);
+            _from = sourcePath;
             return this;
         }
 
-        public void CreateIfNotExist()
+        public void With(Action<FileActions> copyAction)
         {
-            _task.CreateIfNotExist();
+            _followOn = copyAction;
+            copyAction(new SomeFileActions(_server));
         }
 
         #endregion
+
+        public override Task ConstructTasksForServer(DeploymentServer server)
+        {
+            return new CopyTask(_from, _to);
+        }
     }
 }

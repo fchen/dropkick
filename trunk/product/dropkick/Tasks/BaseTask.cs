@@ -5,7 +5,7 @@ namespace dropkick.Tasks
     using DeploymentModel;
 
     public abstract class BaseTask :
-        TaskBuilder
+        ProtoTask
     {
         public void InspectWith(DeploymentInspector inspector)
         {

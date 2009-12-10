@@ -14,7 +14,7 @@ namespace dropkick.Configuration.Dsl.Files
 {
     using System;
     using System.IO;
-    using Tasks.CommandLine;
+    using CommandLine;
 
     public class WebFileActions :
         FileAction
@@ -36,10 +36,10 @@ namespace dropkick.Configuration.Dsl.Files
 
         public FileAction EncryptIdentity()
         {
-            var task = new LocalCommandLineTask(@"aspnet_regiis");
-            task.Args = @" -pe ""connectionStrings"" -app ""/MachineDPAPI"" -prov ""DataProtectionConfigurationProvider""";
+            var task = new ProtoCommandLineTask(@"aspnet_regiis");
+            task.Args(@" -pe ""connectionStrings"" -app ""/MachineDPAPI"" -prov ""DataProtectionConfigurationProvider""");
             string winDir = Environment.GetEnvironmentVariable("WINDIR");
-            task.ExecutableIsLocatedAt = Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727");
+            task.ExecutableIsLocatedAt(Path.Combine(winDir, @"Microsoft.NET\Framework\v2.0.50727"));
 
             _server.RegisterTask(task);
 

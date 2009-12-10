@@ -10,24 +10,23 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace dropkick.Configuration.Dsl.Iis
+namespace dropkick.Configuration.Dsl
 {
-    public static class Extension //ProtoTaskBuilder
-    {
-        public static IisSiteOptions Iis6Site(this Server server, string websiteName)
-        {
-            return new IisProtoTask(server, websiteName)
-                   {
-                       Version = IisVersion.Six
-                   };
-        }
+    using DeploymentModel;
 
-        public static IisSiteOptions Iis7Site(this Server server, string websiteName)
+    public interface ProtoTask :
+        DeploymentInspectorSite
+    {
+        Task ConstructTasksForServer(DeploymentServer server);
+    }
+
+    public static class TaskHelpers
+    {
+        public static DeploymentDetail ToDetail(this Task task, DeploymentServer server)
         {
-            return new IisProtoTask(server, websiteName)
-                   {
-                       Version = IisVersion.Seven
-                   };
+            var d = new DeploymentDetail(() => task.Name, task.VerifyCanRun, task.Execute);
+
+            return d;
         }
     }
 }
