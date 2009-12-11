@@ -25,7 +25,7 @@ namespace dropkick.tests.Engine
         {
             var ea = DeploymentCommandLineParser.Parse("");
 
-            Assert.AreEqual(ea.Part, "ALL");
+            Assert.AreEqual(ea.Role, "ALL");
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace dropkick.tests.Engine
             Assert.AreEqual("staging", ea.Environment);
             Assert.AreEqual("MyStuff.dll", ea.Deployment);
             Assert.AreEqual(DeploymentCommands.Verify, ea.Command);
-            Assert.AreEqual("WEB", ea.Part);
+            Assert.AreEqual("WEB", ea.Role);
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace dropkick.tests.Engine
         {
             var ea = DeploymentCommandLineParser.Parse(_arguments);
 
-            Assert.AreEqual(ea.Part, "WEB");
+            Assert.AreEqual(ea.Role, "WEB");
         }
 
         [Test]

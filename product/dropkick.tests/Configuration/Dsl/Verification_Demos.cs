@@ -20,6 +20,11 @@ namespace dropkick.tests.Configuration.Dsl
     public class CommandDeploymentEst :
         VerificationContext<CommandTestDeploy>
     {
+        [Test]
+        public void bob()
+        {
+            
+        }
     }
 
     public class MsmqDeploymentEst :
@@ -58,10 +63,10 @@ namespace dropkick.tests.Configuration.Dsl
                 Deployment = GetType().Assembly.FullName,
                 Environment = "TEST",
                 Command = DeploymentCommands.Verify,
-                Part = "WEB"
+                Role = "Web"
             };
 
-            _verifyArguments.ServerMappings.AddMap("WEB", "SrvTopeka02");
+            _verifyArguments.ServerMappings.AddMap("Web", "SrvTopeka02");
 
             DeploymentPlanDispatcher.KickItOutThereAlready(Deployment, _verifyArguments);
         }

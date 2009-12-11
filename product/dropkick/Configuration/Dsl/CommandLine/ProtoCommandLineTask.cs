@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace dropkick.Configuration.Dsl.CommandLine
 {
+    using System;
     using DeploymentModel;
     using Tasks;
     using Tasks.CommandLine;
@@ -20,10 +21,10 @@ namespace dropkick.Configuration.Dsl.CommandLine
         BaseTask,
         CommandLineOptions
     {
-        readonly string _command;
-        string _args;
-        string _path;
-        string _workingDirectory;
+        readonly string _command = "";
+        string _args = "";
+        string _path = Environment.CurrentDirectory;
+        string _workingDirectory = Environment.CurrentDirectory;
 
         public ProtoCommandLineTask(string command)
         {
