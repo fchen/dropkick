@@ -4,6 +4,8 @@ namespace dropkick.Configuration.Dsl.WinService
 
     public interface WinServiceOptions
     {
-        WinServiceOptions Do(Action registerAdditionalActions);
+        void Start();
+        void Stop();
+        WinServiceOptions Do(Action<Server> registerAdditionalActions);
     }
 }

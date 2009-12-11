@@ -15,36 +15,23 @@ namespace dropkick.Configuration.Dsl.MsSql
     using System;
     using DeploymentModel;
     using Tasks;
+    using Tasks.MsSql;
 
     public class ProtoMsSqlTask :
         BaseTask,
         DatabaseOptions,
         SqlOptions
     {
-        readonly Server _server;
         string _databaseName;
+        string _scriptFile;
 
-        public ProtoMsSqlTask(Server server)
-        {
-            _server = server;
-        }
+        public string InstanceName { get; set; }
 
         #region DatabaseOptions Members
 
-        public void OutputSql(string sql)
-        {
-            _server.RegisterTask(new ProtoOutputSqlTask(_databaseName)
-                                 {
-                                     OutputSql = sql
-                                 });
-        }
-
         public void RunScript(string scriptFile)
         {
-            _server.RegisterTask(new ProtoRunSqlScriptTask(_databaseName)
-                                 {
-                                     ScriptToRun = scriptFile
-                                 });
+            _scriptFile = scriptFile;
         }
 
         #endregion
@@ -61,7 +48,12 @@ namespace dropkick.Configuration.Dsl.MsSql
 
         public override Task ConstructTasksForServer(DeploymentServer server)
         {
-            throw new NotImplementedException();
+            var t = new RunSqlScriptTask(server.Name, _databaseName)
+                    {
+                        ScriptToRun = _scriptFile,
+                        InstanceName = this.InstanceName
+                    };
+            return t;
         }
     }
 }

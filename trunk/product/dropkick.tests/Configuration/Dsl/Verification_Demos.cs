@@ -20,11 +20,6 @@ namespace dropkick.tests.Configuration.Dsl
     public class CommandDeploymentEst :
         VerificationContext<CommandTestDeploy>
     {
-        [Test]
-        public void bob()
-        {
-            
-        }
     }
 
     public class MsmqDeploymentEst :
