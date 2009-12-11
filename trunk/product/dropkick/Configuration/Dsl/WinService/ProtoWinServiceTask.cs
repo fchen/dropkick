@@ -18,14 +18,15 @@ namespace dropkick.Configuration.Dsl.WinService
     using Tasks.WinService;
 
     public class ProtoWinServiceTask :
-        BaseTask,
         WinServiceOptions
     {
         readonly string _serviceName;
         Action<Server> _registerAdditionalActions;
+        Server _server;
 
-        public ProtoWinServiceTask(string serviceName)
+        public ProtoWinServiceTask(Server server, string serviceName)
         {
+            _server = server;
             _serviceName = serviceName;
         }
 
@@ -33,34 +34,59 @@ namespace dropkick.Configuration.Dsl.WinService
 
         public WinServiceOptions Do(Action<Server> registerAdditionalActions)
         {
+            _server.RegisterTask(new ProtoWinServiceStopTask(_serviceName));
+
             //child task
-            _registerAdditionalActions = registerAdditionalActions;
+            registerAdditionalActions(_server);
+
+
+            _server.RegisterTask(new ProtoWinServiceStartTask(_serviceName));
 
             return this;
         }
 
         public void Start()
         {
-            
+            _server.RegisterTask(new ProtoWinServiceStartTask(_serviceName));
         }
 
         public void Stop()
         {
-
+            _server.RegisterTask(new ProtoWinServiceStopTask(_serviceName));
         }
 
         #endregion
+    }
+
+    public class ProtoWinServiceStopTask :
+        BaseTask
+    {
+        string _serviceName;
+
+        public ProtoWinServiceStopTask(string serviceName)
+        {
+            _serviceName = serviceName;
+        }
 
         public override Task ConstructTasksForServer(DeploymentServer server)
         {
-            var nest = new NestedTask();
-            nest.AddTask(new WinServiceStopTask(server.Name, _serviceName));
+            return new WinServiceStopTask(server.Name, _serviceName);
+        }
+    }
 
-            //child task
-            //_registerAdditionalActions();
+    public class ProtoWinServiceStartTask :
+        BaseTask
+    {
+        string _serviceName;
 
-            nest.AddTask(new WinServiceStartTask(server.Name, _serviceName));
-            return nest;
+        public ProtoWinServiceStartTask(string serviceName)
+        {
+            _serviceName = serviceName;
+        }
+
+        public override Task ConstructTasksForServer(DeploymentServer server)
+        {
+            return new WinServiceStartTask(server.Name, _serviceName);
         }
     }
 }

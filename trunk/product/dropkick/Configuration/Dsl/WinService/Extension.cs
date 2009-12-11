@@ -16,9 +16,7 @@ namespace dropkick.Configuration.Dsl.WinService
     {
         public static WinServiceOptions WinService(this Server server, string serviceName)
         {
-            var proto = new ProtoWinServiceTask(serviceName);
-            server.RegisterTask(proto);
-            return proto;
+            return new ProtoWinServiceTask(server, serviceName);
         }
     }
 }
