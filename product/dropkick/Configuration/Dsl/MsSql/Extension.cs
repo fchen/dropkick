@@ -16,7 +16,7 @@ namespace dropkick.Configuration.Dsl.MsSql
     {
         public static SqlOptions SqlInstance(this Server server, string instanceName)
         {
-            var proto = new ProtoMsSqlTask();
+            var proto = new ProtoMsSqlTask(server);
             server.RegisterTask(proto);
             return proto;
         }
