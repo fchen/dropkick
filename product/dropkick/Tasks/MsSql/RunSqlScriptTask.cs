@@ -1,5 +1,6 @@
 namespace dropkick.Tasks.MsSql
 {
+    using System;
     using System.Data;
     using System.IO;
     using DeploymentModel;
@@ -16,13 +17,15 @@ namespace dropkick.Tasks.MsSql
         {
             get
             {
-                return string.Format("Run SqlScritp '{0}' on server '{1}' for database '{2}'", ScriptToRun, ServerName,
+                return string.Format("Run SqlScritp '{0}' on server '{1}\\{2}' for database '{3}'", ScriptToRun, ServerName, InstanceName,
                                      DatabaseName);
             }
         }
 
 
         public string ScriptToRun { get; set; }
+
+        public string InstanceName { get; set; }
 
 
         public override DeploymentResult VerifyCanRun()

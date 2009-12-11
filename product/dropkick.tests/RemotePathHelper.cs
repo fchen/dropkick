@@ -10,16 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace dropkick.Configuration.Dsl.MsSql
+namespace dropkick.tests
 {
-    public static class Extension
+    public class RemotePathHelper
     {
-        public static SqlOptions SqlInstance(this Server server, string instanceName)
+        public static string Convert(string server, string localpath)
         {
-            var proto = new ProtoMsSqlTask();
-            proto.InstanceName = instanceName;
-            server.RegisterTask(proto);
-            return proto;
+            var newPath = server + "\\" + localpath;
+            newPath = newPath.Replace(':', '$');
+
+            return newPath;
         }
     }
 }

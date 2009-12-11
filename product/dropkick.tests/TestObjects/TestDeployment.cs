@@ -41,7 +41,7 @@ namespace dropkick.tests.TestObjects
                                        .EncryptIdentity());
 
 
-                    server.WinService("MSMQ").Do(() =>
+                    server.WinService("MSMQ").Do(s =>
                     {
                         //service stops
 
@@ -64,7 +64,7 @@ namespace dropkick.tests.TestObjects
                 {
 
                     server.WinService("FlamesHost")
-                        .Do(() => //auto-stop
+                        .Do(s => //auto-stop
                         {
                             server.CopyTo(@".\code_drop\flameshost").From(@"\\srvtopeka00\whatever")
                                 .With(f =>

@@ -22,7 +22,7 @@ namespace dropkick.Configuration.Dsl.WinService
         WinServiceOptions
     {
         readonly string _serviceName;
-        Action _registerAdditionalActions;
+        Action<Server> _registerAdditionalActions;
 
         public ProtoWinServiceTask(string serviceName)
         {
@@ -31,7 +31,7 @@ namespace dropkick.Configuration.Dsl.WinService
 
         #region WinServiceOptions Members
 
-        public WinServiceOptions Do(Action registerAdditionalActions)
+        public WinServiceOptions Do(Action<Server> registerAdditionalActions)
         {
             //child task
             _registerAdditionalActions = registerAdditionalActions;
@@ -39,16 +39,28 @@ namespace dropkick.Configuration.Dsl.WinService
             return this;
         }
 
+        public void Start()
+        {
+            
+        }
+
+        public void Stop()
+        {
+
+        }
+
         #endregion
 
         public override Task ConstructTasksForServer(DeploymentServer server)
         {
-            var stop = new WinServiceStopTask(server.Name, _serviceName);
-            //child task
-            _registerAdditionalActions();
+            var nest = new NestedTask();
+            nest.AddTask(new WinServiceStopTask(server.Name, _serviceName));
 
-            var start = new WinServiceStartTask(server.Name, _serviceName);
-            return new NestedTask();
+            //child task
+            //_registerAdditionalActions();
+
+            nest.AddTask(new WinServiceStartTask(server.Name, _serviceName));
+            return nest;
         }
     }
 }
