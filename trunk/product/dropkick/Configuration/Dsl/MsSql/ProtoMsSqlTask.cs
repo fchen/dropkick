@@ -24,6 +24,11 @@ namespace dropkick.Configuration.Dsl.MsSql
         readonly Server _server;
         string _databaseName;
 
+        public ProtoMsSqlTask(Server server)
+        {
+            _server = server;
+        }
+
         #region DatabaseOptions Members
 
         public void OutputSql(string sql)

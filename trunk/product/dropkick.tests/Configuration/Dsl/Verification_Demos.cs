@@ -12,81 +12,64 @@
 // specific language governing permissions and limitations under the License.
 namespace dropkick.tests.Configuration.Dsl
 {
+    using dropkick.Configuration.Dsl;
     using dropkick.Engine;
     using NUnit.Framework;
     using TestObjects;
 
-    [TestFixture]
-    [Category("Integration")]
-    public class Verification_Demos
+    public class CommandDeploymentEst :
+        VerificationContext<CommandTestDeploy>
     {
-        #region Setup/Teardown
+    }
 
-        [SetUp]
-        public void Setup()
-        {
-            _verifyArguments = new DeploymentArguments
-                               {
-                                   Deployment = GetType().Assembly.FullName,
-                                   Environment = "TEST",
-                                   Command = DeploymentCommands.Verify,
-                                   Part = "WEB"
-                               };
-            _verifyArguments.ServerMappings.AddMap("WEB", "SrvTopeka02");
-        }
+    public class MsmqDeploymentEst :
+        VerificationContext<MsmqTestDeploy>
+    {
+    }
 
-        [TearDown]
-        public void Teardown()
-        {
-        }
+    public class MsSqlDeploymentEst :
+        VerificationContext<MsSqlTestDeploy>
+    {
+    }
 
-        #endregion
+    public class TestDeploymentEst :
+        VerificationContext<TestDeployment>
+    {
+    }
+
+    public class WinService :
+        VerificationContext<WinServiceTestDeploy>
+    {
+    }
+
+    [TestFixture]
+    public abstract class VerificationContext<T> where T : Deployment, new()
+    {
+        public Deployment Deployment { get; set; }
 
         DeploymentArguments _verifyArguments;
 
-        [Test]
-        public void Verify_Command()
+        [TestFixtureSetUp]
+        public void EstablishContext()
         {
-            Setup();
-            var dep = new CommandTestDeploy();
-            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
+            Deployment = new T();
+            _verifyArguments = new DeploymentArguments
+            {
+                Deployment = GetType().Assembly.FullName,
+                Environment = "TEST",
+                Command = DeploymentCommands.Verify,
+                Part = "WEB"
+            };
+
+            _verifyArguments.ServerMappings.AddMap("WEB", "SrvTopeka02");
+
+            DeploymentPlanDispatcher.KickItOutThereAlready(Deployment, _verifyArguments);
         }
 
         [Test]
-        [Category("Integration")]
-        public void Verify_Iis()
+        public void RunIt()
         {
-            var dep = new IisTestDeploy();
-            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
-        }
-
-        [Test]
-        public void Verify_MSMQ_Test()
-        {
-            var dep = new MsmqTestDeploy();
-            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
-        }
-
-        [Test]
-        public void Verify_MsSql_Test()
-        {
-            var dep = new MsSqlTestDeploy();
-            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
-        }
-
-
-        [Test]
-        public void Verify_TestDeploy()
-        {
-            var dep = new TestDeployment();
-            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
-        }
-
-        [Test]
-        public void Verify_WinService()
-        {
-            var dep = new WinServiceTestDeploy();
-            DeploymentPlanDispatcher.KickItOutThereAlready(dep, _verifyArguments);
+            
         }
     }
 }
