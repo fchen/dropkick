@@ -55,7 +55,7 @@ namespace dropkick.tests.DeploymentModel
 
             var args = new DeploymentArguments
                        {
-                           Part = "WEB",
+                           Role = "WEB",
                            Command = DeploymentCommands.Execute
                        };
 
@@ -98,7 +98,7 @@ namespace dropkick.tests.DeploymentModel
 
             var args = new DeploymentArguments
                        {
-                           Part = "WEB",
+                           Role = "WEB",
                            Command = DeploymentCommands.Trace
                        };
 
@@ -141,7 +141,7 @@ namespace dropkick.tests.DeploymentModel
 
             var args = new DeploymentArguments
                        {
-                           Part = "WEB",
+                           Role = "WEB",
                            Command = DeploymentCommands.Verify
                        };
 
